@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="referencing-application:ear">
+    <output-path>$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-application/target</output-path>
+    <root id="archive" name="referencing-application.ear">
+      <element id="artifact" artifact-name="referencing-application:ear exploded" />
+    </root>
+  </artifact>
+</component>

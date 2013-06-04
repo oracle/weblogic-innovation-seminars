@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+    >
+<h:head>
+
+</h:head>
+<h:body>
+
+<ui:composition template="/templates/common/layout.xhtml">
+
+<ui:define name="content">
+
+<h:form id="frm1" prependId="false">
+
+<p:tabView id="tabView">
+
+<p:tab id="links" title="Links">
+
+  <p:panel header="WLS Admin Consoles">
+
+    <h:panelGrid columns="1">
+
+      <h:outputLink
+          value="http://wins-vbox.localdomain:7001/console">WebLogic Examples Domain Admin Console</h:outputLink>
+      <h:outputLink value="http://wins-vbox.localdomain:8001/console">SAF Target Domain Admin Console</h:outputLink>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+  <p:panel header="Coherence*Web Examples">
+
+    <h:panelGrid columns="1">
+
+      <h:outputLink
+          value="http://127.0.0.1/jsf-bean-app-1/index.xhtml">Coherence*Web Session Sharing - JSF App 1</h:outputLink>
+      <h:outputLink
+          value="http://127.0.0.1/jsf-bean-app-2/index.xhtml">Coherence*Web Session Sharing - JSF App 2</h:outputLink>
+      <hr/>
+
+      <h:outputLink
+          value="http://127.0.0.1//coherence-web-split-storage/">Coherence*Web Split Session Storage</h:outputLink>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+  <p:panel header="WLDF Examples">
+
+    <h:panelGrid columns="1">
+
+      <h:outputLink value="http://127.0.0.1/dye-injection/index.xhtml">Dye Injection - JSF App</h:outputLink>
+      <h:outputLink value="http://127.0.0.1/dye-injection/AddingServlet?p1=2&amp;p2=123">Dye Injection - Servlet</h:outputLink>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+</p:tab>
+
+<p:tab id="tab1" title="JMS Examples">
+
+  <p:growl id="growl" showDetail="false" autoUpdate="true" sticky="false"/>
+
+  <p:panel header="Distributed JMS Examples">
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="queue_button"
+                       value="Demo Distributed Queue"
+                       ajax="false"
+                       actionListener="#{jmsExamplesController.queueDemo}"/>
+
+
+      <div>
+        <div class="section_header">Distributed Queue</div>
+        <div class="section_description">
+          This demo will send a set of messages to a Distributed Queue. In this case,
+          each message is consumed by only one consumer on one node of the cluster
+        </div>
+      </div>
+
+      <p:commandButton id="rdt_button"
+                       value="Demo Replicated Distributed Topic"
+                       ajax="false"
+                       actionListener="#{jmsExamplesController.rdtDemo}" update="growl"/>
+
+      <div>
+        <div class="section_header">Replicated Distributed Topic</div>
+        <div class="section_description">
+          This demo will send a set of messages to a Replicated Distributed Topic.
+          The Message Distribution mode of 'Replicated' is the default setting. In this case, each message is
+          replicated to all nodes of a cluster and is delivered to all consumers on each node.
+        </div>
+      </div>
+
+
+      <p:commandButton id="pdt_button"
+                       value="Demo Partitioned Distributed Topic"
+                       actionListener="#{jmsExamplesController.pdtDemo}" update="growl"/>
+
+      <div>
+        <div class="section_header">Partitioned Distributed Topic (new in 10.3.4+)</div>
+        <div class="section_description">
+          This will send a set of messages to a Partitioned Distributed Topic.
+          In this case, messages delivered to a Member Destination are not replicated across the cluster and messages
+          are delivered to all consumers of the individual Member Destination.
+        </div>
+      </div>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+  <p:panel header="Advanced JMS Examples">
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="saf_button"
+                       value="Demo Store and Forward"
+                       actionListener="#{jmsExamplesController.safDemo}" update="growl"/>
+
+      <div>
+        <div class="section_header">Store and Forward (SAF)</div>
+        <div class="section_description">
+          This demo will send JMS messages to a local JMS Queue. A Store and Forward agent will take the messages
+          off the local JMS Queue and deliver them to a remote destination - the SAF Target Domain for this example.
+          Store and Forward can be used to deliver messages to a remote location that does not have a reliable connection.
+          If the message cannot be delivered remotely then it will be stored until delivery can be successful.
+        </div>
+      </div>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+  <p:panel header="Unit of Order">
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="nonuoo_button"
+                       value="Demo Non Unit of Order (Queue)"
+                       actionListener="#{jmsExamplesController.uooDemoNonUOO}" update="growl"/>
+
+      <div>
+        <div class="section_header">Non-Unit of Order</div>
+        <div class="section_description">
+          This demo will send JMS messages that are not part of a Unit of Order to a distributed JMS Queue. This is simply the
+          default case which is used to show that the messages are load-balanced across the cluster.
+        </div>
+      </div>
+
+
+      <p:commandButton id="discreteuoo_button"
+                       value="Demo Discrete UOO (Queue)"
+                       actionListener="#{jmsExamplesController.uooDemoDiscrete}" update="growl"/>
+
+      <div>
+        <div class="section_header">Discrete (Single) Unit of Order</div>
+        <div class="section_description">
+          This demo will send a batch of JMS messages that are part of a single Unit of Order to a distributed JMS Queue.
+          In this case you will see that the messages are delivered to a single MDB on a single server in the cluster.
+          They will also be delivered in the order that they were delivered.
+        </div>
+      </div>
+
+
+      <p:commandButton id="mixeduoo_button"
+                       value="Demo Mixed UOO (Queue)"
+                       actionListener="#{jmsExamplesController.uooDemoMixed}" update="growl"/>
+
+      <div>
+        <div class="section_header">Mixed (Single) Unit of Order</div>
+        <div class="section_description">
+          This demo will send multiple batchs of JMS messages that are each part of a single Unit of Order to a distributed JMS Queue.
+          In this case you will see that some UOO's the messages are delivered to a single MDB on a single server in the cluster.
+          They will also be delivered in the order that they were delivered.
+        </div>
+      </div>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+  <p:panel header="Unit of Work">
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="nonUOW_button"
+                       value="Demo Non UOW (Queue)"
+                       actionListener="#{jmsExamplesController.uowDemoNonUOW}" update="growl"/>
+
+      <div>
+        <div class="section_header">Non-Unit of Work</div>
+        <div class="section_description">
+          This demo will send multiple batchs of JMS messages that are NOT part of a Unit of Work to a distributed JMS Queue. This is simply the
+          default case which is used to show that the messages are load-balanced across the cluster.
+        </div>
+      </div>
+
+
+      <p:commandButton id="singleUOW_button"
+                       value="Demo Single UOW (Queue)"
+                       actionListener="#{jmsExamplesController.uowDemoDiscrete}" update="growl"/>
+
+      <div>
+        <div class="section_header">Discrete (Single) Unit of Work</div>
+        <div class="section_description">
+          This demo will send a batch of JMS messages that are part of a single Unit of Order to a distributed JMS Queue.
+          In this case you will see that the messages are delivered to a single MDB on a single server in the cluster.
+          They will also be delivered in the order that they were delivered.
+        </div>
+      </div>
+
+
+      <p:commandButton id="mixedUOW_button"
+                       value="Multiple/Mixed Units of Work (Queue)"
+                       actionListener="#{jmsExamplesController.uowDemoMixed}" update="growl"/>
+
+      <div>
+        <div class="section_header">Multiple/Mixed Units of Work</div>
+        <div class="section_description">
+          This demo will send three batches of JMS messages that are each part of a single Unit of Work to a distributed JMS Queue.
+          In this case you will see that the messages are delivered to a single MDB on a single server in the cluster.
+          They will also be delivered in the order that they were delivered.
+        </div>
+      </div>
+
+
+      <p:commandButton id="sadUOW_button"
+                       value="Demo Incomplete UOW (Queue)"
+                       actionListener="#{jmsExamplesController.uowDemoIncomplete}" update="growl"/>
+
+      <div>
+        <div class="section_header">Incomplete Unit of Work</div>
+        <div class="section_description">
+          This demo will send single UOW to a distributed JMS Queue but will not set the Complete flag on the last message, leaving the UOW incomplete.
+          The UOW will time out and be redirected to the Error Destination.
+        </div>
+      </div>
+
+
+      <p:commandButton id="slowUOW_button"
+                       value="Demo Slow UOW (Queue)"
+                       actionListener="#{jmsExamplesController.uowDemoSlow}" update="growl"/>
+
+      <div>
+        <div class="section_header">Slow (Incomplete) Unit of Work</div>
+        <div class="section_description">
+          This demo will send single UOW to a distributed JMS Queue but will not complete the UOW before the timeout period, leaving the UOW incomplete.
+          The UOW will time out and be redirected to the Error Destination.
+        </div>
+      </div>
+
+
+    </h:panelGrid>
+
+  </p:panel>
+
+</p:tab>
+
+<p:tab id="tab2" title="Utility">
+
+  <p:growl id="growl_utility" autoUpdate="true" showDetail="false" sticky="false"/>
+
+
+  <p:panel header="Utility Options">
+
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="jdbcHogger_button"
+                       value="Demo JDBC Connection Hogger"
+                       actionListener="#{utilityController.demoJdbcHogger}"/>
+
+      <div>
+        <div class="section_header">JDBC Hogger</div>
+        <div class="section_description">
+          This demo will create contention on a JDBC Connection pool in the Managed Servers. The purpose of this is to
+          show the behavior of an overloaded JDBC Connection Pool and also to allow you to demonstrate WLDF Watches
+          configured for the Connection Poool.
+        </div>
+      </div>
+
+      <p:commandButton id="stuckThreads_button"
+                       value="Demo Stuck Threads"
+                       actionListener="#{utilityController.demoStuckThreads}"/>
+
+      <div>
+        <div class="section_header">Stuck Threads Generator</div>
+        <div class="section_description">
+          This demo will generate stuck threads in the Managed Servers. Stuck Threads are not a WebLogic problem. WebLogic is
+          simply indicating that a thread may be stuck because it is working on the same thing for a long time.<br/>
+          In this demo a batch of JMS messages will be sent and consumed by MDB's which simply sleep for 610s, thereby
+          generating Stuck Thread notifications.
+        </div>
+      </div>
+
+      <p:commandButton id="deadlock_button"
+                       value="Generate Deadlock"
+                       actionListener="#{utilityController.generateDeadlock}"/>
+
+      <h:panelGroup>
+        <div>
+          <div class="section_header">Deadlock Generator</div>
+          <div class="section_description">
+            This will deliver a set of messages to a Distributed Queue and generate a deadlock using the
+            <h:outputLink
+                value="http://en.wikipedia.org/wiki/Dining_philosophers_problem">Dining Philosophers</h:outputLink> problem
+            This demo will produce a deadlock by putting messages into a JMS queue that are consumed by two types of MDBs -
+            One MDB who takes a lock on a shared EAT object and then tries for a lock on a THINK object while holding
+            the EAT lock. The other MDB acquires the THINK lock and then tries for the EAT lock while not releasing
+            the THINK lock.
+          </div>
+          <div
+              style="font-weight: bolder; color: red;">THIS WILL REQUIRE A DOMAIN RESTART. DO NOT EXECUTE THIS DEMO UNLESS YOU ARE PREPARED FOR THAT OUTCOME...
+          </div>
+
+        </div>
+      </h:panelGroup>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+</p:tab>
+
+</p:tabView>
+
+</h:form>
+</ui:define>
+
+</ui:composition>
+</h:body>
+
+</html>

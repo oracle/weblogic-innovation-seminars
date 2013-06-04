@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <artifactId>coherence-web-session-sharing</artifactId>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>jsp-app-1</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <name>jsp-app-1</name>
+
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

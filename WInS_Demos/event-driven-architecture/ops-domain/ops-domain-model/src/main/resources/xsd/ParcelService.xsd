@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema
+    targetNamespace="http://demo.oracle.com/ops/domain/services/parcel"
+    xmlns:tns="http://demo.oracle.com/ops/domain/services/parcel"
+    xmlns:svc-common="http://demo.oracle.com/ops/domain/services/common"
+    xmlns:shipping="http://demo.oracle.com/ops/domain/schema/shipping"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="1.0">
+
+  <xs:import namespace="http://demo.oracle.com/ops/domain/services/common" schemaLocation="ServicesCommon.xsd"/>
+  <xs:import namespace="http://demo.oracle.com/ops/domain/schema/shipping" schemaLocation="Shipping.xsd"/>
+
+  <!--     ***************************** Add Parcel Log Event *****************************    -->
+  <xs:element name="GetParcelByIdRequest" type="tns:GetParcelByIdRequestType"/>
+
+  <xs:complexType name="GetParcelByIdRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="ParcelId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="GetParcelByIdResponse" type="tns:GetParcelByIdResponseType"/>
+
+  <xs:complexType name="GetParcelByIdResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="Parcel" type="shipping:ParcelType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--     ***************************** Add Parcel Log Event *****************************    -->
+  <xs:element name="AddParcelLogEventJMSPROXYRequest" type="tns:AddParcelLogEventJMSPROXYRequestType"/>
+
+  <xs:complexType name="AddParcelLogEventJMSPROXYRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="ParcelLogEvent" type="shipping:ParcelEventType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="AddParcelLogEventJMSPROXYResponse" type="tns:AddParcelLogEventJMSPROXYResponseType"/>
+
+  <xs:complexType name="AddParcelLogEventJMSPROXYResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="ParcelLogEvent" type="shipping:ParcelEventType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--     ***************************** Get Parcel Event Log *****************************    -->
+
+  <xs:element name="GetParcelEventLogRequest" type="tns:GetParcelEventLogRequestType"/>
+
+  <xs:complexType name="GetParcelEventLogRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="ParcelId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="GetParcelEventLogResponse" type="tns:GetParcelEventLogResponseType"/>
+
+
+  <xs:complexType name="GetParcelEventLogResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="ParcelLogEvent" type="shipping:ParcelEventType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

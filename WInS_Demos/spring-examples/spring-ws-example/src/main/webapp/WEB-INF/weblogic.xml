@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app
+    xmlns="http://www.bea.com/ns/weblogic/weblogic-web-app"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://www.bea.com/ns/weblogic/weblogic-web-app http://www.bea.com/ns/weblogic/weblogic-web-app/1.0/weblogic-web-app.xsd">
+
+  <context-root>/ops-spring-ws</context-root>
+
+</weblogic-web-app>

@@ -1,0 +1,181 @@
+.disabled {
+    float: left;
+    padding: 4px 5px 4px 5px;
+    font-family: veranda, arial, sans-serif;
+    color: #000;
+    text-decoration: none;
+    background-color: gray;
+    border: 3px solid white;
+}
+
+.section_header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: small;
+}
+
+.section_description {
+    font-size: small;
+}
+
+.btnNull {
+    float: left;
+    font-size: x-small;
+    padding: 4px 5px 4px 5px;
+    font-family: veranda, arial, sans-serif;
+    color: black;
+    text-decoration: none;
+    background-color: #e8e8e8;
+    border: 1px solid #ab8137;
+
+    background-position: left;
+    background-repeat: repeat-x;
+}
+
+.btn:link, .btn:visited, .btn {
+    float: left;
+    font-weight: bold;
+    font-size: x-small;
+    padding: 4px 5px 4px 5px;
+    font-family: veranda, arial, sans-serif;
+    color: black;
+    text-decoration: none;
+    background-color: #e8e8e8;
+    border: 1px solid #ab8137;
+    width: 75px;
+}
+
+.btn:hover, .btn:active, .btnHover {
+    color: white;
+    font-weight: bolder;
+    font-size: x-small;
+    background-color: #FF8B03;
+    float: left;
+    padding: 4px 5px 4px 5px;
+    font-family: veranda, arial, sans-serif;
+    text-decoration: none;
+    border: 1px solid #ab8137;
+    background-repeat: repeat-x;
+    width: 75px;
+}
+
+body {
+    font-family: veranda, arial, sans-serif;
+    font-size: medium;
+    background-color: white;
+    color: black;
+}
+
+.data-table {
+    border-width: 1px;
+    border-spacing: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: black;
+    background-color: white;
+}
+
+.basic-table {
+    border-width: 1px;
+    border-spacing: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: black;
+    background-color: white;
+}
+
+table.data-table td {
+    border-width: 1px;
+    border-spacing: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+table.data-table th {
+    border-width: 1px;
+    border-spacing: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+.xmlData {
+    font-family: courrier, sans-serif;
+    font-size: larger;
+    white-space: pre;
+}
+
+.header-left {
+    text-align: left;
+    font-weight: bold;
+}
+
+.table-header {
+    font-weight: bold;
+    color: white;
+    background-color: #8b0000;
+    text-align: center;
+}
+
+.row-top-align {
+    vertical-align: top;
+}
+
+.row-odd {
+    color: black;
+    font-size: small;
+    background-color: #d3d3d3;
+}
+
+.row-even {
+    color: black;
+    font-size: small;
+    background-color: white;
+}
+
+.session_id_header {
+    font-size: small;
+}
+
+.disclaimer, .copyright, .session_id, .server_name {
+    font-weight: bold;
+    font-size: small;
+    font-style: italic;
+}
+
+.colum-default {
+    text-align: center;
+    white-space: normal;
+}
+
+.column-date {
+    text-align: center;
+    width: 100px;
+    white-space: normal;
+}
+
+.column-center {
+    text-align: center;
+    white-space: normal;
+}
+
+.column-left {
+    text-align: left;
+    white-space: normal;
+}
+
+.column-right {
+    text-align: right;
+    white-space: normal;
+}
+
+.column-preserve {
+    text-align: left;
+    white-space: pre;
+}
+
+.subtitlebig {
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline
+
+}

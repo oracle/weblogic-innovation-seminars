@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>coherence-web-examples</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>coherence-web-examples</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>coherence-web-session-sharing</module>
+    <module>coherence-web-split-storage</module>
+  </modules>
+
+</project>

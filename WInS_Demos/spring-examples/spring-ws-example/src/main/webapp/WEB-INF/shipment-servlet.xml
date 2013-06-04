@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!--
+      This configures Spring annotations such as @Autowired to be parsed and handled appropriately
+  -->
+  <context:annotation-config/>
+
+  <!--
+      This indicates that the Spring WS components will look for annotated classes to wire with Spring Web Services.
+      The classes for this context is com.oracle.demo.ops.spring.ws.shipment.ShipmentEndpoint
+  -->
+  <sws:annotation-driven/>
+
+  <!--
+      This effectively imports the EJB references and wrapper classes
+  -->
+  <import resource="applicationContext.xml"/>
+  <import resource="classpath:applicationContext-services.xml"/>
+
+  <!--
+      Shipment Web Service endpoint definition
+  -->
+  <bean id="shipmentEndpoint" class="com.oracle.demo.ops.spring.ws.shipment.ShipmentEndpoint"/>
+
+  <!--
+      shipmentEndpointMapping defines the mapping of operations to the endpoint by specifying the Request
+      and Response with namespace.  There is an interceptor definition that logs the payloads.
+  -->
+  <bean id="shipmentEndpointMapping"
+        class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+    <property name="defaultEndpoint" ref="shipmentEndpoint"/>
+    <property name="interceptors">
+      <list>
+        <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+      This specifies to use a JAXB marshaller to marshal from XML to POJO
+  -->
+  <bean id="shipmentMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"
+        p:contextPath="com.oracle.demo.ops.domain"/>
+
+  <!--
+      This specifies the Enpoint Adapter to go from XML to the POJO operation.  Here we are assigning
+      an adapter that will marshall the request objects to the endpoint and providing a reference to
+      the JAXB marshaller above.
+  -->
+  <bean id="shipmentAdapter"
+        class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+    <constructor-arg ref="shipmentMarshaller"/>
+  </bean>
+
+  <!--
+      This specifies that the WSDL for this service is generated Dynamically.  Alternatively, we could
+      create the WSDL by hand and have a static WSDL reference.
+  -->
+  <bean id="shipment" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+    <property name="schemaCollection" ref="shipmentSchemaCollection"/>
+    <property name="portTypeName" value="shipmentPort_springws"/>
+    <property name="locationUri" value="/shipmentService/"/>
+  </bean>
+
+  <!--
+      This defines the XSD's that are to be included/used for the WSDL generation.  An important
+      attribute is the 'inline' setting which causes the XSD's to be included in the generated
+      WSDL.  Otherwise, they would be imported and referenced via URL.  This causes problems
+      when importing the WSDL to some tools when the URL is not availavle.
+  -->
+  <bean id="shipmentSchemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+    <property name="inline" value="true"/>
+    <property name="xsds">
+      <list>
+        <value>/xsd/Common.xsd</value>
+        <value>/xsd/ServicesCommon.xsd</value>
+        <value>/xsd/Shipping.xsd</value>
+        <value>/xsd/ShipmentService.xsd</value>
+      </list>
+    </property>
+  </bean>
+
+  <!-- ################################################# -->
+
+  <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+    <property name="server" ref="jmxRuntime"/>
+    <property name="beans">
+      <map>
+        <entry key="ops.spring.ws:name=shipmentEndpoint" value-ref="shipmentEndpoint"/>
+      </map>
+    </property>
+
+  </bean>
+</beans>

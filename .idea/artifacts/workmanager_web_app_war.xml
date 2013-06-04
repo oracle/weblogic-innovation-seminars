@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="workmanager-web-app:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/workmanager-examples/workmanager-web-app/target</output-path>
+    <root id="archive" name="workmanager-web-app.war">
+      <element id="artifact" artifact-name="workmanager-web-app:war exploded" />
+    </root>
+  </artifact>
+</component>

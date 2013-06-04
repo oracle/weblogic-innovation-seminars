@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>referencing-application</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>ear</packaging>
+  <name>referencing-application</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.3.2</version>
+
+        <configuration>
+          <version>6</version>
+          <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

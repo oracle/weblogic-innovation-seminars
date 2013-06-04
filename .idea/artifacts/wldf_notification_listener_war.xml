@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wldf-notification-listener:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/diagnostic-framework/wldf-notification-listener/target</output-path>
+    <root id="archive" name="wldf-notification-listener.war">
+      <element id="artifact" artifact-name="wldf-notification-listener:war exploded" />
+    </root>
+  </artifact>
+</component>

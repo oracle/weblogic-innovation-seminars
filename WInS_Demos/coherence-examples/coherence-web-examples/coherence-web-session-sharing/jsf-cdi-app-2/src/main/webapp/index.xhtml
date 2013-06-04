@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+    >
+<h:head>
+
+</h:head>
+<h:body>
+
+  <ui:composition template="/templates/common/layout.xhtml">
+
+    <ui:define name="content">
+
+
+      <h:form id="frm1" prependId="false">
+        <p:growl showDetail="true"/>
+
+
+        <p:panel header="New Attribute">
+          <h:panelGrid columns="2">
+            <h:outputLabel value="Key :"
+                           for="txt_key"/>
+
+            <p:inputText id="txt_key"
+                         value="#{sessionController.inputAttributeKey}"
+                         required="true"
+                         label="Key"/>
+
+            <h:outputLabel value="Array Length :"
+                           for="txt_arrlen"/>
+
+            <p:inputText id="txt_arrlen"
+                         value="#{sessionController.inputAttributeValue}"
+                         required="true"
+                         label="ArrayLen"/>
+          </h:panelGrid>
+
+          <p:commandButton value="Add Session Attribute"
+                           actionListener="#{sessionController.addNewEntry}"
+                           update="tblAttributes"/>
+
+        </p:panel>
+
+        <br/>
+
+        <p:panel id="atts" header="Current Session Attributes">
+          <p:commandButton value="Refresh"
+                           update="tblAttributes"/>
+
+          <p:commandButton value="Invalidate Session"
+                           process="@this"
+                           update="frm1"
+                           actionListener="#{sessionController.invalidateSessionListener}"/>
+
+          <br/>
+
+          <div id="session_id" class="session_id_header">
+            <h:outputText value="Server: #{sessionController.webLogicServerName}"/><br/>
+            <h:outputText value="Session ID: #{sessionController.sessionId}"/>
+          </div>
+
+          <p:dataTable value="#{sessionController.sessionAttributes}"
+                       id="tblAttributes"
+                       var="att"
+                       styleClass="data-table"
+                       headerClass="table-header"
+                       rowClasses="row-odd,row-even">
+
+            <f:facet name="header">Session Attributes</f:facet>
+
+            <p:column>
+              <f:facet name="header">Key</f:facet>
+              <h:outputText value="#{att.key}"/>
+            </p:column>
+
+            <p:column>
+              <f:facet name="header">Value</f:facet>
+              <h:outputText value="#{att.value}"/>
+            </p:column>
+
+          </p:dataTable>
+        </p:panel>
+
+      </h:form>
+    </ui:define>
+
+  </ui:composition>
+</h:body>
+
+</html>

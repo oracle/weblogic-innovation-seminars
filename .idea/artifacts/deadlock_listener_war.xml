@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="deadlock-listener:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/deadlock-generator/deadlock-listener/target</output-path>
+    <root id="archive" name="deadlock-listener.war">
+      <element id="artifact" artifact-name="deadlock-listener:war exploded" />
+    </root>
+  </artifact>
+</component>

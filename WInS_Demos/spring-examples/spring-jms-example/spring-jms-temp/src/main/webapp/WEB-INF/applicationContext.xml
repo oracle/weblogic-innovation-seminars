@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+  <bean id="invoiceListener" class="jms.InvoiceMDB"/>
+
+  <bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+    <property name="environment">
+      <props>
+        <prop key="java.naming.factory.initial">weblogic.jndi.WLInitialContextFactory</prop>
+        <!--<prop key="java.naming.provider.url">t3://wins-vbox.localdomain:7001</prop>-->
+      </props>
+    </property>
+  </bean>
+
+  <bean id="queueConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiTemplate" ref="jndiTemplate"/>
+    <property name="jndiName" value="jms/connectionFactory"/>
+  </bean>
+
+  <bean id="jmsDestinationResolver" class="org.springframework.jms.support.destination.JndiDestinationResolver">
+    <property name="jndiTemplate" ref="jndiTemplate"/>
+    <property name="cache" value="true"/>
+  </bean>
+
+  <bean id="invoiceQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="queueConnectionFactory"/>
+    <property name="destinationResolver" ref="jmsDestinationResolver"/>
+  </bean>
+
+  <bean id="jmsInvoiceSender" class="jms.InvoiceQueueSender">
+    <property name="jmsTemplate" ref="invoiceQueueTemplate"/>
+  </bean>
+
+  <bean id="invoiceQueue" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiTemplate" ref="jndiTemplate"/>
+    <property name="jndiName" value="jms/testQueue"/>
+  </bean>
+
+  <bean id="invoicelistener" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="concurrentConsumers" value="5"/>
+    <property name="connectionFactory" ref="queueConnectionFactory"/>
+    <property name="destination" ref="invoiceQueue"/>
+    <property name="messageListener" ref="invoiceListener"/>
+  </bean>
+</beans>

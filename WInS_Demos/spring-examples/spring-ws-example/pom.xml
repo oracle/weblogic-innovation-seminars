@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>spring-examples-common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../spring-examples-common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>spring-ws-example</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>spring-ws-example</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-oxm</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-xml</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <dependency>
+      <groupId>org.apache.ws.commons.schema</groupId>
+      <artifactId>XmlSchema</artifactId>
+    </dependency>
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+  </dependencies>
+
+</project>

@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ops</groupId>
+  <artifactId>dynamic-cluster-domain</artifactId>
+  <version>3.0</version>
+  <packaging>pom</packaging>
+  <name>dynamic-cluster-domain</name>
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.1.0</version>
+    <relativePath>../../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+  <properties>
+    <domain.name>dynamic-cluster-domain</domain.name>
+  </properties>
+  <!-- ==================================================================================== -->
+
+  <profiles>
+    <profile>
+      <id>create-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+            <version>12.1.2.0</version>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212/</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver/</weblogicHome>
+
+
+                  <fileName>${project.basedir}/src/main/wlst/create-dynamic-cluster-domain.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+
+    <!-- +++++++++++++++++++++++++ -->
+
+    <profile>
+      <id>start-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+            <version>12.1.2.0</version>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212/</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver/</weblogicHome>
+
+
+                  <fileName>${project.basedir}/src/main/wlst/start-dynamic-cluster-domain.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+    <!-- +++++++++++++++++++++++++ -->
+
+    <profile>
+      <id>stop-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+            <version>12.1.2.0</version>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+
+
+                  <fileName>${project.basedir}/src/main/wlst/stop-dynamic-cluster-domain.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+
+  </profiles>
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+</project>

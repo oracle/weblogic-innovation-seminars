@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dye-injection:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/diagnostic-framework/dye-injection/target</output-path>
+    <root id="archive" name="dye-injection.war">
+      <element id="artifact" artifact-name="dye-injection:war exploded" />
+    </root>
+  </artifact>
+</component>

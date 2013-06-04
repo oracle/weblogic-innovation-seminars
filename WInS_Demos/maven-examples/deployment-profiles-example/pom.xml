@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <artifactId>deployment-profiles-example</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.maven</groupId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <name>deployment-profiles-example</name>
+
+
+  <!-- ==================================================================================== -->
+
+  <properties>
+    <weblogic.examples.svn.url>https://svn.java.net/svn/weblogic-examples~weblogic-12c-user-examples
+    </weblogic.examples.svn.url>
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+  <profiles>
+
+    <profile>
+      <id>deploy-local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <properties>
+        <weblogic.Deployer.adminurl>t3://127.0.0.1:7001</weblogic.Deployer.adminurl>
+        <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+        <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+        <weblogic.Deployer.application.targets>AdminServer</weblogic.Deployer.application.targets>
+        <weblogic.Deployer.remote>false</weblogic.Deployer.remote>
+        <weblogic.Deployer.upload>false</weblogic.Deployer.upload>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>deploy-dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <properties>
+        <weblogic.Deployer.adminurl>t3://dev-wls:7001</weblogic.Deployer.adminurl>
+        <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+        <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+        <weblogic.Deployer.application.targets>AdminServer</weblogic.Deployer.application.targets>
+        <weblogic.Deployer.remote>false</weblogic.Deployer.remote>
+        <weblogic.Deployer.upload>false</weblogic.Deployer.upload>
+      </properties>
+    </profile>
+
+  </profiles>
+  <!-- ======================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <!--
+        This plugin sets the source and target language levels to Java 1.6
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+
+        <configuration>
+          <middlewareHome>${middleware.home}</middlewareHome>
+          <adminurl>${weblogic.Deployer.adminurl}</adminurl>
+          <user>${weblogic.Deployer.user}</user>
+          <password>${weblogic.Deployer.password}</password>
+          <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+          <name>${project.artifactId}</name>
+          <targets>${weblogic.Deployer.application.targets}</targets>
+          <remote>${weblogic.Deployer.remote}</remote>
+          <upload>${weblogic.Deployer.upload}</upload>
+        </configuration>
+
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+    <!-- This makes the JAVA EE 6 API available for all chile projects,
+which is all projects in this app -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>6.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

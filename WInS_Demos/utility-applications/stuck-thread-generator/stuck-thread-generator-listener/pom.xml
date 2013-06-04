@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-ejb</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../../common/common-deployable/common-ejb/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>stuck-thread-generator-listener</artifactId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <url>http://maven.apache.org</url>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

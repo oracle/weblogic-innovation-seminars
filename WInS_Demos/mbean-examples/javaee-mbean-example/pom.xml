@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-ejb</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/common-ejb/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>javaee-mbean-example</artifactId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <name>javaee-mbean-example</name>
+
+  <!-- ==================================================================================== -->
+
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+
+    <!-- This makes the JAVA EE 6 API available for all child projects, which is all projects in this app -->
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>weblogic</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

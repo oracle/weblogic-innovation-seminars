@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>saf-sender</artifactId>
+  <packaging>jar</packaging>
+  <version>12.1.2.0.0</version>
+  <url>http://maven.apache.org</url>
+
+  <!-- ==================================================================================== -->
+  <profiles>
+
+    <profile>
+      <id>demo</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <defaultGoal>test</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version>
+
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+
+                <configuration>
+                  <mainClass>com.oracle.example.jms.saf.server.SAFServerProducer</mainClass>
+                  <classpathScope>compile</classpathScope>
+                  <arguments>
+                    <argument>30</argument>
+                    <argument>2000</argument>
+                  </arguments>
+
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>weblogic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>wljmsclient</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>wlclient</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>wlsafclient</artifactId>
+    </dependency>
+
+  </dependencies>
+</project>

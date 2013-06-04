@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+  <context:annotation-config/>
+
+  <!--
+      Local EJB Refernece.  This JNDI Name refers to the "ejb-ref-name" in my web.xml (snippet below).  This allows the local lookup of the EJB
+
+      <ejb-local-ref>
+      <ejb-ref-name>ejb/ParcelManager</ejb-ref-name>
+      <local>com.oracle.demo.ops.ejb.entitymanager.ParcelManagerLocalLocal</local>
+  </ejb-local-ref>
+
+  Note the difference in the EJB references below.  There is a 'resource-ref' that when set to false does not include "java:comp/env/" which is
+  necessary to look up the bean.  If it is set to 'true' then Spring adds this prefix.
+  -->
+
+  <jee:local-slsb id="parcelEventManager"
+                  business-interface="com.oracle.demo.ops.entitymanager.ParcelEventManager"
+                  environment-ref="jndiEnvironmentProperties"
+                  resource-ref="true"
+                  jndi-name="ejb/ParcelEventManager"/>
+
+  <jee:local-slsb id="shipmentManager"
+                  business-interface="com.oracle.demo.ops.entitymanager.ShipmentManager"
+                  environment-ref="jndiEnvironmentProperties"
+                  resource-ref="true"
+                  jndi-name="ejb/ShipmentManager"/>
+
+  <jee:local-slsb id="parcelManager"
+                  business-interface="com.oracle.demo.ops.entitymanager.ParcelManager"
+                  environment-ref="jndiEnvironmentProperties"
+                  resource-ref="true"
+                  jndi-name="ejb/ParcelManager"/>
+
+</beans>

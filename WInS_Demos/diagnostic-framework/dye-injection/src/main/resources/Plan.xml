@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<deployment-plan xmlns="http://xmlns.oracle.com/weblogic/deployment-plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/deployment-plan http://xmlns.oracle.com/weblogic/deployment-plan/1.0/deployment-plan.xsd" global-variables="false">
+  <application-name>dye-injection</application-name>
+  <variable-definition>
+    <variable>
+      <name>ServletDescriptor_AddingServlet_ServletName_13663946208170</name>
+      <value>AddingServlet</value>
+    </variable>
+    <variable>
+      <name>ServletDescriptor_Faces Servlet_ServletName_13663946208231</name>
+      <value>Faces Servlet</value>
+    </variable>
+  </variable-definition>
+  <module-override>
+    <module-name>dye-injection.war</module-name>
+    <module-type>war</module-type>
+    <module-descriptor external="false">
+      <root-element>weblogic-web-app</root-element>
+      <uri>WEB-INF/weblogic.xml</uri>
+      <variable-assignment>
+        <name>ServletDescriptor_AddingServlet_ServletName_13663946208170</name>
+        <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="AddingServlet"]/servlet-name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+      <variable-assignment>
+        <name>ServletDescriptor_Faces Servlet_ServletName_13663946208231</name>
+        <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="Faces Servlet"]/servlet-name</xpath>
+        <origin>planbased</origin>
+      </variable-assignment>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>web-app</root-element>
+      <uri>WEB-INF/web.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>weblogic-ejb-jar</root-element>
+      <uri>WEB-INF/weblogic-ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="false">
+      <root-element>ejb-jar</root-element>
+      <uri>WEB-INF/ejb-jar.xml</uri>
+    </module-descriptor>
+    <module-descriptor external="true">
+      <root-element>wldf-resource</root-element>
+      <uri>META-INF/weblogic-diagnostics.xml</uri>
+      <hash-code>1366394801594</hash-code>
+    </module-descriptor>
+  </module-override>
+  <config-root>/u01/Oracle/Middleware/user_projects/domains/weblogic-cluster-domain/servers/AdminServer/upload/dye-injection/app/plan</config-root>
+</deployment-plan>

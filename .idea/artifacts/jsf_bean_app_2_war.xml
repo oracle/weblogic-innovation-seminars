@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jsf-bean-app-2:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-bean-app-2/target</output-path>
+    <root id="archive" name="jsf-bean-app-2.war">
+      <element id="artifact" artifact-name="jsf-bean-app-2:war exploded" />
+    </root>
+  </artifact>
+</component>

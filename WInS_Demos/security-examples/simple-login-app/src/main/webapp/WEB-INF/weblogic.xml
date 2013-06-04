@@ -1,0 +1,18 @@
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
+
+  <security-role-assignment>
+    <role-name>WEBAPP_ROLE</role-name>
+    <principal-name>JavaServiceUsers</principal-name>
+  </security-role-assignment>
+
+  <context-root>loginapp</context-root>
+
+  <!--<session-descriptor>-->
+    <!--<persistent-store-type>replicated_if_clustered</persistent-store-type>-->
+  <!--</session-descriptor>-->
+
+
+</weblogic-web-app>
+

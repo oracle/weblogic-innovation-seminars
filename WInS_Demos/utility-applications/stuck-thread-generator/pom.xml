@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>stuck-thread-generator</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>stuck-threads-generator</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>stuck-thread-generator-listener</module>
+    <module>stuck-thread-generator-sender</module>
+  </modules>
+
+</project>

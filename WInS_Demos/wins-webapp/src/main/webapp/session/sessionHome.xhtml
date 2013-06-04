@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xml:lang="en" lang="en">
+
+<h:head>
+  <h:outputStylesheet name="main.css" library="css"/>
+  <h:outputStylesheet name="styles.css" library="css"/>
+</h:head>
+
+<h:body>
+
+  <ui:composition template="/templates/common/layout.xhtml">
+
+    <ui:define name="content">
+      <p:panel header="Session Information">
+        <h:outputText value="Server: "/>
+        <h:outputText value="#{SessionControllerBean.webLogicServerName}"/>
+        <br/>
+
+        <h:outputText value="Session ID: "/>
+        <h:outputText value="#{SessionControllerBean.sessionId}"/>
+        <br/>
+
+        <h:form>
+          <h:commandButton value="Invalidate Session"
+                           action="#{SessionControllerBean.invalidateSession}">
+          </h:commandButton>
+        </h:form>
+
+        <h:dataTable value="#{SessionControllerBean.sessionAttributes}"
+                     var="att"
+                     styleClass="data-table"
+                     headerClass="table-header"
+                     rowClasses="row-odd,row-even">
+
+          <f:facet name="header">Session Attributes</f:facet>
+
+          <h:column>
+            <f:facet name="header">Key</f:facet>
+            <h:outputText value="#{att.key}"/>
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Value Class</f:facet>
+            <h:outputText value="#{att.value.class}"/>
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Value</f:facet>
+            <h:outputText value="#{att.value}"/>
+          </h:column>
+
+        </h:dataTable>
+
+      </p:panel>
+    </ui:define>
+
+  </ui:composition>
+
+</h:body>
+</html>

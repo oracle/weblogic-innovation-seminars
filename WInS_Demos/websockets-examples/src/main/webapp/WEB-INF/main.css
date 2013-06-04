@@ -1,0 +1,16 @@
+/* 
+    Document   : main
+    Created on : Mar 13, 2013, 1:14:07 PM
+    Author     : ankitpan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#joinchat {
+   background-color: #33FF00;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border: 5px solid #009900;
+  padding: 5px;
+}
+

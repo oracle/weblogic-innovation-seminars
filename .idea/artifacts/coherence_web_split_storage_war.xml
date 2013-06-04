@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="coherence-web-split-storage:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-split-storage/target</output-path>
+    <root id="archive" name="coherence-web-split-storage.war">
+      <element id="artifact" artifact-name="coherence-web-split-storage:war exploded" />
+    </root>
+  </artifact>
+</component>

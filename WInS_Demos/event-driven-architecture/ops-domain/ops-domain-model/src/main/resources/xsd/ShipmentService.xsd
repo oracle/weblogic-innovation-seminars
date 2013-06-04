@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema
+    targetNamespace="http://demo.oracle.com/ops/domain/services/shipment"
+    xmlns:tns="http://demo.oracle.com/ops/domain/services/shipment"
+    xmlns:svc-common="http://demo.oracle.com/ops/domain/services/common"
+    xmlns:shipping="http://demo.oracle.com/ops/domain/schema/shipping"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    version="1.0">
+
+  <xs:import namespace="http://demo.oracle.com/ops/domain/services/common" schemaLocation="ServicesCommon.xsd"/>
+  <xs:import namespace="http://demo.oracle.com/ops/domain/schema/shipping" schemaLocation="Shipping.xsd"/>
+
+
+  <!--     ***************************** Create Shipment *****************************    -->
+
+  <xs:element name="CreateShipmentRequest" type="tns:CreateShipmentRequestType"/>
+
+  <xs:complexType name="CreateShipmentRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="CreateShipmentResponse" type="tns:CreateShipmentResponseType"/>
+
+  <xs:complexType name="CreateShipmentResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--     ***************************** Create Shipment *****************************    -->
+
+  <xs:element name="SendNewShipmentViaJMSRequest" type="tns:SendNewShipmentViaJMSRequestType"/>
+
+  <xs:complexType name="SendNewShipmentViaJMSRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="SendNewShipmentViaJMSResponse" type="tns:SendNewShipmentViaJMSResponseType"/>
+
+  <xs:complexType name="SendNewShipmentViaJMSResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--     ***************************** Get Shipment By ID *****************************    -->
+
+  <xs:element name="GetShipmentByIdRequest" type="tns:GetShipmentByIdRequestType"/>
+
+  <xs:complexType name="GetShipmentByIdRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="ShipmentId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="GetShipmentByIdResponse" type="tns:GetShipmentByIdResponseType"/>
+
+  <xs:complexType name="GetShipmentByIdResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!--     ***************************** Get Shipment By External ID *****************************    -->
+
+  <xs:element name="GetShipmentByExternalIdRequest" type="tns:GetShipmentByExternalIdRequestType"/>
+
+  <xs:complexType name="GetShipmentByExternalIdRequestType">
+    <xs:sequence>
+      <xs:element name="RequestHeader" type="svc-common:WebServiceRequestHeaderType"/>
+      <xs:element name="ExternalReferenceId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="GetShipmentByExternalIdResponse" type="tns:GetShipmentByExternalIdResponseType"/>
+
+  <xs:complexType name="GetShipmentByExternalIdResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseHeader" type="svc-common:WebServiceResponseHeaderType"/>
+      <xs:element name="Shipment" type="shipping:ShipmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>

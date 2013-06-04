@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="saf-source-forwarder:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-store-and-forward/saf-source-forwarder/target</output-path>
+    <root id="archive" name="saf-source-forwarder.war">
+      <element id="artifact" artifact-name="saf-source-forwarder:war exploded" />
+    </root>
+  </artifact>
+</component>

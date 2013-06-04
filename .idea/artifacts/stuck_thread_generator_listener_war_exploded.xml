@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="stuck-thread-generator-listener:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/stuck-thread-generator/stuck-thread-generator-listener/target/stuck-thread-generator-listener</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="stuck-thread-generator-listener/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="stuck-thread-generator-listener" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

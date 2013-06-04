@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+  <display-name>Spring MDB Example</display-name>
+
+  <description>
+    Web application to deploy spring MDB in a servlet engine.
+  </description>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param>
+
+  <!--<ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ParcelManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelEventManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ParcelEventManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ShipmentManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ParcelService</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ShipmentService</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentJMSClient</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ShipmentJMSClient</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/EventService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.EventService</local>
+  </ejb-local-ref>-->
+
+  <!--<listener>-->
+    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+  <!--</listener>-->
+
+  <listener>
+    <listener-class>weblogic.spring.monitoring.WeblogicContextLoaderListener</listener-class>
+  </listener>
+
+</web-app>
+

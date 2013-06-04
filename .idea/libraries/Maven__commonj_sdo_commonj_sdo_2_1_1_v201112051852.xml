@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: commonj.sdo:commonj.sdo:2.1.1.v201112051852">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/commonj/sdo/commonj.sdo/2.1.1.v201112051852/commonj.sdo-2.1.1.v201112051852.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/commonj/sdo/commonj.sdo/2.1.1.v201112051852/commonj.sdo-2.1.1.v201112051852-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/commonj/sdo/commonj.sdo/2.1.1.v201112051852/commonj.sdo-2.1.1.v201112051852-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

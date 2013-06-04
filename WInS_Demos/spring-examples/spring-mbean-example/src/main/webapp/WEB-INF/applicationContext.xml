@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+  <context:annotation-config/>
+
+  <bean id="assembler" class="com.oracle.weblogic.examples.spring.jmx.WLDFAwareReflectiveMBeanInfoAssembler"/>
+
+  <!-- ##################### JMX MBean Config ##################### -->
+
+  <bean id="webLogicJMXWrapper" class="com.oracle.weblogic.examples.spring.jmx.WebLogicJMXWrapper">
+    <constructor-arg ref="runtimeMBeanServerConnection"/>
+    <property name="myString" value="JeffWest"/>
+  </bean>
+
+  <bean id="counterBean" class="com.oracle.weblogic.examples.spring.counter.CounterBean">
+    <property name="value" value="1"/>
+  </bean>
+
+  <bean id="jmxRuntime" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/jmx/runtime"/>
+  </bean>
+
+
+  <bean id="opsRestMBeanExporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+    <property name="server" ref="jmxRuntime"/>
+    <property name="beans">
+      <map>
+        <entry key="weblogic.jmx.proxy:Name=WebLogicJMXProxy" value-ref="webLogicJMXWrapper"/>
+        <entry key="counter.bean:Name=CounterBean" value-ref="counterBean"/>
+      </map>
+    </property>
+    <property name="assembler" ref="assembler"/>
+  </bean>
+
+</beans>

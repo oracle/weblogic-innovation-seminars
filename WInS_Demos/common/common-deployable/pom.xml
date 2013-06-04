@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>common-ejb</module>
+  </modules>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>common-deployable</artifactId>
+  <version>12.1.2.0.0</version>
+  <name>common-deployable</name>
+  <packaging>pom</packaging>
+
+  <!-- ==================================================================================== -->
+
+  <profiles>
+
+    <profile>
+      <id>deploy-local-admin-port</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <properties>
+        <weblogic.Deployer.adminurl>t3s://wins-vbox.localdomain:7200</weblogic.Deployer.adminurl>
+        <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+        <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+        <weblogic.Deployer.application.targets>cluster-1</weblogic.Deployer.application.targets>
+        <weblogic.Deployer.remote>true</weblogic.Deployer.remote>
+        <weblogic.Deployer.upload>true</weblogic.Deployer.upload>
+      </properties>
+
+    </profile>
+
+    <profile>
+      <id>deploy-local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <properties>
+        <weblogic.Deployer.adminurl>t3://wins-vbox.localdomain:7001</weblogic.Deployer.adminurl>
+        <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+        <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+        <weblogic.Deployer.application.targets>cluster-1</weblogic.Deployer.application.targets>
+        <weblogic.Deployer.remote>true</weblogic.Deployer.remote>
+        <weblogic.Deployer.upload>true</weblogic.Deployer.upload>
+      </properties>
+
+    </profile>
+
+    <profile>
+      <id>deploy-vbox1</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <properties>
+        <weblogic.Deployer.adminurl>t3://wins-vbox:7001</weblogic.Deployer.adminurl>
+        <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+        <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+        <weblogic.Deployer.application.targets>cluster-1</weblogic.Deployer.application.targets>
+        <weblogic.Deployer.remote>true</weblogic.Deployer.remote>
+        <weblogic.Deployer.upload>true</weblogic.Deployer.upload>
+      </properties>
+
+    </profile>
+
+    <profile>
+      <id>undeploy-on-clean</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <defaultGoal>install</defaultGoal>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>com.oracle.weblogic</groupId>
+              <artifactId>wls-maven-plugin</artifactId>
+
+              <executions>
+                <execution>
+                  <id>exec-undeploy-on-clean</id>
+                  <phase>clean</phase>
+                  <goals>
+                    <goal>undeploy</goal>
+                  </goals>
+
+                  <configuration>
+                    <middlewareHome>${middleware.home}</middlewareHome>
+                    <weblogicHome>${weblogic.home}</weblogicHome>
+                    <adminurl>${weblogic.Deployer.adminurl}</adminurl>
+                    <user>${weblogic.Deployer.user}</user>
+                    <password>${weblogic.Deployer.password}</password>
+                    <name>${project.artifactId}</name>
+                    <targets>${weblogic.Deployer.application.targets}</targets>
+                    <remote>${weblogic.Deployer.remote}</remote>
+                    <failOnError>false</failOnError>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+
+  </profiles>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>com.oracle.weblogic</groupId>
+          <artifactId>wls-maven-plugin</artifactId>
+
+          <executions>
+            <execution>
+              <id>weblogic-deploy</id>
+              <phase>install</phase>
+              <goals>
+                <goal>deploy</goal>
+              </goals>
+
+              <configuration>
+                <middlewareHome>${middleware.home}</middlewareHome>
+                <weblogicHome>${weblogic.home}</weblogicHome>
+                <adminurl>${weblogic.Deployer.adminurl}</adminurl>
+                <user>${weblogic.Deployer.user}</user>
+                <password>${weblogic.Deployer.password}</password>
+                <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+                <name>${project.artifactId}</name>
+                <targets>${weblogic.Deployer.application.targets}</targets>
+                <remote>${weblogic.Deployer.remote}</remote>
+                <upload>${weblogic.Deployer.upload}</upload>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-ear-plugin</artifactId>
+          <version>2.5</version>
+          <configuration>
+            <version>6</version>
+            <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+          </configuration>
+        </plugin>
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+</project>

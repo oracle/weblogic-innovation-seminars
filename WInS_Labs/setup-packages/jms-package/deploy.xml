@@ -1,0 +1,91 @@
+<project name="deployment" default="deploy">
+	<!-- ============================================================================ -->
+	<property file="deploy-domain.properties"/>
+	<property file="deploy-application.properties"/>
+	<property file="deploy-weblogic.properties"/>
+	<property file="deploy-override.properties"/>
+	
+	<tstamp>
+		<format property="timestamp" pattern="yyyyMMdd_HHmmss"/>
+	</tstamp>
+	<!-- ============================================================================ -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="${ant.home}/../net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar"/>
+		</classpath>
+	</taskdef>
+	<!-- ============================================================================ -->
+	<property name="working.directory" value="."/>
+	<property name="foreach.parallel" value="false"/>
+	<!-- ============================================================================ -->
+	<target name="deploy.all">
+		<foreach list="${application.name.valid}" target="application.wrapper" param="application.name" inheritall="true" parallel="false"/>
+	</target>
+	<!-- ============================================================================ -->
+	<target name="initialize">
+		<input message="Please enter the name of the environment(s):" addproperty="environment.list" validargs="${environment.list.valid}"/>
+		<input message="Please enter the name of the deployment(s):" addproperty="application.list" validargs="${application.list.valid}"/>	
+	</target>
+	<!-- ###################################################################################################################################### -->
+	<target name="deploy" depends="deployment.validate">
+		<antcall target="environment.wrapper"/>
+	</target>
+	<!-- ###################################################################################################################################### -->
+	<target name="environment.wrapper">
+				<foreach list="${environment.list}" target="application.wrapper" param="environment.name" inheritall="true" parallel="true"/>
+	</target>
+	<!-- ###################################################################################################################################### -->
+	<target name="application.wrapper">
+				<foreach list="${application.list}" target="deploy.application" param="application.name" inheritall="true" parallel="false"/>
+	</target>
+	<!-- ###################################################################################################################################### -->
+	<target name="deployment.validate" depends="initialize">		
+		<echo>
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Environment Name(s): ${environment.list}
+Application Name(s): ${application.list}
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		</echo>
+		<input message="Please confirm the settings above [y/n]" addproperty="confirm.settings" validargs="y,n"/>
+		<if>
+			<equals arg1="${confirm.settings}" arg2="n"/>
+			<then>
+				<fail message="You chose to cancel the deployment.  Please confirm the properties are correct in ./deploy-application.properties"/>
+			</then>
+		</if>
+	</target>
+	<!-- ###################################################################################################################################### -->
+	<target name="deploy.application" depends="deployment.validate">
+	
+		<property name="application.log" value="./log/${timestamp}_${application.name}_${environment.name}_application.log"/>
+		<propertycopy name="application.type" from="${application.name}.type"/>
+		
+		<trycatch property="application.log.start.exception">
+			<try>
+				<record name="${application.log}" action="start" loglevel="info"/>
+			</try>
+			<catch>
+				<echo message="Non-Critical Error opening record file: ${application.log.start.exception}"/>
+			</catch>
+		</trycatch>
+		
+		<trycatch property="deploy.exception">
+			<try>
+				<ant antfile="deploy-${application.type}.xml" target="deploy-${application.type}"/>
+			</try>
+			<catch>
+				<fail message="Critical error executing deployment name=[${application.name}] type=[${application.type}]: ${deploy.exception}"/>
+			</catch>
+			<finally>
+				<trycatch property="application.log.stop.exception">
+					<try>
+						<record name="${application.log}" action="stop"/>
+					</try>
+					<catch>
+						<echo message="Non-critical error closing record file: ${application.log.stop.exception}"/>
+					</catch>
+				</trycatch>
+			</finally>
+		</trycatch>
+	</target>
+</project>

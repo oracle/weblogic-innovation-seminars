@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.demo.ops</groupId>
+    <artifactId>ops-common</artifactId>
+    <version>2012.04.30</version>
+    <relativePath>../ops-common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ops</groupId>
+  <artifactId>ops-core</artifactId>
+  <version>2012.04.30</version>
+  <packaging>pom</packaging>
+
+  <name>ops-core</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>ops-util</module>
+  </modules>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.demo.ops</groupId>
+      <artifactId>ops-domain-model</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+
+</project>

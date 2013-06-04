@@ -1,0 +1,31 @@
+loadProperties('../../wlst/cluster/weblogic-examples-domain.properties')
+connect(adminServer_Username, adminServer_Password, 't3://' + adminServer_ListenAddress + ':' + adminServer_ListenPort)
+edit()
+startEdit()
+
+cd('/')
+cmo.createJDBCStore('jms-jdbc-store-1')
+cd('/JDBCStores/jms-jdbc-store-1')
+cmo.setDataSource(getMBean('/JDBCSystemResources/cluster-ds-nonXA'))
+cmo.setPrefixName('JMSSTORE1')
+set('Targets',jarray.array([ObjectName('com.bea:Name='+MS1_Name+' (migratable),Type=MigratableTarget')], ObjectName))
+
+cd('/')
+cmo.createJDBCStore('jms-jdbc-store-2')
+cd('/JDBCStores/jms-jdbc-store-2')
+cmo.setDataSource(getMBean('/JDBCSystemResources/cluster-ds-nonXA'))
+cmo.setPrefixName('JMSSTORE2')
+set('Targets',jarray.array([ObjectName('com.bea:Name='+MS2_Name+' (migratable),Type=MigratableTarget')], ObjectName))
+
+cd('/JMSServers/jms-server-1')
+cmo.setPersistentStore(getMBean('/JDBCStores/jms-jdbc-store-1'))
+set('Targets',jarray.array([ObjectName('com.bea:Name='+MS1_Name+' (migratable),Type=MigratableTarget')], ObjectName))
+
+cd('/JMSServers/jms-server-2')
+cmo.setPersistentStore(getMBean('/JDBCStores/jms-jdbc-store-2'))
+set('Targets',jarray.array([ObjectName('com.bea:Name='+MS2_Name+' (migratable),Type=MigratableTarget')], ObjectName))
+
+save()
+activate(block="true")
+disconnect()
+exit()

@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>jms-distributed-destinations</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>jms-distributed-destinations</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>topic-listeners</module>
+    <module>queue-listener</module>
+    <module>jms-sender</module>
+  </modules>
+
+</project>

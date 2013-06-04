@@ -1,0 +1,165 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <artifactId>weblogic-integration-test-example</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.maven</groupId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <name>weblogic-integration-test-example</name>
+
+
+  <!-- ==================================================================================== -->
+  <ciManagement>
+    <system>hudson</system>
+    <url>http://127.0.0.1:8081/hudson-2.2.0/job/weblogic-integration-test-example/</url>
+  </ciManagement>
+  <properties>
+    <weblogic.examples.svn.url>https://svn.java.net/svn/weblogic-examples~weblogic-12c-user-examples
+    </weblogic.examples.svn.url>
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+  <profiles>
+
+  </profiles>
+  <!-- ======================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <!--
+        This plugin sets the source and target language levels to Java 1.6
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.11</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+
+        <executions>
+          <execution>
+            <id>WLS_SETUP</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>install</goal>
+              <goal>create-domain</goal>
+              <goal>start-server</goal>
+              <goal>wlst</goal>
+              <goal>deploy</goal>
+            </goals>
+
+            <configuration>
+              <fileName>src/main/wlst/createDatasource.py</fileName>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>WLS_TEARDOWN</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>undeploy</goal>
+              <goal>stop-server</goal>
+            </goals>
+          </execution>
+        </executions>
+
+        <configuration>
+          <user>weblogic</user>
+          <password>welcome1</password>
+          <name>${project.build.finalName}</name>
+          <artifactLocation>com.oracle.weblogic:wls-dev:zip:12.1.2.0</artifactLocation>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.11</version>
+        <reportSets>
+          <reportSet>
+            <id>integration-tests</id>
+            <reports>
+              <report>failsafe-report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+  <dependencies>
+
+    <!-- ==================================================================================== -->
+
+    <!-- This makes the JAVA EE 6 API available for all chile projects,
+which is all projects in this app -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>6.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

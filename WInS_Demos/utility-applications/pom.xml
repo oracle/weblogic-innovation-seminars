@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>utility-applications</artifactId>
+  <packaging>pom</packaging>
+  <version>12.1.2.0.0</version>
+  <name>utility-applications</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>jvm-memory-consumer</module>
+    <module>jdbc-connection-hogger</module>
+    <module>stuck-thread-generator</module>
+    <module>deadlock-generator</module>
+  </modules>
+
+</project>

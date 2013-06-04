@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="jsf-bean-app-2:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-bean-app-2/target/jsf-bean-app-2</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="jsf-bean-app-2/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="jsf-bean-app-2" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.primefaces.themes:cupertino:1.0.3" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:3.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

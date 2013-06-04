@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Maven: com.oracle.weblogic:wljmsclient:12.1.2.0">
+    <CLASSES>
+      <root url="jar:///u01/wls1212/wlserver/server/lib/wljmsclient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

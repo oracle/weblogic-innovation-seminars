@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Maven: com.oracle.weblogic:wlsafclient:12.1.2.0">
+    <CLASSES>
+      <root url="jar:///u01/wls1212/wlserver/server/lib/wlsafclient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

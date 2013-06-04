@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>spring-examples</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>spring-examples</name>
+
+  <modules>
+    <module>spring-examples-common</module>
+    <module>spring-ejb-example</module>
+    <module>spring-jms-example</module>
+    <module>spring-mbean-example</module>
+    <module>spring-rest-example</module>
+    <module>spring-ws-example</module>
+  </modules>
+
+</project>

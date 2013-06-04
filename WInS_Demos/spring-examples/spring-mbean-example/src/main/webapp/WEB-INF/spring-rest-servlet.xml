@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+  <!--
+      This configures Spring annotations such as @Autowired to be parsed and handled appropriately
+  -->
+  <context:annotation-config/>
+
+  <mvc:annotation-driven/>
+
+  <!--
+    Scan for MVC annotations used for RESTful services
+  -->
+  <context:component-scan base-package="com.oracle.weblogic.examples.spring"/>
+
+
+  <!--
+    Specify the MVC Annotation handler to pick up my annotations
+  -->
+  <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+
+  <!--
+    Use the ContentNegotiatingViewResolver to support JSON and XML formats.  This will create a response
+    based on the 'Accept' parameter in the HTTP header
+  -->
+  <bean id="jmx" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="order" value="1"/>
+
+    <property name="mediaTypes">
+      <map>
+        <entry key="json" value="application/json"/>
+        <entry key="xml" value="application/xml"/>
+      </map>
+    </property>
+
+    <!--
+      Specify the default views for my view resolver.  Here I specify the Jackson mapping view for
+      my JSON objects and the XML marshalling view for my XML
+    -->
+    <property name="defaultViews">
+      <list>
+        <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+          <property name="prefixJson" value="true"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    Just experimenting with these at the moment...
+  -->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="order" value="2"/>
+    <property name="prefix" value="/WEB-INF/views/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean>
+
+  <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+    <property name="order" value="3"/>
+  </bean>
+
+</beans>

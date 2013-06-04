@@ -1,0 +1,41 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ops-spring-message-driven:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-spring-message-driven/target/ops-spring-message-driven</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ops-spring-message-driven/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ops-spring-message-driven" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-jms:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-asm:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:3.1.1.RELEASE" />
+          <element id="archive" name="ops-domain-services-api.jar">
+            <element id="module-output" name="ops-domain-services-api" />
+          </element>
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.0" />
+          <element id="archive" name="ops-domain-services-impl.jar">
+            <element id="module-output" name="ops-domain-services-impl" />
+          </element>
+          <element id="archive" name="ops-domain-model.jar">
+            <element id="module-output" name="ops-domain-model" />
+          </element>
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.4.0" />
+          <element id="library" level="project" name="Maven: commonj.sdo:commonj.sdo:2.1.1.v201112051852" />
+          <element id="archive" name="ops-util.jar">
+            <element id="module-output" name="ops-util" />
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <artifactId>coherence-web-session-sharing</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <packaging>pom</packaging>
+  <version>12.1.2.0.0</version>
+  <name>coherence-web-session-sharing</name>
+
+
+  <!-- ==================================================================================== -->
+
+  <properties>
+    <weblogic.Deployer.adminurl>t3://wins-vbox.localdomain:7001</weblogic.Deployer.adminurl>
+    <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+    <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+    <weblogic.Deployer.application.targets>cluster-1</weblogic.Deployer.application.targets>
+    <weblogic.Deployer.remote>true</weblogic.Deployer.remote>
+    <weblogic.Deployer.upload>true</weblogic.Deployer.upload>
+
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+    <coherence-webapp-1.theme>cupertino</coherence-webapp-1.theme>
+    <coherence-webapp-2.theme>vader</coherence-webapp-2.theme>
+    <coherence-webapp-3.theme>vader</coherence-webapp-3.theme>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>jsf-bean-app-1</module>
+    <module>jsf-bean-app-2</module>
+    <module>jsf-cdi-app-1</module>
+    <module>jsf-cdi-app-2</module>
+    <module>jsp-app-1</module>
+  </modules>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+    </plugins>
+
+    <pluginManagement>
+
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.1.1</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+            <archive>
+              <manifestEntries>
+                <Extension-Name>${project.artifactId}</Extension-Name>
+                <Specification-Title>${project.description}</Specification-Title>
+                <Specification-Version>${project.version}</Specification-Version>
+                <Specification-Vendor>Oracle</Specification-Vendor>
+                <Implementation-Title>${project.artifactId}</Implementation-Title>
+                <Implementation-Version>${project.version}.${maven.build.timestamp}</Implementation-Version>
+                <Implementation-Vendor>Oracle</Implementation-Vendor>
+                <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+
+                <Extension-List>coherence active-cache</Extension-List>
+
+                <coherence-Extension-Name>coherence</coherence-Extension-Name>
+                <coherence-Specification-Version>3.7</coherence-Specification-Version>
+
+                <active-cache-Extension-Name>active-cache</active-cache-Extension-Name>
+                <active-cache-Specification-Version>1.0</active-cache-Specification-Version>
+
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>org.primefaces</groupId>
+        <artifactId>primefaces</artifactId>
+        <version>3.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.primefaces.themes</groupId>
+        <artifactId>cupertino</artifactId>
+        <version>1.0.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.primefaces.themes</groupId>
+        <artifactId>vader</artifactId>
+        <version>1.0.3</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>prime-repo</id>
+      <name>PrimeFaces Maven Repository</name>
+      <url>http://repository.primefaces.org</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+
+
+</project>

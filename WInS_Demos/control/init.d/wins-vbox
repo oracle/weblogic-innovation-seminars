@@ -1,0 +1,59 @@
+#!/bin/sh
+# chkconfig: 345 99 10
+# description: WINS Virtualbox Configuration
+#
+# Set ORA_OWNER to the user id of the owner of the
+# Oracle software.
+
+. /etc/rc.d/init.d/functions
+
+export ORACLE_OWNER=oracle
+DEMOS_HOME="/u01/content/weblogic-innovations-seminars/WInS_Demos"
+
+service_name="WInS Virtualbox Configuration"
+logger="/usr/bin/logger -t rc.local "
+
+
+start_service()
+{
+	echo -n "Updating WInS DemoS Code : "
+  #su $ORACLE_OWNER -c "${DEMOS_HOME}/control/bin/updateDemos.sh nowait >/dev/null 2>&1"
+
+  if [ "${?}" == "0" ]; then
+    success
+  else
+    failure
+  fi
+
+	echo -n "Updating Oracle Parcel Service Code : "
+  #su $ORACLE_OWNER -c "${DEMOS_HOME}/control/bin/updateOPS.sh nowait >/dev/null 2>&1"
+
+  if [ "${?}" == "0" ]; then
+    success
+  else
+    failure
+  fi
+
+  success
+  echo
+}
+
+stop_service()
+{
+	echo -n "Stopping ${service_name} is not supported: "
+  success
+  echo ""
+}
+
+case "$1" in
+    'start')
+				start_service
+        ;;
+    'stop')
+    		stop_service
+        ;;
+    'restart')
+				stop_service
+				start_service
+        ;;
+esac

@@ -1,0 +1,20 @@
+<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/90" xmlns:wls="http://www.bea.com/ns/weblogic/90"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.bea.com/ns/weblogic/90
+                  http://www.bea.com/ns/weblogic/90/weblogic-ejb-jar.xsd">
+  <!--
+
+    <weblogic-enterprise-bean>
+      <ejb-name>ParcelManagerBean</ejb-name>
+      <enable-call-by-reference>true</enable-call-by-reference>
+      <dispatch-policy>wm/ops/services</dispatch-policy>
+    </weblogic-enterprise-bean>
+
+    <weblogic-enterprise-bean>
+      <ejb-name>ShipmentManagerBean</ejb-name>
+      <enable-call-by-reference>true</enable-call-by-reference>
+      <dispatch-policy>wm/ops/services</dispatch-policy>
+    </weblogic-enterprise-bean>
+  -->
+
+</weblogic-ejb-jar>

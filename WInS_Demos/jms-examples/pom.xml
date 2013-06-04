@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>jms-examples</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>jms-examples</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>jms-distributed-destinations</module>
+    <module>jms-unit-of-order</module>
+    <module>jms-unit-of-work</module>
+    <module>jms-store-and-forward</module>
+    <module>jms-service-migration</module>
+  </modules>
+
+</project>

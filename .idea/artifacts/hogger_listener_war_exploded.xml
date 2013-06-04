@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="hogger-listener:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/jdbc-connection-hogger/hogger-listener/target/hogger-listener</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="hogger-listener/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="hogger-listener" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

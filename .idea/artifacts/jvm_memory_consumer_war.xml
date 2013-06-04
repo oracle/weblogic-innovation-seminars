@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jvm-memory-consumer:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/jvm-memory-consumer/target</output-path>
+    <root id="archive" name="jvm-memory-consumer.war">
+      <element id="artifact" artifact-name="jvm-memory-consumer:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></meta>
+  <title>DemoSteps.htmo</title>
+</head>
+<body>
+<h1>
+  WLS Work Manager Demo
+</h1>
+
+<h2>
+  Description
+</h2>
+
+<p>
+  These instructions are a supplement to James Bayers (no longer with
+  Oracle) video demo co-located with this file. The demo shows how a work
+  manager can be configured to prevent too many requests from overloading
+  the WebLoic server.
+</p>
+
+<h2>
+  Artifacts
+</h2>
+<ul>
+  <li>
+    <p>
+      WorkManagerConstraintsDemo.mp4 - video demo
+    </p>
+  </li>
+  <li>
+    WorkManagerWeb.war - demo application
+  </li>
+  <li>
+    WorkManagerWebApp.zip - JDeveloper project
+  </li>
+  <li>
+    WorkManagerWebTestPlan.jml - Apache JMeter test plan
+  </li>
+</ul>
+<h2>
+  Setup
+</h2>
+
+<p>
+  These instructions assume you are using the WLS integrated with JDeveloper
+  running on wins-vbox.localdomain:7101. Adjust the demo artifacts accordinly if you're
+  using a different server and port.&nbsp;
+</p>
+<ul>
+  <li>
+    &nbsp;Deploy the WorkManagerWeb.war to WebLogic
+  </li>
+  <li>
+    &nbsp;Open WorkManagerWebTestPlan.jmx in Apache JMeter
+  </li>
+</ul>
+<h2>
+  Demo
+</h2>
+
+<h3>
+  Review the Project
+</h3>
+<ul>
+  <li>
+    Review normal.jsp
+  </li>
+  <li>
+    Review veryslow.jsp, pointing out the Thread.sleep(30000)
+  </li>
+  <li>
+    Review the Work Manager configured in weblogic.xml (for war files). Note
+    it would be weblogic-application.xml for ear files, and weblogic-ejb.xml
+    for EJB modules. Also note that Max Threads can be limited by connection
+    pool.
+  </li>
+  <li>
+    Review the Work Manager as assigned to VerySlow.jsp in web.xml (allowing
+    for very granular control). Also note the configured error page for the
+    503 error code.
+  </li>
+</ul>
+<h3>
+  Review Admin Console
+</h3>
+<ul>
+  <li>
+    Deployments &gt; WorkManagerWeb &gt; Monitoring &gt; Workload - note the
+    2 work managers in use.
+  </li>
+</ul>
+<h3>
+  Generate Load
+</h3>
+<ul>
+  <li>
+    <p>
+      Briefly introduce JMeter. Point our the runing threads indicator in
+      the top right corner (0/10).
+    </p>
+  </li>
+  <li>
+    Select Run &gt; Start.
+  </li>
+  <li>
+    Look at the Results Table for normal.jsp and note all have returned.
+  </li>
+  <li>
+    Look at the Results Table for veryslow.jsp and note that 3 of the 10
+    have been rejected.
+  </li>
+  <li>
+    Return to the Admin Console and note that 5 requests are executing while
+    2 are deferred.
+  </li>
+  <li>
+    Return to JMeter and note that 7 requests returned in 30 seconds while
+    the 2 that had to wait in the queue took 60 seconds to return.
+  </li>
+  <li>
+    Run the load test again. While the test is running, open a browser and
+    run:
+    <ul>
+      <li>
+        <a href="http://wins-vbox.localdomain:1701/WorkManagerWeb/normal.jsp/">http://wins-vbox.localdomain:1701/WorkManagerWeb/normal.jsp</a> -
+        point out that it returns normally.
+      </li>
+    </ul>
+  </li>
+  <li>
+    and http://wins-vbox.localdomain:1701/WorkManagerWeb/veryslow.jsp.
+  </li>
+</ul>
+<h3/>
+
+<p>
+  &nbsp;
+</p>
+</body>
+</html>

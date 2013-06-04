@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.demo.ops</groupId>
+    <artifactId>ops-common</artifactId>
+    <version>2012.04.30</version>
+    <relativePath>../ops-common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ops</groupId>
+  <artifactId>ops-event-producer</artifactId>
+  <packaging>jar</packaging>
+  <version>2012.04.30</version>
+  <description>Oracle Parcel Service 2.0 Utils Library</description>
+  <name>ops-event-producer</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+
+        <configuration>
+          <includeProjectDependencies>true</includeProjectDependencies>
+          <classpathScope>compile</classpathScope>
+          <executable>java</executable>
+          <detail>true</detail>
+          <arguments>
+            <argument>-classpath</argument>
+            <!-- automatically creates the classpath using all project dependencies,
+                 also adding the project build directory -->
+            <classpath/>
+            <argument>com.oracle.demo.ops.event.producer.OPSEventProducer</argument>
+            ...
+          </arguments>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.demo.ops</groupId>
+      <artifactId>ops-domain-model</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.demo.ops</groupId>
+      <artifactId>ops-util</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>weblogic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.weblogic</groupId>
+      <artifactId>wljmsclient</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

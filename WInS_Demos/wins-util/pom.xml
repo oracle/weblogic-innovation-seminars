@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+	
+  <artifactId>wins-util</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <packaging>jar</packaging>
+  <version>12.1.2.0.0</version>
+  <name>wins-util</name>
+
+  <!-- ==================================================================================== -->
+
+  <properties>
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+
+    <defaultGoal>install</defaultGoal>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+
+  </dependencies>
+
+</project>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+  <display-name>Spring Web Services for OPS</display-name>
+
+  <!--
+      EJB References - necessary to access the EJB via JNDI in the Spring applicationContext.xml
+  -->
+  <!--<ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ParcelManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelEventManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ParcelEventManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentManager</ejb-ref-name>
+    <local>com.oracle.demo.ops.ejb.entitymanager.ShipmentManager</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ParcelService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ParcelService</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ShipmentService</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/ShipmentJMSClient</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.ShipmentJMSClient</local>
+  </ejb-local-ref>
+
+  <ejb-local-ref>
+    <ejb-ref-name>ejb/EventService</ejb-ref-name>
+    <local>com.oracle.demo.ops.services.EventService</local>
+  </ejb-local-ref>-->
+
+  <!--
+      Spring ContextLoaderListener config
+  -->
+  <!--<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>-->
+
+
+  <listener>
+    <listener-class>weblogic.spring.monitoring.WeblogicContextLoaderListener</listener-class>
+  </listener>
+
+  <!--
+      Servlet definition and mapping of the parcel Servlet for the Parcel WS
+  -->
+  <servlet>
+    <servlet-name>parcel</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>transformWsdlLocations</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>parcel</servlet-name>
+    <url-pattern>/parcelService/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+      Servlet definition and mapping of the shipment Servlet for the Shipment WS
+  -->
+  <servlet>
+    <servlet-name>shipment</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>transformWsdlLocations</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>shipment</servlet-name>
+    <url-pattern>/shipmentService/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="queue-listener:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-distributed-destinations/queue-listener/target</output-path>
+    <root id="archive" name="queue-listener.war">
+      <element id="artifact" artifact-name="queue-listener:war exploded" />
+    </root>
+  </artifact>
+</component>

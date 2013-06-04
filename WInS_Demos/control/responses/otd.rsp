@@ -1,0 +1,30 @@
+[ENGINE]
+
+#DO NOT CHANGE THIS.
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+#Set this to true if you wish to specify a directory where latest updates are downloaded. This option would use the software updates from the specified directory
+SPECIFY_DOWNLOAD_LOCATION=false
+
+#
+SKIP_SOFTWARE_UPDATES=true
+
+#If the Software updates are already downloaded and available on your local system, then specify the path to the directory where these patches are available and set SPECIFY_DOWNLOAD_LOCATION to true
+SOFTWARE_UPDATES_DOWNLOAD_LOCATION=
+
+#
+ORACLE_HOME=/u01/app/oracle/product/11.1.1.7.0/trafficdirector_Home_1
+
+#
+CONFIG_WIZARD_RESPONSE_FILE_LOCATION=0
+
+
+[SYSTEM]
+
+
+[APPLICATIONS]
+
+
+[RELATIONSHIPS]

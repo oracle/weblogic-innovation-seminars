@@ -1,0 +1,251 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+
+
+  <!-- ==================================================================================== -->
+
+
+
+  <parent>
+
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+
+    <artifactId>common</artifactId>
+
+    <version>12.1.2.0.0</version>
+
+    <relativePath>../../common/pom.xml</relativePath>
+
+  </parent>
+
+
+
+  <!-- ==================================================================================== -->
+
+
+
+  <artifactId>weblogic-deployment-example</artifactId>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.oracle.weblogic.demo.maven</groupId>
+
+  <packaging>war</packaging>
+
+  <version>12.1.2.0.0</version>
+
+  <name>weblogic-deployment-example</name>
+
+
+
+
+
+  <!-- ==================================================================================== -->
+
+
+
+  <properties>
+
+    <weblogic.examples.svn.url>https://svn.java.net/svn/weblogic-examples~weblogic-12c-user-examples
+
+    </weblogic.examples.svn.url>
+
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+
+  </properties>
+
+
+
+  <!-- ==================================================================================== -->
+
+
+
+
+  <build>
+
+    <defaultGoal>install</defaultGoal>
+
+
+
+    <plugins>
+
+      <!--
+
+        This plugin sets the source and target language levels to Java 1.6
+
+      -->
+
+      <plugin>
+
+        <groupId>org.apache.maven.plugins</groupId>
+
+        <artifactId>maven-compiler-plugin</artifactId>
+
+        <version>2.5.1</version>
+
+
+
+        <configuration>
+
+          <source>1.6</source>
+
+          <target>1.6</target>
+
+          <debug>false</debug>
+
+          <encoding>UTF-8</encoding>
+
+        </configuration>
+
+      </plugin>
+
+
+
+      <plugin>
+
+        <groupId>org.apache.maven.plugins</groupId>
+
+        <artifactId>maven-war-plugin</artifactId>
+
+        <version>2.1.1</version>
+
+        <configuration>
+
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        </configuration>
+
+      </plugin>
+
+
+
+      <plugin>
+
+        <groupId>org.apache.maven.plugins</groupId>
+
+        <artifactId>maven-surefire-plugin</artifactId>
+
+        <version>2.12</version>
+
+        <configuration>
+
+          <skipTests>true</skipTests>
+
+        </configuration>
+
+      </plugin>
+
+
+
+      <plugin>
+
+        <groupId>com.oracle.weblogic</groupId>
+
+        <artifactId>wls-maven-plugin</artifactId>
+
+        <configuration>
+
+          <name>${project.build.finalName}</name>
+
+          <middlewareHome>${middleware.home}</middlewareHome>
+
+          <user>weblogic</user>
+
+          <password>welcome1</password>
+
+        </configuration>
+
+      </plugin>
+
+
+
+    </plugins>
+
+
+
+  </build>
+
+
+
+  <!-- ==================================================================================== -->
+
+
+
+  <dependencies>
+
+
+
+    <!-- This makes the JAVA EE 6 API available for all chile projects,
+
+which is all projects in this app -->
+
+    <dependency>
+
+      <groupId>javax</groupId>
+
+      <artifactId>javaee-api</artifactId>
+
+      <version>6.0</version>
+
+      <scope>provided</scope>
+
+    </dependency>
+
+
+
+    <dependency>
+
+      <groupId>junit</groupId>
+
+      <artifactId>junit</artifactId>
+
+      <version>4.0</version>
+
+      <scope>test</scope>
+
+    </dependency>
+
+
+
+    <dependency>
+
+      <groupId>org.primefaces</groupId>
+
+      <artifactId>primefaces</artifactId>
+
+      <version>3.5</version>
+
+    </dependency>
+
+
+
+    <dependency>
+
+      <groupId>org.primefaces.themes</groupId>
+
+      <artifactId>blitzer</artifactId>
+
+      <version>1.0.3</version>
+
+    </dependency>
+
+
+
+  </dependencies>
+
+<repositories>
+
+  <repository>
+<id>prime-repo</id>
+<url>http://repository.primefaces.org</url>
+<layout>default</layout>
+</repository>
+</repositories>
+
+
+
+
+</project>
+

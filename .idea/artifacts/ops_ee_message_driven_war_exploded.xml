@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ops-ee-message-driven:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-ee-message-driven/target/ops-ee-message-driven</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ops-ee-message-driven/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ops-ee-message-driven" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="ops-util.jar">
+            <element id="module-output" name="ops-util" />
+          </element>
+          <element id="archive" name="ops-domain-model.jar">
+            <element id="module-output" name="ops-domain-model" />
+          </element>
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.4.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.0.0" />
+          <element id="library" level="project" name="Maven: commonj.sdo:commonj.sdo:2.1.1.v201112051852" />
+          <element id="archive" name="ops-domain-services-api.jar">
+            <element id="module-output" name="ops-domain-services-api" />
+          </element>
+          <element id="archive" name="ops-domain-services-impl.jar">
+            <element id="module-output" name="ops-domain-services-impl" />
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

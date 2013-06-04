@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="saf-source-forwarder:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-store-and-forward/saf-source-forwarder/target/saf-source-forwarder</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="saf-source-forwarder/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="saf-source-forwarder" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

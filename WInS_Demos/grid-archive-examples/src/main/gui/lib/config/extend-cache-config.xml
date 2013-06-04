@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<cache-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://xmlns.oracle.com/coherence/coherence-cache-config"
+              xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-cache-config coherence-cache-config.xsd">
+              
+  <defaults>
+    <serializer>pof</serializer>
+  </defaults>
+
+  <caching-scheme-mapping>
+    <cache-mapping>
+      <cache-name>contacts</cache-name>
+      <scheme-name>ExtendDist</scheme-name>
+    </cache-mapping>
+  </caching-scheme-mapping>
+
+  <caching-schemes>
+    <remote-cache-scheme>
+      <scheme-name>ExtendDist</scheme-name>
+      <service-name>ExtendTcpCacheService</service-name>
+      <proxy-service-name>ExampleGAR:ExtendTcpProxyService</proxy-service-name>
+      <initiator-config>
+        <tcp-initiator>
+          <name-service-addresses>
+            <address-provider>extend-address-provider</address-provider>
+          </name-service-addresses>
+        </tcp-initiator>
+             
+        <serializer>
+          <instance>
+            <class-name>com.tangosol.io.pof.ConfigurablePofContext</class-name>
+            <init-params>
+              <init-param>
+                <param-type>string</param-type>
+                <param-value>META-INF/pof-config.xml</param-value>
+              </init-param>
+            </init-params>
+          </instance>
+        </serializer>
+      </initiator-config>
+    </remote-cache-scheme>
+  </caching-schemes>
+
+</cache-config>

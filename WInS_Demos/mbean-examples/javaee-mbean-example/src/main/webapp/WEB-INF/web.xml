@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <!--
+   * **************************************************************************
+   * <p/>
+   * This code is provided for example purposes only.  Oracle does not assume
+   * any responsibility or liability for the consequences of using this code.
+   * If you choose to use this code for any reason, including but not limited
+   * to its use as an example you do so at your own risk and without the support
+   * of Oracle.
+   *
+   * This code is provided under the following licenses:
+   *
+   * GNU General Public License (GPL-2.0)
+   * COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0 (CDDL-1.0)
+   *
+   * <p/>
+   * ****************************************************************************
+  -->
+
+  <servlet>
+    <display-name>JavaEE REST Example</display-name>
+    <servlet-name>RestServlet</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RestServlet</servlet-name>
+    <url-pattern>/resource/*</url-pattern>
+  </servlet-mapping>
+
+  <security-constraint>
+
+    <web-resource-collection>
+      <web-resource-name>RestServlet</web-resource-name>
+      <url-pattern>/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+    </web-resource-collection>
+
+    <auth-constraint>
+      <role-name>WEBAPP_ROLE</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>myrealm</realm-name>
+  </login-config>
+
+  <security-role>
+    <role-name>WEBAPP_ROLE</role-name>
+  </security-role>
+
+</web-app>

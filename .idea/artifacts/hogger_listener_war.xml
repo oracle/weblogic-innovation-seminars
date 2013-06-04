@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hogger-listener:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/jdbc-connection-hogger/hogger-listener/target</output-path>
+    <root id="archive" name="hogger-listener.war">
+      <element id="artifact" artifact-name="hogger-listener:war exploded" />
+    </root>
+  </artifact>
+</component>

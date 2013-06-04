@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema
+    targetNamespace="http://demo.oracle.com/ops/domain/schema/shipping"
+    xmlns:tns="http://demo.oracle.com/ops/domain/schema/shipping"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:common="http://demo.oracle.com/ops/domain/schema/common"
+    elementFormDefault="qualified"
+    version="1.0">
+  <xs:import namespace="http://demo.oracle.com/ops/domain/schema/common" schemaLocation="Common.xsd"/>
+
+  <xs:element name="Shipment" type="tns:ShipmentType"/>
+
+  <xs:complexType name="ShipmentType">
+    <xs:complexContent>
+      <xs:extension base="common:BaseEntity">
+        <xs:sequence>
+          <xs:element name="ExternalReferenceId" type="xs:string"/>
+          <xs:element name="ToAddress" type="common:Address"/>
+          <xs:element name="FromAddress" type="common:Address"/>
+          <xs:element name="ShippingService" type="tns:ShippingService"/>
+          <xs:element ref="tns:Parcel" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Parcel" type="tns:ParcelType"/>
+
+  <xs:complexType name="ParcelType">
+    <xs:complexContent>
+      <xs:extension base="common:BaseEntity">
+        <xs:sequence>
+          <xs:element name="ShipmentId" type="xs:int"/>
+          <xs:element name="Contents" type="xs:string"/>
+          <xs:element name="Height" type="xs:int"/>
+          <xs:element name="Width" type="xs:int"/>
+          <xs:element name="Length" type="xs:int"/>
+          <xs:element name="Weight" type="xs:int"/>
+          <xs:element name="ParcelStatus" type="tns:ParcelStatus"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ParcelEvent" type="tns:ParcelEventType"/>
+
+  <xs:complexType name="ParcelEventType">
+    <xs:complexContent>
+      <xs:extension base="common:BaseEntity">
+        <xs:sequence>
+          <xs:element name="ParcelId" type="xs:int"/>
+          <xs:element name="Date" type="xs:dateTime"/>
+          <xs:element name="ParcelStatus" type="tns:ParcelStatus"/>
+          <xs:element name="Location" type="xs:string"/>
+          <xs:element name="Message" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ShippingService">
+    <xs:complexContent>
+      <xs:extension base="common:BaseEntity">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string" minOccurs="0"/>
+          <xs:element name="Description" type="xs:string" minOccurs="0"/>
+          <xs:element name="Cost" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ParcelStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BILLING_INFO_RECEIVED"/>
+      <xs:enumeration value="PARCEL_RECEIVED"/>
+      <xs:enumeration value="IN_TRANSIT"/>
+      <xs:enumeration value="DELIVERED"/>
+      <xs:enumeration value="DELIVERY_EXCEPTION"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ShipmentStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IN_PROGRESS"/>
+      <xs:enumeration value="COMPLETE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

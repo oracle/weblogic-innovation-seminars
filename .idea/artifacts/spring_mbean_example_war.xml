@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spring-mbean-example:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/spring-examples/spring-mbean-example/target</output-path>
+    <root id="archive" name="spring-mbean-example.war">
+      <element id="artifact" artifact-name="spring-mbean-example:war exploded" />
+    </root>
+  </artifact>
+</component>

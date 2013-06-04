@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="saf-target-listener:war exploded">
+    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-store-and-forward/saf-target-listener/target/saf-target-listener</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="saf-target-listener/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="saf-target-listener" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

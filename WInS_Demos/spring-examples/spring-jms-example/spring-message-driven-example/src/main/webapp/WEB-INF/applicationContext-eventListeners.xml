@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+
+  <!--<import resource="applicationContext-ejb.xml"/>-->
+
+  <import resource="applicationContext-jmsEnvironment.xml"/>
+  <import resource="applicationContext-eventHandlers.xml"/>
+  <import resource="classpath:applicationContext-services.xml"/>
+
+  <context:property-placeholder location="WEB-INF/jndi.properties"/>
+  <context:property-placeholder location="WEB-INF/jms.properties"/>
+
+  <!--
+    Message Converter
+  -->
+
+  <bean id="eventMessageConverter"
+        class="com.oracle.demo.ops.event.spring.converter.ParcelLogEventMessageConverter"/>
+
+  <!--
+  Queue Listener-Container & Listener
+  -->
+
+  <jms:listener-container
+      connection-factory="jmsConnectionFactory"
+      message-converter="eventMessageConverter"
+      destination-resolver="jmsDestinationResolver">
+
+    <jms:listener destination="${jms.event.queue.name}"
+                  ref="eventService"
+                  method="publishEventToTopic"/>
+
+  </jms:listener-container>
+
+  <!--
+    Topic Listeners
+
+      There is one Listener Container per Listener in order to properly
+      manage the Durable Subscriptions.  Note that the ClientID has the 'weblogic.Name' environment variable included in
+      the name to make it unique across the cluster.  When you combine this string value with the subscription ID you end
+      up with a unique durable subscription ID for each managed server in the cluster.
+  -->
+
+  <jms:listener-container connection-factory="jmsConnectionFactory"
+                          message-converter="eventMessageConverter"
+                          destination-resolver="jmsDestinationResolver"
+
+                          client-id="SPR_parcelLogUpdate_${weblogic.Name}"
+                          destination-type="durableTopic">
+
+    <jms:listener id="parcelLogUpdate"
+                  destination="${jms.event.topic.name}"
+                  ref="updateParcelLogEventHandler"
+                  method="handleEvent"
+                  subscription="parcelLogUpdate_${weblogic.Name}"/>
+  </jms:listener-container>
+
+
+  <jms:listener-container connection-factory="jmsConnectionFactory"
+                          message-converter="eventMessageConverter"
+                          destination-resolver="jmsDestinationResolver"
+
+                          client-id="SPR_parcelStatusUpdate_${weblogic.Name}"
+                          destination-type="durableTopic">
+
+    <jms:listener id="parcelStatusUpdate"
+                  destination="${jms.event.topic.name}"
+                  ref="updateParcelStatusEventHandler"
+                  method="handleEvent"
+                  subscription="parcelStatusUpdate_${weblogic.Name}"/>
+  </jms:listener-container>
+
+
+  <jms:listener-container connection-factory="jmsConnectionFactory"
+                          message-converter="eventMessageConverter"
+                          destination-resolver="jmsDestinationResolver"
+                          client-id="SPR_packageDeliveryNotification_${weblogic.Name}"
+                          destination-type="durableTopic">
+
+    <jms:listener id="packageDeliveryNotification"
+                  method="handleEvent"
+                  ref="notifyPackageDeliveredEventHandler"
+                  destination="${jms.event.topic.name}"
+                  selector="parcelStatus='DELIVERED'"
+                  subscription="packageDeliveryNotification_${weblogic.Name}"/>
+  </jms:listener-container>
+
+</beans>

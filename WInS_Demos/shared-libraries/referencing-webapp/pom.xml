@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>referencing-webapp</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>war</packaging>
+  <name>referencing-webapp</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <archive>
+            <manifestEntries>
+              <Extension-Name>${project.artifactId}</Extension-Name>
+
+              <Specification-Title>${project.description}</Specification-Title>
+              <Specification-Version>${project.version}</Specification-Version>
+              <Specification-Vendor>Oracle</Specification-Vendor>
+
+              <Implementation-Title>${project.artifactId}</Implementation-Title>
+              <Implementation-Version>${project.version}.${maven.build.timestamp}</Implementation-Version>
+              <Implementation-Vendor>Oracle</Implementation-Vendor>
+              <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+
+              <Extension-List>MySharedLibraryExt</Extension-List>
+
+              <MySharedLibraryExt-Extension-Name>shared-jar-library</MySharedLibraryExt-Extension-Name>
+              <MySharedLibraryExt-Specification-Version>1.0</MySharedLibraryExt-Specification-Version>
+              <!--<MySharedLibrary-Implementation-Version>1.0.${maven.build.timestamp}</MySharedLibrary-Implementation-Version>-->
+
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <!-- ==================================================================================== -->
+
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.weblogic.demo.wins</groupId>
+      <artifactId>shared-jar-library</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

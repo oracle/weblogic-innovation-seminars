@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CCaseConfig">
+    <option name="checkoutReserved" value="false" />
+    <option name="markExternalChangeAsUpToDate" value="true" />
+    <option name="checkInUseHijack" value="true" />
+    <option name="useUcmModel" value="true" />
+    <option name="synchOutside" value="false" />
+    <option name="isHistoryResticted" value="true" />
+    <option name="useIdenticalSwitch" value="true" />
+    <option name="synchActivitiesOnRefresh" value="true" />
+    <option name="lastScr" value="" />
+    <option name="scrTextFileName" value="" />
+    <option name="historyRevisionsNumber" value="4" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-application" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-bean-app-1" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-bean-app-2" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-cdi-app-1" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsf-cdi-app-2" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-session-sharing/jsp-app-1" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/coherence-examples/coherence-web-examples/coherence-web-split-storage" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/diagnostic-framework/dye-injection" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/diagnostic-framework/wldf-notification-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-ee-message-driven" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-spring-message-driven" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-distributed-destinations/queue-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-distributed-destinations/topic-listeners" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-service-migration/migration-listener-solo" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-store-and-forward/saf-source-forwarder" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-store-and-forward/saf-target-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-unit-of-order/uoo-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/jms-examples/jms-unit-of-work/uow-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/mbean-examples/javaee-mbean-example" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-webapp" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/shared-libraries/shared-war-library" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/side-by-side-deployment/aussie-tripper" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/spring-examples/spring-mbean-example" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/spring-examples/spring-rest-example" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/utility-applications/deadlock-generator/deadlock-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/utility-applications/jdbc-connection-hogger/hogger-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/utility-applications/jvm-memory-consumer" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/utility-applications/stuck-thread-generator/stuck-thread-generator-listener" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/wins-webapp" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/workmanager-examples/workmanager-ejb-app" />
+    <file type="web" url="file://$PROJECT_DIR$/WInS_Demos/workmanager-examples/workmanager-web-app" />
+  </component>
+  <component name="IdProvider" IDEtalkID="BCF7CC29F7DE2F4A85D5ED9BDAA55C05" />
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" />
+    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OPTION_HIERARCHY" value="true" />
+    <option name="OPTION_NAVIGATOR" value="true" />
+    <option name="OPTION_INDEX" value="true" />
+    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
+    <option name="OPTION_DEPRECATED_LIST" value="true" />
+    <option name="OTHER_OPTIONS" value="" />
+    <option name="HEAP_SIZE" />
+    <option name="LOCALE" />
+    <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/WInS_Demos/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ModuleEditorState">
+    <option name="LAST_EDITED_MODULE_NAME" />
+    <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state />
+    </entry>
+  </component>
+  <component name="ProjectResources">
+    <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.7_15" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="StarteamConfiguration">
+    <option name="SERVER" value="" />
+    <option name="PORT" value="49201" />
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="PROJECT" value="" />
+    <option name="VIEW" value="" />
+    <option name="ALTERNATIVE_WORKING_PATH" value="" />
+    <option name="LOCK_ON_CHECKOUT" value="false" />
+    <option name="UNLOCK_ON_CHECKIN" value="false" />
+  </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
+</project>
+

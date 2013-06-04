@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="deployment-archive" default="deploy-archive">
+	<!-- ############################################################################################################ -->
+	<import file="deploy.xml"/>
+	<!-- ############################################################################################################ -->
+	<property file="deploy-domain.properties"/>
+	<property file="deploy-weblogic.properties"/>
+	<!-- ############################################################################################################ -->
+	<taskdef name="wldeploy" classname="weblogic.ant.taskdefs.management.WLDeploy">
+		<classpath>
+			<pathelement location="${weblogic.home}\server\lib\weblogic.jar"/>
+		</classpath>
+	</taskdef>
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="${ant.home}/lib/ant-contrib.jar"/>
+		</classpath>
+	</taskdef>
+	<!-- ############################################################################################################ -->
+	<!-- This task should be called by deployment.xml's "deploy"  task. It should not be called directly -->
+	<target name="deploy-archive">
+		<antcall target="deploy.all" inheritAll="true">
+			<param name="application.name" value="${application.name}"/>
+		</antcall>
+	</target>
+	<!-- ############################################################################################################ -->
+	<target name="deploy.all">
+			<propertycopy name="domain.targets" from="${application.name}.domain.targets"/>
+		<foreach list="${domain.targets}" target="deploy.to.domain" param="domain.name" inheritall="true" parallel="false"/>
+	</target>
+	<!-- ############################################################################################################ -->
+	<!-- This task should be called by deployment.xml's "deploy" task. It should not be called directly -->
+	<target name="deploy.to.domain">
+		<sequential>
+			<propertycopy name="archive.path" from="${application.name}.archive.path"/>
+			<propertycopy name="admin.host" from="${domain.name}.${environment.name}.adminserver.host"/>
+			<propertycopy name="admin.port" from="${domain.name}.${environment.name}.adminserver.port"/>
+			<propertycopy name="targets" from="${application.name}.${domain.name}.targets"/>
+			<propertycopy name="wls.username" from="${domain.name}.${environment.name}.adminserver.username"/>
+			<propertycopy name="wls.password" from="${domain.name}.${environment.name}.adminserver.password"/>
+			<propertycopy name="deployment.name" from="application.name"/>
+			<echo>
+==================================================================================================================
+Deploying to Cluster (${domain.name}) with settings:
+==================================================================================================================
+Environment Name: ${environment.name}
+Application Name: ${application.name}
+Application Type (war/bpm/esb): ${application.type}		
+Cluster Name: ${domain.name}
+Admin Server URL: t3://${admin.host}:${admin.port}
+Username: ${wls.username}
+Deployment Name: ${deployment.name}
+Deployment Target(s): ${targets}
+Archive Path: ${archive.path}
+==================================================================================================================
+</echo>
+		<available file="${archive.path}" property="isDeploymentArtifactFound"/>
+		<fail unless="isDeploymentArtifactFound" message="Archive File ${archive.path} doesn't exist!"/>
+
+			<antcall target="DEPLOY" inheritAll="true">
+				<param name="DEPLOY.name" value="${deployment.name}"/>
+				<param name="DEPLOY.username" value="${wls.username}"/>
+				<param name="DEPLOY.password" value="${wls.password}"/>
+				<param name="DEPLOY.url" value="t3://${admin.host}:${admin.port}"/>
+				<param name="DEPLOY.targets" value="${targets}"/>
+				<param name="DEPLOY.path" value="${archive.path}"/>
+			</antcall>
+		</sequential>
+	</target>
+	<!-- ############################################################################################################ -->
+	<target name="DEPLOY">
+		<sequential>
+			<wldeploy action="stop" failonerror="false" verbose="false" debug="false" name="${DEPLOY.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.url}" targets="${DEPLOY.targets}"/>
+			<wldeploy action="undeploy" failonerror="false" verbose="false" debug="false" name="${DEPLOY.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.url}" targets="${DEPLOY.targets}"/>
+			<wldeploy action="deploy" upload="true" verbose="false" debug="false" name="${DEPLOY.name}" source="${DEPLOY.path}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.url}" targets="${DEPLOY.targets}"/>
+<!--			<wldeploy action="start" verbose="false" debug="false" name="${DEPLOY.name}" user="${DEPLOY.username}" password="${DEPLOY.password}" adminurl="${DEPLOY.url}" targets="${DEPLOY.targets}"/>-->
+		</sequential>
+	</target>
+</project>

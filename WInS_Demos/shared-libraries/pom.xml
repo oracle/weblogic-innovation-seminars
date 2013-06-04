@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>shared-libraries</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>shared-libraries</name>
+
+  <!-- ==================================================================================== -->
+
+  <modules>
+    <module>shared-jar-library</module>
+    <module>shared-war-library</module>
+    <module>referencing-webapp</module>
+    <module>referencing-application</module>
+  </modules>
+
+
+</project>

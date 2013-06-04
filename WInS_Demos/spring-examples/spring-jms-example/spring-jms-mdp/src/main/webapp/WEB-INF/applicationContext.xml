@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+
+  <!-- this is the Message Driven POJO (MDP) -->
+  <bean id="messageListener" class="com.oracle.example.spring.jms.mdp.SpringMDP"/>
+
+  <!--It helps us to perform JNDI operations. It has methods to do lookup and binding operation. The web logic context details are configured using this interface -->
+  <bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate"/>
+
+  <!--It is used to send messages. This requires information about connection factory and destination resolver while configuring. -->
+  <jee:jndi-lookup id="connectionFactory"
+                   jndi-name="com.oracle.example.jms.spring.cf"
+                   expose-access-context="true"/>
+
+  <!-- It is used to look up the JNDI object on startup and cache it. This interface is used to configure connection factory -->
+  <bean id="queue" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiTemplate" ref="jndiTemplate"/>
+    <property name="jndiName" value="com.oracle.example.jms.spring.queue"/>
+  </bean>
+
+  <!-- This class is used to configure the normal bean as message driven bean. While configuring, the destination details will be supplied so that the framework can have the relationship between MDB and destination -->
+  <bean id="listenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <!-- -->
+    <property name="concurrentConsumers" value="5"/>
+    <property name="connectionFactory" ref="connectionFactory"/>
+    <property name="destination" ref="queue"/>
+    <property name="messageListener" ref="messageListener"/>
+  </bean>
+  <!-- DestinationResolver: It is used by JmsTemplate to resolve destination names -->
+  <jms:listener-container
+      connection-factory="connectionFactory"
+      message-converter="eventMessageConverter"
+      destination-resolver="jmsDestinationResolver">
+
+    <jms:listener destination="${jms.event.queue.name}"
+                  ref="eventService"
+                  method="publishEventToTopic"/>
+
+  </jms:listener-container>
+
+</beans>

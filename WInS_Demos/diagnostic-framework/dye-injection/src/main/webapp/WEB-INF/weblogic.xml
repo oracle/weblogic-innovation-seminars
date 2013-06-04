@@ -1,0 +1,12 @@
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
+  <security-role-assignment>
+    <role-name>WEBAPP_ROLE</role-name>
+    <principal-name>Administrators</principal-name>
+  </security-role-assignment>
+
+  <context-root>dye-injection</context-root>
+
+</weblogic-web-app>
+

@@ -1,0 +1,103 @@
+/* 
+    Document   : main
+    Created on : Mar 13, 2013, 1:14:07 PM
+    Author     : ankitpan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+textarea {
+    border: none;
+}
+#joinchat,#leavechat {
+   background-color: #E8F2FB;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border: 2px solid #DFE9F2;
+  padding: 5px;
+  height:40px;
+  width: 100px;
+  font-weight: bold;
+  
+}
+#sendmsg {
+   background-color: #E8F2FB;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border: 2px solid #DFE9F2;
+  padding: 5px;
+  height:40px;
+  width: 110px;
+  font-weight: bold;
+}
+#users,#chats,#completelog{
+    color: blue;
+    font-family: sans-serif;
+}
+#chat{
+   
+    background-color:#E8F2FB;
+    border:2px;
+    border-radius:15px;
+    -moz-border-radius:25px;
+    border: 2px solid #DFE9F2;
+    height:30px;
+    float:left;
+    width: 827px;
+    list-style:none;
+    position:relative;
+    top: 4px;
+    font-size: 14px;
+    display:inline;
+    text-decoration:none;
+    font-weight: bold;
+  }
+#user{
+    background-color:#E8F2FB;
+    border:2px;
+    border-radius:15px;
+    -moz-border-radius:25px;
+    border: 2px solid #DFE9F2;
+    height:30px;
+    width:180px;
+    float:left;
+    list-style:none;
+    position:relative;
+    top: 4px;
+    font-size: 14px;
+    display:inline;
+    text-decoration:none;  
+   font-weight: bold;
+}
+#msgfield{
+    background-color:#E8F2FB;
+    border:2px;
+    border-radius:15px;
+    border: 2px solid #DFE9F2;
+    height:30px;
+    float:left;
+    width: 900px;
+    list-style:none;
+    position:relative;
+    top: 4px;
+    font-size: 14px;
+    display:inline;
+    text-decoration:none;  
+   font-weight: bold;
+}
+#complog{
+    background-color:#E8F2FB;
+    border:2px;
+    border-radius:15px;
+    -moz-border-radius:25px;
+    border: 2px solid #DFE9F2;
+    height:30px;
+    float:left;
+    width: 1022px;
+    list-style:none;
+    position:relative;
+    top: -1px;
+    font-size: 14px;
+    display:inline;
+    text-decoration:none;
+    font-weight: bold;
+  }

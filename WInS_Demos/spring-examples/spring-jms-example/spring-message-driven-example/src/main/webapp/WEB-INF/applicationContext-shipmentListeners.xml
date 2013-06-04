@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+  <import resource="applicationContext-jmsEnvironment.xml"/>
+  <import resource="classpath:applicationContext-jpa.xml"/>
+
+  <context:property-placeholder location="WEB-INF/jndi.properties"/>
+  <context:property-placeholder location="WEB-INF/jms.properties"/>
+
+  <bean id="orderQueueListener"
+        class="com.oracle.demo.ops.jms.listener.shipment.NewShipmentMessageListenerMDP">
+
+    <property name="shipmentManager"
+              ref="shipmentManager"/>
+  </bean>
+
+  <bean id="orderQueueMDP"
+        class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="messageListener" ref="orderQueueListener"/>
+    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    <property name="destinationResolver" ref="jmsDestinationResolver"/>
+    <property name="destinationName" value="${jms.shipment.queue.name}"/>
+  </bean>
+
+</beans>

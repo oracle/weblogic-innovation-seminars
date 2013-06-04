@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ops-spring-message-driven:war">
+    <output-path>$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-spring-message-driven/target</output-path>
+    <root id="archive" name="ops-spring-message-driven.war">
+      <element id="artifact" artifact-name="ops-spring-message-driven:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>shared-jar-library</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>jar</packaging>
+  <name>shared-jar-library</name>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <!-- Required for Shared Library to be found and referenced -->
+              <Extension-Name>shared-jar-library</Extension-Name>
+              <Specification-Version>1.0</Specification-Version>
+              <Implementation-Version>1.0.${maven.build.timestamp}</Implementation-Version>
+
+              <!-- Optional fields-->
+              <Specification-Title>${project.description}</Specification-Title>
+              <Specification-Vendor>Oracle</Specification-Vendor>
+
+              <Implementation-Title>${project.description}</Implementation-Title>
+              <Implementation-Vendor>Oracle</Implementation-Vendor>
+              <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+
+        <configuration>
+          <library>true</library>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>
