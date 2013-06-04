@@ -39,6 +39,7 @@
   <!-- ==================================================================================== -->
 
   <modules>
+    <module>cdi-controller-bean</module>
     <module>jsf-bean-app-1</module>
     <module>jsf-bean-app-2</module>
     <module>jsf-cdi-app-1</module>
