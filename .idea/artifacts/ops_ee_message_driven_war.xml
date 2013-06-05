@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="ops-ee-message-driven:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/event-driven-architecture/ops-ee-message-driven/target</output-path>
-    <root id="archive" name="ops-ee-message-driven.war">
-      <element id="artifact" artifact-name="ops-ee-message-driven:war exploded" />
-    </root>
-  </artifact>
-</component>

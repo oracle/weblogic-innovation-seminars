@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="topic-listeners:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-distributed-destinations/topic-listeners/target</output-path>
-    <root id="archive" name="topic-listeners.war">
-      <element id="artifact" artifact-name="topic-listeners:war exploded" />
-    </root>
-  </artifact>
-</component>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="spring-rest-example:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/spring-examples/spring-rest-example/target</output-path>
-    <root id="archive" name="spring-rest-example.war">
-      <element id="artifact" artifact-name="spring-rest-example:war exploded" />
-    </root>
-  </artifact>
-</component>

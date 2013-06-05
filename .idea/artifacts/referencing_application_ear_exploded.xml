@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ear" name="referencing-application:ear exploded">
-    <output-path>$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-application/target/referencing-application</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="referencing-application/javaeeApplication/JavaEE" />
-      <element id="dir-copy" path="$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-application/src/main/application" />
-    </root>
-  </artifact>
-</component>

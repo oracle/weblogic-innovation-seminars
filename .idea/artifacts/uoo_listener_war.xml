@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="uoo-listener:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/jms-examples/jms-unit-of-order/uoo-listener/target</output-path>
-    <root id="archive" name="uoo-listener.war">
-      <element id="artifact" artifact-name="uoo-listener:war exploded" />
-    </root>
-  </artifact>
-</component>

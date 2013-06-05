@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="workmanager-ejb-app:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/workmanager-examples/workmanager-ejb-app/target</output-path>
-    <root id="archive" name="workmanager-ejb-app.war">
-      <element id="artifact" artifact-name="workmanager-ejb-app:war exploded" />
-    </root>
-  </artifact>
-</component>

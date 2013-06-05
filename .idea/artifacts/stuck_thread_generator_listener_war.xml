@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="stuck-thread-generator-listener:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/utility-applications/stuck-thread-generator/stuck-thread-generator-listener/target</output-path>
-    <root id="archive" name="stuck-thread-generator-listener.war">
-      <element id="artifact" artifact-name="stuck-thread-generator-listener:war exploded" />
-    </root>
-  </artifact>
-</component>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="referencing-webapp:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/shared-libraries/referencing-webapp/target</output-path>
-    <root id="archive" name="referencing-webapp.war">
-      <element id="artifact" artifact-name="referencing-webapp:war exploded" />
-    </root>
-  </artifact>
-</component>

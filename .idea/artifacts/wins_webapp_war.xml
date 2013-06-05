@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="wins-webapp:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/wins-webapp/target</output-path>
-    <root id="archive" name="wins-webapp.war">
-      <element id="artifact" artifact-name="wins-webapp:war exploded" />
-    </root>
-  </artifact>
-</component>

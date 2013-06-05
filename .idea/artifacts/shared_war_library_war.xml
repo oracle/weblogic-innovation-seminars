@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="shared-war-library:war">
-    <output-path>$PROJECT_DIR$/WInS_Demos/shared-libraries/shared-war-library/target</output-path>
-    <root id="archive" name="shared-war-library.war">
-      <element id="artifact" artifact-name="shared-war-library:war exploded" />
-    </root>
-  </artifact>
-</component>
