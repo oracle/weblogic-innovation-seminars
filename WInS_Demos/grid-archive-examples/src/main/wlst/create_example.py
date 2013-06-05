@@ -1,9 +1,9 @@
 user="weblogic"
 password="welcome1"
-listenAddress="wins-vbox.localdomain"
-listenPort=5554
+listenAddress="wins-vbox"
+listenPort=5556
 domainName="base_domain"
-domainDirectory="/home/oracle/Oracle/Middleware/Oracle_Home/user_projects/domains/base_domain"
+domainDirectory="/u01/wls1212/user_projects/domains/base_domain"
 
 print ''
 print '============================================='
@@ -11,7 +11,7 @@ print 'Connecting to Node Manager...'
 print '============================================='
 print ''
 
-nmConnect(user,password,listenAddress,listenPort,domainName,domainDirectory,'SSL')
+nmConnect(user,password,listenAddress,listenPort,domainName,domainDirectory,'Plain')
 
 print ''
 print '============================================='
@@ -75,8 +75,9 @@ startEdit()
 # for already existing machine
 machine = getMBean('/Machines/machine')
 
+
 # Create the Coherence cluster
-cohSR      = create(cohClusterName, 'CoherenceClusterSystemResource')
+cohSR      = create(cohClusterName,'CoherenceClusterSystemResource')
 cohBean    = cohSR.getCoherenceClusterResource()
 cohCluster = cohBean.getCoherenceClusterParams()
 
@@ -152,5 +153,6 @@ activate()
 disconnect()
 print 'Finished'
 exit()
+
 
 

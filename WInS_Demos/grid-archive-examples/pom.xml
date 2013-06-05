@@ -21,7 +21,7 @@
 
   <!-- ==================================================================================== -->
   <properties>
-    <domain.name>base-domain</domain.name>
+    <domain.name>base_domain</domain.name>
   </properties>
   <!-- ==================================================================================== -->
 
@@ -62,7 +62,7 @@
                   <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
 
 
-                  <fileName>${project.basedir}/src/main/wlst/configure-cluster.py</fileName>
+                  <fileName>/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_example.py</fileName>
                  <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
 
                 </configuration>
@@ -77,9 +77,7 @@
 
     </profile>
 
-    <!-- +++++++++++++++++++++++++ -->
-
-    <profile>
+<profile>
       <id>deploy-app</id>
 
       <activation>
@@ -111,15 +109,16 @@
                 </goals>
 
                 <configuration>
-				<middlewareHome>/u01/wls1212/</middlewareHome>
+                  <middlewareHome>/u01/wls1212/</middlewareHome>
                   <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
 
 
-                  <fileName>${project.basedir}/src/main/wlst/deploy-app.py</fileName>
-                   <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
+                  <fileName>/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/deployApp.py</fileName>
+                 <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
 
                 </configuration>
-		</execution>
+
+              </execution>
             </executions>
           </plugin>
 
@@ -128,115 +127,50 @@
       </build>
 
     </profile>
+</profiles>
     <!-- +++++++++++++++++++++++++ -->
 
-    <profile>
-      <id>start-proxy</id>
+   <!-- ==================================================================================== -->
 
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-
-      <build>
-        <defaultGoal>install</defaultGoal>
-
-        <plugins>
-
-          <plugin>
-            <groupId>com.oracle.weblogic</groupId>
-            <artifactId>wls-maven-plugin</artifactId>
-
-            <configuration>
-              <user>weblogic</user>
-              <password>welcome1</password>
-              <name>${project.build.finalName}</name>
-            </configuration>
-
-            <executions>
-              <execution>
-                <id>configure</id>
-                <phase>install</phase>
-
-                <goals>
-                  <goal>wlst</goal>
-                </goals>
-
-               <configuration>
-                  <middlewareHome>/u01/wls1212/</middlewareHome>
-                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
-
-
-                  <fileName>${project.basedir}/src/main/wlst/start-proxy.py</fileName>
-                   <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
-
-                </configuration>
-
-              </execution>
-            </executions>
-          </plugin>
-
-
-        </plugins>
-      </build>
-
-    </profile>
-	
-	<profile>
-      <id>redeploy-app</id>
-
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-
-      <build>
-        <defaultGoal>install</defaultGoal>
-
-        <plugins>
-
-          <plugin>
-            <groupId>com.oracle.weblogic</groupId>
-            <artifactId>wls-maven-plugin</artifactId>
-
-            <configuration>
-              <user>weblogic</user>
-              <password>welcome1</password>
-              <name>${project.build.finalName}</name>
-            </configuration>
-
-            <executions>
-              <execution>
-                <id>configure</id>
-                <phase>install</phase>
-
-                <goals>
-                  <goal>wlst</goal>
-                </goals>
-
-               <configuration>
-                  <middlewareHome>/u01/wls1212/</middlewareHome>
-                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
-
-
-                  <fileName>${project.basedir}/src/main/wlst/Redeploy-app.py</fileName>
-                   <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
-
-                </configuration>
-
-              </execution>
-            </executions>
-          </plugin>
-
-
-        </plugins>
-      </build>
-
-    </profile>
-
-  </profiles>
-  <!-- ==================================================================================== -->
-
-  <build>
+   <build>
     <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <!--
+        This plugin sets the source and target language levels to Java 1.6
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+        <version>12.1.2.0</version>
+
+        <configuration>
+          <middlewareHome>/u01/wls1212</middlewareHome>
+          <adminurl>t3://wins-vbox:7001</adminurl>
+          <user>weblogic</user>
+          <password>welcome1</password>
+        </configuration>
+
+      </plugin>
+
+    </plugins>
+
   </build>
 
 </project>

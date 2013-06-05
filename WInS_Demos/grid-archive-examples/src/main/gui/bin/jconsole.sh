@@ -6,7 +6,7 @@
 # allow you to view the coherence MBeans for the entire coherence cluster.
 #
 
-cd /home/oracle/Oracle/Middleware/Oracle_Home/user_projects/domains/base_domain/bin/
+cd /u01/wls1212/user_projects/domains/base_domain/bin/
 . ./setDomainEnv.sh
 
 if [ -z "$WL_HOME" ] ; then
