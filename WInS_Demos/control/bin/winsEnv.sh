@@ -35,7 +35,7 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ORACLE_HOME}/lib:${WL_HOME}/server/
 export COHERENCE_HOME="${MW_HOME}/coherence"
 
 export CONTENT_HOME="${USER_BASE}/content"
-export DEMOS_HOME="${CONTENT_HOME}/weblogic-innovations-seminars/WInS_Demos"
+export DEMOS_HOME="${CONTENT_HOME}/weblogic-innovation-seminars/WInS_Demos"
 
 export WORKSHOP_HOME="${CONTENT_HOME}/weblogic-workshop-1035"
 export USER_PROJECTS="${MW_HOME}/user_projects"

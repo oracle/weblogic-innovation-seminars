@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export CONTENT_DIR="/u01/content/weblogic-innovations-seminars"
+export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
 export TAG_NAME="wins-vbox"
-export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovations-seminars.git"
+export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
 

@@ -34,9 +34,9 @@ start('webapp_server2','Server')
 
 
 #Deploying ExampleGAR.gar application to CacheServerWebLogicCluster
-deploy('ExampleGAR.gar','/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleGAR.gar',targets='CacheServerWebLogicCluster')
+deploy('ExampleGAR.gar','/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleGAR.gar',targets='CacheServerWebLogicCluster')
 #startApplication('ExampleGAR.gar')
 
 #Deploying ExampleEAR.ear application to WebAppWebLogicCluster
-deploy('ExampleEAR.ear','/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleEAR.ear',targets='WebAppWebLogicCluster')
+deploy('ExampleEAR.ear','/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleEAR.ear',targets='WebAppWebLogicCluster')
 #startApplication('ExampleEAR.ear')

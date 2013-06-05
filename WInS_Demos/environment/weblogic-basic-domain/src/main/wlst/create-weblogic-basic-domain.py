@@ -10,7 +10,7 @@ jmsServer_BaseName = 'jms-server'
 cluster_Name = 'cluster-1'
 machine_Name = 'wins-vbox.localdomain'
 
-wins_demos_home = '/u01/content/weblogic-innovations-seminars/WInS_Demos'
+wins_demos_home = '/u01/content/weblogic-innovation-seminars/WInS_Demos'
 
 ########################################################################################################################
 

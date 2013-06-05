@@ -12,7 +12,7 @@ loadProperties('counter.properties')
 #USER_PROJECTS='/u01/wls1212/user_projects/domains/'
 
 var_domain_dir = USER_PROJECTS + domainName
-APP_DIR='/u01/content/weblogic-innovations-seminars/WInS_Demos/dynamic-cluster/src/main/apps'
+APP_DIR='/u01/content/weblogic-innovation-seminars/WInS_Demos/dynamic-cluster/src/main/apps'
 
 print ''
 print '============================================='

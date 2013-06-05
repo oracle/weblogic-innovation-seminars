@@ -62,7 +62,7 @@
                   <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
 
 
-                  <fileName>/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_example.py</fileName>
+                  <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_example.py</fileName>
                  <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
 
                 </configuration>
@@ -113,7 +113,7 @@
                   <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
 
 
-                  <fileName>/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/deployApp.py</fileName>
+                  <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/deployApp.py</fileName>
                  <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
 
                 </configuration>

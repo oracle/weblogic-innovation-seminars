@@ -8,7 +8,7 @@
 . /etc/rc.d/init.d/functions
 
 export ORACLE_OWNER=oracle
-DEMOS_HOME="/u01/content/weblogic-innovations-seminars/WInS_Demos"
+DEMOS_HOME="/u01/content/weblogic-innovation-seminars/WInS_Demos"
 
 service_name="WInS Virtualbox Configuration"
 logger="/usr/bin/logger -t rc.local "

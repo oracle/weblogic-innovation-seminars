@@ -11,7 +11,7 @@ zerofree()
 }
 
 
-sqlplus '/ as sysdba' @/u01/content/weblogic-innovations-seminars/WInS_Demos/environment/sql/truncate.sql
+sqlplus '/ as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
 
 killWebLogic.sh
 
@@ -21,13 +21,13 @@ sudo rm -Rf /var/cache/yum/*
 sudo rm -Rf /u01/content/oracle-parcel-service/ops-weblogic/Oracle
 sudo rm -Rf /home/oracle/Downloads/*
 
-cd /u01/content/weblogic-innovations-seminars/WInS_Demos
+cd /u01/content/weblogic-innovation-seminars/WInS_Demos
 mvn clean
 
 cd /u01/content/soracle-parcel-service
 mvn clean
 
-find /u01/content/weblogic-innovations-seminars -name "*.sh" -exec chmod +rx {} \;
+find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \;
 
 zerofree /tmp
 zerofree /u01

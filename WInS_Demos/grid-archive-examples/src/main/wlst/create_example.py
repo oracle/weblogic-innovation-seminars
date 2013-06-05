@@ -48,8 +48,8 @@ machineName            = 'machine'
 # Cache configuration target names
 jndiName = 'ExamplesGar'
 proxyCacheConfig       ='ProxyCacheConfig'
-proxyCacheConfigFile   ='/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/resource/config/proxy-cache-config.xml'
-overrideFile           ='/u01/content/weblogic-innovations-seminars/WInS_Demos/grid-archive-examples/src/main/resource/config/tangosol-coherence-override.xml'
+proxyCacheConfigFile   ='/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/resource/config/proxy-cache-config.xml'
+overrideFile           ='/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/resource/config/tangosol-coherence-override.xml'
 
 # Coherence Cluster Name
 cohClusterName = 'CoherenceCluster'
