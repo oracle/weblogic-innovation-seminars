@@ -49,6 +49,7 @@
     <module>utility-applications</module>
     <module>wins-webapp</module>
     <module>event-driven-architecture</module>
+    <module>websockets-examples</module>
   </modules>
 
 </project>

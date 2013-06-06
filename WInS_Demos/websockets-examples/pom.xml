@@ -4,9 +4,9 @@
 
   <parent>
     <groupId>com.oracle.weblogic.demo.wins</groupId>
-    <artifactId>common-deployable</artifactId>
+    <artifactId>common</artifactId>
     <version>12.1.2.0.0</version>
-    <relativePath>../common/common-deployable/pom.xml</relativePath>
+    <relativePath>../common/pom.xml</relativePath>
   </parent>
 
   <!-- ==================================================================================== -->
@@ -14,43 +14,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.oracle.weblogic.demo.wins</groupId>
-  <artifactId>chat</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <artifactId>websockets-examples</artifactId>
+  <version>${parent.version}</version>
+  <packaging>pom</packaging>
 
-  <name>chat</name>
-
-  <!-- ==================================================================================== -->
-
-  <properties>
-    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-  </properties>
+  <name>websockets-examples</name>
 
   <!-- ==================================================================================== -->
 
-	<dependencies>
-		<dependency>
-      <groupId>com.bea.core.weblogic.web</groupId>
-      <artifactId>api</artifactId>
-      <version>${weblogic.version}</version>
-    </dependency>
-	</dependencies>
- 
-  <!-- ======================================================== -->
+  <modules>
+    <module>websockets-chat</module>
+  </modules>
 
-  <build>
-    <defaultGoal>install</defaultGoal>
+  <!-- ==================================================================================== -->
 
-    <plugins>
-
-      <plugin>
-        <groupId>com.oracle.weblogic</groupId>
-        <artifactId>wls-maven-plugin</artifactId>
-      </plugin>
-
-    </plugins>
-
-  </build>
 </project>
