@@ -5,9 +5,9 @@
 
   <parent>
     <groupId>com.oracle.weblogic.demo.wins</groupId>
-    <artifactId>common-deployable</artifactId>
+    <artifactId>common</artifactId>
     <version>12.1.2.0.0</version>
-    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+    <relativePath>../../common/pom.xml</relativePath>
   </parent>
 
   <!-- ==================================================================================== -->
@@ -29,9 +29,12 @@
         <version>2.3.2</version>
 
         <configuration>
-          <version>6</version>
+          <version>5</version>
           <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
 
+          <modules>
+
+          </modules>
         </configuration>
       </plugin>
 
@@ -43,4 +46,11 @@
     </plugins>
   </build>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.weblogic.demo.wins</groupId>
+      <artifactId>shared-jar-library</artifactId>
+      <version>12.1.2.0.0</version>
+    </dependency>
+  </dependencies>
 </project>
