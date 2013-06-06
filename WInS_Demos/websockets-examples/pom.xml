@@ -1,5 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.oracle.weblogic.demo.wins</groupId>
@@ -9,27 +20,22 @@
 
   <name>chat</name>
 
+  <!-- ==================================================================================== -->
+
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>java.net-promoted</id>
-      <url>https://maven.java.net/content/groups/promoted/</url>
-    </repository>
-  </repositories>
+  <!-- ==================================================================================== -->
 
 	<dependencies>
 		<dependency>
-		    <groupId>com.bea.core.weblogic.web</groupId>
-		    <artifactId>api</artifactId>
-		    <version>12.1.2.0</version>
-		    <type>jar</type>
-		    <scope>provided</scope>
-		</dependency>
+      <groupId>com.bea.core.weblogic.web</groupId>
+      <artifactId>api</artifactId>
+      <version>${weblogic.version}</version>
+    </dependency>
 	</dependencies>
  
   <!-- ======================================================== -->
@@ -38,46 +44,10 @@
     <defaultGoal>install</defaultGoal>
 
     <plugins>
-      <!--
-        This plugin sets the source and target language levels to Java 1.6
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
-
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
 
       <plugin>
         <groupId>com.oracle.weblogic</groupId>
         <artifactId>wls-maven-plugin</artifactId>
-        <version>12.1.2.0</version>
-
-        <configuration>
-          <middlewareHome>/u01/wls1212</middlewareHome>
-          <adminurl>t3://wins-vbox:7001</adminurl>
-          <user>weblogic</user>
-          <password>welcome1</password>
-          <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
-          <name>${project.artifactId}</name>
-          <targets>cluster-1</targets>
-          <remote>false</remote>
-          <upload>false</upload>
-        </configuration>
-
       </plugin>
 
     </plugins>
