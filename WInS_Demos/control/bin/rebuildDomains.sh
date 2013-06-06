@@ -12,8 +12,6 @@ cd ${DEMOS_HOME}/environment
 sqlplus '/ as sysdba' @${DEMOS_HOME}/environment/sql/truncate.sql >> /dev/null
 sqlplus '/ as sysdba' @${DEMOS_HOME}/environment/sql/reset_passwords.sql >> /dev/null
 
-cd domains/
-
 echo "Creating Domains..."
 mvn -P create-domain
 
