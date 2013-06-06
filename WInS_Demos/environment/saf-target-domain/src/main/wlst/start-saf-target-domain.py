@@ -2,7 +2,7 @@ import time
 
 loadProperties('environment.properties')
 
-DOMAIN_NAME = 'saf_target_domain'
+DOMAIN_NAME = 'saf-target-domain'
 var_domain_dir = USER_PROJECTS + '/domains/' + DOMAIN_NAME
 
 adminServer_ListenAddress = 'wins-vbox.localdomain'
