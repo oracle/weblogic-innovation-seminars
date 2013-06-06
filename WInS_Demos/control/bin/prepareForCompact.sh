@@ -20,6 +20,8 @@ sudo rm -Rf /tmp/*
 sudo rm -Rf /var/cache/yum/*
 sudo rm -Rf /u01/content/oracle-parcel-service/ops-weblogic/Oracle
 sudo rm -Rf /home/oracle/Downloads/*
+sudo rm -Rf /home/oracle/.m2/repository/com/oracle/weblogic/demo
+sudo rm -Rf /home/oracle/.m2/repository/com/oracle/demo
 
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos
 mvn clean
