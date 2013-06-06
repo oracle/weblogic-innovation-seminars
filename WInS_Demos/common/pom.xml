@@ -193,6 +193,14 @@
         <systemPath>${weblogic.home}/server/lib/wlsafclient.jar</systemPath>
       </dependency>
 
+      <dependency>
+        <groupId>com.bea.core.weblogic.web</groupId>
+        <artifactId>api</artifactId>
+        <version>${weblogic.version}</version>
+        <scope>system</scope>
+        <systemPath>${weblogic.home}/modules/com.bea.core.weblogic.web.api_3.0.0.0.jar</systemPath>
+      </dependency>
+
 
     </dependencies>
 
@@ -214,6 +222,11 @@
       <name>Java.net Repository for Maven 2</name>
       <url>http://download.java.net/maven/2/</url>
     </repository>
+
+      <repository>
+        <id>java.net-promoted</id>
+        <url>https://maven.java.net/content/groups/promoted/</url>
+      </repository>
 
   </repositories>
 
