@@ -25,5 +25,3 @@ fi
 if [ "$1" == "wait" ]; then
   read -p "Checkout complete. Press [Enter] to close the window"
  fi
-
-#foo
