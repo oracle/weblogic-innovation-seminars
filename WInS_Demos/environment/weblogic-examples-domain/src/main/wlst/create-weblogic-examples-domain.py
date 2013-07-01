@@ -48,7 +48,9 @@ managedServer_Count = 2
 managedServer_BaseName = 'ms'
 managedServer_BasePort = '710'
 managedServer_BaseAdminPort = '720'
-managedServer_StartupArgs = '-XX:FlightRecorderOptions=defaultrecording=true '\
+managedServer_StartupArgs = ' -XX:+UnlockCommercialFeatures ' \
+                            ' -XX:+FlightRecorder ' \
+                            ' -XX:FlightRecorderOptions=defaultrecording=true '\
                             ' -Xms256m -Xmx512m '
 
 ########################################################################################################################

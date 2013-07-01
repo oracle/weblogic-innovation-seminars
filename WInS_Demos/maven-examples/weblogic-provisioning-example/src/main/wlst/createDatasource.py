@@ -8,35 +8,35 @@ edit()
 startEdit()
 
 cd('/')
-cmo.createJDBCSystemResource('xe-datasource')
+cmo.createJDBCSystemResource('orcl-datasource')
 
-cd('/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource')
-cmo.setName('xe-datasource')
+cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource')
+cmo.setName('orcl-datasource')
 
-cd('/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCDataSourceParams/xe-datasource')
+cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDataSourceParams/orcl-datasource')
 set('JNDINames', jarray.array([String('cgDatasource')], String))
 
-cd('/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCDriverParams/xe-datasource')
-cmo.setUrl('jdbc:oracle:thin:@wins-vbox.localdomain:1521:xe')
+cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDriverParams/orcl-datasource')
+cmo.setUrl('jdbc:oracle:thin:@wins-vbox.localdomain:1521:orcl')
 cmo.setDriverName('oracle.jdbc.OracleDriver')
 setEncrypted('Password', 'Password_1326590775531', 'src/main/wlst/Script1326590585284Config',
     'src/main/wlst/Script1326590585284Secret')
 
-cd('/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCConnectionPoolParams/xe-datasource')
+cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCConnectionPoolParams/orcl-datasource')
 cmo.setTestTableName('SQL SELECT 1 FROM DUAL\r\n\r\n\r\n')
 
 cd(
-    '/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCDriverParams/xe-datasource/Properties/xe-datasource')
+    '/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDriverParams/orcl-datasource/Properties/orcl-datasource')
 cmo.createProperty('user')
 
 cd(
-    '/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCDriverParams/xe-datasource/Properties/xe-datasource/Properties/user')
+    '/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDriverParams/orcl-datasource/Properties/orcl-datasource/Properties/user')
 cmo.setValue('ops')
 
-cd('/JDBCSystemResources/xe-datasource/JDBCResource/xe-datasource/JDBCDataSourceParams/xe-datasource')
+cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDataSourceParams/orcl-datasource')
 cmo.setGlobalTransactionsProtocol('None')
 
-cd('/JDBCSystemResources/xe-datasource')
+cd('/JDBCSystemResources/orcl-datasource')
 set('Targets', jarray.array([ObjectName('com.bea:Name=AdminServer,Type=Server')], ObjectName))
 
 activate()
