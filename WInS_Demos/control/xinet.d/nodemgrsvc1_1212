@@ -15,4 +15,3 @@ service nodemgrsvc
 	env = LD_LIBRARY_PATH=/u01/wls1212/wlserver/server/native/linux/x86_64 CLASSPATH=/usr/java/latest/lib/tools.jar:/u01/wls1212/wlserver/server/lib/weblogic_sp.jar:/u01/wls1212/wlserver/server/lib/weblogic.jar:/u01/wls1212/wlserver/modules/features/weblogic.server.modules_12.1.2.0.jar
         server_args = -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false -DNodeManagerHome=/u01/wls1212/wlserver/common/nodemanager -Xms32m -Xmx200m -DListenPort=5556 -Djava.security.policy=/u01/wls1212/wlserver/server/lib/weblogic.policy -Dweblogic.nodemanager.javaHome=/usr/java/latest weblogic.NodeManager -v
 }
-
