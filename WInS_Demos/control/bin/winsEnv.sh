@@ -15,7 +15,7 @@ export USER_BASE="/u01"
 
 export ORACLE_HOME="${SW_BASE}/app/oracle/product/12.1/database"
 export ORACLE_SID="orcl"
-export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+#export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
 export PATH="${ORACLE_HOME}/bin:${PATH}"
 
 ##################################################################
