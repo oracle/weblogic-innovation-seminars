@@ -50,6 +50,7 @@
     <module>wins-webapp</module>
     <module>event-driven-architecture</module>
     <module>websockets-examples</module>
+    <module>security-examples</module>
   </modules>
 
 </project>
