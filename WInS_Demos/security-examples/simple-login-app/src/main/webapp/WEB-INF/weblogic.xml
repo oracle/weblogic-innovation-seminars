@@ -13,6 +13,4 @@
     <!--<persistent-store-type>replicated_if_clustered</persistent-store-type>-->
   <!--</session-descriptor>-->
 
-
 </weblogic-web-app>
-

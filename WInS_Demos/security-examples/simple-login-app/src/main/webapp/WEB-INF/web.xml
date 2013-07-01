@@ -18,6 +18,7 @@
     <auth-constraint>
       <role-name>WEBAPP_ROLE</role-name>
     </auth-constraint>
+
   </security-constraint>
 
   <login-config>
