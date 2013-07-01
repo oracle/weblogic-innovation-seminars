@@ -48,8 +48,8 @@ managedServer_Count = 2
 managedServer_BaseName = 'ms'
 managedServer_BasePort = '710'
 managedServer_BaseAdminPort = '720'
-managedServer_StartupArgs = ' -XX:+UnlockCommercialFeatures ' \
-                            ' -XX:+FlightRecorder ' \
+managedServer_StartupArgs = ' -XX:+UnlockCommercialFeatures '\
+                            ' -XX:+FlightRecorder '\
                             ' -XX:FlightRecorderOptions=defaultrecording=true '\
                             ' -Xms256m -Xmx512m '
 
@@ -953,6 +953,8 @@ try:
 
   cmo.setJavaHome(JAVA_HOME)
   cmo.setArguments(adminServer_StartupArgs)
+
+  print 'Setting JAVA_HOME=' + JAVA_HOME
 
 except:
   print 'Unable to create domain!'
