@@ -42,7 +42,7 @@ export USER_PROJECTS="${MW_HOME}/user_projects"
 export DOMAINS="${USER_PROJECTS}/domains"
 export OPS_DOMAIN_HOME="${USER_PROJECTS}/domains/ops_domain"
 
-export JAVA_HOME="/u01/java/jrockit-jdk1.6.0_45-R28.2.7-4.1.0"
+export JAVA_HOME="/usr/java/latest"
 
 export PATH="${JAVA_HOME}/bin:${PATH}:${ANT_HOME}/bin:${M2_HOME}/bin:${WL_HOME}/common/bin:${DEMOS_HOME}/control/bin"
 
