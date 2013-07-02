@@ -8,7 +8,6 @@ ${DEMOS_HOME}/control/bin/setOracleProxy.sh
 echo "Creating domains..."
 
 ${DEMOS_HOME}/control/bin/rebuildDomains.sh
-${DEMOS_HOME}/control/bin/rebuildDomains.sh
 
 if [ "$?" == "0" ]; then
   echo "Installing applications into domains..."
