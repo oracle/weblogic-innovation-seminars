@@ -19,7 +19,7 @@ export ORACLE_OWNER=oracle
 
 echo
 
-service_name="Oracle Database 12.1.0.1"
+service_name="Oracle Database 12.1.0.1 ORCL CDB"
 logger="/usr/bin/logger -t rc.local "
 
 case "$1" in
@@ -51,3 +51,6 @@ case "$1" in
 				echo
         ;;
 esac
+
+# sqlplus '/ as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
+
