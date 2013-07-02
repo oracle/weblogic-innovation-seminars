@@ -19,7 +19,7 @@ export ORACLE_OWNER=oracle
 
 echo
 
-service_name="Oracle Database 11.2.0.3"
+service_name="Oracle Database 12.1.0.1"
 logger="/usr/bin/logger -t rc.local "
 
 case "$1" in
