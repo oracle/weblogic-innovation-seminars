@@ -51,6 +51,3 @@ case "$1" in
 				echo
         ;;
 esac
-
-# sqlplus '/ as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
-
