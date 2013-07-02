@@ -1,5 +1,7 @@
 #!/bin/sh
 
+start_date=`date +%s`
+
 echo "Setting Oracle HTTP Proxy..."
 
 ${DEMOS_HOME}/control/bin/setOracleProxy.sh
@@ -17,4 +19,7 @@ fi
 
 cd
 
-echo "Initialization complete!!!"
+end_date=`date +%s`
+duration=$(echo "scale=2; ($end_date-$start_date)/60" | bc)
+
+echo "WInS Demo Environment Initialization complete in ${duration} minutes"
