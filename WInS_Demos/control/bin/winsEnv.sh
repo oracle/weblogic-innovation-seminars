@@ -15,7 +15,6 @@ export USER_BASE="/u01"
 
 export ORACLE_HOME="${SW_BASE}/app/oracle/product/12.1/database"
 export ORACLE_SID="orcl"
-#export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
 export PATH="${ORACLE_HOME}/bin:${PATH}"
 
 ##################################################################
@@ -59,41 +58,51 @@ export MS2OUT="${DOMAINS}/weblogic-examples-domain/servers/ms-2/logs/ms-2.out"
 export MS1LOG="${DOMAINS}/weblogic-examples-domain/servers/ms-1/logs/ms-1.log"
 export MS2LOG="${DOMAINS}/weblogic-examples-domain/servers/ms-2/logs/ms-2.log"
 
+export TAIL_OPTS="--lines=500 --follow=name --retry"
 ###################################################################
 
 alias demo="mvn -P demo -DskipTests=false"
 
-alias tnm="tail --lines=500 --follow=name --retry ${NM_HOME}/nodemanager.log"
-alias tnm2="tail --lines=500 --follow=name --retry ${NM_HOME}2/nodemanager.log"
+alias tnm="tail ${TAIL_OPTS} ${NM_HOME}/nodemanager.log"
+alias tnm2="tail ${TAIL_OPTS} ${NM_HOME}2/nodemanager.log"
 
-alias tbasic="tail --lines=500 --follow=name --retry ${BASICOUT}"
+alias tbasic="tail ${TAIL_OPTS} ${BASICOUT}"
 
-alias tadmin="tail --lines=500 --follow=name --retry ${ADMINOUT}"
-alias tadminlog="tail --lines=500 --follow=name --retry ${ADMINLOG}"
+alias tadmin="tail ${TAIL_OPTS} ${ADMINOUT}"
+alias ladmin="less ${ADMINOUT}"
 
-alias tms1="tail --lines=500 --follow=name --retry ${MS1OUT}"
-alias tms1log="tail --lines=500 --follow=name --retry ${MS1LOG}"
+alias tadminlog="tail ${TAIL_OPTS} ${ADMINLOG}"
+alias ladminlog="less ${ADMINLOG}"
 
-alias tms2="tail --lines=500 --follow=name --retry ${MS2OUT}"
-alias tms2log="tail --lines=500 --follow=name --retry ${MS2LOG}"
+alias tms1="tail ${TAIL_OPTS} ${MS1OUT}"
+alias lms1="less ${MS1OUT}"
 
-alias tsaf1="tail --lines=500 --follow=name --retry ${DOMAINS}/saf-target-domain/servers/ms-1/logs/ms-1.out"
-alias tsaf2="tail --lines=500 --follow=name --retry ${DOMAINS}/saf-target-domain/servers/ms-2/logs/ms-2.out"
-alias tsafadmin="tail --lines=500 --follow=name --retry ${DOMAINS}/saf-target-domain/servers/AdminServer/logs/AdminServer.out"
+alias tms1log="tail ${TAIL_OPTS} ${MS1LOG}"
+alias lms1log="less ${MS1LOG}"
 
-alias tcoh1="tail --lines=500 --follow=name --retry ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-1/logs/coh-1.out"
-alias tcoh2="tail --lines=500 --follow=name --retry ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-2/logs/coh-2.out"
+alias tms2="tail ${TAIL_OPTS} ${MS2OUT}"
+alias lms2="less ${MS2OUT}"
 
-alias tops1="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers/ms-1/logs/ms-1.out"
-alias tops2="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers/ms-2/logs/ms-2.out"
+alias tms2log="tail ${TAIL_OPTS} ${MS2LOG}"
+alias lms2log="less ${MS2LOG}"
 
-alias tcohweb1="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers_coherence/coh-1/logs/coh-1.out"
-alias tcohweb2="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers_coherence/coh-2/logs/coh-2.out"
+alias tsaf1="tail ${TAIL_OPTS} ${DOMAINS}/saf-target-domain/servers/ms-1/logs/ms-1.out"
+alias tsaf2="tail ${TAIL_OPTS} ${DOMAINS}/saf-target-domain/servers/ms-2/logs/ms-2.out"
+alias tsafadmin="tail ${TAIL_OPTS} ${DOMAINS}/saf-target-domain/servers/AdminServer/logs/AdminServer.out"
 
-alias tcohtlg1="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers_coherence/ops-coh-tlg-1/logs/ops-coh-tlg-1.out"
-alias tcohtlg2="tail --lines=500 --follow=name --retry ${OPS_DOMAIN_HOME}/servers_coherence/ops-coh-tlg-2/logs/ops-coh-tlg-2.out"
+alias tcoh1="tail ${TAIL_OPTS} ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-1/logs/coh-1.out"
+alias tcoh2="tail ${TAIL_OPTS} ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-2/logs/coh-2.out"
 
-alias ttns="tail  --lines=500 --follow=name --retry ${SW_BASE}/app/oracle/diag/tnslsnr/wins-vbox/listener/trace/listener.log"
+alias tops1="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/ms-1/logs/ms-1.out"
+alias tops2="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/ms-2/logs/ms-2.out"
+
+alias tcohweb1="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers_coherence/coh-1/logs/coh-1.out"
+alias tcohweb2="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers_coherence/coh-2/logs/coh-2.out"
+
+alias tcohtlg1="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers_coherence/ops-coh-tlg-1/logs/ops-coh-tlg-1.out"
+alias tcohtlg2="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers_coherence/ops-coh-tlg-2/logs/ops-coh-tlg-2.out"
+
+alias ttns="tail  ${TAIL_OPTS} ${SW_BASE}/app/oracle/diag/tnslsnr/wins-vbox/listener/trace/listener.log"
 
 sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev eth4 > /dev/null 2>&1
 
