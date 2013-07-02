@@ -34,4 +34,7 @@ find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \
 zerofree /tmp
 zerofree /u01
 
+/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
+/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
+
 halt
