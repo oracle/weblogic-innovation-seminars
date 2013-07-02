@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>demo.sab.websocket</groupId>
+    <artifactId>websocket-snake-wls</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>websocket-snake-wls</name>
+
+   <properties>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+	<dependencies>
+		<dependency>
+      <groupId>com.bea.core.weblogic.web</groupId>
+      <artifactId>api</artifactId>
+      <version>${weblogic.version}</version>
+    </dependency>
+	</dependencies>
+ 
+  <!-- ======================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+
+      <plugin>
+        <groupId>com.oracle.weblogic</groupId>
+        <artifactId>wls-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+
+  </build>
+</project>

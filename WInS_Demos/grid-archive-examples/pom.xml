@@ -16,12 +16,12 @@
     <groupId>com.oracle.weblogic.demo.wins</groupId>
     <artifactId>common</artifactId>
     <version>12.1.2.0.0</version>
-    <relativePath>../../common/pom.xml</relativePath>
+    <relativePath>../common/pom.xml</relativePath>
   </parent>
 
   <!-- ==================================================================================== -->
   <properties>
-    <domain.name>base_domain</domain.name>
+    <domain.name>mydomain</domain.name>
   </properties>
   <!-- ==================================================================================== -->
 
@@ -49,32 +49,37 @@
             </configuration>
 
             <executions>
-              <execution>
-                <id>configure</id>
-                <phase>install</phase>
+		      <execution>
+		        <id>configure-machine</id>
+		        <phase>install</phase>
 
-                <goals>
-                  <goal>wlst</goal>
-                </goals>
+		        <goals>
+			  <goal>create-domain</goal>
+		          <goal>wlst</goal>
+		        </goals>
 
-                <configuration>
-                  <middlewareHome>/u01/wls1212/</middlewareHome>
-                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
-
-
-                  <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_example.py</fileName>
-                 <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
-
-                </configuration>
-
-              </execution>
-            </executions>
-          </plugin>
-
-
-        </plugins>
+		        <configuration>
+		          <middlewareHome>/u01/wls1212</middlewareHome>
+		          <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+		          <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_machine.py</fileName>
+		        </configuration>
+		    </execution>
+		    <execution>
+			 <id>configure-cluster</id>
+			 <phase>install</phase>
+			 <goals>
+			 <goal>wlst</goal>
+			 </goals>
+			<configuration>
+			  <middlewareHome>/u01/wls1212</middlewareHome>
+			  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+			 <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/create_example.py</fileName>
+			</configuration>
+		    </execution>
+           </executions>
+       	</plugin>
+       </plugins>
       </build>
-
     </profile>
 
 <profile>
@@ -109,11 +114,111 @@
                 </goals>
 
                 <configuration>
-                  <middlewareHome>/u01/wls1212/</middlewareHome>
+                  <middlewareHome>/u01/wls1212</middlewareHome>
                   <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
 
 
                   <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/deployApp.py</fileName>
+                 <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+<profile>
+      <id>redeploy-app</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+
+
+                  <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/redeployApp.py</fileName>
+                 <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+<profile>
+      <id>clean-up</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+
+
+                  <fileName>/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/wlst/clean-configuration.py</fileName>
                  <!-- <propertiesFile>${project.basedir}/src/main/wlst/environment.properties</propertiesFile> -->
 
                 </configuration>

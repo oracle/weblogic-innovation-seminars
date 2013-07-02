@@ -27,7 +27,7 @@
 
   <profiles>
     <profile>
-      <id>create</id>
+      <id>create-dynamic-cluster</id>
 
       <activation>
         <activeByDefault>false</activeByDefault>
@@ -80,7 +80,7 @@
     <!-- +++++++++++++++++++++++++ -->
 
     <profile>
-      <id>start</id>
+      <id>start-server</id>
 
       <activation>
         <activeByDefault>false</activeByDefault>
@@ -131,7 +131,7 @@
     <!-- +++++++++++++++++++++++++ -->
 
     <profile>
-      <id>stop</id>
+      <id>stop-server</id>
 
       <activation>
         <activeByDefault>false</activeByDefault>

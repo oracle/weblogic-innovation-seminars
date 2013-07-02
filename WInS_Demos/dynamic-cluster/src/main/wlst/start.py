@@ -68,7 +68,7 @@ deploy('LoadBalancer', APP_DIR +'/LoadBalancer-1.0-SNAPSHOT.war', targets='LoadB
 startApplication('LoadBalancer')
 
 #Deploying Chat Application to cluster
-deploy('Chat', APP_DIR + '/chat-1.0.war', targets='MyCluster')
+deploy('Chat', APP_DIR + '/chat.war', targets='MyCluster')
 startApplication('Chat')
 
 while 1:
@@ -91,12 +91,12 @@ while 1:
 								cluster2status= nmServerStatus('MyCluster-2');
 								if( cluster2status != 'RUNNING'):
 									start('MyCluster-2','Server')
-#								if ( count<100 ):
-#										cluster3status= nmServerStatus('MyCluster-3');
-#										if( cluster3status == 'RUNNING'):
-#											nmKill('MyCluster-3')
+						#	if ( count<100 ):
+						#		cluster3status= nmServerStatus('MyCluster-3');
+						#		if( cluster3status == 'RUNNING'):
+						#			nmKill('MyCluster-3')
 																		
-							if ( count>1 ):
+							if ( count>1	 ):
 								cluster3status= nmServerStatus('MyCluster-3');
 								if( cluster3status != 'RUNNING'):
 									start('MyCluster-3','Server')

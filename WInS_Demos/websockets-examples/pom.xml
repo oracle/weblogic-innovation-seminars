@@ -24,6 +24,7 @@
 
   <modules>
     <module>websockets-chat</module>
+    <module>websocket-snake-wls</module>
   </modules>
 
   <!-- ==================================================================================== -->

@@ -2,8 +2,8 @@ user="weblogic"
 password="welcome1"
 listenAddress="wins-vbox"
 listenPort=5556
-domainName="base_domain"
-domainDirectory="/u01/wls1212/user_projects/domains/base_domain"
+domainName="mydomain"
+domainDirectory="/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/Oracle/Domains/mydomain"
 
 print ''
 print '============================================='

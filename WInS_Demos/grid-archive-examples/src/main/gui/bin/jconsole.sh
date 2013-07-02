@@ -6,7 +6,7 @@
 # allow you to view the coherence MBeans for the entire coherence cluster.
 #
 
-cd /u01/wls1212/user_projects/domains/base_domain/bin/
+cd  /u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/Oracle/Domains/mydomain/bin/
 . ./setDomainEnv.sh
 
 if [ -z "$WL_HOME" ] ; then

@@ -1,9 +1,14 @@
+# Author:  Tim Middleton
+# Date:    2012-05-07
+# Purpose: This WLST script deploys the artifacts to the domain, previously created
+#          by the create_example.py script. 
+#          This script takes the argument of the examples base directory.
 user="weblogic"
 password="welcome1"
 listenAddress="localhost"
 listenPort=5556
-domainName="base_domain"
-domainDirectory="/u01/wls1212/user_projects/domains/base_domain"
+domainName="mydomain"
+domainDirectory="/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/Oracle/Domains/mydomain"
 
 print ''
 print '============================================='
@@ -24,19 +29,34 @@ adminServerStatus= nmServerStatus('AdminServer');
 if( adminServerStatus != 'RUNNING'):	
 	nmStart('AdminServer')
 
-connect(user,password, 't3://localhost:7001')
 
+
+connect(user,password, 't3://localhost:7001')
 
 start('cache_server1','Server')
 start('cache_server2','Server')
 start('webapp_server1','Server')
 start('webapp_server2','Server')
+start('proxy_server1','Server')
+start('proxy_server2','Server')
+
+ExampleGAR         ='/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleGAR.gar'
+ExampleEAR         ='/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleEAR.ear'
+ExampleListenerEAR ='/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleListenerEAR.ear'
+
+cacheClusterName='CacheServerWebLogicCluster'
+applicationClusterName='WebAppWebLogicCluster'
+proxyClusterName='ProxyWebLogicCluster'
+
+print 'Deploying GAR file '
+
+deploy('ExampleGAR',ExampleGAR, targets=cacheClusterName)
+deploy('ExampleGAR',ExampleGAR, targets=proxyClusterName)
+deploy('ExampleEAR',ExampleEAR, targets=applicationClusterName)
+
+deploy('ExampleListenerEAR',ExampleListenerEAR, targets="webapp_server1")
 
 
-#Deploying ExampleGAR.gar application to CacheServerWebLogicCluster
-deploy('ExampleGAR.gar','/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleGAR.gar',targets='CacheServerWebLogicCluster')
-#startApplication('ExampleGAR.gar')
+exit()
 
-#Deploying ExampleEAR.ear application to WebAppWebLogicCluster
-deploy('ExampleEAR.ear','/u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/apps/ExampleEAR.ear',targets='WebAppWebLogicCluster')
-#startApplication('ExampleEAR.ear')
+

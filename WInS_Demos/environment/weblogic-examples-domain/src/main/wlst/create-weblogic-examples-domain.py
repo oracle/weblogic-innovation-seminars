@@ -48,11 +48,10 @@ managedServer_Count = 2
 managedServer_BaseName = 'ms'
 managedServer_BasePort = '710'
 managedServer_BaseAdminPort = '720'
-managedServer_StartupArgs = ' -XX:+UnlockCommercialFeatures '\
-                            ' -XX:+FlightRecorder '\
-                            ' -XX:FlightRecorderOptions=defaultrecording=true '\
+#managedServer_StartupArgs = '-XX:FlightRecorderOptions=defaultrecording=true '\
+#                            ' -Xms256m -Xmx512m '
+managedServer_StartupArgs = '-XX:+UnlockCommercialFeatures -XX:+FlightRecorder '\
                             ' -Xms256m -Xmx512m '
-
 ########################################################################################################################
 
 cohCluster_Name = 'coherence-cluster-1'
@@ -850,8 +849,8 @@ def createSpringWLDFModule_online():
   cd(
     '/WLDFSystemResources/SpringMBeanWLDFModule/WLDFResource/SpringMBeanWLDFModule/WatchNotification/SpringMBeanWLDFModule/JMSNotifications/SpringCounterJMSNotification')
   cmo.setEnabled(true)
-  cmo.setDestinationJNDIName('com.oracle.example.jms.util.notification')
-  cmo.setConnectionFactoryJNDIName('com.oracle.example.jms.util.cf')
+  cmo.setDestinationJNDIName('com.oracle.example.jms.wldf.notification')
+  cmo.setConnectionFactoryJNDIName('com.oracle.example.jms.wldf.cf')
 
 ########################################################################################################################
 
@@ -953,8 +952,6 @@ try:
 
   cmo.setJavaHome(JAVA_HOME)
   cmo.setArguments(adminServer_StartupArgs)
-
-  print 'Setting JAVA_HOME=' + JAVA_HOME
 
 except:
   print 'Unable to create domain!'

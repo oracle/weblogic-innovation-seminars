@@ -5,7 +5,7 @@
 #
 # setDomainEnv.sh must be run before running this
 
-cd /u01/wls1212/user_projects/domains/base_domain/bin/
+cd  /u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/Oracle/Domains/mydomain/bin/
 . ./setDomainEnv.sh
 
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos/grid-archive-examples/src/main/gui/bin
