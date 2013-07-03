@@ -25,7 +25,7 @@ logger="/usr/bin/logger -t rc.local "
 case "$1" in
     'start')
 				echo -n "Starting ${service_name}: "
-        su $ORACLE_OWNER -c "$ORACLE_HOME/bin/sqlplus 'sys as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/start-pdb.sql"
+        su $ORACLE_OWNER -c "$ORACLE_HOME/bin/sqlplus 'sys/welcome1 as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/start-pdb.sql >/dev/null 2>&1"
 
         RETVAL=$?
 				if [ ${RETVAL} == "0" ]; then
@@ -39,7 +39,7 @@ case "$1" in
 
     'stop')
 				echo -n "Stopping ${service_name}: "
-su $ORACLE_OWNER -c "$ORACLE_HOME/bin/sqlplus 'sys as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/stop-pdb.sql"
+su $ORACLE_OWNER -c "$ORACLE_HOME/bin/sqlplus 'sys/welcome1 as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/stop-pdb.sql >/dev/null 2>&1"
         RETVAL=$?
 				if [ ${RETVAL} == "0" ]; then
 					success
