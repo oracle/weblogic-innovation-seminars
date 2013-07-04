@@ -26,7 +26,7 @@ public class DatabasePingServletIT
   @Test
   public void pingDatabase() throws Exception
   {
-    String test = "http://127.0.0.1:7001/weblogic-integration-test-example-1.0/DatabasePing";
+    String test = "http://127.0.0.1:7001/weblogic-integration-test-example/DatabasePing";
 
     URL url = new URL(test);
     URLConnection conn = url.openConnection();
