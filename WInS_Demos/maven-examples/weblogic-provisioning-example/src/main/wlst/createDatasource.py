@@ -17,7 +17,7 @@ cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDataSo
 set('JNDINames', jarray.array([String('cgDatasource')], String))
 
 cd('/JDBCSystemResources/orcl-datasource/JDBCResource/orcl-datasource/JDBCDriverParams/orcl-datasource')
-cmo.setUrl('jdbc:oracle:thin:@wins-vbox.localdomain:1521:orcl')
+cmo.setUrl('jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=wins-vbox)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=orcl_pdb)))')
 cmo.setDriverName('oracle.jdbc.OracleDriver')
 setEncrypted('Password', 'Password_1326590775531', 'src/main/wlst/Script1326590585284Config',
     'src/main/wlst/Script1326590585284Secret')
