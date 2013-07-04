@@ -11,7 +11,7 @@ zerofree()
 }
 
 
-sqlplus '/ as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
+sqlplus 'sys/welcome1 as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
 
 killWebLogic.sh
 
