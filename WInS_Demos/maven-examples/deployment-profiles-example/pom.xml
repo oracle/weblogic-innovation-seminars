@@ -38,6 +38,24 @@
         <activeByDefault>true</activeByDefault>
       </activation>
 
+      <build>
+        <plugins>
+                <plugin>
+                        <groupId>com.oracle.weblogic</groupId>
+                        <artifactId>wls-maven-plugin</artifactId>
+                           <executions>
+                                <execution>
+                                <id>deploy</id>
+                                <phase>install</phase>
+                                <goals>
+                                        <goal>deploy</goal>
+                                </goals>
+                                </execution>
+                        </executions>
+                </plugin>
+        </plugins>
+      </build>
+
       <properties>
         <weblogic.Deployer.adminurl>t3://127.0.0.1:7001</weblogic.Deployer.adminurl>
         <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
