@@ -10,7 +10,7 @@ echo "Updating WInS Demos in ${CONTENT_DIR}..."
 
 GIT_PROXY=`git config --get http.proxy`
 
-echo "GIT Proxy set to: \"${GIT_PROXY}\""
+echo "GIT Proxy set to: [${GIT_PROXY}]"
 
 cd ${CONTENT_DIR}
 
@@ -19,7 +19,7 @@ git fetch --tags
 if [ "$?" == "0" ]; then
   git merge ${TAG_NAME}
 else
-  echo "The update operation has failed.  Please check your proxy settings, especially if you are on the Oracle network.  The GIT Proxy is set to: \"${GIT_PROXY}\""
+  echo "The update operation has failed.  Please check your proxy settings, especially if you are on the Oracle network.  The GIT Proxy is set to: [${GIT_PROXY}\]"
 fi
 
 if [ "$1" == "wait" ]; then

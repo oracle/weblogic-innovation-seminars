@@ -10,8 +10,9 @@ echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 
-sudo git config --global http.proxy \"\"
-sudo git config http.proxy \"\"
+sudo git config --global --unset http.proxy
+sudo git config --unset http.proxy
+export http_proxy=
 
 echo "Removing Proxy Settings from GIT!"
 
