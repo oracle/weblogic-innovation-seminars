@@ -1,4 +1,4 @@
-alter session set container=PDBORCL
+alter session set container=PDBORCL;
 
 create user weblogic_examples_domain identified by weblogic_examples_domain;
 grant connect to weblogic_examples_domain;
@@ -28,3 +28,6 @@ CREATE TABLE ACTIVE (
 );
 
 commit;
+
+execute dbms_service.create_service('PDBORCL','PDBORCL');
+execute dbms_service.start_service('PDBORCL');
