@@ -66,7 +66,7 @@ body {
     color: black;
 }
 
-.data-table {
+.basic-table {
     border-width: 1px;
     border-spacing: 1px;
     border-style: solid;
@@ -75,7 +75,8 @@ body {
     background-color: white;
 }
 
-.basic-table {
+.data-table {
+    font-size: small;
     border-width: 1px;
     border-spacing: 1px;
     border-style: solid;

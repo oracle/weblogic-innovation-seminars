@@ -16,11 +16,23 @@
 
     <ui:define name="content">
 
+      <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+
+      <p:dialog modal="true" widgetVar="statusDialog" header="Refreshing"
+                draggable="false" closable="false">
+        <p:graphicImage value="/resources/images/ajaxloadingbar.gif"/>
+      </p:dialog>
+
       <h:form id="frm1" prependId="false">
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="lastUpdate" value="Last Updated:"/>
+          <h:outputText id="lastUpdate" value="#{serviceMigrationController.lastUpdate}"/>
+        </h:panelGrid>
 
         <p:poll interval="3"
                 listener="#{serviceMigrationController.pollMethod}"
-                update="theTable" />
+                update="theTable,lastUpdate"/>
 
         <p:dataTable value="#{serviceMigrationController.serviceLeases}"
                      id="theTable"

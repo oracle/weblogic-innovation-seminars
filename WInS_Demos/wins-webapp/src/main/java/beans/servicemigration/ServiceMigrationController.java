@@ -1,13 +1,17 @@
 package beans.servicemigration;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,14 +38,17 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @ManagedBean
-@SessionScoped
-public class ServiceMigrationController
+@RequestScoped
+public class ServiceMigrationController implements Serializable
 {
   @Resource(name = "jdbc.ds.weblogic_examples")
   private javax.sql.DataSource ds;
 
+  private transient Date lastUpdate;
+
   public List<ServiceLease> getServiceLeases()
   {
+    lastUpdate = Calendar.getInstance().getTime();
     List<ServiceLease> activeTableRows = new ArrayList<ServiceLease>(5);
 
     Connection conn = null;
@@ -49,9 +56,9 @@ public class ServiceMigrationController
     {
       conn = ds.getConnection();
 
-      ResultSet rs = conn.createStatement().executeQuery("select * from active");
+      ResultSet rs = conn.createStatement().executeQuery("select * from active order by server");
 
-      while(rs.next())
+      while (rs.next())
       {
         ServiceLease row = new ServiceLease();
         row.setClusterName(rs.getString("CLUSTERNAME"));
@@ -82,12 +89,26 @@ public class ServiceMigrationController
       }
     }
 
+    try
+    {
+      Thread.sleep(1);
+    }
+    catch (InterruptedException ignore)
+    {
+    }
+
     return activeTableRows;
+
   }
 
   public String openLeaseTableMonitor()
   {
     return null;
+  }
+
+  public Date getLastUpdate()
+  {
+    return lastUpdate;
   }
 
   public void pollMethod()

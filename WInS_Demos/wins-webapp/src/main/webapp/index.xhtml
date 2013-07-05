@@ -326,7 +326,7 @@
 
 <p:tab id="tab3" title="Service Migration">
 
-  <p:growl id="growl_utility" autoUpdate="true" showDetail="false" sticky="false"/>
+  <p:growl id="growl_utility2" autoUpdate="true" showDetail="false" sticky="false"/>
 
   <p:panel header="JMS Service Migration">
 
@@ -334,7 +334,11 @@
 
       <p:commandButton id="serviceLeaseTable_button"
                        value="Service Lease Monitor"
-                       actionListener="#{serviceMigrationController.openLeaseTableMonitor}"/>
+                       onclick="this.form.target='_blank'"
+                       ajax="false"
+                       action="service-migration/leaseTableMonitor"
+                       target="_blank"
+                       />
 
       <div>
         <div class="section_header">Service Lease Monitor</div>
@@ -344,7 +348,8 @@
         </div>
       </div>
 
-      <p:commandButton id="stuckThreads_button"
+      <p:commandButton id="stuckThreadss_button"
+
                        disabled="true"
                        value="Demo JMS Service Migration"/>
 

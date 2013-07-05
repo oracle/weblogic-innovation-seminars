@@ -1,5 +1,7 @@
 package beans.servicemigration;
 
+import java.io.Serializable;
+
 /**
  * /*
  * **************************************************************************
@@ -23,7 +25,7 @@ package beans.servicemigration;
  * Time: 9:42 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ServiceLease
+public class ServiceLease implements Serializable
 {
   private String domainName;
   private String clusterName;
