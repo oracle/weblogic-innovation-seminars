@@ -264,7 +264,6 @@
 
   <p:growl id="growl_utility" autoUpdate="true" showDetail="false" sticky="false"/>
 
-
   <p:panel header="Utility Options">
 
     <h:panelGrid columns="2">
@@ -318,6 +317,43 @@
 
         </div>
       </h:panelGroup>
+
+    </h:panelGrid>
+
+  </p:panel>
+
+</p:tab>
+
+<p:tab id="tab3" title="Service Migration">
+
+  <p:growl id="growl_utility" autoUpdate="true" showDetail="false" sticky="false"/>
+
+  <p:panel header="JMS Service Migration">
+
+    <h:panelGrid columns="2">
+
+      <p:commandButton id="serviceLeaseTable_button"
+                       value="Service Lease Monitor"
+                       actionListener="#{serviceMigrationController.openLeaseTableMonitor}"/>
+
+      <div>
+        <div class="section_header">Service Lease Monitor</div>
+        <div class="section_description">
+          WebLogic has a leasing table named 'ACTIVE' by default which holds the leasing information for migratable services.
+          This link will open a page that displays the current leasing information and automatically refreshes.
+        </div>
+      </div>
+
+      <p:commandButton id="stuckThreads_button"
+                       disabled="true"
+                       value="Demo JMS Service Migration"/>
+
+      <div>
+        <div class="section_header">JMS Service Migration</div>
+        <div class="section_description">
+          JMS Service Migration should be demonstrated from the command line.
+        </div>
+      </div>
 
     </h:panelGrid>
 
