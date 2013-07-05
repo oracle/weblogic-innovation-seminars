@@ -9,11 +9,11 @@ echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 
-cd $DEMOS_HOME
-
 sudo git config --system http.proxy ${ORACLE_HTTP_PROXY}
 sudo git config --global http.proxy ${ORACLE_HTTP_PROXY}
-sudo git config http.proxy ${ORACLE_HTTP_PROXY}
+
+#cd $DEMOS_HOME
+#sudo git config http.proxy ${ORACLE_HTTP_PROXY}
 
 echo ${PROXY_MESSAGE}
 
