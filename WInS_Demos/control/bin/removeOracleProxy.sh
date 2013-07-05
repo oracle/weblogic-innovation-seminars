@@ -9,7 +9,6 @@ echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 echo "echo \"${PROXY_MESSAGE}\"" >> ${PROXY_SCRIPT}
 
 cd ~
-sudo git config --global http.proxy ""
 sudo git config --system http.proxy ""
 
 export http_proxy=
