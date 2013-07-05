@@ -8,4 +8,8 @@
 
   <wls:context-root>/wins-webapp</wls:context-root>
 
+  <session-descriptor>
+    <persistent-store-type>replicated_if_clustered</persistent-store-type>
+  </session-descriptor>
+
 </weblogic-web-app>
