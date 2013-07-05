@@ -89,9 +89,9 @@
 
         <configuration>
 
-          <source>1.6</source>
+          <source>1.7</source>
 
-          <target>1.6</target>
+          <target>1.7</target>
 
           <debug>false</debug>
 
