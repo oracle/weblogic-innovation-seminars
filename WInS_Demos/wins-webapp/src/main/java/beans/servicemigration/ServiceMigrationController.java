@@ -3,6 +3,7 @@ package beans.servicemigration;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -87,5 +88,9 @@ public class ServiceMigrationController
   public String openLeaseTableMonitor()
   {
     return null;
+  }
+
+  public void pollMethod()
+  {
   }
 }

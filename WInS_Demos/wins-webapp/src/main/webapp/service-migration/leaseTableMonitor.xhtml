@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:serverLease="http://java.sun.com/jsf/composite/serviceLease"
-      xmlns:p="http://primefaces.org/ui"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
     >
 <h:head>
   <meta http-equiv="refresh" content="2"/>
@@ -18,7 +18,46 @@
 
       <h:form id="frm1" prependId="false">
 
-        <serverLease:table records="#{serviceMigrationController.serviceLeases}"/>
+        <p:poll interval="3"
+                listener="#{serviceMigrationController.pollMethod}"
+                update="theTable" />
+
+        <p:dataTable value="#{serviceMigrationController.serviceLeases}"
+                     id="theTable"
+                     var="lease"
+                     styleClass="data-table"
+                     headerClass="table-header"
+                     rowClasses="row-odd,row-even"
+                     columnClasses="column-center, column-left">
+
+          <f:facet name="header">Service Lease Table</f:facet>
+
+          <p:column>
+            <f:facet name="header">Server</f:facet>
+            <h:outputText value="#{lease.server}"/>
+          </p:column>
+
+          <p:column>
+            <f:facet name="header">Domain</f:facet>
+            <h:outputText value="#{lease.domainName}"/>
+          </p:column>
+
+          <p:column>
+            <f:facet name="header">Cluster</f:facet>
+            <h:outputText value="#{lease.clusterName}"/>
+          </p:column>
+
+          <p:column>
+            <f:facet name="header">Instance</f:facet>
+            <h:outputText value="#{lease.instance}"/>
+          </p:column>
+
+          <p:column>
+            <f:facet name="header">Timeout</f:facet>
+            <h:outputText value="#{lease.timeout}"/>
+          </p:column>
+
+        </p:dataTable>
 
       </h:form>
 
