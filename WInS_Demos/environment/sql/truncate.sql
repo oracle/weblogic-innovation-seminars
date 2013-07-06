@@ -1,4 +1,4 @@
-alter session set container=PDBORCL
+alter session set container=PDBORCL;
 
 -- truncates tables otherwise WLS can get confused...
 truncate table weblogic_examples_domain.active drop storage;
