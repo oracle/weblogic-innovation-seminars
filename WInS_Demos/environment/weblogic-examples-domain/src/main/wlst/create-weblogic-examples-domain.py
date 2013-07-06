@@ -82,7 +82,53 @@ cohServer_StartupArgs = '-Dtangosol.coherence.management.remote=true'\
 ########################################################################################################################
 ########################################################################################################################
 
-def createPhysicalDataSource(jndiNames, driver, globalTX, url, user, passwd, target):
+def createClusterDataSource(jndiNames, driver, globalTX, url, user, passwd, target):
+  print '### createClusterDataSource #################################################################################'
+
+  dsName = jndiNames[0]
+
+  print 'Creating Physical DataSource ' + dsName
+
+  cd('/')
+  jdbcSystemResource = create(dsName, "JDBCSystemResource")
+
+  cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+  dataSourceParams = create('dataSourceParams', 'JDBCDataSourceParams')
+  dataSourceParams.setGlobalTransactionsProtocol(globalTX)
+  cd('JDBCDataSourceParams/NO_NAME_0')
+  set('JNDINames', jarray.array(jndiNames, String))
+
+  cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+  connPoolParams = create('connPoolParams', 'JDBCConnectionPoolParams')
+  connPoolParams.setMaxCapacity(25)
+  connPoolParams.setInitialCapacity(15)
+  connPoolParams.setCapacityIncrement(2)
+  connPoolParams.setTestConnectionsOnReserve(true)
+  connPoolParams.setTestTableName('SQL SELECT 1 FROM DUAL')
+
+  cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
+  driverParams = create('driverParams', 'JDBCDriverParams')
+  driverParams.setUrl(url)
+  driverParams.setDriverName(driver)
+  driverParams.setPasswordEncrypted(passwd)
+  cd('JDBCDriverParams/NO_NAME_0')
+
+  create(dsName, 'Properties')
+  cd('Properties/NO_NAME_0')
+
+  create('user', 'Property')
+  cd('Property/user')
+  cmo.setValue(user)
+
+  cd('/JDBCSystemResource/' + dsName)
+  jdbcSystemResource.setTargets(jarray.array([target], weblogic.management.configuration.TargetMBean))
+
+  print dsName + ' successfully created.'
+  return jdbcSystemResource
+
+########################################################################################################################
+
+def createPhysicalDataSource(jndiNames, driver, globalTX, url, user, passwd, minSize, maxSize, target):
   print '### createPhysicalDataSource #################################################################################'
 
   dsName = jndiNames[0]
@@ -100,8 +146,8 @@ def createPhysicalDataSource(jndiNames, driver, globalTX, url, user, passwd, tar
 
   cd('/JDBCSystemResource/' + dsName + '/JdbcResource/' + dsName)
   connPoolParams = create('connPoolParams', 'JDBCConnectionPoolParams')
-  connPoolParams.setMaxCapacity(5)
-  connPoolParams.setInitialCapacity(5)
+  connPoolParams.setInitialCapacity(minSize)
+  connPoolParams.setMaxCapacity(maxSize)
   connPoolParams.setCapacityIncrement(1)
   connPoolParams.setTestConnectionsOnReserve(true)
   connPoolParams.setTestTableName('SQL SELECT 1 FROM DUAL')
@@ -972,7 +1018,7 @@ cd('/')
 clusterMBean = create(cluster_Name, 'Cluster')
 
 try:
-  jdbcSystemResource = createPhysicalDataSource(['com.oracle.demo.ops.jdbc.cluster-ds'],
+  jdbcSystemResource = createClusterDataSource(['com.oracle.weblogic.demo.jdbc.cluster-ds'],
                                                                                        datasource_JdbcDriver,
                                                                                        datasource_GlobalTransactions,
                                                                                        datasource_jdbc_url,
@@ -1062,8 +1108,11 @@ try:
   createPhysicalDataSource([datasource_JndiName],
                                                 datasource_JdbcDriver,
                                                 datasource_GlobalTransactions,
-                                                datasource_jdbc_url, datasource_User,
-                                                datasource_Password, clusterMBean)
+                                                datasource_jdbc_url,
+                                                datasource_User,
+                                                datasource_Password,
+                                                5,5,
+                                                clusterMBean)
 except:
   dumpStack()
   exit('1')
