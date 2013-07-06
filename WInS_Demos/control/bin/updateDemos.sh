@@ -12,7 +12,7 @@ GIT_SYSTEM_PROXY=`git config --get --system http.proxy`
 GIT_GLOBAL_PROXY=`git config --get --global http.proxy`
 GIT_PROJECT_PROXY=`git config --get -f $DEMOS_HOME/../.git/config http.proxy`
 
-echo "GIT _system_ Proxy set to: [${GIT_SYSTEM_PROXY}]"
+echo "GIT _system_ Proxy set to: [${GIT_SYSTEM_PROXY}] (OK to be empty)"
 echo "GIT _global_ Proxy set to: [${GIT_GLOBAL_PROXY}] (OK to be empty)"
 echo "GIT _project_ Proxy set to: [${GIT_PROJECT_PROXY}] (OK to be empty)"
 
@@ -23,7 +23,7 @@ git fetch --tags
 if [ "$?" == "0" ]; then
   git merge ${TAG_NAME}
 else
-  echo "The update operation has failed.  Please check your proxy settings, especially if you are on the Oracle network.  The GIT Proxy is set to: [${GIT_GLOBAL_PROXY}\]"
+  echo "The update operation has failed.  Please check your proxy settings, especially if you are on the Oracle network."
 fi
 
 if [ "$1" == "wait" ]; then
