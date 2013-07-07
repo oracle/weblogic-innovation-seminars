@@ -2,10 +2,10 @@
 
 start_date=`date +%s`
 
-echo "Setting Oracle HTTP Proxy..."
+#echo "Setting Oracle HTTP Proxy..."
 
-${DEMOS_HOME}/control/bin/setOracleProxy.sh
-. ~/setProxy.sh
+#${DEMOS_HOME}/control/bin/setOracleProxy.sh
+#. ~/setProxy.sh
 
 echo "Creating domains..."
 
