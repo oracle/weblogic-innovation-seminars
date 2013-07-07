@@ -1,8 +1,6 @@
 #!/bin/bash
 
-killNodeManager.sh
-
-pid_list=`ps aux|grep "weblogic.Name=ms-1"|grep 7001|grep -v "grep"|awk '{print $2}'`
+pid_list=`ps aux|grep "weblogic.Name=ms-1"|grep 7001|grep "weblogic.Server" | grep -v "grep"|awk '{print $2}'`
 
 for pid in $pid_list
 do
