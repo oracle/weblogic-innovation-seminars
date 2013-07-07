@@ -1048,7 +1048,7 @@ try:
     cd('/')
     managedServer = create(managedServer_Name, 'Server')
     managedServer.setListenPort(managedServer_ListenPort)
-    #    managedServer.setListenAddress(managedServer_ListenAddress)
+    managedServer.setListenAddress(managedServer_ListenAddress)
     managedServer.setAdministrationPort(managedServer_AdminPort)
     managedServer.setCluster(clusterMBean)
     managedServer.setMachine(machine)
