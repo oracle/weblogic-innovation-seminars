@@ -118,7 +118,7 @@ public class SAFServerProducerEJB
 
     for (int x = 1; x <= pMessageCount; x++)
     {
-      even = (x % 2) == 1;
+      even = (x % 2) != 1;
       String text = pMessageBase + "(" + x + ") " + (even ? "EVEN" : "ODD");
       queueProducer.send(session.createTextMessage(text));
       sleep(pIntervalTimeInMillis);

@@ -81,7 +81,7 @@ public class WLJMSProducer
 
     for (int x = 1; x <= pMessageCount; x++)
     {
-      even = (x % 2) == 1;
+      even = (x % 2) != 1;
       String text = pMessageBase + "(" + x + ") " + (even ? "EVEN" : "ODD");
       sendMessage(text);
       sleep(pIntervalTimeInMillis);

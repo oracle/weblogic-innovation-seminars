@@ -101,7 +101,7 @@ public class SimpleJMSProducer
     boolean even = false;
     for (int x = 1; x <= pMessageCount; x++)
     {
-      even = (x % 2) == 1;
+      even = (x % 2) != 1;
       sendTextMessage(pMessage + "(" + x + ") " + (even ? "EVEN" : "ODD"));
       sleep(pIntervalTimeInMillis);
     }
