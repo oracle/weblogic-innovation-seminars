@@ -935,6 +935,13 @@ def configureDomain_online():
   cd('/JTA/' + domain_Name)
   cmo.setTimeoutSeconds(300)
 
+  cd('/SelfTuning/weblogic-examples-domain')
+  cmo.createWorkManager('wm/CoherenceWorkManager')
+
+  cd('/SelfTuning/weblogic-examples-domain/WorkManagers/wm/CoherenceWorkManager')
+  set('Targets',jarray.array([ObjectName('com.bea:Name=AdminServer,Type=Server'), ObjectName('com.bea:Name=cluster-1,Type=Cluster')], ObjectName))
+
+
 ########################################################################################################################
 
 def configureManagedServersOnline():
