@@ -745,7 +745,7 @@ def createMachine(machine_name, nodemanager_type, listen_address, listen_port):
 
   #cd('/Machines/' + machine_name + '/NodeManager/' + machine_name)
   nodeManager.setNMType(nodemanager_type)
-  #  nodeManager.setListenAddress(listen_address)
+  nodeManager.setListenAddress(listen_address)
   nodeManager.setListenPort(listen_port)
 
   return machine
@@ -985,7 +985,7 @@ try:
   cmo.setListenPortEnabled(true)
   cmo.setAdministrationPort(int(adminServer_AdministrationPort))
   cmo.setListenPort(int(adminServer_ListenPort))
-  #  cmo.setListenAddress(adminServer_ListenAddress)
+  cmo.setListenAddress(adminServer_ListenAddress)
   cmo.setWeblogicPluginEnabled(false)
   cmo.setJavaCompiler('javac')
   cmo.setStartupMode('RUNNING')
