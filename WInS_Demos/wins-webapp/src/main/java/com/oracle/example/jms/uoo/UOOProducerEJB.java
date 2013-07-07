@@ -16,6 +16,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.Session;
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
@@ -37,7 +38,7 @@ import java.util.logging.Logger;
  */
 @Stateless(name = "UOOProducerEJB", mappedName = "ejb/UOOProducer")
 @LocalBean
-public class UOOProducerEJB
+public class UOOProducerEJB  implements Serializable
 {
   public static final String JMS_CF_JNDI = "com/oracle/example/jms/uoo/cf";
   public static final String JMS_QUEUE_JNDI = "com/oracle/example/jms/uoo/queue";

@@ -16,6 +16,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.Session;
+import java.io.Serializable;
 
 /**
  * **************************************************************************
@@ -36,7 +37,7 @@ import javax.jms.Session;
  */
 @Stateless(name = "SAFServerProducerEJB", mappedName = "ejb/SAFServerProducer")
 @LocalBean
-public class SAFServerProducerEJB
+public class SAFServerProducerEJB  implements Serializable
 {
   public static final String JMS_CF_JNDI = "com/oracle/example/jms/saf/cf";
   public static final String JMS_QUEUE_JNDI = "com/oracle/example/jms/saf/local-queue";

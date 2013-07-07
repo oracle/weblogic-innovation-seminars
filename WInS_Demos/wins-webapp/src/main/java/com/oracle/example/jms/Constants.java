@@ -3,6 +3,7 @@ package com.oracle.example.jms;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ import java.util.Properties;
  * Date: Jan 17, 2011
  * Time: 1:48:25 PM
  */
-public class Constants
+public class Constants  implements Serializable
 {
   public static final SimpleDateFormat filenameDateFormatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
 }

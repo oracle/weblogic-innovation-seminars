@@ -16,6 +16,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.Session;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -44,7 +45,7 @@ import java.util.logging.Logger;
  */
 @Stateless(name = "JDBCHogger", mappedName = "ejb/JDBCHogger")
 @LocalBean
-public class JDBCHoggerEJB
+public class JDBCHoggerEJB  implements Serializable
 {
   public static final String JMS_CF_JNDI = "com/oracle/example/jms/util/cf";
   public static final String JMS_QUEUE_JNDI = "com/oracle/example/jms/util/jdbcHogger";

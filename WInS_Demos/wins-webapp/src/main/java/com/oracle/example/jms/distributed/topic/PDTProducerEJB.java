@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.jms.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ import java.util.logging.Logger;
  */
 @Stateless(name = "PDTProducerEJB", mappedName = "ejb/PDTProducer")
 @LocalBean
-public class PDTProducerEJB
+public class PDTProducerEJB implements Serializable
 {
   public static final String JMS_CF_JNDI = "com/oracle/example/jms/base/cf";
   public static final String JMS_TOPIC_JNDI = "com/oracle/example/jms/base/partitioned-topic";

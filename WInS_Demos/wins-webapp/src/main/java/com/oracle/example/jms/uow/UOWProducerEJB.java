@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.jms.*;
+import java.io.Serializable;
 import java.util.zip.CRC32;
 
 /**
@@ -29,7 +30,7 @@ import java.util.zip.CRC32;
  */
 @Stateless(name = "UOWProducerEJB", mappedName = "ejb/UOWProducer")
 @LocalBean
-public class UOWProducerEJB
+public class UOWProducerEJB implements Serializable
 {
   public static final String JMS_CF_JNDI = "com/oracle/example/jms/uow/cf";
   public static final String JMS_QUEUE_JNDI = "com/oracle/example/jms/uow/queue";

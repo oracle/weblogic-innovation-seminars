@@ -102,7 +102,7 @@ public class MigrationQueueListenerMDB
 
     try
     {
-      Thread.sleep(1000);
+      Thread.sleep(1500);
     }
     catch (Exception ignore)
     {
