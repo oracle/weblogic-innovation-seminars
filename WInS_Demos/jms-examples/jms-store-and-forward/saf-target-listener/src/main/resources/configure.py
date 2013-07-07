@@ -75,7 +75,7 @@ cd('/JMSSystemResources/jms-module-saf/JMSResource/jms-module-saf')
 cmo.createSAFRemoteContext('remote-saf-context-1')
 
 cd('/JMSSystemResources/jms-module-saf/JMSResource/jms-module-saf/SAFRemoteContexts/remote-saf-context-1/SAFLoginContext/remote-saf-context-1')
-cmo.setLoginURL('t3://127.0.0.1:8101,127.0.0.1:8102')
+cmo.setLoginURL('t3://wins-vbox:8101,wins-vbox:8102')
 cmo.setUsername('weblogic')
 setEncrypted('Password', 'Password_1295655228814', './examples/saf-server/wlst/Script1295655017245Config', './examples/saf-server/wlst/Script1295655017245Secret')
 

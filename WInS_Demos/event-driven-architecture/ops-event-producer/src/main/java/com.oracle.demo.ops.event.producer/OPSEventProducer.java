@@ -44,7 +44,7 @@ public class OPSEventProducer
   Session session;
   MessageProducer messageProducer;
 
-  static final String JMS_ENDPOINT = "t3://127.0.0.1:7101,127.0.0.1:7102";
+  static final String JMS_ENDPOINT = "t3://wins-vbox:7101,wins-vbox:7102";
 
   public static void main(String[] args)
   {

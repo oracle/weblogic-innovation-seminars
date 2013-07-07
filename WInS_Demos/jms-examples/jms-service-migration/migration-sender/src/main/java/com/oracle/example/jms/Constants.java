@@ -59,7 +59,7 @@ public class Constants
     {
       System.out.println("Properties file=[" + propertiesFile.getAbsolutePath() + "] does not exist.  Using defaults!");
 
-      JMS_ENDPOINT_ADDRESS = "t3://127.0.0.1:7102,127.0.0.1:7101";
+      JMS_ENDPOINT_ADDRESS = "t3://wins-vbox:7102,wins-vbox:7101";
       WL_INITIAL_CONTEXT = "weblogic.jndi.WLInitialContextFactory";
       USERNAME = "weblogic";
       PASSWORD = "welcome1";
