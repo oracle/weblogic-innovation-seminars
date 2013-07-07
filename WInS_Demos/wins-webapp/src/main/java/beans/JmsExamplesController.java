@@ -9,11 +9,11 @@ import com.oracle.example.jms.uoo.UOOProducerEJB;
 import com.oracle.example.jms.uow.UOWProducerEJB;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.*;
@@ -40,7 +40,7 @@ import java.util.logging.Logger;
  * Time: 10:06:52 AM
  */
 
-@ManagedBean
+@Named
 @SessionScoped
 public class JmsExamplesController implements Serializable
 {

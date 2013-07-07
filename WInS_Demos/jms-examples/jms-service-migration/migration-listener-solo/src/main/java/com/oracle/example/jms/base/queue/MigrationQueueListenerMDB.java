@@ -4,6 +4,7 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.*;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.util.Enumeration;
 
@@ -42,7 +43,7 @@ import java.util.Enumeration;
     })
 
 public class MigrationQueueListenerMDB
-    implements MessageListener
+    implements MessageListener, Serializable
 {
   public static final boolean DEBUG = false;
 

@@ -2,9 +2,8 @@ package beans.servicemigration;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,7 +36,7 @@ import java.util.List;
  * Time: 9:43 AM
  * To change this template use File | Settings | File Templates.
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class ServiceMigrationController implements Serializable
 {
