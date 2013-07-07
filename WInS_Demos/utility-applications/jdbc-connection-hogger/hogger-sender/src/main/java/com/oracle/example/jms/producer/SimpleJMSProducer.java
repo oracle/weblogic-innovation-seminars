@@ -90,15 +90,6 @@ public class SimpleJMSProducer
     }
   }
 
-  protected void sendTextMessages(final String pMessage, final int pMessageCount, final long pIntervalTimeInMillis) throws JMSException
-  {
-    for (int x = 1; x <= pMessageCount; x++)
-    {
-      sendTextMessage(pMessage + "(" + x + ")");
-      sleep(pIntervalTimeInMillis);
-    }
-  }
-
   protected void sendTextMessage(final String pMessage) throws JMSException
   {
     System.out.println("Sending TextMessage string=[" + pMessage + "]...");

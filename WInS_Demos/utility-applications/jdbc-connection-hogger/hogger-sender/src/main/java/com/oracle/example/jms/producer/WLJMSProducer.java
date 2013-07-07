@@ -77,10 +77,12 @@ public class WLJMSProducer
   {
     beginSession(false);
 
+    boolean even = false;
+
     for (int x = 1; x <= pMessageCount; x++)
     {
-      String text = pMessageBase + "-" + x;
-      sendMessage(text);
+      even = (x % 2) == 1;
+      sendMessage(pMessageBase + "(" + x + ") " + (even ? "EVEN" : "ODD"));
       sleep(pIntervalTimeInMillis);
     }
 

@@ -139,9 +139,12 @@ public class UOOProducerEJB
   {
     beginSession(false);
 
+    boolean even = false;
+
     for (int x = 1; x <= pMessageCount; x++)
     {
-      String text = pMessageBase + "-" + x;
+      even = (x % 2) == 1;
+      String text = pMessageBase + "(" + x + ") " + (even ? "EVEN" : "ODD");
       queueProducer.send(session.createTextMessage(text));
       sleep(pIntervalTimeInMillis);
     }

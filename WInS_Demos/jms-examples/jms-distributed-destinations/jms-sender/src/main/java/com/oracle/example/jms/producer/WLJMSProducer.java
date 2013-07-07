@@ -16,19 +16,19 @@ import javax.naming.NamingException;
 import java.util.Hashtable;
 
 /**
-  * **************************************************************************
+ * **************************************************************************
  * <p/>
  * This code is provided for example purposes only.  Oracle does not assume
  * any responsibility or liability for the consequences of using this code.
  * If you choose to use this code for any reason, including but not limited
  * to its use as an example you do so at your own risk and without the support
  * of Oracle.
- *
+ * <p/>
  * This code is provided under the following licenses:
- *
+ * <p/>
  * GNU General Public License (GPL-2.0)
  * COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0 (CDDL-1.0)
- *
+ * <p/>
  * <p/>
  * ****************************************************************************
  */
@@ -82,11 +82,12 @@ public class WLJMSProducer
   public void sendMessageBatch(String pMessageBase, int pMessageCount, long pIntervalTimeInMillis) throws JMSException
   {
     beginSession(false);
+    boolean even = false;
 
     for (int x = 1; x <= pMessageCount; x++)
     {
-      String text = pMessageBase + "-" + x;
-      sendMessage(text);
+      even = (x % 2) == 1;
+      sendMessage(pMessageBase + "(" + x + ") " + (even ? "EVEN" : "ODD"));
       sleep(pIntervalTimeInMillis);
     }
 
