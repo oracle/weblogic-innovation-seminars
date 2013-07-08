@@ -1,0 +1,244 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ops</groupId>
+  <artifactId>jms-cluster-domain</artifactId>
+  <version>3.0</version>
+  <packaging>pom</packaging>
+  <name>weblogic-examples-domain</name>
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <profiles>
+    <profile>
+      <id>create-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>${middleware.home}</middlewareHome>
+                  <weblogicHome>${weblogic.home}</weblogicHome>
+                  <debug>true</debug>
+                  <fileName>${project.basedir}/src/main/wlst/create-${project.name}.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning -Ddomain.name=${project.name}
+                  </args>
+
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+
+    <!-- +++++++++++++++++++++++++ -->
+
+    <profile>
+      <id>start-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>${middleware.home}</middlewareHome>
+                  <weblogicHome>${weblogic.home}</weblogicHome>
+
+                  <fileName>${project.basedir}/src/main/wlst/start-${project.name}.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  </args>
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+    <!-- +++++++++++++++++++++++++ -->
+    <profile>
+      <id>start-domain-admin</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>${middleware.home}</middlewareHome>
+                  <weblogicHome>${weblogic.home}</weblogicHome>
+
+                  <fileName>${project.basedir}/src/main/wlst/start-${project.name}-admin.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  </args>
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+    <!-- +++++++++++++++++++++++++ -->
+
+    <profile>
+      <id>stop-domain</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>${middleware.home}</middlewareHome>
+                  <weblogicHome>${weblogic.home}</weblogicHome>
+
+                  <fileName>${project.basedir}/src/main/wlst/stop-${project.name}.py</fileName>
+                  <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  </args>
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+
+  </profiles>
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+</project>
