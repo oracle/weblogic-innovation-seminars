@@ -242,51 +242,6 @@ def createBaseJMSResources(moduleName, clusterTarget, jmsServerTargets):
 
 ########################################################################################################################
 
-def createOPSJMSResources(module_name, clusterTarget, jmsServerTargets):
-  print '### createOPSJMSResources ####################################################################################'
-
-  cd('/')
-  jmsMySystemResource = create(module_name, 'JMSSystemResource')
-  jmsMySystemResource.setTargets(jarray.array([clusterTarget], weblogic.management.configuration.TargetMBean))
-
-  cd('/JMSSystemResources/jms-module-ops')
-  subdeployment = create('cluster-subdeployment', 'SubDeployment')
-  subdeployment.setTargets(jarray.array(jmsServerTargets, weblogic.management.configuration.TargetMBean))
-
-  cd('/JMSSystemResource/jms-module-ops/JmsResource/NO_NAME_0')
-
-  myCF = create('com.oracle.demo.ops.jms.cf', 'ConnectionFactory')
-
-  cd('/JMSSystemResources/jms-module-ops/JmsResource/NO_NAME_0/ConnectionFactories/com.oracle.demo.ops.jms.cf')
-
-  myCF.setJNDIName('com.oracle.demo.ops.jms.cf')
-  myCF.setDefaultTargetingEnabled(true)
-  txParams = create('com.oracle.demo.ops.jms.cf', 'TransactionParams')
-  txParams.setXAConnectionFactoryEnabled(true)
-
-  cd('/JMSSystemResources/jms-module-ops/JmsResource/NO_NAME_0')
-  eventQueue = create('com.oracle.demo.ops.jms.eventQueue', 'UniformDistributedQueue')
-  eventQueue.setJNDIName('com.oracle.demo.ops.jms.eventQueue')
-  eventQueue.setDefaultTargetingEnabled(false)
-  eventQueue.setSubDeploymentName('cluster-subdeployment')
-
-  cd('/JMSSystemResources/jms-module-ops/JmsResource/NO_NAME_0')
-  shipmentQueue = create('com.oracle.demo.ops.jms.shipmentQueue', 'UniformDistributedQueue')
-
-  shipmentQueue.setJNDIName('com.oracle.demo.ops.jms.shipmentQueue')
-  shipmentQueue.setDefaultTargetingEnabled(false)
-  shipmentQueue.setSubDeploymentName('cluster-subdeployment')
-
-  cd('/JMSSystemResources/jms-module-ops/JmsResource/NO_NAME_0')
-  eventTopic = create('com.oracle.demo.ops.jms.eventTopic', 'UniformDistributedTopic')
-  eventTopic.setJNDIName('com.oracle.demo.ops.jms.eventTopic')
-  eventTopic.setForwardingPolicy('Partitioned')
-  eventTopic.setDefaultTargetingEnabled(false)
-  eventTopic.setSubDeploymentName('cluster-subdeployment')
-
-
-########################################################################################################################
-
 def createMigrationJMSResources(moduleName, clusterTarget, jmsServerTargets):
   print '### createMigrationJMSResources ##############################################################################'
 
@@ -825,48 +780,6 @@ def createCoherenceServer(coh_server_name, cluster_name, machine_name, coh_liste
 
 ########################################################################################################################
 
-def createForeignJMSSpringModules_online():
-  print '@@@ createForeignJMSSpringModules_online @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
-
-  jms_module_name = 'jms-module-ops-spring'
-
-  cd('/')
-  cmo.createJMSSystemResource(jms_module_name)
-
-  cd('/JMSSystemResources/' + jms_module_name)
-  set('Targets', jarray.array([ObjectName('com.bea:Name=cluster-1,Type=Cluster')], ObjectName))
-
-  for n in range(1, int(managedServer_Count) + 1):
-    jms_server_name = jmsServer_BaseName + '-' + str(n)
-    foreign_server_name = 'ops-spring-foreign-server-' + str(n)
-
-    cd('/JMSSystemResources/' + jms_module_name)
-    cmo.createSubDeployment(jms_server_name + '-subdeployment')
-
-    cd('/JMSSystemResources/' + jms_module_name + '/SubDeployments/' + jms_server_name + '-subdeployment')
-    set('Targets', jarray.array([ObjectName('com.bea:Name=' + jms_server_name + ',Type=JMSServer')], ObjectName))
-
-    cd('/JMSSystemResources/' + jms_module_name + '/JMSResource/' + jms_module_name)
-    cmo.createForeignServer(foreign_server_name)
-
-    cd(
-      '/JMSSystemResources/' + jms_module_name + '/JMSResource/' + jms_module_name + '/ForeignServers/' + foreign_server_name)
-    cmo.setDefaultTargetingEnabled(false)
-    cmo.setSubDeploymentName(jms_server_name + '-subdeployment')
-
-    cd(
-      '/JMSSystemResources/' + jms_module_name + '/JMSResource/' + jms_module_name + '/ForeignServers/' + foreign_server_name)
-    cmo.createForeignDestination('com.oracle.demo.ops.jms.eventTopic-' + str(n))
-
-    cd(
-      '/JMSSystemResources/' + jms_module_name + '/JMSResource/' + jms_module_name + '/ForeignServers/' + foreign_server_name + '/ForeignDestinations/com.oracle.demo.ops.jms.eventTopic-' + str(
-        n))
-    cmo.setRemoteJNDIName(jms_server_name + '@com.oracle.demo.ops.jms.eventTopic')
-    cmo.setLocalJNDIName('foreign.com.oracle.demo.ops.jms.eventTopic')
-
-
-########################################################################################################################
-
 def createSpringWLDFModule_online():
   print '@@@ createSpringWLDFModule_online @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
   cd('/')
@@ -1178,7 +1091,6 @@ createCoherenceServers_online(cohCluster_Name,
                               machine_Name)
 
 createSpringWLDFModule_online()
-createForeignJMSSpringModules_online()
 
 ## DEPLOY LIBRARIES #####################################################
 
