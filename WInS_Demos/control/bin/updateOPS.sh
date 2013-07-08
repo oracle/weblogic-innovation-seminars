@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CONTENT_DIR="/u01/content/oracle-parcel-service"
-export TAG_NAME="wins-vbox"
+export TAG_NAME="wins-vbox-12.1.2"
 export GIT_URL="http://github.com/jeffreyawest/oracle-parcel-service.git"
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
