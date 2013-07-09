@@ -39,7 +39,7 @@ export DEMOS_HOME="${CONTENT_HOME}/weblogic-innovation-seminars/WInS_Demos"
 export WORKSHOP_HOME="${CONTENT_HOME}/weblogic-workshop-1035"
 export USER_PROJECTS="${MW_HOME}/user_projects"
 export DOMAINS="${USER_PROJECTS}/domains"
-export OPS_DOMAIN_HOME="${USER_PROJECTS}/domains/ops_domain"
+export OPS_DOMAIN_HOME="${USER_PROJECTS}/domains/ops-cluster"
 
 export JAVA_HOME="/usr/java/latest"
 
@@ -93,6 +93,7 @@ alias tsafadmin="tail ${TAIL_OPTS} ${DOMAINS}/saf-target-domain/servers/AdminSer
 alias tcoh1="tail ${TAIL_OPTS} ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-1/logs/coh-1.out"
 alias tcoh2="tail ${TAIL_OPTS} ${DOMAINS}/weblogic-examples-domain/servers_coherence/coh-2/logs/coh-2.out"
 
+alias topsadmin="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/AdminServer/logs/AdminServer.out"
 alias tops1="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/ms-1/logs/ms-1.out"
 alias tops2="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/ms-2/logs/ms-2.out"
 
