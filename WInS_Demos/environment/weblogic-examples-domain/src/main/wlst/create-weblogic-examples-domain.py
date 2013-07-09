@@ -848,11 +848,13 @@ def configureDomain_online():
   cd('/JTA/' + domain_Name)
   cmo.setTimeoutSeconds(300)
 
-  cd('/SelfTuning/weblogic-examples-domain')
+  cd('/SelfTuning/' + domain_Name)
   cmo.createWorkManager('wm/CoherenceWorkManager')
 
-  cd('/SelfTuning/weblogic-examples-domain/WorkManagers/wm/CoherenceWorkManager')
-  set('Targets',jarray.array([ObjectName('com.bea:Name=AdminServer,Type=Server'), ObjectName('com.bea:Name=cluster-1,Type=Cluster')], ObjectName))
+  cd('/SelfTuning/' + domain_Name + '/WorkManagers/wm/CoherenceWorkManager')
+  set('Targets', jarray.array(
+    [ObjectName('com.bea:Name=AdminServer,Type=Server'), ObjectName('com.bea:Name=cluster-1,Type=Cluster')],
+                                                                                                           ObjectName))
 
 
 ########################################################################################################################
@@ -939,12 +941,13 @@ clusterMBean = create(cluster_Name, 'Cluster')
 
 try:
   jdbcSystemResource = createClusterDataSource(['com.oracle.weblogic.demo.jdbc.cluster-ds'],
-                                                                                       datasource_JdbcDriver,
-                                                                                       datasource_GlobalTransactions,
-                                                                                       datasource_jdbc_url,
-                                                                                       datasource_User,
-                                                                                       datasource_Password,
-                                                                                       clusterMBean)
+                                                                                           datasource_JdbcDriver,
+                                                                                           datasource_GlobalTransactions
+                                                                                           ,
+                                                                                           datasource_jdbc_url,
+                                                                                           datasource_User,
+                                                                                           datasource_Password,
+                                                                                           clusterMBean)
 
   # changed from consensus by JAW
   clusterMBean.setMigrationBasis('database')
@@ -1031,7 +1034,7 @@ try:
                                                 datasource_jdbc_url,
                                                 datasource_User,
                                                 datasource_Password,
-                                                5,5,
+                                                5, 5,
                                                 clusterMBean)
 except:
   dumpStack()
