@@ -37,7 +37,7 @@ zerofree /u01
 if [ -h /u01/content/weblogic-innovation-seminars ]; then
   rm /u01/content/weblogic-innovation-seminars
   cd /u01/content
-  git clone http://github.com/jeffreyawest/oracle-parcel-service.git
+    git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git
 else
   /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
 fi
@@ -45,7 +45,7 @@ fi
 if [ -h /u01/content/oracle-parcel-service ]; then
   rm /u01/content/oracle-parcel-service
   cd /u01/content
-  git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git
+  git clone http://github.com/jeffreyawest/oracle-parcel-service.git
 else
   /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
 fi
