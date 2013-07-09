@@ -57,11 +57,7 @@ then
   EXPORT_CMD=" ${EXPORT_CMD} --version ${OVA_VERSION}"
   EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
 
-	if [ "${OVA_PRODUCT}" != "" ]; then
-	  EXPORT_CMD = "${EXPORT_CMD} "
-	fi
-
-	echo "Exporting VBOX=[${VBOX_NAME}] with command: ${EXPORT_CMD}
+	echo "Exporting VBOX=[${VBOX_NAME}] with command: ${EXPORT_CMD}"
 	${EXPORT_CMD}
 fi
 
