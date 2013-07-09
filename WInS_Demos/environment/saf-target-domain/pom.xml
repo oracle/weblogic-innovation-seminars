@@ -3,12 +3,12 @@
 
   <!-- ==================================================================================== -->
 
-  <parent>
-    <groupId>com.oracle.weblogic.demo.wins</groupId>
-    <artifactId>common</artifactId>
-    <version>12.1.2.0.0</version>
-    <relativePath>../../common/pom.xml</relativePath>
-  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ops</groupId>
+  <artifactId>saf-target-domain</artifactId>
+  <version>3.0</version>
+  <packaging>pom</packaging>
+  <name>saf-target-domain</name>
 
   <!-- ==================================================================================== -->
 
