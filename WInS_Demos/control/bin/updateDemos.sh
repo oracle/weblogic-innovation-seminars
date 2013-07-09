@@ -16,6 +16,11 @@ echo "GIT _system_ Proxy set to: [${GIT_SYSTEM_PROXY}] (OK to be empty)"
 echo "GIT _global_ Proxy set to: [${GIT_GLOBAL_PROXY}] (OK to be empty)"
 echo "GIT _project_ Proxy set to: [${GIT_PROJECT_PROXY}] (OK to be empty)"
 
+if [ ! -e ${CONTENT_DIR} ]; then
+  cd /u01/content
+  git clone ${GIT_URL}
+fi
+
 cd ${CONTENT_DIR}
 
 git fetch --tags

@@ -12,6 +12,11 @@ GIT_PROXY=`git config --get http.proxy`
 
 echo "GIT Proxy set to: \"${GIT_PROXY}\""
 
+if [ ! -e ${CONTENT_DIR} ]; then
+  cd /u01/content
+  git clone ${GIT_URL}
+fi
+
 cd ${CONTENT_DIR}
 
 git fetch --tags
