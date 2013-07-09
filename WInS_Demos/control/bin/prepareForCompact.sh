@@ -26,7 +26,7 @@ sudo rm -Rf /home/oracle/.m2/repository/com/oracle/demo
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos
 mvn clean
 
-cd /u01/content/soracle-parcel-service
+cd /u01/content/oracle-parcel-service
 mvn clean
 
 find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \;
