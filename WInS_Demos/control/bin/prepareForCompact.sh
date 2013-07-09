@@ -34,7 +34,21 @@ find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \
 zerofree /tmp
 zerofree /u01
 
-/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
-/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
+if [ -h /u01/content/weblogic-innovation-seminars ]; then
+  rm /u01/content/weblogic-innovation-seminars
+  cd /u01/content
+  git clone http://github.com/jeffreyawest/oracle-parcel-service.git
+else
+  /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
+fi
+
+if [ -h /u01/content/oracle-parcel-service ]; then
+  rm /u01/content/oracle-parcel-service
+  cd /u01/content
+  git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git
+else
+  /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
+fi
+
 
 halt
