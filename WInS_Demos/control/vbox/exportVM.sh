@@ -1,5 +1,7 @@
 #!/bin/sh
 
+start_date=`date +%s`
+
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
@@ -66,3 +68,8 @@ if [ "${ZIP_OVA}" != "false" ]; then
 	echo "Zipping VBOX with command: ${ZIP_CMD}"
 	${ZIP_CMD}
 fi
+
+end_date=`date +%s`
+duration=$(echo "scale=2; ($end_date-$start_date)/60" | bc)
+
+echo "WInS VBOX export complete in ${duration} minutes"
