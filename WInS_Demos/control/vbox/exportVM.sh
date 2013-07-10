@@ -1,12 +1,13 @@
 #!/bin/sh
 
 start_date=`date +%s`
+
 ZIP_CMD=/usr/bin/zip
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
-OVA_VERSION="12.1.2-v2"
+OVA_VERSION="12.1.2-v3"
 OVA_EULA_FILE="/Users/jeffreyawest/Data/mycode/github/oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
 
 parse_control_settings()
@@ -57,7 +58,9 @@ then
     rm -v ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
   fi
 
-  EXPORT_CMD="VBoxManage export ${VBOX_NAME} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}  --vsys 0 "
+  EXPORT_CMD="VBoxManage export ${VBOX_NAME} "
+  EXPORT_CMD=" ${EXPORT_CMD} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+  EXPORT_CMD=" ${EXPORT_CMD} --vsys 0 "
   EXPORT_CMD=" ${EXPORT_CMD} --product WInS-VirtualBox-VM"
   EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
   EXPORT_CMD=" ${EXPORT_CMD} --version ${OVA_VERSION}"
@@ -73,7 +76,7 @@ then
 	ZIP_CMD_LINE=" ${ZIP_CMD} -j -s 1g -1 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
 	echo "Zipping VBOX with command: ${ZIP_CMD_LINE}"
 	${ZIP_CMD_LINE}
-#	rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
+	rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
 fi
 
 end_date=`date +%s`
