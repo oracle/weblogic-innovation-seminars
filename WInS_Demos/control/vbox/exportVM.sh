@@ -1,7 +1,7 @@
 #!/bin/sh
 
 start_date=`date +%s`
-
+ZIP_CMD=/usr/bin/zip
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
@@ -15,9 +15,9 @@ parse_control_settings()
 	do
 		if [ "${param}" == "-y" ]; then
 			PROMPT=false
-		elif [ "${param}" == "nozip" ]; then
+		elif [ "${param}" == "-nozip" ]; then
 			ZIP_OVA=false
-		elif [ "${param}" == "noexport" ]; then
+		elif [ "${param}" == "-noexport" ]; then
 			EXPORT_VBOX=false
 		fi
 	done
@@ -27,8 +27,8 @@ set -e
 
 VBOX_NAME="${1}"
 VBOX_OUTPUT_NAME="wins-${OVA_VERSION}.ova"
-VBOX_OUTPUT_DIR="$3"
-ZIP_OUTPUT_DIR="${4-$VBOX_OUTPUT_DIR}"
+VBOX_OUTPUT_DIR="$2"
+ZIP_OUTPUT_DIR="${3-$VBOX_OUTPUT_DIR}"
 
 parse_control_settings $*
 
@@ -43,30 +43,37 @@ if [ "${PROMPT}" != false ]; then
 		exit 1
 	fi
 fi
-if [ -f ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ]; then
-	echo "Removing existing file: ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
-	rm -v ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
-fi
+
 
 mkdir -p ${VBOX_OUTPUT_DIR}
 mkdir -p ${ZIP_OUTPUT_DIR}
 
 if [ "${EXPORT_VBOX}" != "false" ];
 then
+
+  if [ -f ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ];
+  then
+    echo "Removing existing file: ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+    rm -v ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
+  fi
+
   EXPORT_CMD="VBoxManage export ${VBOX_NAME} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}  --vsys 0 "
-  EXPORT_CMD=" ${EXPORT_CMD} --product \"WInS VirtualBox VM\""
+  EXPORT_CMD=" ${EXPORT_CMD} --product WInS-VirtualBox-VM"
   EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
   EXPORT_CMD=" ${EXPORT_CMD} --version ${OVA_VERSION}"
   EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
 
-	echo "Exporting VBOX=[${VBOX_NAME}] with command: ${EXPORT_CMD}"
+  echo "Exporting VBOX=[${VBOX_NAME}] with command: ${EXPORT_CMD}"
 	${EXPORT_CMD}
 fi
 
-if [ "${ZIP_OVA}" != "false" ]; then
-	ZIP_CMD= "zip -j -s 1g -1 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
-	echo "Zipping VBOX with command: ${ZIP_CMD}"
-	${ZIP_CMD}
+if [ "${ZIP_OVA}" != "false" ];
+then
+  mkdir -p ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
+	ZIP_CMD_LINE=" ${ZIP_CMD} -j -s 1g -1 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+	echo "Zipping VBOX with command: ${ZIP_CMD_LINE}"
+	${ZIP_CMD_LINE}
+#	rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
 fi
 
 end_date=`date +%s`
