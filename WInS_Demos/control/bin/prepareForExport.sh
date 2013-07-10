@@ -10,6 +10,8 @@ zerofree()
   echo $FILE created and deleted...
 }
 
+SUCCESS="TRUE"
+
 
 sqlplus 'sys/welcome1 as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql
 
@@ -37,7 +39,11 @@ zerofree /u01
 if [ -h /u01/content/weblogic-innovation-seminars ]; then
   rm /u01/content/weblogic-innovation-seminars
   cd /u01/content
-    git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git
+  git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git
+
+  if [ "$?" != "0" ]; then
+    SUCCESS="FALSE"
+  fi
 fi
 
 
@@ -45,10 +51,24 @@ if [ -h /u01/content/oracle-parcel-service ]; then
   rm /u01/content/oracle-parcel-service
   cd /u01/content
   git clone http://github.com/jeffreyawest/oracle-parcel-service.git
+
+  if [ "$?" != "0" ]; then
+    SUCCESS="FALSE"
+  fi
 fi
 
 /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
+if [ "$?" != "0" ]; then
+  SUCCESS="FALSE"
+fi
+
 /u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
+if [ "$?" != "0" ]; then
+  SUCCESS="FALSE"
+fi
 
-
-halt
+if [ "${SUCCESS}" == "TRUE" ]; then
+  halt
+else
+  echo "Errors were encountered preparing for export!"
+fi

@@ -6,8 +6,9 @@ ZIP_CMD=/usr/bin/zip
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
-OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_VERSION="12.1.2-v3"
+OVA_PRODUCT_NAME="WInS-VirtualBox-VM-${OVA_VERSION}"
+OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_EULA_FILE="/Users/jeffreyawest/Data/mycode/github/oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
 
 parse_control_settings()
@@ -61,7 +62,7 @@ then
   EXPORT_CMD="VBoxManage export ${VBOX_NAME} "
   EXPORT_CMD=" ${EXPORT_CMD} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
   EXPORT_CMD=" ${EXPORT_CMD} --vsys 0 "
-  EXPORT_CMD=" ${EXPORT_CMD} --product WInS-VirtualBox-VM"
+  EXPORT_CMD=" ${EXPORT_CMD} --product ${OVA_PRODUCT_NAME}"
   EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
   EXPORT_CMD=" ${EXPORT_CMD} --version ${OVA_VERSION}"
   EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
