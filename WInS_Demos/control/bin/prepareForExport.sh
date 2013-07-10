@@ -57,12 +57,12 @@ if [ -h /u01/content/oracle-parcel-service ]; then
   fi
 fi
 
-/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateDemos.sh
+/u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/updateDemos.sh
 if [ "$?" != "0" ]; then
   SUCCESS="FALSE"
 fi
 
-/u01/content/weblogic-innovation-seminars/WInS_Demos/control/updateOPS.sh
+/u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/updateOPS.sh
 if [ "$?" != "0" ]; then
   SUCCESS="FALSE"
 fi
