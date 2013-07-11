@@ -18,7 +18,14 @@ if [ "$?" == "0" ]; then
 fi
 
 cd $DEMOS_HOME/maven-sync-plugin
-mvn -P
+
+mvn oraclesync:push
+
+if [ "$?" != "0" ]; then
+  echo "Error running Maven Sync Plugin"
+  exit
+fi
+
 mvn archetype:crawl
 
 end_date=`date +%s`
