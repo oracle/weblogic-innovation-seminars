@@ -50,6 +50,7 @@
     <module>wins-webapp</module>
     <module>websockets-examples</module>
     <module>security-examples</module>
+    <module>maven-sync-plugin</module>
   </modules>
 
 </project>

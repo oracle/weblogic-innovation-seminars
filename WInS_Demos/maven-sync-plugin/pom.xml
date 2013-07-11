@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <artifactId>maven-sync-plugin</artifactId>
+  <version>12.1.2.0.0</version>
+  <packaging>pom</packaging>
+  <name>maven-sync-plugin</name>
+
+  <profiles>
+    <profile>
+      <id>oracle-maven-sync-push</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+          <plugin>
+
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>push</goal>
+                </goals>
+              </execution>
+            </executions>
+
+            <groupId>com.oracle.maven</groupId>
+            <artifactId>oracle-maven-sync</artifactId>
+            <version>12.1.2-0-0</version>
+            <configuration>
+              <!--<serverId>internal</serverId>-->
+              <oracleHome>/u01/wls1212</oracleHome>
+              <testOnly>false</testOnly>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
+
+  <build>
+
+  </build>
+</project>
