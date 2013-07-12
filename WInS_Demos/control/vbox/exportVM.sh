@@ -6,7 +6,7 @@ ZIP_CMD=/usr/bin/zip
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
-OVA_VERSION="12.1.2-v4"
+OVA_VERSION="12.1.2-v5"
 OVA_PRODUCT_NAME="WInS-VirtualBox-VM-${OVA_VERSION}"
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_EULA_FILE="/Users/jeffreyawest/Data/mycode/github/oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
