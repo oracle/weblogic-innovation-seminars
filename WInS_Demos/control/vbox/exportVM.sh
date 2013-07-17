@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set +e
+
 start_date=`date +%s`
 
 ZIP_CMD=/usr/bin/zip
@@ -10,6 +12,8 @@ OVA_VERSION="12.1.2-v6"
 OVA_PRODUCT_NAME="WInS-VirtualBox-VM-${OVA_VERSION}"
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_EULA_FILE="/Users/jeffreyawest/Data/mycode/github/oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
+OVA_MEMORY_SIZE=6144
+OVA_CPU_COUNT=4
 
 parse_control_settings()
 {
@@ -43,33 +47,58 @@ if [ "${PROMPT}" != false ]; then
 	read -p "Continue? [y/N]" inputRead
 
 	if [ "${inputRead}" != "y" ]; then
+	  echo "Exiting..."
 		exit 1
 	fi
+
 fi
 
+echo "Proceeding..."
 
-VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
-if [ "$?" == "0" ]; then
-  VBoxManage guestcontrol ${VBOX_NAME_INPUT} execute --image /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/prepareForExport.sh --username oracle --password welcome1 --wait-stdout --wait-stderr
+echo "VBoxManage list runningvms | grep ${VBOX_NAME_INPUT}"
+VBoxManage list runningvms | grep ${VBOX_NAME_INPUT}
+
+STILL_RUNNING=${?}
+
+echo "STILL_RUNNING=$STILL_RUNNING"
+
+if [ "$STILL_RUNNING" == "0" ];
+then
+  echo "VM is running, doing other things..."
+  VBoxManage guestcontrol ${VBOX_NAME_INPUT} execute --image /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/prepareForExportExternal.sh --username root --password welcome1 --wait-stdout
 
   VBoxManage controlvm ${VBOX_NAME_INPUT} acpipowerbutton
+
+  VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
+
+  STILL_RUNNING=$?
+  while [ "$STILL_RUNNING" == "0" ];
+  do
+    echo "Sleeping 5s more to wait for VM to stop"
+    sleep 5s
+    VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
+    STILL_RUNNING=$?
+  done
 fi
 
 
-# rename so new version is in the list of VMs
+echo "Renaming VirtualBox from ${VBOX_NAME_INPUT} to ${VBOX_NAME_NEW}"
 VBoxManage modifyvm ${VBOX_NAME_INPUT} --name "${VBOX_NAME_NEW}"
 
-# update the network for the non-internal NIC to NAT
+echo "Setting Network Adapter 1 of ${VBOX_NAME_NEW} to NAT"
 VBoxManage modifyvm ${VBOX_NAME_NEW} --nic1 nat
 
-# set CPU and memory to a reasonable amount
-VBoxManage modifyvm ${VBOX_NAME_NEW} --memory 6144
-VBoxManage modifyvm ${VBOX_NAME_NEW} --cpus 4
+echo "Setting Memory of ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
+VBoxManage modifyvm ${VBOX_NAME_NEW} --memory ${OVA_MEMORY_SIZE}
 
-# remove USB so you don't need the USB extensions
+echo "Setting CPUs ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
+VBoxManage modifyvm ${VBOX_NAME_NEW} --cpus ${OVA_CPU_COUNT}
+
+echo "Disabling USB on ${VBOX_NAME_NEW}"
 VBoxManage modifyvm ${VBOX_NAME_NEW} --usb off
 
 # remove shared folders
+echo "Removing shared folders of ${VBOX_NAME_NEW}..."
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "jeffreyawest"
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "opt"
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "temp"

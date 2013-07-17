@@ -23,7 +23,25 @@ SET ZIP_COMPRESSION_LEVEL=1
 SET ZIP_MAX_SIZE=1g
 SET ZIP_DEST_FILE=C:\temp\%VBOX_OUTPUT_NAME%.zip
 
+VBoxManage list runningvms |findstr /R /C:"%VBOX_NAME_INPUT%"
+set STILL_RUNNING=%ERRORLEVEL%
 
+if %STILL_RUNNING% == "0" (
+
+  VBoxManage guestcontrol %VBOX_NAME_INPUT% execute --image /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/prepareForExportExternal.sh --username root --password welcome1 --wait-stdout --wait-stderr
+
+  VBoxManage controlvm %VBOX_NAME_INPUT% acpipowerbutton
+
+  :loopstart
+  VBoxManage list runningvms |findstr /R /C:"%VBOX_NAME_INPUT%"
+  set STILL_RUNNING=%ERRORLEVEL%
+
+  if %STILL_RUNNING% == "0" (
+    echo "Sleeping 5s more to wait for VM to stop"
+    sleep 5s
+    goto loopstart
+  )
+)
 
 # rename so new version is in the list of VMs
 VBoxManage modifyvm %VBOX_NAME_INPUT% --name "%VBOX_NAME_NEW%"
