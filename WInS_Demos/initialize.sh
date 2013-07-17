@@ -26,8 +26,6 @@ if [ "$?" != "0" ]; then
   exit
 fi
 
-mvn archetype:crawl
-
 end_date=`date +%s`
 duration=$(echo "scale=2; ($end_date-$start_date)/60" | bc)
 
