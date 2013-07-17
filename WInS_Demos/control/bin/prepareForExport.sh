@@ -19,7 +19,9 @@ done
 
 zerofree()
 {
+
   FILE=$1/zerofree_deleteme
+  echo "zero-ing out with FILE=${FILE}"
   echo Creating temporary file: $FILE
   dd if=/dev/zero of=$FILE
   rm -Rf $FILE

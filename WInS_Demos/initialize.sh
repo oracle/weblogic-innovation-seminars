@@ -17,10 +17,6 @@ if [ "$?" == "0" ]; then
   mvn -DskipTests=true install
 fi
 
-cd $DEMOS_HOME/maven-sync-plugin
-
-mvn oraclesync:push
-
 if [ "$?" != "0" ]; then
   echo "Error running Maven Sync Plugin"
   exit

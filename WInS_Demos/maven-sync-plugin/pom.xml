@@ -14,7 +14,7 @@
     <profile>
       <id>oracle-maven-sync-push</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
 
       <build>
