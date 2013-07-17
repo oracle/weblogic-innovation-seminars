@@ -1,6 +1,17 @@
 #!/bin/bash
 #rm -Rf ~/.mozilla
 
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh
+
+for param in $*
+do
+	if [ "${param}" == "nozero" ]; then
+		NOZERO="TRUE"
+	elif [ "${param}" == "nohalt" ]; then
+		NOHALT="TRUE"
+	fi
+done
+
 zerofree()
 {
   FILE=$1/zerofree_deleteme
@@ -33,8 +44,10 @@ mvn clean
 
 find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \;
 
-zerofree /tmp
-zerofree /u01
+if [ "${NOZERO}" != "TRUE" ]; then
+  zerofree /tmp
+  zerofree /u01
+fi
 
 if [ -h /u01/content/weblogic-innovation-seminars ]; then
   rm /u01/content/weblogic-innovation-seminars
@@ -68,7 +81,10 @@ if [ "$?" != "0" ]; then
 fi
 
 if [ "${SUCCESS}" == "TRUE" ]; then
-  halt
+  if [ "${NOHALT}" != "TRUE" ]; then
+    halt
+  fi
+
 else
   echo "Errors were encountered preparing for export!"
 fi
