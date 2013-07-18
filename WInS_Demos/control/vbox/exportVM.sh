@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set +e
+#!/bin/bash
 
 start_date=`date +%s`
 
@@ -29,8 +27,6 @@ parse_control_settings()
 	done
 }
 
-set -e
-
 VBOX_NAME_INPUT="${1}"
 VBOX_NAME_NEW="wins-${OVA_VERSION}"
 VBOX_OUTPUT_NAME="${VBOX_NAME_NEW}.ova"
@@ -50,35 +46,33 @@ if [ "${PROMPT}" != false ]; then
 	  echo "Exiting..."
 		exit 1
 	fi
-
 fi
 
 echo "Proceeding..."
+VBoxManage list runningvms | grep ${VBOX_NAME_INPUT} > /dev/null
+RUNNING=$?
 
-echo "VBoxManage list runningvms | grep ${VBOX_NAME_INPUT}"
-VBoxManage list runningvms | grep ${VBOX_NAME_INPUT}
-
-STILL_RUNNING=${?}
-
-echo "STILL_RUNNING=$STILL_RUNNING"
-
-if [ "$STILL_RUNNING" == "0" ];
+if [ "$RUNNING" == "0" ];
 then
-  echo "VM is running, doing other things..."
-  VBoxManage guestcontrol ${VBOX_NAME_INPUT} execute --image /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/prepareForExportExternal.sh --username root --password welcome1 --wait-stdout
-
-  VBoxManage controlvm ${VBOX_NAME_INPUT} acpipowerbutton
-
-  VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
-
-  STILL_RUNNING=$?
-  while [ "$STILL_RUNNING" == "0" ];
-  do
-    echo "Sleeping 5s more to wait for VM to stop"
-    sleep 5s
-    VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
-    STILL_RUNNING=$?
-  done
+  echo "VM Is running!  Please stop the VM before continuing!"
+  exit 1
+#  echo "VM is running, doing other things..."
+#  VBoxManage guestcontrol ${VBOX_NAME_INPUT} execute --image /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/prepareForExportExternal.sh --username root --password welcome1 --wait-stdout
+#
+#  echo "Execution of prepare script complete!"
+#
+#  VBoxManage controlvm ${VBOX_NAME_INPUT} acpipowerbutton
+#
+#  VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
+#
+#  STILL_RUNNING=$?
+#  while [ "$STILL_RUNNING" == "0" ];
+#  do
+#    echo "Sleeping 5s more to wait for VM to stop"
+#    sleep 5s
+#    VBoxManage list runningvms |grep ${VBOX_NAME_INPUT}
+#    STILL_RUNNING=$?
+#  done
 fi
 
 
