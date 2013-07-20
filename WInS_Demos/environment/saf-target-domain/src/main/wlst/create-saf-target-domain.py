@@ -213,7 +213,14 @@ for n in range(1, int(managed_server_count) + 1):
     print 'Setting ServerStart params...'
     serverStart = create(managed_server_name, 'ServerStart')
     serverStart.setArguments(
-        '-Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Xms128m -Xmx256m -Dtangosol.coherence.ttl=0 -Dtangosol.coherence.distributed.localstorage=false -Dtangosol.coherence.session.localstorage=false -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml')
+        ' -Dweblogic.security.SSL.ignoreHostnameVerification=true '
+        ' -Dweblogic.security.TrustKeyStore=DemoTrust '
+        ' -Xms128m -Xmx256m '
+        ' -Dtangosol.coherence.ttl=0 '
+        ' -Dtangosol.coherence.distributed.localstorage=false '
+        ' -Dtangosol.coherence.session.localstorage=false '
+        ' -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml '
+        ' -Djava.security.egd=file:/dev/./urandom')
 
     print 'Creating JMS Server Name=[' + jms_server_name + ']'
     cd('/')

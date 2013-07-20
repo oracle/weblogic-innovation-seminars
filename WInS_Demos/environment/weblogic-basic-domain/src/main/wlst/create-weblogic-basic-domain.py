@@ -53,7 +53,8 @@ managedServer_StartupArgs = '-XX:FlightRecorderOptions=defaultrecording=true '\
                             ' -Dtangosol.coherence.ttl=0 '\
                             ' -Dtangosol.coherence.distributed.localstorage=false '\
                             ' -Dtangosol.coherence.session.localstorage=false'\
-                            ' -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml'
+                            ' -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml' \
+                            ' -Djava.security.egd=file:/dev/./urandom'
 
 ########################################################################################################################
 

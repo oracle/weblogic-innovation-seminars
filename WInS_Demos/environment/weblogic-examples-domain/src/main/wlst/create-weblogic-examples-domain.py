@@ -51,7 +51,7 @@ managedServer_BaseAdminPort = '720'
 #managedServer_StartupArgs = '-XX:FlightRecorderOptions=defaultrecording=true '\
 #                            ' -Xms256m -Xmx512m '
 managedServer_StartupArgs = '-XX:+UnlockCommercialFeatures -XX:+FlightRecorder '\
-                            ' -Xms256m -Xmx512m '
+                            ' -Xms256m -Xmx512m -Djava.security.egd=file:/dev/./urandom'
 ########################################################################################################################
 
 cohCluster_Name = 'coherence-cluster-1'
