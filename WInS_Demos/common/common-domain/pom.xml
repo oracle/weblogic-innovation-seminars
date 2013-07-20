@@ -59,7 +59,7 @@
                   <debug>true</debug>
                   <fileName>${project.basedir}/src/main/wlst/create-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
                     -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
 
@@ -114,7 +114,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/start-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
                     -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
@@ -166,7 +166,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/start-${project.name}-admin.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
                     -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
@@ -219,7 +219,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/stop-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
                     -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
