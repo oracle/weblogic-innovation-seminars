@@ -30,12 +30,12 @@ zerofree()
 
 SUCCESS="TRUE"
 
-
 su oracle -c "sqlplus 'sys/welcome1 as sysdba' @/u01/content/weblogic-innovation-seminars/WInS_Demos/environment/sql/truncate.sql"
 
 killWebLogic.sh
 
 rm -Rf $DOMAINS
+rm -Rf /tmp/wls*
 rm -Rf /tmp/*
 rm -Rf /var/cache/yum/*
 rm -Rf /u01/content/oracle-parcel-service/ops-weblogic/Oracle
