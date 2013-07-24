@@ -1,7 +1,7 @@
 #!/bin/bash
 
 start_date=`date +%s`
-
+ZIP_SCRIPT="/u01/content/weblogic-innovation-seminars/WInS_Demos/control/vbox/zipVM.sh"
 
 VBOX_NAME_INPUT="${1}"
 VBOX_NAME_NEW="${2}"
@@ -11,24 +11,34 @@ ZIP_OUTPUT_DIR="${4}"
 
 ZIP_CMD=/usr/bin/zip
 PROMPT=true
-EXPORT_VBOX=true
-ZIP_OVA=true
+ZIP_OVA=false
 OVA_PRODUCT_NAME="WInS-VirtualBox-VM"
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_EULA_FILE="/u01/content/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
 OVA_MEMORY_SIZE=6144
 OVA_CPU_COUNT=4
 OVA_MD5_FILE=${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}.md5
+
+continue_prompt()
+{
+  if [ "${PROMPT}" != false ]; then
+
+    read -p "Continue? [y/N]" inputRead
+
+    if [ "${inputRead}" != "y" ]; then
+      echo "Exiting..."
+      exit 1
+    fi
+  fi
+}
 parse_control_settings()
 {
 	for param in $*
 	do
 		if [ "${param}" == "-y" ]; then
 			PROMPT=false
-		elif [ "${param}" == "-nozip" ]; then
-			ZIP_OVA=false
-		elif [ "${param}" == "-noexport" ]; then
-			EXPORT_VBOX=false
+		elif [ "${param}" == "--zip" ]; then
+			ZIP_OVA=true
 		fi
 	done
 }
@@ -46,15 +56,7 @@ parse_control_settings $*
 echo "Exporting VM=[${VBOX_NAME_INPUT}] to OVA=[${VBOX_OUTPUT_NAME}] in directory=[$VBOX_OUTPUT_DIR]"
 echo "Zip output dir=[$ZIP_OUTPUT_DIR]"
 
-if [ "${PROMPT}" != false ]; then
-
-	read -p "Continue? [y/N]" inputRead
-
-	if [ "${inputRead}" != "y" ]; then
-	  echo "Exiting..."
-		exit 1
-	fi
-fi
+continue_prompt
 
 echo "Proceeding..."
 VBoxManage list runningvms | grep ${VBOX_NAME_INPUT} > /dev/null
@@ -116,39 +118,31 @@ VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "oracle-weblogic" > /dev/
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "weblogic-innovation-seminars" > /dev/null 2>&1
 
 mkdir -p ${VBOX_OUTPUT_DIR}
-mkdir -p ${ZIP_OUTPUT_DIR}
 
-if [ "${EXPORT_VBOX}" != "false" ];
+if [ -f ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ];
 then
-
-  if [ -f ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ];
-  then
-    echo "Removing existing file: ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
-    rm -v ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
-  fi
-
-  EXPORT_CMD="VBoxManage export ${VBOX_NAME_NEW} "
-  EXPORT_CMD=" ${EXPORT_CMD} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
-  EXPORT_CMD=" ${EXPORT_CMD} --vsys 0 "
-  EXPORT_CMD=" ${EXPORT_CMD} --product ${OVA_PRODUCT_NAME}"
-  EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
-  EXPORT_CMD=" ${EXPORT_CMD} --version ${VBOX_NAME_NEW}"
-  EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
-
-  echo "Exporting VBOX=[${VBOX_NAME_NEW}] with command: ${EXPORT_CMD}"
-	${EXPORT_CMD}
-  check_for_error $?
-  md5 ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} > ${OVA_MD5_FILE}
+  echo "Removing existing file: ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+  rm -v ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
 fi
+
+EXPORT_CMD="VBoxManage export ${VBOX_NAME_NEW} "
+EXPORT_CMD=" ${EXPORT_CMD} --output ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+EXPORT_CMD=" ${EXPORT_CMD} --vsys 0 "
+EXPORT_CMD=" ${EXPORT_CMD} --product ${OVA_PRODUCT_NAME}"
+EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
+EXPORT_CMD=" ${EXPORT_CMD} --version ${VBOX_NAME_NEW}"
+EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
+
+echo "Exporting VBOX=[${VBOX_NAME_NEW}] with command: ${EXPORT_CMD}"
+${EXPORT_CMD}
+check_for_error $?
+md5 ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} > ${OVA_MD5_FILE}
 
 if [ "${ZIP_OVA}" != "false" ];
 then
-  mkdir -p ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
-	ZIP_CMD_LINE=" ${ZIP_CMD} -T -j -s 1g -0 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ${OVA_MD5_FILE}"
-	echo "Zipping VBOX with command: ${ZIP_CMD_LINE}"
-	${ZIP_CMD_LINE}
-	# rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
-	# rm ${OVA_MD5_FILE}
+  ${ZIP_SCRIPT} ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ${ZIP_OUTPUT_DIR}
+  else
+  echo "--zip was not specified, bypassing zip step"
 fi
 
 end_date=`date +%s`
