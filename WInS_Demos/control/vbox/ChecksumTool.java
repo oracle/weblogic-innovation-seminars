@@ -8,6 +8,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
@@ -15,6 +16,12 @@ public class ChecksumTool
 {
   public static final int ONE_MB = 1048576;
   public static final int BUFFER = ONE_MB * 2;
+  public static final HashSet<String> EXCLUDE_MAP = new HashSet<String>();
+
+  static
+  {
+    EXCLUDE_MAP.add(".DS_Store");
+  }
 
   public static void main(String[] args)
   {
@@ -31,11 +38,19 @@ public class ChecksumTool
 
     for (File file : files)
     {
+      if(file.isDirectory()
+          || EXCLUDE_MAP.contains(file.getName())
+          || file.getName().toUpperCase().endsWith(".MD5")
+          )
+      {
+        continue;
+      }
+
       try
       {
         String md5 = getMD5Checksum(file, BUFFER);
         FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath() + ".md5");
-        String fileContents = "MD5 (" + file.getAbsolutePath() + ") = " + md5;
+        String fileContents = "MD5 (" + file.getAbsolutePath() + ") = " + md5 +"\n";
         fileOut.write(fileContents.getBytes());
         fileOut.close();
         System.out.println(fileContents);
