@@ -2,17 +2,23 @@
 
 start_date=`date +%s`
 
+
+VBOX_NAME_INPUT="${1}"
+VBOX_NAME_NEW="${2}"
+VBOX_OUTPUT_NAME="${VBOX_NAME_NEW}.ova"
+VBOX_OUTPUT_DIR="${3}"
+ZIP_OUTPUT_DIR="${4}"
+
 ZIP_CMD=/usr/bin/zip
 PROMPT=true
 EXPORT_VBOX=true
 ZIP_OVA=true
-OVA_VERSION="12.1.2-v6"
-OVA_PRODUCT_NAME="WInS-VirtualBox-VM-${OVA_VERSION}"
+OVA_PRODUCT_NAME="WInS-VirtualBox-VM"
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
 OVA_EULA_FILE="/u01/content/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
 OVA_MEMORY_SIZE=6144
 OVA_CPU_COUNT=4
-
+OVA_MD5_FILE=${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}.md5
 parse_control_settings()
 {
 	for param in $*
@@ -27,11 +33,13 @@ parse_control_settings()
 	done
 }
 
-VBOX_NAME_INPUT="${1}"
-VBOX_NAME_NEW="wins-${OVA_VERSION}"
-VBOX_OUTPUT_NAME="${VBOX_NAME_NEW}.ova"
-VBOX_OUTPUT_DIR="${2}"
-ZIP_OUTPUT_DIR="${3}"
+check_for_error()
+{
+  if [ "$1" != "0" ]; then
+    echo "Error(s) encountered!"
+    exit $1
+   fi
+}
 
 parse_control_settings $*
 
@@ -78,35 +86,34 @@ fi
 
 echo "Renaming VirtualBox from ${VBOX_NAME_INPUT} to ${VBOX_NAME_NEW}"
 VBoxManage modifyvm ${VBOX_NAME_INPUT} --name "${VBOX_NAME_NEW}"
+check_for_error $?
 
 echo "Setting Network Adapter 1 of ${VBOX_NAME_NEW} to NAT"
-VBoxManage modifyvm ${VBOX_NAME_NEW} --nic1 nat
+VBoxManage modifyvm ${VBOX_NAME_NEW} --nic1 nat > /dev/null 2>&1
 
 echo "Setting Memory of ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
-VBoxManage modifyvm ${VBOX_NAME_NEW} --memory ${OVA_MEMORY_SIZE}
+VBoxManage modifyvm ${VBOX_NAME_NEW} --memory ${OVA_MEMORY_SIZE} > /dev/null 2>&1
 
 echo "Setting CPUs ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
-VBoxManage modifyvm ${VBOX_NAME_NEW} --cpus ${OVA_CPU_COUNT}
+VBoxManage modifyvm ${VBOX_NAME_NEW} --cpus ${OVA_CPU_COUNT} > /dev/null 2>&1
 
 echo "Disabling USB on ${VBOX_NAME_NEW}"
-VBoxManage modifyvm ${VBOX_NAME_NEW} --usb off
+VBoxManage modifyvm ${VBOX_NAME_NEW} --usb off > /dev/null 2>&1
+
+echo "Setting OS Type to Oracle_64"
+VBoxManage modifyvm ${VBOX_NAME_NEW} --ostype Oracle_64 > /dev/null 2>&1
+
+VBoxManage modifyvm ${VBOX_NAME_NEW} --clipboard bidirectional > /dev/null 2>&1
 
 # remove shared folders
 echo "Removing shared folders of ${VBOX_NAME_NEW}..."
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "jeffreyawest"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "opt"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "temp"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "tmp"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "oracle-parcel-service"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "oracle-weblogic"
-VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "weblogic-innovation-seminars"
-
-echo "ERRORS ABOVE ARE A_OK!  This simply means the shared fodlers were not mounted!"
-echo "ERRORS ABOVE ARE A_OK!  This simply means the shared fodlers were not mounted!"
-echo "ERRORS ABOVE ARE A_OK!  This simply means the shared fodlers were not mounted!"
-echo "ERRORS ABOVE ARE A_OK!  This simply means the shared fodlers were not mounted!"
-echo "ERRORS ABOVE ARE A_OK!  This simply means the shared fodlers were not mounted!"
-
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "jeffreyawest" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "opt" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "temp" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "tmp" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "oracle-parcel-service" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "oracle-weblogic" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "weblogic-innovation-seminars" > /dev/null 2>&1
 
 mkdir -p ${VBOX_OUTPUT_DIR}
 mkdir -p ${ZIP_OUTPUT_DIR}
@@ -125,20 +132,23 @@ then
   EXPORT_CMD=" ${EXPORT_CMD} --vsys 0 "
   EXPORT_CMD=" ${EXPORT_CMD} --product ${OVA_PRODUCT_NAME}"
   EXPORT_CMD=" ${EXPORT_CMD} --producturl ${OVA_PRODUCT_URL}"
-  EXPORT_CMD=" ${EXPORT_CMD} --version ${OVA_VERSION}"
+  EXPORT_CMD=" ${EXPORT_CMD} --version ${VBOX_NAME_NEW}"
   EXPORT_CMD=" ${EXPORT_CMD} --eulafile ${OVA_EULA_FILE}"
 
   echo "Exporting VBOX=[${VBOX_NAME_NEW}] with command: ${EXPORT_CMD}"
 	${EXPORT_CMD}
+  check_for_error $?
+  md5 ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} > ${OVA_MD5_FILE}
 fi
 
 if [ "${ZIP_OVA}" != "false" ];
 then
   mkdir -p ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
-	ZIP_CMD_LINE=" ${ZIP_CMD} -j -s 1g -1 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}"
+	ZIP_CMD_LINE=" ${ZIP_CMD} -T -j -s 1g -0 ${ZIP_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}/${VBOX_OUTPUT_NAME}.zip ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME} ${OVA_MD5_FILE}"
 	echo "Zipping VBOX with command: ${ZIP_CMD_LINE}"
 	${ZIP_CMD_LINE}
-	rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
+	# rm ${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}
+	# rm ${OVA_MD5_FILE}
 fi
 
 end_date=`date +%s`
