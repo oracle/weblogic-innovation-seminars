@@ -36,7 +36,6 @@ killWebLogic.sh
 
 rm -Rf $DOMAINS
 rm -Rf /tmp/wls*
-rm -Rf /tmp/*
 rm -Rf /var/cache/yum/*
 rm -Rf /u01/content/oracle-parcel-service/ops-weblogic/Oracle
 rm -Rf /home/oracle/Downloads/*
