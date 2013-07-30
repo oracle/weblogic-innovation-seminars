@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=soapUI 4.5.1
+Exec=/bin/sh "/home/oracle/SmartBear/soapUI-4.5.1/bin/soapUI-4.5.1" 
+Icon=/home/oracle/SmartBear/soapUI-4.5.1/.install4j/soapUI-4.5.1.png
