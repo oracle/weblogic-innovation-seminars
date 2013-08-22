@@ -904,6 +904,7 @@ try:
   cmo.setConsoleContextPath('console')
 
   cd('/Servers/AdminServer')
+  set('TunnelingEnabled',true)
   cmo.setListenPortEnabled(true)
   cmo.setAdministrationPort(int(adminServer_AdministrationPort))
   cmo.setListenPort(int(adminServer_ListenPort))
