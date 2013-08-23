@@ -29,7 +29,7 @@ unzip ${SOFTWARE_SOURCE}/OEPE_12.1.2/oepe-12.1.2.1-kepler-distro-linux-gtk-x86_6
 
 # JDEV: ########################################################################################################################
 
-${JAVA} -jar ${SOFTWARE_SOURCE}/JDEVGENERIC_12.1.2_V38525-01/jdev_suite_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_DIR}/jdev-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
+${JAVA} -jar ${SOFTWARE_SOURCE}/JDEVGENERIC_12.1.2_V38525-01/jdev_suite_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/jdev-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest
 
 if [ "$?" != "0" ];
 then
@@ -40,7 +40,7 @@ fi
 sudo /u01/wls1212/root.sh
 # FMW Infrastructure: ########################################################################################################################
 
-${JAVA} -jar ${SOFTWARE_SOURCE}/OFMINFRA_12.1.2_V38521/fmw_infra_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_DIR}/ofm-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
+${JAVA} -jar ${SOFTWARE_SOURCE}/OFMINFRA_12.1.2_V38521/fmw_infra_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/ofm-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest
 
 if [ "$?" != "0" ];
 then
@@ -52,7 +52,7 @@ sudo /u01/wls1212/root.sh
 
 # Database: ########################################################################################################################
 
-${SOFTWARE_SOURCE}/ODB_12.1.2/database/runInstaller -jreLoc ${JAVA_HOME} -ignorePrereq -silent -responseFile ${RESPONSES_DIR}/odb-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -showProgress -waitforcompletion
+${SOFTWARE_SOURCE}/ODB_12.1.2/database/runInstaller -jreLoc ${JAVA_HOME} -ignorePrereq -silent -responseFile ${RESPONSES_SOURCE}/odb-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -showProgress -waitforcompletion
 
 if [ "$?" != "0" ];
 then
@@ -61,11 +61,11 @@ then
 fi
 
 sudo /u01/app/oracle/product/12.1.0/dbhome_1/root.sh
-/u01/app/oracle/product/12.1.0/dbhome_1/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${RESPONSES_DIR}/cfgrsp.properties
+/u01/app/oracle/product/12.1.0/dbhome_1/cfgtoollogs/configToolAllCommands RESPONSE_FILE=${RESPONSES_SOURCE}/cfgrsp.properties
 
 # OUD - Unified Directory: ########################################################################################################################
 
-${SOFTWARE_SOURCE}/OUD_11.1.2.1_V37478-01/Disk1/runInstaller -jreLoc ${JAVA_HOME} -ignoreSysPrereqs -silent -responseFile ${RESPONSES_DIR}/oud-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
+${SOFTWARE_SOURCE}/OUD_11.1.2.1_V37478-01/Disk1/runInstaller -jreLoc ${JAVA_HOME} -ignoreSysPrereqs -silent -responseFile ${RESPONSES_SOURCE}/oud-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
 if [ "$?" != "0" ];
 then
 	echo "Error installing OUD!"
@@ -74,7 +74,7 @@ fi
 
 # OTD: ########################################################################################################################
 
-${SOFTWARE_SOURCE}/OTD_11.1.1.7/Disk1/runInstaller -jreLoc ${JAVA_HOME} -silent -ignoreSysPrereqs -responseFile ${RESPONSES_DIR}/otd-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
+${SOFTWARE_SOURCE}/OTD_11.1.1.7/Disk1/runInstaller -jreLoc ${JAVA_HOME} -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/otd-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
 if [ "$?" != "0" ];
 then
 	echo "Error installing OTD!"
@@ -83,7 +83,7 @@ fi
 
 # OHS: ########################################################################################################################
 
-${SOFTWARE_SOURCE}/OHS_12.1.2_V38524-01/ohs_121200_linux64.bin -silent -response ${RESPONSES_DIR}/ohs-install.rsp -invPtrLoc ${ORA_INVENTORY}
+${SOFTWARE_SOURCE}/OHS_12.1.2_V38524-01/ohs_121200_linux64.bin -silent -response ${RESPONSES_SOURCE}/ohs-install.rsp -invPtrLoc ${ORA_INVENTORY}
 
 # WLS Plugins: ########################################################################################################################
 
