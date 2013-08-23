@@ -14,8 +14,7 @@ if [ "$?" != "0" ]; then
   echo ". /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh" >> ~oracle/.bashrc
 fi
 
-sudo echo "inventory_loc=/u01/app/oraInventory" > /etc/oraInst.loc
-sudo echo "inst_group=oinstall" > /etc/oraInst.loc
+sudo cp  ${RESPONSES_SOURCE}/../oraInst.loc /etc
 sudo chgrp oinstall /etc/oraInst.loc
 
 sudo mkdir /u01
