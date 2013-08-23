@@ -1,6 +1,7 @@
 #!/bin/sh
 
-mkdir -p /u01/content
+sudo mkdir -p /u01/content
+sudo chown oracle:oinstall /u01/content
 
 cd /u01/content
 

@@ -25,7 +25,7 @@ ORACLE_HOSTNAME=wins-vbox.localdomain
 UNIX_GROUP_NAME=oracle
 INVENTORY_LOCATION=/u01/app/oraInventory
 SELECTED_LANGUAGES=en
-ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1
+ORACLE_HOME=/u01/app/oracle/product/12.1/database
 ORACLE_BASE=/u01/app/oracle
 
 oracle.install.db.InstallEdition=SE
