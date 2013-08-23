@@ -51,10 +51,19 @@ check_for_error()
    fi
 }
 
+usage()
+{
+  echo "Argument 1 (Required): VBOX_NAME_INPUT=${VBOX_NAME_INPUT}"
+  echo "Argument 2 (Required): VBOX_NAME_NEW=${VBOX_NAME_NEW}"
+  echo "Argument 3 (Required): VBOX_OUTPUT_DIR=${VBOX_OUTPUT_DIR}"
+  echo "Argument 4 (Optional): ZIP_OUTPUT_DIR=${ZIP_OUTPUT_DIR}"
+}
 parse_control_settings $*
 
 echo "Exporting VM=[${VBOX_NAME_INPUT}] to OVA=[${VBOX_OUTPUT_NAME}] in directory=[$VBOX_OUTPUT_DIR]"
 echo "Zip output dir=[$ZIP_OUTPUT_DIR]"
+
+usage
 
 continue_prompt
 

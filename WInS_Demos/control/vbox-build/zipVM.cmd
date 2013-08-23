@@ -9,6 +9,20 @@ set ZIP_OUTPUT_DIR=%3
 
 echo Zipping OVA=[%OVA_FILENAME%] into output dir=[%ZIP_OUTPUT_DIR%]
 
+set DirPath=%0
+
+:loop1
+  If "%DirPath%" == "" GoTo :done
+  For /F "tokens=1* delims=\" %%a in ("%DirPath%") Do set memory=%%a
+  For /F "tokens=1* delims=\" %%a in ("%DirPath%") Do Set DirPath=%%b
+  GoTo :loop1
+
+:done
+  echo %memory%
+  goto :end
+
+echo DirPath=%DirPath%
+
 set ZIP_CLI_CMD=c:\data\7-zip\7z.exe
 set ZIP_METHOD=zip
 SET ZIP_COMPRESSION_LEVEL=2
