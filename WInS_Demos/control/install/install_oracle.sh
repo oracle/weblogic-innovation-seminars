@@ -13,17 +13,18 @@ grep winsEnv ~oracle/.bashrc
 if [ "$?" != "0" ]; then
   echo ". /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh" >> ~oracle/.bashrc
 fi
-hudson-3.0.1.b2-1.1.noarch.rpm
+
+sudo echo "inventory_loc=/u01/app/oraInventory" > /etc/oraInst.loc
+sudo echo "inst_group=oinstall" > /etc/oraInst.loc
+sudo chgrp oinstall /etc/oraInst.loc
+
 sudo mkdir /u01
 sudo chown -R oracle:oinstall /u01
 sudo chmod -R 775 /u01
 
 sudo rpm -Uvh ${SOFTWARE_SOURCE}/sqldeveloper-3.2.20.09.87-1.noarch.rpm
 
-# TOPLINK: 
-${JAVA} -jar ${SOFTWARE_SOURCE}/TOPLINK_12.1.2/toplink_quick_121200.jar  ORACLE_HOME=/u01/toplink1212
-
-# OEPE: 
+# OEPE:
 mkdir -p /u01/oepe
 unzip ${SOFTWARE_SOURCE}/OEPE_12.1.2/oepe-12.1.2.1-kepler-distro-linux-gtk-x86_64.zip -d /u01/oepe
 
@@ -72,7 +73,6 @@ then
 	exit 1
 fi
 
-
 # OTD: ########################################################################################################################
 
 ${SOFTWARE_SOURCE}/OTD_11.1.1.7/Disk1/runInstaller -jreLoc ${JAVA_HOME} -silent -ignoreSysPrereqs -responseFile ${RESPONSES_DIR}/otd-install.rsp -invPtrLoc ${ORA_INVENTORY} -logLevel finest -waitforcompletion
@@ -86,7 +86,10 @@ fi
 
 ${SOFTWARE_SOURCE}/OHS_12.1.2_V38524-01/ohs_121200_linux64.bin -silent -response ${RESPONSES_DIR}/ohs-install.rsp -invPtrLoc ${ORA_INVENTORY}
 
-mkdir -p /u01/wlplugins_1212
-unzip ${SOFTWARE_SOURCE}/WLPLUGIN_12.1.2_V38594-01/WLSPlugin12c-64bit-Apache2.2-linux64-x86_64.zip -d /u01/wls-plugins-12.1.2
+# WLS Plugins: ########################################################################################################################
 
+mkdir -p /u01/weblogic-plugins-12.1.2
+unzip ${SOFTWARE_SOURCE}/WLPLUGIN_12.1.2_V38594-01/WLSPlugin12c-64bit-Apache2.2-linux64-x86_64.zip -d /u01/weblogic-plugins-12.1.2
 
+# TOPLINK: ########################################################################################################################
+${JAVA} -jar ${SOFTWARE_SOURCE}/TOPLINK_12.1.2/toplink_quick_121200.jar  ORACLE_HOME=/u01/wls1212
