@@ -1,0 +1,10 @@
+DEVICE=eth6
+NAME=eth6
+BOOTPROTO=none 
+ONBOOT=yes 
+PREFIX=12
+IPADDR=172.16.254.254
+DEFROUTE=yes
+IPV6init=no
+domain=localdomain
+USERCTL=no

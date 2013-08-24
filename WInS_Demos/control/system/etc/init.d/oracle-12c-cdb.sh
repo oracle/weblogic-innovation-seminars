@@ -25,7 +25,7 @@ logger="/usr/bin/logger -t rc.local "
 case "$1" in
     'start')
 				echo -n "Starting ${service_name}: "
-        su $ORACLE_OWNER -c "${ORACLE_HOME}/bin/dbstart ${ORACLE_HOME} >/dev/null 2>&1"
+        su $ORACLE_OWNER -c "${ORACLE_HOME}/bin/dbstart ${ORACLE_HOME}"
 
         RETVAL=$?
 				if [ ${RETVAL} == "0" ]; then
@@ -39,7 +39,7 @@ case "$1" in
 
     'stop')
 				echo -n "Stopping ${service_name}: "
-        su $ORACLE_OWNER -c "${ORACLE_HOME}/bin/dbshut ${ORACLE_HOME} >/dev/null 2>&1"
+        su $ORACLE_OWNER -c "${ORACLE_HOME}/bin/dbshut ${ORACLE_HOME}"
 
         RETVAL=$?
 				if [ ${RETVAL} == "0" ]; then
