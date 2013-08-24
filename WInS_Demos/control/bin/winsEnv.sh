@@ -28,7 +28,7 @@ export PATH="${ORACLE_HOME}/bin:${PATH}"
 export THIRD_PARTY="/u01/third-party"
 
 export ANT_HOME="${THIRD_PARTY}/apache-ant-1.9.2"
-export PATH="${ANT_HOME}/bin"
+export PATH="${ANT_HOME}/bin:${PATH}"
 
 export M2_HOME="${THIRD_PARTY}/apache-maven-3.0.5"
 export MAVEN_HOME="${M2_HOME}"
