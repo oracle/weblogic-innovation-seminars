@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=soapUI 4.5.2
+Exec=/usr/java/latest /u01/third-party/soapui-4.5.2/bin/soapui-4.5.2.jar
+Icon=/u01/third-party/soapui-4.5.2/bin/soapui-4.5.2.png

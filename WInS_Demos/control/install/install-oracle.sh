@@ -52,23 +52,36 @@ echo "## ${SW_PACKAGE} #########################################################
 mkdir -p /u01/oepe
 exec_command "$SW_PACKAGE" "unzip ${SOFTWARE_SOURCE}/OEPE_12.1.2/oepe-12.1.2.1-kepler-distro-linux-gtk-x86_64.zip -d /u01/oepe"
 
-
-SW_PACKAGE="JDeveloper 12c"
+SW_PACKAGE="WLS 12.1.2"
 echo "## ${SW_PACKAGE} ########################################################################################################################"
 
-exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/JDEVGENERIC_12.1.2_V38525-01/jdev_suite_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/jdev-install.rsp -invPtrLoc ${ORA_INVENTORY}" 
+exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/WLS_12.1.2/wls_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/wls-install.rsp -invPtrLoc ${ORA_INVENTORY}"
+exec_command "WLS Maven Plugin" "${M2_HOME}/bin/mvn install:install-file -Dfile=$WL_HOME/server/lib/wls-maven-plugin.jar -DpomFile=$WL_HOME/server/lib/pom.xml"
+exec_command "WLS Zip Distribution" "${M2_HOME}/bin/mvn install:install-file -Dfile=/software/WLS_12.1.2/wls1212_dev.zip -DgroupId=com.oracle.weblogic -DartifactId=wls-dev -Dpackaging=zip -Dversion=12.1.2.0"
 
-
-SW_PACKAGE="OFM Infrastructure"
-echo "## ${SW_PACKAGE} ########################################################################################################################"
-
-exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/OFMINFRA_12.1.2_V38521/fmw_infra_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/ofm-install.rsp -invPtrLoc ${ORA_INVENTORY}"
-exec_command "$SW_PACKAGE" "mkdir -p /u01/wls1212/wlserver/common/nodemanager" 
-exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/nodemanager/nodemanager.properties /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties" 
+exec_command "$SW_PACKAGE" "mkdir -p /u01/wls1212/wlserver/common/nodemanager"
+exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/nodemanager/nodemanager.properties /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties"
+exec_command "$SW_PACKAGE" "sudo chown oracle:oinstall /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties"
 exec_command "$SW_PACKAGE" "sudo rm -f /etc/xinetd.d/nodemanager*"
-exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/xinetd.d/nodemanagersvc1_1212 /etc/xinetd.d/"
+exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/etc/xinetd.d/nodemanagersvc1_1212 /etc/xinetd.d/"
 exec_command "$SW_PACKAGE" "sudo chkconfig xinetd on"
-exec_command "$SW_PACKAGE" "sudo service xinetd restart"
+#
+#SW_PACKAGE="JDeveloper 12c"
+#echo "## ${SW_PACKAGE} ########################################################################################################################"
+#
+#exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/JDEVGENERIC_12.1.2_V38525-01/jdev_suite_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/jdev-install.rsp -invPtrLoc ${ORA_INVENTORY}"
+#
+#
+#SW_PACKAGE="OFM Infrastructure"
+#echo "## ${SW_PACKAGE} ########################################################################################################################"
+#
+#exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/OFMINFRA_12.1.2_V38521/fmw_infra_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/ofm-install.rsp -invPtrLoc ${ORA_INVENTORY}"
+#exec_command "$SW_PACKAGE" "mkdir -p /u01/wls1212/wlserver/common/nodemanager"
+#exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/nodemanager/nodemanager.properties /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties"
+#exec_command "$SW_PACKAGE" "sudo rm -f /etc/xinetd.d/nodemanager*"
+#exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/xinetd.d/nodemanagersvc1_1212 /etc/xinetd.d/"
+#exec_command "$SW_PACKAGE" "sudo chkconfig xinetd on"
+
 
 SW_PACKAGE="OUD"
 echo "## ${SW_PACKAGE} ########################################################################################################################"
@@ -122,6 +135,8 @@ exec_command "$SW_PACKAGE" "sudo chkconfig oracle-12c-cdb on"
 exec_command "$SW_PACKAGE" "sudo chkconfig oracle-12c-pdb on"
 exec_command "$SW_PACKAGE" "sudo service oracle-12c-cdb start"
 exec_command "$SW_PACKAGE" "sudo service oracle-12c-pdb start"
+exec_command "$SW_PACKAGE" "sqlplus 'sys/welcome1 as sysdba' @${CONTROL_DIR}/install/sql/setup-pdb.sql"
+
 
 SW_PACKAGE="Final Permissions"
 echo "## ${SW_PACKAGE} ########################################################################################################################"

@@ -15,6 +15,13 @@ sqlplus '/ as sysdba' @${DEMOS_HOME}/environment/sql/truncate.sql >> /dev/null
 sqlplus '/ as sysdba' @${DEMOS_HOME}/environment/sql/reset_passwords.sql >> /dev/null
 
 echo "Creating Domains..."
+cd ${DEMOS_HOME}/environment/weblogic-basic-domain
+mvn -P create-domain
+
+cd ${DEMOS_HOME}/environment/weblogic-examples-domain
+mvn -P create-domain
+
+cd ${DEMOS_HOME}/environment/saf-target-domain
 mvn -P create-domain
 
 if [ "$?" == "0" ]; then

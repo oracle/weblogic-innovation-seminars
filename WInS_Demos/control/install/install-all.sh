@@ -43,3 +43,7 @@ then
 	echo "Error installing Desktop Links!"
 	exit 1
 fi
+
+
+# mvn verify
+# $DEMOS_HOME/initialize.sh
