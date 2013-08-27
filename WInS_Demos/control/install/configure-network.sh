@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "${0} / CONTROL_DIR=${CONTROL_DIR}"
+echo "${0} | CONTROL_DIR=${CONTROL_DIR}"
 
 
 if [ -z "${CONTROL_DIR}" ]; then

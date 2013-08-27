@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <!-- ==================================================================================== -->
 
@@ -13,7 +12,6 @@
   <!-- ==================================================================================== -->
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.oracle.weblogic.demo.wins</groupId>
   <artifactId>common-domain</artifactId>
   <version>12.1.2.0.0</version>
   <name>common-domain</name>
@@ -59,8 +57,7 @@
                   <debug>true</debug>
                   <fileName>${project.basedir}/src/main/wlst/create-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
-                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
 
                 </configuration>
@@ -114,8 +111,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/start-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
-                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
 
@@ -128,6 +124,7 @@
       </build>
 
     </profile>
+
     <!-- +++++++++++++++++++++++++ -->
     <profile>
       <id>start-domain-admin</id>
@@ -166,8 +163,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/start-${project.name}-admin.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
-                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
 
@@ -219,8 +215,7 @@
 
                   <fileName>${project.basedir}/src/main/wlst/stop-${project.name}.py</fileName>
                   <propertiesFile>${project.basedir}/../environment.properties</propertiesFile>
-                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom
-                    -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
+                  <args>-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.TrustKeyStore=DemoTrust -skipWLSModuleScanning
                   </args>
                 </configuration>
 

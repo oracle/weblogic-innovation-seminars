@@ -1,6 +1,5 @@
 import time
 
-loadProperties('environment.properties')
 
 ########################################################################################################################
 
@@ -618,6 +617,7 @@ def createSAFSourceModules():
   jmsMySystemResource = create(module_name, 'JMSSystemResource')
   jmsMySystemResource.setTargets(jarray.array([clusterMBean], weblogic.management.configuration.TargetMBean))
 
+
   cd('/JMSSystemResources/' + module_name)
   subdeployment = create('cluster-subdeployment', 'SubDeployment')
   subdeployment.setTargets(jarray.array(jmsServerMBeans, weblogic.management.configuration.TargetMBean))
@@ -879,236 +879,233 @@ def configureManagedServersOnline():
 ########################################################################################################################
 
 
-def main():
-  var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
-  print 'Creating domain in path=' + var_domain_dir
 
-  try:
-    createDomain(WL_HOME + '/common/templates/wls/wls.jar', var_domain_dir, adminServer_Username,
-                 adminServer_Password)
-    print 'domain created'
+var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
+print 'Creating domain in path=' + var_domain_dir
 
-    readDomain(var_domain_dir)
-    print 'read domain'
+try:
+  createDomain(WL_HOME + '/common/templates/wls/wls.jar', var_domain_dir, adminServer_Username,
+               adminServer_Password)
+  print 'domain created'
 
-    cd('/')
-    cmo.setExalogicOptimizationsEnabled(false)
-    cmo.setClusterConstraintsEnabled(false)
-    cmo.setGuardianEnabled(false)
-    cmo.setAdministrationPortEnabled(false)
-    cmo.setConsoleEnabled(true)
-    cmo.setConsoleExtensionDirectory('console-ext')
-    cmo.setProductionModeEnabled(false)
-    cmo.setAdministrationProtocol('t3s')
-    cmo.setConfigBackupEnabled(false)
-    cmo.setConfigurationAuditType('none')
-    cmo.setInternalAppsDeployOnDemandEnabled(false)
-    cmo.setConsoleContextPath('console')
-
-    cd('/Servers/AdminServer')
-    set('TunnelingEnabled', true)
-    cmo.setListenPortEnabled(true)
-    cmo.setAdministrationPort(int(adminServer_AdministrationPort))
-    cmo.setListenPort(int(adminServer_ListenPort))
-    cmo.setListenAddress(adminServer_ListenAddress)
-    cmo.setWeblogicPluginEnabled(false)
-    cmo.setJavaCompiler('javac')
-    cmo.setStartupMode('RUNNING')
-    cmo.setVirtualMachineName(domain_Name + '_AdminServer')
-    cmo.setClientCertProxyEnabled(false)
-
-    create('AdminServer', 'ServerStart')
-
-    cd('/Servers/AdminServer/ServerStart/AdminServer')
-
-    cmo.setJavaHome(JAVA_HOME)
-    cmo.setArguments(adminServer_StartupArgs)
-
-  except:
-    print 'Unable to create domain!'
-    dumpStack()
-    exit('1')
-
-  try:
-    print 'updating domain'
-    updateDomain()
-  except:
-    print 'Unable to update domain'
-    dumpStack()
-    exit('1')
-
-  machine = createMachine(machine_Name, 'Plain', machine_ListenAddress, 5556)
+  readDomain(var_domain_dir)
+  print 'read domain'
 
   cd('/')
-  clusterMBean = create(cluster_Name, 'Cluster')
+  cmo.setExalogicOptimizationsEnabled(false)
+  cmo.setClusterConstraintsEnabled(false)
+  cmo.setGuardianEnabled(false)
+  cmo.setAdministrationPortEnabled(false)
+  cmo.setConsoleEnabled(true)
+  cmo.setConsoleExtensionDirectory('console-ext')
+  cmo.setProductionModeEnabled(false)
+  cmo.setAdministrationProtocol('t3s')
+  cmo.setConfigBackupEnabled(false)
+  cmo.setConfigurationAuditType('none')
+  cmo.setInternalAppsDeployOnDemandEnabled(false)
+  cmo.setConsoleContextPath('console')
 
-  try:
-    jdbcSystemResource = createClusterDataSource(['com.oracle.weblogic.demo.jdbc.cluster-ds'],
-                                                 datasource_JdbcDriver,
-                                                 datasource_GlobalTransactions
-      ,
-                                                 datasource_jdbc_url,
-                                                 datasource_User,
-                                                 datasource_Password,
-                                                 clusterMBean)
+  cd('/Servers/AdminServer')
+  set('TunnelingEnabled', true)
+  cmo.setListenPortEnabled(true)
+  cmo.setAdministrationPort(int(adminServer_AdministrationPort))
+  cmo.setListenPort(int(adminServer_ListenPort))
+  cmo.setListenAddress(adminServer_ListenAddress)
+  cmo.setWeblogicPluginEnabled(false)
+  cmo.setJavaCompiler('javac')
+  cmo.setStartupMode('RUNNING')
+  cmo.setVirtualMachineName(domain_Name + '_AdminServer')
+  cmo.setClientCertProxyEnabled(false)
 
-    # changed from consensus by JAW
-    clusterMBean.setMigrationBasis('database')
-    clusterMBean.setDataSourceForAutomaticMigration(jdbcSystemResource)
-    ####### Create Managed Servers
+  create('AdminServer', 'ServerStart')
 
-    print 'Creating ' + str(managedServer_Count) + ' Managed Servers...'
+  cd('/Servers/AdminServer/ServerStart/AdminServer')
 
-    jmsServerMBeans = []
-    managedServerMBeans = []
-    migratableTargetMBeans = []
+  cmo.setJavaHome(JAVA_HOME)
+  cmo.setArguments(adminServer_StartupArgs)
 
-    for n in range(1, int(managedServer_Count) + 1):
-      managedServer_Name = managedServer_BaseName + '-' + str(n)
-      managedServer_ListenPort = int(str(managedServer_BasePort) + str(n))
-      managedServer_AdminPort = int(str(managedServer_BaseAdminPort) + str(n))
-      managedServer_ListenAddress = machine_ListenAddress
-      migratableTargetName = managedServer_Name + ' (migratable)'
+except:
+  print 'Unable to create domain!'
+  dumpStack()
+  exit('1')
 
-      print 'Creating Server Name=[' + managedServer_Name + '] with Listen Port: ' + str(managedServer_ListenPort)
-      cd('/')
-      managedServer = create(managedServer_Name, 'Server')
-      managedServer.setListenPort(managedServer_ListenPort)
-      managedServer.setListenAddress(managedServer_ListenAddress)
-      managedServer.setAdministrationPort(managedServer_AdminPort)
-      managedServer.setCluster(clusterMBean)
-      managedServer.setMachine(machine)
-      managedServer.setAutoRestart(false)
-      managedServerMBeans.append(managedServer)
+try:
+  print 'updating domain'
+  updateDomain()
+except:
+  print 'Unable to update domain'
+  dumpStack()
+  exit('1')
 
-      cd('/Servers/' + managedServer_Name)
-      serverStart = create(managedServer_Name, 'ServerStart')
-      serverStart.setJavaHome(JAVA_HOME)
-      serverStart.setArguments(managedServer_StartupArgs)
+machine = createMachine(machine_Name, 'Plain', machine_ListenAddress, 5556)
 
-      cd('/')
+cd('/')
+clusterMBean = create(cluster_Name, 'Cluster')
 
-      print 'Creating MigratableTarget name=[' + migratableTargetName + ']'
-      migratableTarget = create(migratableTargetName, 'MigratableTarget')
-      migratableTarget.setUserPreferredServer(managedServer)
-      migratableTarget.setMigrationPolicy('failure-recovery')
-      migratableTargetMBeans.append(migratableTarget)
+try:
+  jdbcSystemResource = createClusterDataSource(['com.oracle.weblogic.demo.jdbc.cluster-ds'],
+                                               datasource_JdbcDriver,
+                                               datasource_GlobalTransactions
+    ,
+                                               datasource_jdbc_url,
+                                               datasource_User,
+                                               datasource_Password,
+                                               clusterMBean)
 
-    for migratableTarget in migratableTargetMBeans:
-      migratableTarget.setConstrainedCandidateServers(managedServerMBeans)
-      cd('/')
+  # changed from consensus by JAW
+  clusterMBean.setMigrationBasis('database')
+  clusterMBean.setDataSourceForAutomaticMigration(jdbcSystemResource)
+  ####### Create Managed Servers
 
-    # SPLIT INTO DIFFERENT SCOPES BECAUSE IT WASNT WORKING IN A SINGLE SCOPE!
-    for n in range(1, int(managedServer_Count) + 1):
-      jmsServerName = jmsServer_BaseName + '-' + str(n)
-      jdbcStoreName = jmsServerName + '-jdbcStore'
-      managedServer_Name = managedServerMBeans[n - 1].getName()
+  print 'Creating ' + str(managedServer_Count) + ' Managed Servers...'
 
-      print 'Managed Server Name: ' + managedServer_Name
+  jmsServerMBeans = []
+  managedServerMBeans = []
+  migratableTargetMBeans = []
 
-      jmsServerTargets = jarray.array([migratableTargetMBeans[n - 1]], weblogic.management.configuration.TargetMBean)
+  for n in range(1, int(managedServer_Count) + 1):
+    managedServer_Name = managedServer_BaseName + '-' + str(n)
+    managedServer_ListenPort = int(str(managedServer_BasePort) + str(n))
+    managedServer_AdminPort = int(str(managedServer_BaseAdminPort) + str(n))
+    managedServer_ListenAddress = machine_ListenAddress
+    migratableTargetName = managedServer_Name + ' (migratable)'
 
-      print 'Creating JMS JDBC Store [' + jdbcStoreName + ']'
-      cd('/')
-      jdbcStore = create(jdbcStoreName, 'JDBCStore')
-      jdbcStore.setDataSource(jdbcSystemResource)
-      jdbcStore.setPrefixName('JMSSTORE' + str(n))
-      jdbcStore.setTargets(jmsServerTargets)
+    print 'Creating Server Name=[' + managedServer_Name + '] with Listen Port: ' + str(managedServer_ListenPort)
+    cd('/')
+    managedServer = create(managedServer_Name, 'Server')
+    managedServer.setListenPort(managedServer_ListenPort)
+    managedServer.setListenAddress(managedServer_ListenAddress)
+    managedServer.setAdministrationPort(managedServer_AdminPort)
+    managedServer.setCluster(clusterMBean)
+    managedServer.setMachine(machine)
+    managedServer.setAutoRestart(false)
+    managedServerMBeans.append(managedServer)
 
-      print 'Creating JMS Server Name=[' + jmsServerName + ']'
-      cd('/')
-      jmsServer = create(jmsServerName, 'JMSServer')
-      jmsServerMBeans.append(jmsServer)
-      jmsServer.setPersistentStore(jdbcStore)
-      jmsServer.setTargets(jmsServerTargets)
+    cd('/Servers/' + managedServer_Name)
+    serverStart = create(managedServer_Name, 'ServerStart')
+    serverStart.setJavaHome(JAVA_HOME)
+    serverStart.setArguments(managedServer_StartupArgs)
 
-    createJMSModules(clusterMBean, jmsServerMBeans)
-
-  except:
-    dumpStack()
-    exit('1')
-
-  try:
     cd('/')
 
-    createPhysicalDataSource([datasource_JndiName],
-                             datasource_JdbcDriver,
-                             datasource_GlobalTransactions,
-                             datasource_jdbc_url,
-                             datasource_User,
-                             datasource_Password,
-                             5, 5,
-                             clusterMBean)
-  except:
-    dumpStack()
-    exit('1')
+    print 'Creating MigratableTarget name=[' + migratableTargetName + ']'
+    migratableTarget = create(migratableTargetName, 'MigratableTarget')
+    migratableTarget.setUserPreferredServer(managedServer)
+    migratableTarget.setMigrationPolicy('failure-recovery')
+    migratableTargetMBeans.append(migratableTarget)
 
-  updateDomain()
+  for migratableTarget in migratableTargetMBeans:
+    migratableTarget.setConstrainedCandidateServers(managedServerMBeans)
+    cd('/')
 
-  print ''
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print 'Completed WLST OFFLINE successfully...!!!'
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print ''
+  # SPLIT INTO DIFFERENT SCOPES BECAUSE IT WASNT WORKING IN A SINGLE SCOPE!
+  for n in range(1, int(managedServer_Count) + 1):
+    jmsServerName = jmsServer_BaseName + '-' + str(n)
+    jdbcStoreName = jmsServerName + '-jdbcStore'
+    managedServer_Name = managedServerMBeans[n - 1].getName()
 
-  ########################################################################################################################
-  ########################################################################################################################
-  ########################################################################################################################
+    print 'Managed Server Name: ' + managedServer_Name
 
-  print ''
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print 'Beginning ONLINE configuration tasks'
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print ''
+    jmsServerTargets = jarray.array([migratableTargetMBeans[n - 1]], weblogic.management.configuration.TargetMBean)
 
+    print 'Creating JMS JDBC Store [' + jdbcStoreName + ']'
+    cd('/')
+    jdbcStore = create(jdbcStoreName, 'JDBCStore')
+    jdbcStore.setDataSource(jdbcSystemResource)
+    jdbcStore.setPrefixName('JMSSTORE' + str(n))
+    jdbcStore.setTargets(jmsServerTargets)
 
+    print 'Creating JMS Server Name=[' + jmsServerName + ']'
+    cd('/')
+    jmsServer = create(jmsServerName, 'JMSServer')
+    jmsServerMBeans.append(jmsServer)
+    jmsServer.setPersistentStore(jdbcStore)
+    jmsServer.setTargets(jmsServerTargets)
 
-  nmConnect(adminServer_Username, adminServer_Password, machine_ListenAddress, 5556, domain_Name, var_domain_dir, 'plain')
+  createJMSModules(clusterMBean, jmsServerMBeans)
 
-  print ''
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print 'Connected to NODE MANAGER Successfully...!!!'
-  print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
-  print ''
+except:
+  dumpStack()
+  exit('1')
 
-  nmStart('AdminServer')
+try:
+  cd('/')
 
-  ## ONLINE CONFIG  #####################################################
+  createPhysicalDataSource([datasource_JndiName],
+                           datasource_JdbcDriver,
+                           datasource_GlobalTransactions,
+                           datasource_jdbc_url,
+                           datasource_User,
+                           datasource_Password,
+                           5, 5,
+                           clusterMBean)
+except:
+  dumpStack()
+  exit('1')
 
-  connect(adminServer_Username, adminServer_Password, adminServer_URL)
+updateDomain()
 
-  print '@@@ Connected to AdminServer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+print ''
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print 'Completed WLST OFFLINE successfully...!!!'
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print ''
 
-  edit()
-  startEdit()
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
 
-  configureDomain_online()
-
-  configureManagedServersOnline()
-
-  createCoherenceCluster_online(cohCluster_Name, cohCluster_ListenAddress, cohCluster_ListenPort,
-                                jarray.array([ObjectName('com.bea:Name=' + cluster_Name + ',Type=Cluster')], ObjectName),
-                                cohCluster_TTL)
-
-  createCoherenceServers_online(cohCluster_Name,
-                                cohCluster_ListenAddress,
-                                cohCluster_ListenPort,
-                                cohServer_StartupArgs,
-                                cohServer_Count,
-                                cohServer_Classpath,
-                                machine_Name)
-
-  createSpringWLDFModule_online()
-
-  ## DEPLOY LIBRARIES #####################################################
-
-  save()
-  activate(block="true")
-
-  deploySharedLibraries()
-
-  exit()
+print ''
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print 'Beginning ONLINE configuration tasks'
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print ''
 
 
-if __name__ == "__main__":
-  main()
+
+nmConnect(adminServer_Username, adminServer_Password, machine_ListenAddress, 5556, domain_Name, var_domain_dir, 'plain')
+
+print ''
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print 'Connected to NODE MANAGER Successfully...!!!'
+print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
+print ''
+
+nmStart('AdminServer')
+
+## ONLINE CONFIG  #####################################################
+
+connect(adminServer_Username, adminServer_Password, adminServer_URL)
+
+print '@@@ Connected to AdminServer @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+
+edit()
+startEdit()
+
+configureDomain_online()
+
+configureManagedServersOnline()
+
+createCoherenceCluster_online(cohCluster_Name, cohCluster_ListenAddress, cohCluster_ListenPort,
+                              jarray.array([ObjectName('com.bea:Name=' + cluster_Name + ',Type=Cluster')], ObjectName),
+                              cohCluster_TTL)
+
+createCoherenceServers_online(cohCluster_Name,
+                              cohCluster_ListenAddress,
+                              cohCluster_ListenPort,
+                              cohServer_StartupArgs,
+                              cohServer_Count,
+                              cohServer_Classpath,
+                              machine_Name)
+
+createSpringWLDFModule_online()
+
+## DEPLOY LIBRARIES #####################################################
+
+save()
+activate(block="true")
+
+deploySharedLibraries()
+
+exit()
+

@@ -86,6 +86,7 @@ cohServer_StartupArgs = '-Dtangosol.coherence.management.remote=true'\
 ########################################################################################################################
 ########################################################################################################################
 
+
 var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
 print 'Creating domain in path=' + var_domain_dir
 

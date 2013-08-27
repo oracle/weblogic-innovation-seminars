@@ -127,125 +127,123 @@ def createMachine(machine_name, nodemanager_type, listen_address, listen_port):
   return machine
 
 ########################################
-def main():
-  var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
-  print 'Creating domain in path=' + var_domain_dir
 
-  try:
-    createDomain(DOMAIN_TEMPLATE, var_domain_dir, adminServer_Username, adminServer_Password)
-  except:
-    dumpStack()
-    print 'Unable to create domain!'
-    exit('errors in WLST')
-  else:
-    print 'domain created'
+var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
+print 'Creating domain in path=' + var_domain_dir
 
-  try:
-    readDomain(var_domain_dir)
-    print 'read domain'
+try:
+  createDomain(DOMAIN_TEMPLATE, var_domain_dir, adminServer_Username, adminServer_Password)
+except:
+  dumpStack()
+  print 'Unable to create domain!'
+  exit('errors in WLST')
+else:
+  print 'domain created'
 
-    cd('/')
-    cmo.setExalogicOptimizationsEnabled(false)
-    cmo.setClusterConstraintsEnabled(false)
-    cmo.setGuardianEnabled(false)
-    cmo.setAdministrationPortEnabled(false)
-    cmo.setConsoleEnabled(true)
-    cmo.setConsoleExtensionDirectory('console-ext')
-    cmo.setProductionModeEnabled(false)
-    cmo.setAdministrationProtocol('t3s')
-    cmo.setConfigBackupEnabled(false)
-    cmo.setConfigurationAuditType('none')
-    cmo.setInternalAppsDeployOnDemandEnabled(false)
-    cmo.setConsoleContextPath('console')
+try:
+  readDomain(var_domain_dir)
+  print 'read domain'
 
-    cd('/Servers/AdminServer')
-    cmo.setListenPortEnabled(true)
-    cmo.setAdministrationPort(int(adminServer_AdministrationPort))
-    cmo.setListenPort(int(adminServer_ListenPort))
-    cmo.setWeblogicPluginEnabled(false)
-    cmo.setJavaCompiler('javac')
-    cmo.setStartupMode('RUNNING')
-    cmo.setVirtualMachineName(domain_Name + '_AdminServer')
-    cmo.setClientCertProxyEnabled(false)
-  except:
-    print 'Unable to read or configure domain!'
-    dumpStack()
-    exit('errors in WLST')
+  cd('/')
+  cmo.setExalogicOptimizationsEnabled(false)
+  cmo.setClusterConstraintsEnabled(false)
+  cmo.setGuardianEnabled(false)
+  cmo.setAdministrationPortEnabled(false)
+  cmo.setConsoleEnabled(true)
+  cmo.setConsoleExtensionDirectory('console-ext')
+  cmo.setProductionModeEnabled(false)
+  cmo.setAdministrationProtocol('t3s')
+  cmo.setConfigBackupEnabled(false)
+  cmo.setConfigurationAuditType('none')
+  cmo.setInternalAppsDeployOnDemandEnabled(false)
+  cmo.setConsoleContextPath('console')
 
-  try:
-    print 'updating domain'
-    updateDomain()
-  except:
-    print 'Unable to update domain'
-    dumpStack()
-    exit('errors in WLST')
-  else:
-    print 'updateDomain() succeeded!'
-
-  machine = createMachine(machine_Name, 'Plain', machine_ListenAddress, 5556)
   cd('/Servers/AdminServer')
-  cmo.setMachine(machine)
-  serverStart = create('AdminServer', 'ServerStart')
-  serverStart.setArguments(
-    '-Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Xms128m -Xmx256m')
-
-  cd('/')
-  cluster = create(cluster_Name, 'Cluster')
-
-  jdbcSystemResource = createPhysicalDataSource(datasource_jndi_name, datasource_jdbc_driver,
-                                                datasource_global_transactions,
-                                                datasource_jdbc_url, datasource_user,
-                                                datasource_password, cluster)
-
-  ####### Create Managed Servers
-
-  print 'Creating ' + str(managed_server_count) + ' Managed Servers...'
-
-  jmsServerMBeans = []
-  managedServers = []
-
-  for n in range(1, int(managed_server_count) + 1):
-    managed_server_name = managed_server_name_base + '-' + str(n)
-    managed_server_listen_port = int(str(managed_server_port_base) + str(n))
-    managed_server_listen_address = listen_address
-    jms_server_name = jms_sever_name_base + '-' + str(n)
-
-    print 'Creating Server Name=[' + managed_server_name + '] with Listen Port: ' + str(managed_server_listen_port)
-    cd('/')
-    managedServer = create(managed_server_name, 'Server')
-    managedServer.setListenPort(managed_server_listen_port)
-    managedServer.setListenAddress(managed_server_listen_address)
-    managedServer.setCluster(cluster)
-    managedServer.setMachine(machine)
-    managedServers.append(managedServer)
-
-    cd('/Servers/' + managed_server_name)
-    print 'Setting ServerStart params...'
-    serverStart = create(managed_server_name, 'ServerStart')
-    serverStart.setArguments(
-      ' -Dweblogic.security.SSL.ignoreHostnameVerification=true '
-      ' -Dweblogic.security.TrustKeyStore=DemoTrust '
-      ' -Xms128m -Xmx256m '
-      ' -Dtangosol.coherence.ttl=0 '
-      ' -Dtangosol.coherence.distributed.localstorage=false '
-      ' -Dtangosol.coherence.session.localstorage=false '
-      ' -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml '
-      ' -Djava.security.egd=file:/dev/./urandom')
-
-    print 'Creating JMS Server Name=[' + jms_server_name + ']'
-    cd('/')
-    jmsserver = create(jms_server_name, 'JMSServer')
-    jmsServerMBeans.append(jmsserver)
-    jmsserver.setTargets(jarray.array([managedServers[n - 1]], weblogic.management.configuration.TargetMBean))
-
-  cd('/')
-
-  createSAFTargetModules()
-
-  updateDomain()
-
+  cmo.setListenPortEnabled(true)
+  cmo.setAdministrationPort(int(adminServer_AdministrationPort))
+  cmo.setListenPort(int(adminServer_ListenPort))
+  cmo.setWeblogicPluginEnabled(false)
+  cmo.setJavaCompiler('javac')
+  cmo.setStartupMode('RUNNING')
+  cmo.setVirtualMachineName(domain_Name + '_AdminServer')
+  cmo.setClientCertProxyEnabled(false)
+except:
+  print 'Unable to read or configure domain!'
+  dumpStack()
   exit('errors in WLST')
 
+try:
+  print 'updating domain'
+  updateDomain()
+except:
+  print 'Unable to update domain'
+  dumpStack()
+  exit('errors in WLST')
+else:
+  print 'updateDomain() succeeded!'
 
-if __name__ == "__main__":
-  main()
+machine = createMachine(machine_Name, 'Plain', machine_ListenAddress, 5556)
+cd('/Servers/AdminServer')
+cmo.setMachine(machine)
+serverStart = create('AdminServer', 'ServerStart')
+serverStart.setArguments(
+  '-Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Xms128m -Xmx256m')
+
+cd('/')
+cluster = create(cluster_Name, 'Cluster')
+
+jdbcSystemResource = createPhysicalDataSource(datasource_jndi_name, datasource_jdbc_driver,
+                                              datasource_global_transactions,
+                                              datasource_jdbc_url, datasource_user,
+                                              datasource_password, cluster)
+
+####### Create Managed Servers
+
+print 'Creating ' + str(managed_server_count) + ' Managed Servers...'
+
+jmsServerMBeans = []
+managedServers = []
+
+for n in range(1, int(managed_server_count) + 1):
+  managed_server_name = managed_server_name_base + '-' + str(n)
+  managed_server_listen_port = int(str(managed_server_port_base) + str(n))
+  managed_server_listen_address = listen_address
+  jms_server_name = jms_sever_name_base + '-' + str(n)
+
+  print 'Creating Server Name=[' + managed_server_name + '] with Listen Port: ' + str(managed_server_listen_port)
+  cd('/')
+  managedServer = create(managed_server_name, 'Server')
+  managedServer.setListenPort(managed_server_listen_port)
+  managedServer.setListenAddress(managed_server_listen_address)
+  managedServer.setCluster(cluster)
+  managedServer.setMachine(machine)
+  managedServers.append(managedServer)
+
+  cd('/Servers/' + managed_server_name)
+  print 'Setting ServerStart params...'
+  serverStart = create(managed_server_name, 'ServerStart')
+  serverStart.setArguments(
+    ' -Dweblogic.security.SSL.ignoreHostnameVerification=true '
+    ' -Dweblogic.security.TrustKeyStore=DemoTrust '
+    ' -Xms128m -Xmx256m '
+    ' -Dtangosol.coherence.ttl=0 '
+    ' -Dtangosol.coherence.distributed.localstorage=false '
+    ' -Dtangosol.coherence.session.localstorage=false '
+    ' -Dtangosol.coherence.cacheconfig=/coherence-cache-config.xml '
+    ' -Djava.security.egd=file:/dev/./urandom')
+
+  print 'Creating JMS Server Name=[' + jms_server_name + ']'
+  cd('/')
+  jmsserver = create(jms_server_name, 'JMSServer')
+  jmsServerMBeans.append(jmsserver)
+  jmsserver.setTargets(jarray.array([managedServers[n - 1]], weblogic.management.configuration.TargetMBean))
+
+cd('/')
+
+createSAFTargetModules()
+
+updateDomain()
+
+exit('errors in WLST')
+
+
