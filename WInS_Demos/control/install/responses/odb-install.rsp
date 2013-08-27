@@ -42,7 +42,7 @@ oracle.install.db.rac.serverpoolName=
 oracle.install.db.rac.serverpoolCardinality=0
 
 oracle.install.db.config.starterdb.type=GENERAL_PURPOSE
-oracle.install.db.config.starterdb.globalDBName=orcl.localdomain
+oracle.install.db.config.starterdb.globalDBName=orcl
 oracle.install.db.config.starterdb.SID=orcl
 oracle.install.db.ConfigureAsContainerDB=true
 oracle.install.db.config.PDBName=PDBORCL

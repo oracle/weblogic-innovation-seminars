@@ -2,15 +2,22 @@
 
 # ﻿/media/sf_oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/install/
 
-#CONTROL_DIR="/u01/content/weblogic-innovation-seminars/WInS_Demos/control"
-WINS_DIR="/media/sf_oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/"
-CONTROL_DIR="${WINS_DIR}/control"
+echo "${0} / CONTROL_DIR=${CONTROL_DIR}"
+
+
+if [ -z "${CONTROL_DIR}" ]; then
+  echo "Please set CONTROL_DIR variable!"
+  exit 1
+else
+  . ${CONTROL_DIR}/install/installEnv.sh
+  . ${CONTROL_DIR}/install/util-functions.sh --source-only
+fi
 
 . ${CONTROL_DIR}/bin/winsEnv.sh
 
 sudo chown -R oracle:oinstall /u01
 
-${CONTROL_DIR}/install/configure-system.sh
+${CONTROL_DIR}/install/configure-network.sh
 
 ${CONTROL_DIR}/install/install-code.sh
 
@@ -44,6 +51,13 @@ then
 	exit 1
 fi
 
+${CONTROL_DIR}/install/preload-maven.sh
+
+if [ "$?" != "0" ];
+then
+	echo "Error Running Maven!"
+	exit 1
+fi
 
 # mvn verify
 # $DEMOS_HOME/initialize.sh

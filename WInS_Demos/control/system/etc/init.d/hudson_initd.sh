@@ -71,21 +71,20 @@ PARAMS="--logfile=/var/log/hudson/hudson.log --daemon"
 [ -n "$HUDSON_HANDLER_IDLE" ] && PARAMS="$PARAMS --handlerCountMaxIdle=$HUDSON_HANDLER_IDLE"
 [ -n "$HUDSON_ARGS" ] && PARAMS="$PARAMS $HUDSON_ARGS"
 
-if [ "$HUDSON_ENABLE_ACCESS_LOG" = "yes" ]; then
-    PARAMS="$PARAMS --accessLoggerClassName=winstone.accesslog.SimpleAccessLogger --simpleAccessLogger.format=combined --simpleAccessLogger.file=/var/log/hudson/access_log"
-fi
-
-CMDLINE="${JAVA_CMD} ${PARAMS}"
+CMDLINE="su hudson -c nohup ${JAVA_CMD} ${PARAMS} &"
 
 RETVAL=0
 
 case "$1" in
     start)
 	echo -n "Starting Hudson "
-	echo nohup su $HUDSON_USER -c "${CMDLINE}"  >/var/log/hudson/hudson.out &
-	nohup su $HUDSON_USER -c "${CMDLINE}"  >/var/log/hudson/hudson.out &
+	echo ${CMDLINE}
+
+	${CMDLINE}
+
 	RETVAL=$?
-	echo $! > $HUDSON_PID_FILE
+	echo $RETVAL > $HUDSON_PID_FILE
+
 	if [ $RETVAL = 0 ]; then
 	    success
 	else

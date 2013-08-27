@@ -1,5 +1,4 @@
-alter session set container=PDBORCL;
-alter pluggable database PDBORCL open;
-execute dbms_service.start_service('PDBORCL');
-
+alter session set container=pdborcl;
+alter pluggable database pdborcl open;
+execute dbms_service.start_service('pdborcl');
 exit;

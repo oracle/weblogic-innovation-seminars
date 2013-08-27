@@ -32,7 +32,7 @@ export PATH="${ANT_HOME}/bin:${PATH}"
 
 export M2_HOME="${THIRD_PARTY}/apache-maven-3.0.5"
 export MAVEN_HOME="${M2_HOME}"
-export MAVEN_OPTS="-Xmx2048m -Xms512m -XX:PermSize=128m -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false"
+export MAVEN_OPTS="-Xmx2048m -Xms512m -XX:PermSize=256m -XX:MaxPermSize=512m -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false"
 export PATH="${PATH}:${M2_HOME}/bin"
 
 export MW_HOME="${SW_BASE}/wls1212"

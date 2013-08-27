@@ -10,4 +10,10 @@ else
   . ${CONTROL_DIR}/install/util-functions.sh --source-only
 fi
 
-${ORACLE_HOME}/bin/sqlplus //wins-vbox:1521:pdborcl 'sys/welcome1 as sysdba' @${CONTROL_DIR}/install/sql/setup-pdb.sql
+. ${CONTROL_DIR}/bin/winsEnv.sh
+
+cat ${CONTROL_DIR}/install/responses/fdisk_responses.txt | fdisk /dev/sdb
+
+mkfs /dev/sdb1
+
+mount -a

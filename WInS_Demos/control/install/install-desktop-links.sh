@@ -1,14 +1,17 @@
 #!/bin/sh
 
-set -x
+echo "${0} / CONTROL_DIR=${CONTROL_DIR}"
 
-SOFTWARE_SOURCE="/software/oracle"
-ORA_INVENTORY="/etc/oraInst.loc"
-JAVA_HOME="/usr/java/latest"
-JAVA="${JAVA_HOME}/bin/java"
-#CONTROL_DIR="/u01/content/weblogic-innovation-seminars/WInS_Demos/control"
-CONTROL_DIR="/media/sf_oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control"
-RESPONSES_SOURCE="${CONTROL_DIR}/install/responses"
+if [ -z "${CONTROL_DIR}" ]; then
+  echo "Please set CONTROL_DIR variable!"
+  exit 1
+else
+  . ${CONTROL_DIR}/install/installEnv.sh
+  . ${CONTROL_DIR}/install/util-functions.sh --source-only
+fi
+
+
+set -x
 
 # list files look and link to desktop
 for FILE in `ls -1 ${CONTROL_DIR}/system/home/oracle/Desktop/*.desktop`

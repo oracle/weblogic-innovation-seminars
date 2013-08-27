@@ -1,4 +1,4 @@
-alter session set container=PDBORCL
+alter session set container=PDBORCL;
 
 ALTER PROFILE DEFAULT LIMIT
 FAILED_LOGIN_ATTEMPTS UNLIMITED
