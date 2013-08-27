@@ -23,12 +23,4 @@ chmod +x /home/oracle/setProxy.sh
 
 sudo service network restart
 
-/sbin/ifconfig |grep "172.16.254.254" >/dev/null
-
-if [ "$?" != "0" ]; then
-
-  exit 1
-fi
-
-
 check_network
