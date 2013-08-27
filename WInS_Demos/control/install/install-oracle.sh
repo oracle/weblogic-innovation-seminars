@@ -34,8 +34,10 @@ check_network
 SW_PACKAGE="OEPE"
 echo "## ${SW_PACKAGE} ########################################################################################################################"
 
-mkdir -p /u01/oepe
-exec_command "$SW_PACKAGE" "unzip ${SOFTWARE_SOURCE}/OEPE_12.1.2/oepe-12.1.2.1-kepler-distro-linux-gtk-x86_64.zip -d /u01/oepe"
+if [ ! -d /u01/oepe ]; then
+  mkdir -p /u01/oepe
+  exec_command "$SW_PACKAGE" "unzip ${SOFTWARE_SOURCE}/OEPE_12.1.2/oepe-12.1.2.1-kepler-distro-linux-gtk-x86_64.zip -d /u01/oepe"
+fi
 
 
 #SW_PACKAGE="WLS 12.1.2"
@@ -49,9 +51,7 @@ check_network
 
 SW_PACKAGE="JDeveloper 12c"
 echo "## ${SW_PACKAGE} ########################################################################################################################"
-
 exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/JDEVGENERIC_12.1.2_V38525-01/jdev_suite_121200.jar -silent -ignoreSysPrereqs -responseFile ${RESPONSES_SOURCE}/jdev-install.rsp -invPtrLoc ${ORA_INVENTORY}"
-
 
 #####################################################################################################################
 check_network
@@ -147,9 +147,6 @@ check_network
 SW_PACKAGE="TOPLINK"
 echo "## ${SW_PACKAGE} ########################################################################################################################"
 exec_command "$SW_PACKAGE" "${JAVA} -jar ${SOFTWARE_SOURCE}/TOPLINK_12.1.2/toplink_quick_121200.jar  ORACLE_HOME=/u01/wls1212 -invPtrLoc ${ORA_INVENTORY}"
-
-echo `hostname`
-read -p "Continue?" yn
 
 
 #####################################################################################################################

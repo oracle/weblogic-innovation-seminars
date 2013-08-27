@@ -19,7 +19,7 @@ sudo chown -R oracle:oinstall /u01
 
 ${CONTROL_DIR}/install/configure-network.sh
 
-${CONTROL_DIR}/install/install-code.sh
+#${CONTROL_DIR}/install/install-code.sh
 
 if [ "$?" != "0" ];
 then
