@@ -12,20 +12,23 @@ export ORACLE_OWNER=oracle
 . /etc/rc.d/init.d/functions
 
 export EXAMPLE_DOMAIN="weblogic-examples.com"
-export EXAMPLE_MACHINE="wins-vbox.${EXAMPLE_DOMAIN}"
+export EXAMPLE_HOST="wins-vbox.${EXAMPLE_DOMAIN}"
+
+# -=-=-=-=- OTD Provider Params -=-=-=-=-
 
 export OTD_MGMT_PORT="8989"
-export OTD_ORIGIN_SERVER="${EXAMPLE_MACHINE}"
+export OTD_ORIGIN_SERVER="${EXAMPLE_HOST}"
 export OTD_ORIGIN_PORT="28080"
 export OTD_HTTP_PORT="1905"
 
+export OTD_BASE_DOMAIN="${EXAMPLE_DOMAIN}"
 export OTD_BASE_DOMAIN="${EXAMPLE_DOMAIN}"
 export OTD_HOST="172.16.254.254"
 export OTD_SSH_KEY="/home/oracle/.ssh/id_rsa"
 export OTD_MACH_USER="oracle"
 export OTD_ADMIN_PASSWD="welcome1"
 export OTD_CONFIG_NAME="otdvbox"
-export OTD_INSTALL_DIR="/u01/app/oracle/product/11.1.1/trafficdirector_Home_1"
+export OTD_INSTALL_DIR="/u01/app/oracle/product/11.1.1.7.0/trafficdirector_Home_1"
 export OTD_INSTANCE_HOME="${OTD_INSTALL_DIR}/otd-wins"
 export OTD_PASSWD_FILE="${OTD_INSTALL_DIR}/passwd.txt"
 export OTD_HEALTH_INTERVAL="50"
