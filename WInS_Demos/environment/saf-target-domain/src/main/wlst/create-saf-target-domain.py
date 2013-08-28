@@ -244,6 +244,4 @@ createSAFTargetModules()
 
 updateDomain()
 
-exit('errors in WLST')
-
-
+shutdown()

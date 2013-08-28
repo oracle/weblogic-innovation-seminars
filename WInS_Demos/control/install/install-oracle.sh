@@ -93,7 +93,7 @@ exec_command "$SW_PACKAGE" "mkdir -p /u01/wls1212/wlserver/common/nodemanager"
 exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/nodemanager/nodemanager.properties /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties"
 exec_command "$SW_PACKAGE" "sudo chown oracle:oinstall /u01/wls1212/wlserver/common/nodemanager/nodemanager.properties"
 exec_command "$SW_PACKAGE" "sudo rm -f /etc/xinetd.d/nodemanager*"
-exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/etc/xinetd.d/nodemanagersvc1_1212 /etc/xinetd.d/"
+exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/etc/xinetd.d/nodemgrsvc1_1212 /etc/xinetd.d/"
 exec_command "$SW_PACKAGE" "sudo chkconfig xinetd on"
 
 
@@ -169,8 +169,8 @@ check_network
 
 exec_command "$SW_PACKAGE" "sudo rm -f /etc/init.d/oracle-12c-cdb"
 exec_command "$SW_PACKAGE" "sudo rm -f /etc/init.d/oracle-12c-pdb"
-exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/etc/init.d/oracle-12c-cdb.sh /etc/init.d/oracle-12c-cdb"
-exec_command "$SW_PACKAGE" "sudo ln -s ${CONTROL_DIR}/system/etc/init.d/oracle-12c-pdb.sh /etc/init.d/oracle-12c-pdb"
+exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/system/etc/init.d/oracle-12c-cdb.sh /etc/init.d/oracle-12c-cdb"
+exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/system/etc/init.d/oracle-12c-pdb.sh /etc/init.d/oracle-12c-pdb"
 exec_command "$SW_PACKAGE" "sudo cp ${CONTROL_DIR}/system/etc/oratab /etc/oratab"
 
 
@@ -180,7 +180,7 @@ exec_command "$SW_PACKAGE" "sudo chkconfig oracle-12c-cdb on"
 exec_command "$SW_PACKAGE" "sudo chkconfig oracle-12c-pdb on"
 exec_command "$SW_PACKAGE" "sudo service oracle-12c-cdb start"
 exec_command "$SW_PACKAGE" "sudo service oracle-12c-pdb start"
-#exec_command "$SW_PACKAGE" "sqlplus 'sys/welcome1 as sysdba' @${CONTROL_DIR}/install/sql/setup-pdb.sql"
+exec_command "$SW_PACKAGE" "sqlplus 'sys/welcome1 as sysdba' @${CONTROL_DIR}/install/sql/setup-pdb.sql"
 
 
 #####################################################################################################################

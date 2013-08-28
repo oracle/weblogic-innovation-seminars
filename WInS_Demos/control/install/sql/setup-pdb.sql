@@ -1,6 +1,5 @@
 alter session set container=PDBORCL;
 
-
 drop user weblogic_examples_domain cascade;
 create user weblogic_examples_domain identified by weblogic_examples_domain;
 grant connect to weblogic_examples_domain;
