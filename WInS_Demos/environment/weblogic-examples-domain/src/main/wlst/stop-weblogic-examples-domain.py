@@ -90,17 +90,20 @@ print 'Connected to NODE MANAGER Successfully'
 print '============================================='
 print ''
 
-connect(adminServer_Username,adminServer_Password,adminURL)
-
 try:
   print 'Attempting to connect to AdminServer at URL=' + adminURL
+  connect(adminServer_Username,adminServer_Password,adminURL)
 except:
   print 'Unable to connect to AdminServer, attempting to stop...'
   startAdminServer()
   connect(adminServer_Username, adminServer_Password, adminURL)
 
-domainRuntime()
-stopCluster()
-stopCoherenceServers()
+try:
+  domainRuntime()
+  stopCluster()
+  stopCoherenceServers()
 
-shutdown()
+  shutdown(force='true')
+
+except:
+  pass
