@@ -90,8 +90,12 @@ print 'Connected to NODE MANAGER Successfully'
 print '============================================='
 print ''
 
-connect(adminServer_Username,adminServer_Password,adminURL)
+try:
+  print 'Attempting to connect to AdminServer at URL=' + adminURL
+  connect(adminServer_Username,adminServer_Password,adminURL)
+  shutdown(force='true')
+except:
+  pass
 
-domainRuntime()
 
-shutdown()
+
