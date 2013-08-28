@@ -154,6 +154,8 @@ then
   echo "--zip was not specified, bypassing zip step"
 fi
 
+
+
 end_date=`date +%s`
 duration=$(echo "scale=2; ($end_date-$start_date)/60" | bc)
 
