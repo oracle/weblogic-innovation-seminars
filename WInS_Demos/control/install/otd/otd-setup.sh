@@ -1,6 +1,5 @@
 #!/bin/sh
 
-export CLOUDLOGIC_PORT="7001"
 export EXAMPLE_DOMAIN="weblogic-examples.com"
 export EXAMPLE_HOST="wins-vbox.${EXAMPLE_DOMAIN}"
 
@@ -18,7 +17,7 @@ export OTD_SSH_KEY="/home/oracle/.ssh/id_rsa"
 export OTD_MACH_USER="oracle"
 export OTD_ADMIN_PASSWD="welcome1"
 export OTD_CONFIG_NAME="otdvbox"
-export OTD_INSTALL_DIR="/u01/app/oracle/product/11.1.1/trafficdirector_Home_1"
+export OTD_INSTALL_DIR="/u01/app/oracle/product/11.1.1.7.0/trafficdirector_Home_1"
 export OTD_INSTANCE_HOME="${OTD_INSTALL_DIR}/otd-wins"
 export OTD_PASSWD_FILE="${OTD_INSTALL_DIR}/passwd.txt"
 export OTD_HEALTH_INTERVAL="50"
@@ -26,9 +25,6 @@ export OTD_HEALTH_URL="/"
 export OTD_HEALTH_TIMEOUT="25"
 export OTD_E2E_SSL="false"
 export OTD_DEFAULT_ORIG_SVR_POOL="origin-server-pool-1"
-
-service_name="Oracle Traffic Director 11.1.1.7.0"
-logger="/usr/bin/logger -t rc.local "
 
 echo "Setting up OTD..."
 
@@ -40,7 +36,7 @@ OTD_BASE_CONFIG_OPTS="${OTD_BASE_CONFIG_OPTS} --password-file=${OTD_PASSWD_FILE}
 
 OTD_CONFIG_OPTS="${OTD_BASE_CONFIG_OPTS}"
 OTD_CONFIG_OPTS="${OTD_CONFIG_OPTS} --port=${OTD_MGMT_PORT}"
-OTD_INSTANCE_HOME="${OTD_INSTALL_DIR}/otd-cloudlogic"
+
 
 if [ -d ${OTD_INSTANCE_HOME}/admin-server ]; then
 	
