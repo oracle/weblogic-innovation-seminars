@@ -1107,5 +1107,4 @@ activate(block="true")
 
 deploySharedLibraries()
 
-exit()
 
