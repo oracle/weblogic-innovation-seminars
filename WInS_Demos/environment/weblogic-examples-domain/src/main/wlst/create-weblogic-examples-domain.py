@@ -1,6 +1,5 @@
 import time
 
-loadProperties('environment.properties')
 
 ########################################################################################################################
 
@@ -36,10 +35,10 @@ adminServer_AdministrationPort = 7200
 adminServer_Username = 'weblogic'
 adminServer_Password = 'welcome1'
 adminServer_URL = 't3://' + adminServer_ListenAddress + ':' + str(adminServer_ListenPort)
-adminServer_StartupArgs = '-Xms=256m -Xmx=256m'\
-                          ' -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false'\
-                          ' -Dweblogic.security.SSL.ignoreHostnameVerify=true'\
-                          ' -Dweblogic.security.SSL.ignoreHostnameVerification=true'\
+adminServer_StartupArgs = '-Xms=256m -Xmx=256m' \
+                          ' -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false' \
+                          ' -Dweblogic.security.SSL.ignoreHostnameVerify=true' \
+                          ' -Dweblogic.security.SSL.ignoreHostnameVerification=true' \
                           ' -Dweblogic.security.TrustKeyStore=DemoTrust'
 
 ########################################################################################################################
@@ -50,7 +49,7 @@ managedServer_BasePort = '710'
 managedServer_BaseAdminPort = '720'
 #managedServer_StartupArgs = '-XX:FlightRecorderOptions=defaultrecording=true '\
 #                            ' -Xms256m -Xmx512m '
-managedServer_StartupArgs = '-XX:+UnlockCommercialFeatures -XX:+FlightRecorder '\
+managedServer_StartupArgs = '-XX:+UnlockCommercialFeatures -XX:+FlightRecorder ' \
                             ' -Xms256m -Xmx512m -Djava.security.egd=file:/dev/./urandom'
 ########################################################################################################################
 
@@ -60,18 +59,18 @@ cohCluster_ListenPort = 8088
 cohCluster_TTL = 0
 
 cohServer_Count = 2
-cohServer_Classpath = MW_HOME + '/oracle_common/modules/oracle.toplink_12.1.2/toplink-grid.jar:'\
-                      + MW_HOME + '/oracle_common/modules/oracle.toplink_12.1.2/eclipselink.jar:'\
-                      + MW_HOME + '/coherence/lib/coherence.jar:'\
-                      + MW_HOME + '/oracle_common/modules/javax.management.j2ee_1.1.0.0.jar:'\
-                      + MW_HOME + '/oracle_common/modules/oracle.jdbc_11.2.0/ojdbc6.jar:'\
-                      + MW_HOME + '/coherence/lib/coherence-web-spi.war:'\
+cohServer_Classpath = MW_HOME + '/oracle_common/modules/oracle.toplink_12.1.2/toplink-grid.jar:' \
+                      + MW_HOME + '/oracle_common/modules/oracle.toplink_12.1.2/eclipselink.jar:' \
+                      + MW_HOME + '/coherence/lib/coherence.jar:' \
+                      + MW_HOME + '/oracle_common/modules/javax.management.j2ee_1.1.0.0.jar:' \
+                      + MW_HOME + '/oracle_common/modules/oracle.jdbc_11.2.0/ojdbc6.jar:' \
+                      + MW_HOME + '/coherence/lib/coherence-web-spi.war:' \
                       + WL_HOME + '/modules/features/weblogic.server.modules.coherence.server_12.1.2.0.jar '
 
-cohServer_StartupArgs = '-Dtangosol.coherence.management.remote=true'\
-                        + ' -Dtangosol.coherence.management=all'\
-                        + ' -Dtangosol.coherence.distributed.localstorage=true'\
-                        + ' -Dtangosol.coherence.session.localstorage=true'\
+cohServer_StartupArgs = '-Dtangosol.coherence.management.remote=true' \
+                        + ' -Dtangosol.coherence.management=all' \
+                        + ' -Dtangosol.coherence.distributed.localstorage=true' \
+                        + ' -Dtangosol.coherence.session.localstorage=true' \
                         + ' -Dtangosol.coherence.cacheconfig=' + wins_demos_home + '/coherence-examples/session-cache-config.xml'
 
 ########################################################################################################################
@@ -618,6 +617,7 @@ def createSAFSourceModules():
   jmsMySystemResource = create(module_name, 'JMSSystemResource')
   jmsMySystemResource.setTargets(jarray.array([clusterMBean], weblogic.management.configuration.TargetMBean))
 
+
   cd('/JMSSystemResources/' + module_name)
   subdeployment = create('cluster-subdeployment', 'SubDeployment')
   subdeployment.setTargets(jarray.array(jmsServerMBeans, weblogic.management.configuration.TargetMBean))
@@ -854,7 +854,7 @@ def configureDomain_online():
   cd('/SelfTuning/' + domain_Name + '/WorkManagers/wm/CoherenceWorkManager')
   set('Targets', jarray.array(
     [ObjectName('com.bea:Name=AdminServer,Type=Server'), ObjectName('com.bea:Name=cluster-1,Type=Cluster')],
-                                                                                                           ObjectName))
+    ObjectName))
 
 
 ########################################################################################################################
@@ -877,6 +877,8 @@ def configureManagedServersOnline():
     cmo.setStuckThreadCount(0)
 
 ########################################################################################################################
+
+
 
 var_domain_dir = USER_PROJECTS + '/domains/' + domain_Name
 print 'Creating domain in path=' + var_domain_dir
@@ -904,7 +906,7 @@ try:
   cmo.setConsoleContextPath('console')
 
   cd('/Servers/AdminServer')
-  set('TunnelingEnabled',true)
+  set('TunnelingEnabled', true)
   cmo.setListenPortEnabled(true)
   cmo.setAdministrationPort(int(adminServer_AdministrationPort))
   cmo.setListenPort(int(adminServer_ListenPort))
@@ -942,13 +944,13 @@ clusterMBean = create(cluster_Name, 'Cluster')
 
 try:
   jdbcSystemResource = createClusterDataSource(['com.oracle.weblogic.demo.jdbc.cluster-ds'],
-                                                                                           datasource_JdbcDriver,
-                                                                                           datasource_GlobalTransactions
-                                                                                           ,
-                                                                                           datasource_jdbc_url,
-                                                                                           datasource_User,
-                                                                                           datasource_Password,
-                                                                                           clusterMBean)
+                                               datasource_JdbcDriver,
+                                               datasource_GlobalTransactions
+    ,
+                                               datasource_jdbc_url,
+                                               datasource_User,
+                                               datasource_Password,
+                                               clusterMBean)
 
   # changed from consensus by JAW
   clusterMBean.setMigrationBasis('database')
@@ -1030,13 +1032,13 @@ try:
   cd('/')
 
   createPhysicalDataSource([datasource_JndiName],
-                                                datasource_JdbcDriver,
-                                                datasource_GlobalTransactions,
-                                                datasource_jdbc_url,
-                                                datasource_User,
-                                                datasource_Password,
-                                                5, 5,
-                                                clusterMBean)
+                           datasource_JdbcDriver,
+                           datasource_GlobalTransactions,
+                           datasource_jdbc_url,
+                           datasource_User,
+                           datasource_Password,
+                           5, 5,
+                           clusterMBean)
 except:
   dumpStack()
   exit('1')
@@ -1058,6 +1060,8 @@ print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-
 print 'Beginning ONLINE configuration tasks'
 print '-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-==-'
 print ''
+
+
 
 nmConnect(adminServer_Username, adminServer_Password, machine_ListenAddress, 5556, domain_Name, var_domain_dir, 'plain')
 

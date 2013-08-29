@@ -15,21 +15,33 @@ export USER_BASE="/u01"
 
 export ORACLE_HOME="${SW_BASE}/app/oracle/product/12.1/database"
 export ORACLE_SID="orcl"
+export ORACLE_HOSTNAME=wins-vbox.localdomain
+export ORACLE_UNQNAME=orcl
+export ORACLE_BASE=/u01/app/oracle
+
+export LD_LIBRARY_PATH=${ORACLE_HOME}/lib:/lib:/usr/lib
+export CLASSPATH=${ORACLE_HOME}/jlib:${ORACLE_HOME}/rdbms/jlib
 export PATH="${ORACLE_HOME}/bin:${PATH}"
 
 ##################################################################
 
 export THIRD_PARTY="/u01/third-party"
 
-export ANT_HOME="${THIRD_PARTY}/apache-ant-1.8.4"
-export M2_HOME="${THIRD_PARTY}/apache-maven-3.0.4"
+export ANT_HOME="${THIRD_PARTY}/apache-ant-1.9.2"
+export PATH="${ANT_HOME}/bin:${PATH}"
+
+export M2_HOME="${THIRD_PARTY}/apache-maven-3.0.5"
 export MAVEN_HOME="${M2_HOME}"
-export MAVEN_OPTS="-Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false"
+export MAVEN_OPTS="-Xmx2048m -Xms512m -XX:PermSize=256m -XX:MaxPermSize=512m -Dweblogic.security.SSL.ignoreHostnameVerification=true -Dweblogic.security.TrustKeyStore=DemoTrust -Dweblogic.nodemanager.sslHostNameVerificationEnabled=false"
+export PATH="${PATH}:${M2_HOME}/bin"
 
 export MW_HOME="${SW_BASE}/wls1212"
 export WL_HOME="${MW_HOME}/wlserver"
+export PATH="${PATH}:${WL_HOME}/common/bin"
+
 export NM_HOME="${WL_HOME}/common/nodemanager"
-export PLUGIN_HOME="/u01/wls-plugins-1.1"
+
+export PLUGIN_HOME="/u01/wls-plugins-12.1.2"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ORACLE_HOME}/lib:${WL_HOME}/server/native/linux/i686:${PLUGIN_HOME}/lib"
 export COHERENCE_HOME="${MW_HOME}/coherence"
 
@@ -42,8 +54,9 @@ export DOMAINS="${USER_PROJECTS}/domains"
 export OPS_DOMAIN_HOME="${USER_PROJECTS}/domains/ops-cluster"
 
 export JAVA_HOME="/usr/java/latest"
+export PATH="${PATH}:${JAVA_HOME}/bin"
 
-export PATH="${JAVA_HOME}/bin:${PATH}:${ANT_HOME}/bin:${M2_HOME}/bin:${WL_HOME}/common/bin:${DEMOS_HOME}/control/bin"
+export PATH="${PATH}:${DEMOS_HOME}/control/bin"
 
 ###################################################################
 
@@ -107,7 +120,10 @@ alias ttns="tail  ${TAIL_OPTS} ${SW_BASE}/app/oracle/diag/tnslsnr/wins-vbox/list
 
 sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev eth4 > /dev/null 2>&1
 
-. /home/oracle/setProxy.sh
+# Source global definitions
+if [ -f /home/oracle/setProxy.sh ]; then
+	. /home/oracle/setProxy.sh
+fi
 
 echo "Please note:"
 echo "1) Ensure you have the latest WInS Demos code by running the \"Update WInS Demos\" command on the desktop!"

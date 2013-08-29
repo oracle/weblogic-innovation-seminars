@@ -46,5 +46,5 @@
       <hash-code>1366394801594</hash-code>
     </module-descriptor>
   </module-override>
-  <config-root>/u01/Oracle/Middleware/user_projects/domains/weblogic-cluster-domain/servers/AdminServer/upload/dye-injection/app/plan</config-root>
+  <config-root>/u01/wls1212/user_projects/domains/weblogic-cluster-domain/servers/AdminServer/upload/dye-injection/app/plan</config-root>
 </deployment-plan>

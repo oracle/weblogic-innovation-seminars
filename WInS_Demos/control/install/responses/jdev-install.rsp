@@ -1,0 +1,14 @@
+[ENGINE]
+
+#DO NOT CHANGE THIS.
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+#Set this to true if custom installation must be done, all other required variables need to be provided. If this is set to true then variable "TYPICAL_TYPE" mustbe set to false as the variables are mutually exclusive.
+INSTALL_TYPE=Typical
+
+#The oracle home location. This can be an existing Oracle Home or a new Oracle Home
+ORACLE_HOME=/u01/wls1212
+
+

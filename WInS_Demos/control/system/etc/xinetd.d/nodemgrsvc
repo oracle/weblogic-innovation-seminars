@@ -1,0 +1,17 @@
+# default: off
+# description:nodemanager as a service
+service nodemgrsvc
+{
+	type = UNLISTED
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = yes
+	user = oracle
+	port = 5556
+	flags = NOLIBWRAP
+	log_on_success += DURATION HOST USERID
+	server = /usr/java/latest
+	env = LD_LIBRARY_PATH=/u01/wls1212/wlserver/server/native/linux/i686 CLASSPATH=/u01/wls1212/patch_wls1212/profiles/default/sys_manifest_classpath/weblogic_patch.jar:/u01/wls1212/patch_oepe100/profiles/default/sys_manifest_classpath/weblogic_patch.jar:/u01/wls1212/patch_ocp371/profiles/default/sys_manifest_classpath/weblogic_patch.jar:/u01/java/jdk1.6.0_37_i586/lib/tools.jar:/u01/wls1212/wlserver/server/lib/weblogic_sp.jar:/u01/wls1212/wlserver/server/lib/weblogic.jar:/u01/wls1212/modules/features/weblogic.server.modules_12.1.1.0.jar:/u01/wls1212/wlserver/server/lib/webservices.jar:/u01/wls1212/modules/org.apache.ant_1.7.1/lib/ant-all.jar:/u01/wls1212/modules/net.sf.antcontrib_1.1.0.0_1-0b2/lib/ant-contrib.jar:/u01/wls1212/wlserver/common/derby/lib/derbynet.jar:/u01/wls1212/wlserver/common/derby/lib/derbyclient.jar:/u01/wls1212/wlserver/server/lib/xqrl.jar
+        server_args = -DNodeManagerHome=/u01/wls1212/wlserver/common/nodemanager -Xms32m -Xmx200m -DListenPort=5556 -Djava.security.policy=/u01/wls1212/wlserver/server/lib/weblogic.policy -Dweblogic.nodemanager.javaHome=/usr/java/latest weblogic.NodeManager -v
+}

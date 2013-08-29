@@ -17,7 +17,7 @@ do
 	fi
 done
 
-zerofree()
+zerofill()
 {
 
   FILE=$1/zerofree_deleteme
@@ -48,32 +48,9 @@ su oracle -c "mvn clean"
 cd /u01/content/oracle-parcel-service
 su oracle -c "mvn clean"
 
-find /u01/content/weblogic-innovation-seminars -name "*.sh" -exec chmod +rx {} \;
-
 if [ "${NOZERO}" != "TRUE" ]; then
-  zerofree /tmp
-  zerofree /u01
-fi
-
-if [ -h /u01/content/weblogic-innovation-seminars ]; then
-  rm /u01/content/weblogic-innovation-seminars
-  cd /u01/content
-  su oracle -c "git clone http://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
-
-  if [ "$?" != "0" ]; then
-    SUCCESS="FALSE"
-  fi
-fi
-
-
-if [ -h /u01/content/oracle-parcel-service ]; then
-  rm /u01/content/oracle-parcel-service
-  cd /u01/content
-  su oracle -c "git clone http://github.com/jeffreyawest/oracle-parcel-service.git"
-
-  if [ "$?" != "0" ]; then
-    SUCCESS="FALSE"
-  fi
+  zerofill /tmp
+  zerofill /u01
 fi
 
 su oracle -c "/u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/updateDemos.sh"
