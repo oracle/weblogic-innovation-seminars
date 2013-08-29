@@ -908,7 +908,7 @@ try:
   cmo.setListenPortEnabled(true)
   cmo.setAdministrationPort(int(adminServer_AdministrationPort))
   cmo.setListenPort(int(adminServer_ListenPort))
-  cmo.setListenAddress(adminServer_ListenAddress)
+  #cmo.setListenAddress(adminServer_ListenAddress)
   cmo.setWeblogicPluginEnabled(false)
   cmo.setJavaCompiler('javac')
   cmo.setStartupMode('RUNNING')
