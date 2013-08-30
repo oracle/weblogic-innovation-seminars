@@ -6,7 +6,7 @@ export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.g
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
 
-echo "Updating WInS Demos in ${CONTENT_DIR}..."
+echo "Updating WInS Demos with tag=[${TAG_NAME}] in ${CONTENT_DIR}..."
 
 GIT_SYSTEM_PROXY=`git config --get --system http.proxy`
 GIT_GLOBAL_PROXY=`git config --get --global http.proxy`

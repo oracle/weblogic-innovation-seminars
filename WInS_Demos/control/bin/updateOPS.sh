@@ -6,7 +6,7 @@ export GIT_URL="http://github.com/jeffreyawest/oracle-parcel-service.git"
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
 
-echo "Updating Oracle Parcel Service in ${CONTENT_DIR}..."
+echo "Updating Oracle Parcel Service with tag=[${TAG_NAME}] in ${CONTENT_DIR}..."
 
 GIT_PROXY=`git config --get http.proxy`
 
