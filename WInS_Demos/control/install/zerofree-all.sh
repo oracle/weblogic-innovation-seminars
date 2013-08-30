@@ -14,10 +14,10 @@ zerofill()
 zerofill /tmp
 zerofill /u01
 
-mount -n -o ro,remount /dev/sdb1 /u01
+mount -n -o ro,remount -t etx2 /dev/sdb1 /u01
 /sbin/zerofree /dev/sdb1
 
-mount -n -o ro,remount /dev/VolGroup-lv_root /
-/sbin/zerofree /dev/VolGroup-lv_root
+mount -n -o ro,remount -t ext2 /dev/mapper/VolGroup-lv_root /
+/sbin/zerofree /dev/mapper/VolGroup-lv_root
 
 halt

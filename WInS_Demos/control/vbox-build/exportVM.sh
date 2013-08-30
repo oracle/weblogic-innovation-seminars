@@ -14,7 +14,7 @@ PROMPT=true
 ZIP_OVA=false
 OVA_PRODUCT_NAME="WInS-VirtualBox-VM"
 OVA_PRODUCT_URL="http://retriever.us.oracle.com/apex/f?p=121:3:2027314285611264::NO:RP:P3_PAGE_ID:2129"
-OVA_EULA_FILE="/u01/content/weblogic-innovation-seminars/WInS_Demos/control/vbox/eula.txt"
+OVA_EULA_FILE="/Users/jeffreyawest/Data/mycode/github/oracle-weblogic/weblogic-innovation-seminars/WInS_Demos/control/vbox-build/eula.txt"
 OVA_MEMORY_SIZE=6144
 OVA_CPU_COUNT=4
 OVA_MD5_FILE=${VBOX_OUTPUT_DIR}/${VBOX_OUTPUT_NAME}.md5

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CONTENT_DIR="/u01/content/oracle-parcel-service"
-export TAG_NAME=`cat ~/.wins_vbox_tag_name`
+export TAG_NAME=`cat ~/.wins/ops_git_tag`
 export GIT_URL="http://github.com/jeffreyawest/oracle-parcel-service.git"
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
