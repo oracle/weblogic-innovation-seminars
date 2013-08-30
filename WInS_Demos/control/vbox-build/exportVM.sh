@@ -9,7 +9,6 @@ VBOX_OUTPUT_NAME="${VBOX_NAME_NEW}.ova"
 VBOX_OUTPUT_DIR="${3}"
 ZIP_OUTPUT_DIR="${4}"
 
-ZIP_CMD=/usr/bin/zip
 PROMPT=true
 ZIP_OVA=false
 OVA_PRODUCT_NAME="WInS-VirtualBox-VM"
@@ -119,6 +118,7 @@ VBoxManage modifyvm ${VBOX_NAME_NEW} --clipboard bidirectional > /dev/null 2>&1
 # remove shared folders
 echo "Removing shared folders of ${VBOX_NAME_NEW}..."
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "jeffreyawest" > /dev/null 2>&1
+VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "mycode" > /dev/null 2>&1
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "opt" > /dev/null 2>&1
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "temp" > /dev/null 2>&1
 VBoxManage sharedfolder remove ${VBOX_NAME_NEW} --name "tmp" > /dev/null 2>&1
