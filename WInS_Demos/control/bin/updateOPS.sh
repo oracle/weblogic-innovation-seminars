@@ -1,11 +1,13 @@
 #!/bin/bash
 
 export CONTENT_DIR="/u01/content/oracle-parcel-service"
-export TAG_NAME=`cat ~/.wins/ops_git_tag`
+export TAG_NAME_FILE="~/.wins/ops_git_tag"
+export TAG_NAME=`cat ${TAG_NAME_FILE}`
 export GIT_URL="http://github.com/jeffreyawest/oracle-parcel-service.git"
 
 . ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
 
+echo "Using TAG_NAME=[${TAG_NAME}] that was puleld from file=[${TAG_NAME_FILE}]"
 echo "Updating Oracle Parcel Service with tag=[${TAG_NAME}] in ${CONTENT_DIR}..."
 
 GIT_PROXY=`git config --get http.proxy`

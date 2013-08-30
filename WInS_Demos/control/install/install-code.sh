@@ -1,5 +1,10 @@
 #!/bin/sh
 
+export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
+export TAG_NAME_FILE="~/.wins/wins_git_tag"
+export TAG_NAME=`cat ${TAG_NAME_FILE}`
+export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
+
 sudo mkdir -p /u01/content
 sudo chown oracle:oinstall /u01/content
 
