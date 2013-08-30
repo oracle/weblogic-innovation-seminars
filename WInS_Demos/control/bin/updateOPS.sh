@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CONTENT_DIR="/u01/content/oracle-parcel-service"
-export TAG_NAME_FILE="~/.wins/ops_git_tag"
+export TAG_NAME_FILE="/home/oracle/.wins/ops_git_tag"
 export TAG_NAME=`cat ${TAG_NAME_FILE}`
 export GIT_URL="http://github.com/jeffreyawest/oracle-parcel-service.git"
 
