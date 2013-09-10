@@ -104,7 +104,7 @@ VBoxManage modifyvm ${VBOX_NAME_NEW} --nic1 nat > /dev/null 2>&1
 echo "Setting Memory of ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
 VBoxManage modifyvm ${VBOX_NAME_NEW} --memory ${OVA_MEMORY_SIZE} > /dev/null 2>&1
 
-echo "Setting CPUs ${VBOX_NAME_NEW} to ${OVA_MEMORY_SIZE}"
+echo "Setting CPUs ${VBOX_NAME_NEW} to ${OVA_CPU_COUNT}"
 VBoxManage modifyvm ${VBOX_NAME_NEW} --cpus ${OVA_CPU_COUNT} > /dev/null 2>&1
 
 echo "Disabling USB on ${VBOX_NAME_NEW}"
