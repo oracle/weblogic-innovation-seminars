@@ -50,6 +50,7 @@ public class ChecksumTool
     catch(IOException e)
     {
       e.printStackTrace();
+      System.exit(1);
     }
   }
 
@@ -91,7 +92,7 @@ public class ChecksumTool
   {
     String md5 = getMD5Checksum(file, BUFFER);
     FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath() + ".md5");
-    String fileContents = "MD5 (" + file.getAbsolutePath() + ") = " + md5 + "\n";
+    String fileContents = "MD5 (" + file.getName() + ") = " + md5 + "\n";
     fileOut.write(fileContents.getBytes());
     fileOut.close();
     System.out.println(fileContents);
