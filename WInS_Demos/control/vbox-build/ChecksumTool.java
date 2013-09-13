@@ -1,4 +1,6 @@
 import java.io.*;
+import java.lang.String;
+import java.lang.System;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
@@ -34,33 +36,65 @@ public class ChecksumTool
     String dirname = args[0];
     File dir = new File(dirname);
 
+    try
+    {
+    if(dir.isDirectory())
+    {
+      doMD5Directory(dir);
+    }
+    else
+    {
+      doMD5(dir);
+    }
+    }
+    catch(IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  private static void doMD5Directory(File dir) throws IOException
+  {
     File[] files = dir.listFiles();
 
     for (File file : files)
     {
-      if(file.isDirectory()
-          || EXCLUDE_MAP.contains(file.getName())
-          || file.getName().toUpperCase().endsWith(".MD5")
-          )
+      if(EXCLUDE_MAP.contains(file.getName())
+        || file.getName().toUpperCase().endsWith(".MD5")
+      )
       {
+        System.out.println("MD5: Skipping: "+file.getAbsolutePath());
         continue;
       }
 
-      try
+      if (file.isDirectory())
       {
-        String md5 = getMD5Checksum(file, BUFFER);
-        FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath() + ".md5");
-        String fileContents = "MD5 (" + file.getAbsolutePath() + ") = " + md5 +"\n";
-        fileOut.write(fileContents.getBytes());
-        fileOut.close();
-        System.out.println(fileContents);
+        System.out.println("MD5: Skipping directory: "+file.getAbsolutePath());
+        continue;
       }
-      catch (IOException e)
+
+      if (file.isFile())
       {
-        e.printStackTrace();
+        try
+        {
+          doMD5(file);
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
       }
     }
+  }
 
+  private static void doMD5(File file) throws IOException
+  {
+    String md5 = getMD5Checksum(file, BUFFER);
+    FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath() + ".md5");
+    String fileContents = "MD5 (" + file.getAbsolutePath() + ") = " + md5 + "\n";
+    fileOut.write(fileContents.getBytes());
+    fileOut.close();
+    System.out.println(fileContents);
   }
 
   public static String getMD5Checksum(File file, int pBufferSize) throws IOException
@@ -123,22 +157,16 @@ public class ChecksumTool
     CRC32 checksumEngine = new CRC32();
     CheckedInputStream cis = new CheckedInputStream(sourceInputStream, checksumEngine);
 
-    // read the io
     byte[] tempBuf = new byte[pByteArraySize];
     while (cis.read(tempBuf) >= 0)
     {
     }
 
-    // return scanner
     decimalChecksum = cis.getChecksum().getValue();
     hexChecksum = Long.toHexString(decimalChecksum).toUpperCase();
 
-    // pad leading "0" if needed
-//		if ( hexChecksum.length() % 2 != 0) {
-//			hexChecksum = "0" + hexChecksum;
-//		}
     hexChecksum = ZEROS.substring(0, CRC32_CHECKSUM_LENGTH - hexChecksum.length()) + hexChecksum;
-    // release io handle
+
     cis.close();
     sourceInputStream.close();
 
