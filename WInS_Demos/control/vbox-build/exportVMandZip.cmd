@@ -1,44 +1,8 @@
 @echo off
 
 set overall_start_time=%time:~0,2%%time:~3,2%
-set dt=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%
-echo date_file=%dt%
-
-rem *** Get parameters... ************************************************************
-echo.
-echo ================================================================================
-echo Listing Current VMs:
-echo --------------------
-%VBOXMANAGE_EXE% list vms
-echo.
-echo ================================================================================
-
-rem set /p VBOX_NAME_SOURCE=Enter VM Name to export (i.e. wins-12.1.2-v5.43):
-rem set /p VBOX_NAME_DEST=Enter the new VM name (increment the version, i.e. wins-12.1.2-v5.44):
-rem set /p VBOX_OUTPUT_DIR=Enter the directory to put the UNZIPPED OVA file into:
-rem set /p VBOX_ZIP_OUTPUT_DIR=Enter the directory to put the ZIPPED OVA into:
-
-set VBOX_NAME_SOURCE=wins-12.1.2-v5.43-2
-set VBOX_NAME_DEST=wins-12.1.2-v5.43-2
-set VBOX_OUTPUT_DIR=z:\jeffreyawest\tmp
-
-set VBOX_OUTPUT_DIR=%VBOX_OUTPUT_DIR%\%VBOX_NAME_DEST%
-set VBOX_ZIP_OUTPUT_DIR=%VBOX_OUTPUT_DIR%\7zip
-
-echo VBOX_NAME_SOURCE=%VBOX_NAME_SOURCE%
-echo VBOX_NAME_DEST=%VBOX_NAME_DEST%
-echo VBOX_OUTPUT_DIR=%VBOX_OUTPUT_DIR%
-echo VBOX_ZIP_OUTPUT_DIR=%VBOX_ZIP_OUTPUT_DIR%
-
-
-set /p PROMPT_CONTINUE=Please confirm the above settings and enter 'y' to continue [y/n]:
-
-if "x%PROMPT_CONTINUE%x" == "xyx" (
-  echo Continuing...
-) else (
-  echo Aborting...
-  goto end
-)
+rem set dt=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%
+rem echo date_file=%dt%
 
 rem *** Set local variables ************************************************************
 
@@ -54,6 +18,48 @@ set VBOX_EULA_FILE=%VBOX_BUILD_DIR%\eula.txt
 set VBOX_OUTPUT_OVA=%VBOX_NAME_DEST%.ova
 
 set JAVA_HOME=C:\PROGRA~1\Java\jdk1.7.0_40
+
+rem *** Get parameters... ************************************************************
+
+echo.
+echo === Listing Current VMs ========================================================
+echo --------------------
+%VBOXMANAGE_EXE% list vms
+echo.
+
+set /p VBOX_NAME_SOURCE=Enter VM Name to export (i.e. wins-12.1.2-v5.43):
+set /p VBOX_NAME_DEST=Enter the new VM name (increment the version, i.e. wins-12.1.2-v5.44):
+set /p VBOX_OUTPUT_DIR=Enter the directory to put the UNZIPPED OVA file into:
+
+rem set /p VBOX_ZIP_OUTPUT_DIR=Enter the directory to put the ZIPPED OVA into:
+
+rem set VBOX_NAME_SOURCE=wins-12.1.2-v5.43-2
+rem set VBOX_NAME_DEST=wins-12.1.2-v5.43-2
+rem set VBOX_OUTPUT_DIR=c:\jeffreyawest\tmp
+
+set VBOX_OUTPUT_DIR=%VBOX_OUTPUT_DIR%\%VBOX_NAME_DEST%
+set VBOX_ZIP_OUTPUT_DIR=%VBOX_OUTPUT_DIR%\7zip
+
+echo.
+echo === Confirm Parameters =======================================================
+echo.
+
+echo Source VM Name:      %VBOX_NAME_SOURCE%
+echo Destination VM Name: %VBOX_NAME_DEST%
+echo VM Output Directory: %VBOX_OUTPUT_DIR%
+echo Zipped VM Output Directory: %VBOX_ZIP_OUTPUT_DIR%
+echo.
+echo.
+
+set /p PROMPT_CONTINUE=Please confirm the above settings and enter 'y' to continue [y/n]:
+
+if "x%PROMPT_CONTINUE%x" == "xyx" (
+  echo Continuing...
+) else (
+  echo Aborting...
+  goto end
+)
+
 %JAVA_HOME%\bin\javac -d %VBOX_BUILD_DIR% %VBOX_BUILD_DIR%\ChecksumTool.java
 
 set MD5_CMD=%JAVA_HOME%\bin\java -cp %VBOX_BUILD_DIR% ChecksumTool
@@ -63,7 +69,7 @@ set ZIP_METHOD=zip
 SET ZIP_MAX_SIZE=2g
 
 echo.
-echo ================================================================================
+echo === Checking VM Status =========================================================
 echo.
 echo Exporting VM=[%VBOX_NAME_SOURCE%] to OVA=[%VBOX_NAME_DEST%] in directory=[%VBOX_OUTPUT_DIR%]
 echo Zip output dir=[%VBOX_ZIP_OUTPUT_DIR%]
@@ -77,8 +83,7 @@ if %STILL_RUNNING% == "0" (
 )
 
 echo.
-echo ================================================================================
-echo Modifying VM parameters for export...
+echo === Modifying VM parameters Before Export ======================================
 echo.
 
 rem rename so new version is in the list of VMs
@@ -114,7 +119,8 @@ rem echo ERRORS ABOVE ARE OK!  This simply means the shared folders were not mou
 rem echo ERRORS ABOVE ARE OK!  This simply means the shared folders were not mounted!
 rem echo !?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?
 
-echo ================================================================================
+echo.
+echo === Creating Directories =======================================================
 echo.
 
 echo Creating OVA Output directory: %VBOX_OUTPUT_DIR%
@@ -123,8 +129,6 @@ mkdir %VBOX_OUTPUT_DIR%
 echo Creating ZIPPED OVA Output directory: %VBOX_ZIP_OUTPUT_DIR%
 mkdir %VBOX_ZIP_OUTPUT_DIR%
 
-set export_start_time=%time:~0,2%%time:~3,2%
-echo export start time=%export_start_time%
 
 set EXPORT_OPTS=%VBOX_NAME_DEST%
 set EXPORT_OPTS= %EXPORT_OPTS% --output %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA%
@@ -134,88 +138,96 @@ set EXPORT_OPTS= %EXPORT_OPTS% --producturl %VBOX_PRODUCT_URL%
 set EXPORT_OPTS= %EXPORT_OPTS% --version %VBOX_NAME_DEST%
 set EXPORT_OPTS= %EXPORT_OPTS% --eulafile %VBOX_EULA_FILE%
 
+echo.
+echo === Exporting VM ===============================================================
+echo.
+
 set CMDLINE=%VBOXMANAGE_EXE% export %EXPORT_OPTS%
 
-echo.
-echo ================================================================================
-echo.
-echo Exporting VM with command: %CMDLINE%
+call:timedCommand
 
-%CMDLINE%
-set EXPORT_SUCCESS=%ERRORLEVEL%
-echo.
-echo EXPORT_SUCCESS=%EXPORT_SUCCESS%
-echo.
-
-echo ================================================================================
-echo.
-
-if "%EXPORT_SUCCESS%" NEQ "0" (
+if "%COMMAND_SUCCESS%" NEQ "0" (
   echo EXPORT Failed for some reason, please see messages above!
   goto end
 )
 
-set export_stop_time=%time:~0,2%%time:~3,2%
-echo export stop time=%export_stop_time%
-
-set /A export_duration = export_stop_time-export_start_time
-echo Time taken to Export: %export_duration% minutes
-
+rem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 echo.
-echo ================================================================================
+echo === Creating OVA MD5 ===========================================================
 echo.
 echo Creating MD5 for OVA File: %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA%
 
-%MD5_CMD% %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA%
+set CMDLINE=%MD5_CMD% %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA%
+
+call:timedCommand
+
+rem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 echo.
-echo ================================================================================
-
+echo === Zipping OVA ================================================================
+echo.
 echo Zipping OVA=[%VBOX_NAME_DEST%] into output dir=[%VBOX_ZIP_OUTPUT_DIR%]
-
-set zip_start_time=%time:~0,2%%time:~3,2%
-echo Starting ZIP at time: %zip_start_time%
 
 set ZIP_CLI_OPTS=a -tzip -mx=0 -md=512m -mmt=4 -mfb=258 -mpass=15 -v%ZIP_MAX_SIZE%
 
 set CMDLINE=%ZIP_CLI_CMD% %ZIP_CLI_OPTS% %VBOX_ZIP_OUTPUT_DIR%\%VBOX_NAME_DEST%.zip %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA% %VBOX_OUTPUT_DIR%\%VBOX_OUTPUT_OVA%.md5
 
-echo ================================================================================
-echo.
-echo Zipping VM using command:  %CMDLINE%
-echo.
+call:timedCommand
 
-%CMDLINE%
-
-if "%ERRORLEVEL%" NEQ "0" (
+if "%COMMAND_SUCCESS%" NEQ "0" (
   echo Split-zipping of files FAILED!
   goto end
 )
 
-set zip_stop_time=%time:~0,2%%time:~3,2%
-echo ZIP stop time=%zip_stop_time%
-
-set /A zip_duration = zip_stop_time-zip_start_time
-echo Time taken to ZIP OVA: %zip_duration% minutes
+rem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 echo.
-echo ================================================================================
+echo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+echo === Creating MD5 of Split-Zips =================================================
 echo.
 echo Creating MD5 for Zipped OVA Files in directory: %VBOX_ZIP_OUTPUT_DIR%"
 
-%MD5_CMD% %VBOX_ZIP_OUTPUT_DIR%
+set CMDLINE=%MD5_CMD% %VBOX_ZIP_OUTPUT_DIR%
 
-if "%ERRORLEVEL%" NEQ "0" (
+call:timedCommand
+
+if "%COMMAND_SUCCESS%" NEQ "0" (
   echo MD5 of split-ZIP files failed!
-  goto end
 )
 
+goto end
+
 echo.
-echo ================================================================================
+
+rem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+goto end
+
+:timedCommand
+set command_start_time=%time:~0,2%%time:~3,2%
+echo Command start time: %command_start_time%
+echo --------------------------
+echo Executing command: %CMDLINE%
+
+%CMDLINE%
+
+set COMMAND_SUCCESS=%ERRORLEVEL%
+echo COMMAND_SUCCESS: %COMMAND_SUCCESS%
+
+set command_stop_time=%time:~0,2%%time:~3,2%
+echo Command stop time=%command_stop_time%
+echo --------------------------
+
+set /A command_duration = command_stop_time-command_start_time
+echo Command Duration: %command_duration% minute(s)
+
+GOTO:EOF
 
 :end
 
 set overall_stop_time=%time:~0,2%%time:~3,2%
 set /A overall_duration = overall_stop_time-overall_start_time
-echo Total duration: %overall_duration%
+echo Total duration: %overall_duration% minute(s)
+
+rem %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
