@@ -1,7 +1,7 @@
 This WInS VirtualBox VM is for use by Oracle employees and Partners only!  Use at your own risk...
 
 
-This Agreement document (?greement? includes the license terms for the following programs: Oracle Enterprise Linux 5.5; Firefox 3.0.18, Maven 3.0.1, Hudson 1.393, and NetBeans 7.0.
+This Agreement document (Agreement) includes the license terms for the following programs: Oracle Enterprise Linux 5.5; Firefox 3.0.18, Maven 3.0.1, Hudson 1.393, and NetBeans 7.0.
 For your convenience, separate programs may be provided on this disk.  The executable versions of the separate Programs may be installed together from this disk, but they are separate products and are also available as separate downloads at:
 http://edelivery.oracle.com/linux
 http://netbeans.org
@@ -9,7 +9,7 @@ https://developer.mozilla.org/en/Download_Mozilla_Source_Code
 http://maven.apache.org/
 http://hudson-ci.org/
 
-(?rograms?. Please review the terms for the products you will download and/or install. The Agreement terms below supercede any shrinkwrap or similar license on the relevant Program.
+(Programs). Please review the terms for the products you will download and/or install. The Agreement terms below supercede any shrinkwrap or similar license on the relevant Program.
 To the extent required under the terms of the license, source code for certain products will be made available to you as indicated below.  If the source code for the binary was not provided or made available to you with the binary, you can receive a copy of the source code on physical media by submitting a written request to:
   	Oracle America, Inc.
 	Attn: Associate General Counsel
@@ -897,108 +897,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-
-
-
-This Agreement document (?greement? includes the license terms for the following programs:
-?Oracle WebLogic Server (10.3.5.0)
-?Oracle Coherence 3.6
+This Agreement document (Agreement) includes the license terms for the following programs:
+?Oracle WebLogic Server 12.1.2
+?Oracle Coherence 12.1.2
 ?Oracle GlassFish Server 3.1
 ?Oracle Enterprise Pack for Eclipse 11.1.1.7.3
-?Oracle Database 10g XE
-?Sun JDK 1.6.0_24
-?JRockit 1.6.0_24
-For your convenience, the binary versions of the Programs may be downloaded from this site on a virtual disk and installed together, but they are separate products and are also available as separate downloads on the Oracle Technology Network site:
-http://www.oracle.com/technetwork/indexes/downloads/index.html.
+?Oracle Database 121.1
 
-
-"We," "us," "our" and ?racle?refer to Oracle America, Inc., for and on behalf of itself and its subsidiaries and affiliates under common control. "You" and "your" refers to the individual or entity that wishes to use the programs from Oracle.  "Programs" refers to the Oracle software product you wish to download and use and program documentation. ?License" refers to your right to use the programs under the terms of this agreement.
-
-The OTN and Binary License Agreement terms below supersede any shrinkwrap license on the OTN Technology Track software CDs and previous OTN License terms (including the Oracle Program License as modified by the OTN Program Use Certificate) for the relevant Program.
-Please review the terms for the Programs you will download and/or install today. Additional notices and/or separate licenses for third party code included with the distribution may appear in the readmes or documentation and, notwithstanding any terms and conditions herein, may govern your use of such third party code.  Read the terms carefully for each product.  By clicking acceptance below and downloading or installing the Programs, you acknowledge your acceptance of the terms for the product(s) you download or install. If you are not willing to be bound by these terms, select the "Do Not Accept" button and the registration process will not continue or delete the Programs from your system.
-Selecting the "Accept License Agreement" button is a confirmation of your agreement that you comply, now and during the term, with each of the following statements for all Programs on the virtual disk:
+Export Controls on the Programs
+Selecting the "Accept License Agreement" button is a confirmation of your agreement that you comply, now and during the trial term, with each of the following statements:
 
 -You are not a citizen, national, or resident of, and are not under control of, the government of Cuba, Iran, Sudan, Libya, North Korea, Syria, nor any country to which the United States has prohibited export.
 -You will not download or otherwise export or re-export the Programs, directly or indirectly, to the above mentioned countries nor to citizens, nationals or residents of those countries.
 -You are not listed on the United States Department of Treasury lists of Specially Designated Nationals, Specially Designated Terrorists, and Specially Designated Narcotic Traffickers, nor are you listed on the United States Department of Commerce Table of Denial Orders.
--You will not download or otherwise export or re-export the Programs, directly or indirectly, to persons on the above mentioned lists.
- -You will not use the Programs for, and will not allow the Programs to be used for, any purposes prohibited by United States law, including, without limitation, for the development, design, manufacture or production of nuclear, chemical or biological weapons of mass destruction.
-If with the Programs you receive the binary for third party components are licensed under an open source license that gives you the right to receive the source code for that binary, you may be able to obtain a copy of the applicable source code at the following site(s):
-www.java.net
-www.apache.org
-www.mozilla.org
-www.eclipse.org
-subclipse.tigris.org
-jython.org
-Additionally, if the source code for the binary was not provided or made available to you with the binary, you can also receive a copy of the source code on physical media by submitting a written request to
-
-Oracle America, Inc.
-Attn: Associate General Counsel
-Development and Engineering Legal
-500 Oracle Parkway, 10th Floor
-Redwood Shores, CA 94065
+- You will not download or otherwise export or re-export the Programs, directly or indirectly, to persons on the above mentioned lists.
+- You will not use the Programs for, and will not allow the Programs to be used for, any purposes prohibited by United States law, including, without limitation, for the development, design, manufacture or production of nuclear, chemical or biological weapons of mass destruction.
 
 
-Your request should include (i) the name of the binary for which you are requesting the source code, (ii) the name and version number of the Oracle product containing the binary, (iii) the date you received the Oracle product, (iv) your name, (v) your company name (if applicable), (vi) your return mailing address and email and (vii) a telephone number in the event we need to reach you.
-
-We may charge you a fee to cover the cost of processing.
-
-Your request must be sent within three (3) years of the date you received the Oracle product that included the binary that is the subject of your request, or the within the term provided in the relevant open source license, whichever is longer.
-
-
-
-The following terms apply to WebLogic Server (10.3.5), Oracle Coherence (3.6); Oracle Glassfish Server (3.1) Oracle Enterprise Pack for Eclipse (11.1.1.7.3) and Oracle Database 10g XE.
-This agreement is governed by the substantive and procedural laws of California. You and Oracle agree to submit to the exclusive jurisdiction of, and venue in, the courts of San Francisco or Santa Clara counties in California in any dispute arising out of or relating to this agreement.
-
-Disclaimer of Warranties and Exclusive Remedies
-THE PROGRAMS AND VIRTUAL DISK ARE PROVIDED "AS IS" TO YOU, EXCLUSIVE OF ANY WARRANTY, INCLUDING, WITHOUT LIMITATION, ALL WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, WHETHER EXPRESS OR IMPLIED.  ORACLE DOES NOT GUARANTEE THAT THE PROGRAMS OR VIRTUAL DISK WILL PERFORM ERROR-FREE OR UNINTERRUPTED OR THAT ORACLE WILL CORRECT ALL ERRORS THEREIN.
-
-IN NO EVENT SHALL ORACLE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE OR CONSEQUENTIAL DAMAGES, OR DAMAGES FOR LOSS OF PROFITS, REVENUE, DATA OR DATA USE, INCURRED BY YOU OR ANY THIRD PARTY, WHETHER IN AN ACTION IN CONTRACT OR TORT, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR ENTIRE LIABILITY FOR DAMAGES HEREUNDER, WHETHER IN CONTRACT OR TORT, SHALL IN NO EVENT EXCEED ONE THOUSAND DOLLARS (U.S. $1,000), AND IF SUCH DAMAGES RESULT FROM YOUR USE OF THE PROGRAMS OR VIRTUAL DISK, SUCH LIABILITY SHALL BE LIMITED TO THE FEES YOU PAID ORACLE FOR THE DEFICIENT PRODUCTS GIVING RISE TO THE LIABILITY.
-
-You acknowledge and agree that the Programs and virtual disk have been provided to you at no charge.
-
-
-Relationship Between the Parties
-The relationship between you and us is that of licensee/licensor. Neither party will represent that it has any authority to assume or create any obligation, express or implied, on behalf of the other party, nor to represent the other party as agent, employee, franchisee, or in any other capacity. Nothing in this Agreement shall be construed to limit either party's right to independently develop or distribute software that is functionally similar to the other party's products, so long as proprietary information of the other party is not included in such software.
-
-Export
-You agree that U.S. export control laws and other applicable export and import laws govern your use of the programs, including technical data; additional information can be found on Oracle's Global Trade Compliance web site located at http://www.oracle.com/products/export/index.html.
+EXPORT RESTRICTIONS
+You agree that U.S. export control laws and other applicable export and import laws govern your use of the programs, including technical data; additional information can be found on Oracle®'s Global Trade Compliance web site (http://www.oracle.com/products/export).
 
 You agree that neither the programs nor any direct product thereof will be exported, directly, or indirectly, in violation of these laws, or will be used for any purpose prohibited by these laws including, without limitation, nuclear, chemical, or biological weapons proliferation.
 
-End of Agreement
-You may terminate this agreement by destroying all copies of the Programs. We have the right to terminate your right to use the programs if you fail to comply with any of the terms of this agreement, in which case you shall destroy all copies of the Programs.
+Oracle Employees: Under no circumstances are Oracle Employees authorized to download software for the purpose of distributing it to customers. Oracle products are available to employees for internal use or demonstration purposes only. In keeping with Oracle's trade compliance obligations under U.S. and applicable multilateral law, failure to comply with this policy could result in disciplinary action up to and including termination.
 
-No Technical Support
-Our technical support organization will not provide technical support, phone support, or updates to you for the programs licensed under this agreement.
+Note: You are bound by the Oracle Technology Network ("OTN") License Agreement terms. The OTN License Agreement terms also apply to all updates you receive under your Technology Track subscription.
 
-
-You agree that this agreement is the complete agreement for the programs and licenses, and this agreement supersedes all prior or contemporaneous agreements or representations. If any term of this agreement is found to be invalid or unenforceable, the remaining provisions will remain effective.
-
-Oracle Employees: Under no circumstances are Oracle Employees authorized to download software for the purpose of distributing it to customers. Oracle products are available to employees for internal use or demonstration purposes only.  In keeping with Oracle's trade compliance obligations under U.S. and applicable multilateral law, failure to comply with this policy could result in disciplinary action up to and including termination.
-
-Should you have any questions concerning the Licenses in this Agreement, or if you desire to contact Oracle for any reason, please write:
-
-Oracle America, Inc.
-500 Oracle Parkway,
-Redwood City, CA 94065
+The OTN License Agreement terms below supercede any shrinkwrap license on the OTN Technology Track software CDs and previous OTN License terms (including the Oracle Program License as modified by the OTN Program Use Certificate).
 
 
+Oracle Technology Network Development License Agreement
+"We," "us," and "our" refers to Oracle America, Inc., for and on behalf of itself and its subsidiaries and affiliates under common control. "You" and "your" refers to the individual or entity that wishes to use the programs from Oracle. "Programs" refers to the Oracle software product you wish to download and use and program documentation. "License" refers to your right to use the programs under the terms of this agreement. This agreement is governed by the substantive and procedural laws of California. You and Oracle agree to submit to the exclusive jurisdiction of, and venue in, the courts of San Francisco, San Mateo, or Santa Clara counties in California in any dispute arising out of or relating to this agreement.
 
-License Terms for 	ORACLE WEBLOGIC SERVER (10.3.5.0)
-			ORACLE COHERENCE (3.6)
-			ORACLE GLASSFISH SERVER (3.1)
+We are willing to license the programs to you only upon the condition that you accept all of the terms contained in this agreement. Read the terms carefully and select the "Accept License Agreement" button to confirm your acceptance. If you are not willing to be bound by these terms, select the "Decline License Agreement" button and the registration process will not continue.
 
+LICENSE RIGHTS
+We grant you a nonexclusive, nontransferable limited license to use the programs only for the purpose of developing, testing, prototyping and demonstrating your application, and not for any other purpose. If you use the application you develop under this license for any internal data processing or for any commercial or production purposes, or you want to use the programs for any purpose other than as permitted under this agreement, you must obtain a production release version of the program by contacting us or an Oracle reseller to obtain the appropriate license. You acknowledge that we may not produce a production release version of the program and any development efforts undertaken by you are at your own risk. We may audit your use of the programs. Program documentation, if available, may accessed online at http://www.oracle.com/technetwork/indexes/documentation/index.html.
 
-The terms in this Section apply to Oracle WebLogic Server (10.3.5.0), Oracle Coherence (3.6), and Oracle Glassfish Server (3.1)
-
-License Rights
-We grant you a nonexclusive, nontransferable limited license to use the programs only for the purpose of developing, testing, prototyping and demonstrating your application, and not for any other purpose. If you use the application you develop under this license for any internal data processing or for any commercial or production purposes, or you want to use the programs for any purpose other than as permitted under this agreement, you must obtain a production release version of the program by contacting us or an Oracle reseller to obtain the appropriate license. You acknowledge that we may not produce a production release version of the program and any development efforts undertaken by you are at your own risk. We may audit your use of the programs.
-
-Program documentation, if available, may accessed online at http://www.oracle.com/technetwork/documentation.
-
-Ownership and Restrictions
-We retain all ownership and intellectual property rights in the programs. The programs may be installed on one computer only, and used by one person in the operating environment identified by us. You may make one copy of the programs for backup purposes.
+Ownership and Restrictions We retain all ownership and intellectual property rights in the programs. The programs may be installed on one computer only, and used by one person in the operating environment identified by us. You may make one copy of the programs for backup purposes.
 
 You may not:
 - use the programs for your own internal data processing or for any commercial or production purposes, or use the programs for any purpose except the development of your application;
@@ -1010,93 +946,52 @@ You may not:
 - assign this agreement or give or transfer the programs or an interest in them to another individual or entity; - cause or permit reverse engineering (unless required by law for interoperability), disassembly or decompilation of the programs;
 - disclose results of any program benchmark tests without our prior consent.
 
+Export
+You agree that U.S. export control laws and other applicable export and import laws govern your use of the programs, including technical data; additional information can be found on Oracle's Global Trade Compliance web site located at http://www.oracle.com/products/export/index.html. You agree that neither the programs nor any direct product thereof will be exported, directly, or indirectly, in violation of these laws, or will be used for any purpose prohibited by these laws including, without limitation, nuclear, chemical, or biological weapons proliferation.
+
+Disclaimer of Warranty and Exclusive Remedies
+THE PROGRAMS ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. WE FURTHER DISCLAIM ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NONINFRINGEMENT.
+
+IN NO EVENT SHALL WE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE OR CONSEQUENTIAL DAMAGES, OR DAMAGES FOR LOSS OF PROFITS, REVENUE, DATA OR DATA USE, INCURRED BY YOU OR ANY THIRD PARTY, WHETHER IN AN ACTION IN CONTRACT OR TORT, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR ENTIRE LIABILITY FOR DAMAGES HEREUNDER SHALL IN NO EVENT EXCEED ONE THOUSAND DOLLARS (U.S. $1,000).
 
 
+Trial Programs Included With Orders
+We may include additional programs with an order which may be used for trial purposes only. You will have 30 days from the delivery date to evaluate these programs. Any use of these programs after the 30 day trial period requires you to obtain the applicable license. Programs licensed for trial purposes are provided "as is" and we do not provide technical support or any warranties for these programs.
 
-License Terms for 	ORACLE ENTERPRISE PACK FOR ECLIPSE (11.1.1.7.3)
-License Rights
+No Technical Support
+Our technical support organization will not provide technical support, phone support, or updates to you for the programs licensed under this agreement.
 
-We grant you a nonexclusive, nontransferable limited license to use the programs for purposes of developing your applications. If you want to use the programs for any purpose other than as expressly permitted under this agreement you must contact us, or an Oracle reseller, to obtain the appropriate license. We may audit your use of the programs. Program documentation is provided with the programs.
+End of Agreement
+You may terminate this agreement by destroying all copies of the programs. We have the right to terminate your right to use the programs if you fail to comply with any of the terms of this agreement, in which case you shall destroy all copies of the programs.
 
-Ownership and Restrictions
-
-We retain all ownership and intellectual property rights in the programs. You may make a sufficient number of copies of the programs for the licensed use and one copy of the programs for backup purposes.
-
-You may not:
-?use the programs for any purpose other than as provided above;
-?distribute the programs;
-?charge your end users for use of the programs;
-?remove or modify any program markings or any notice of our proprietary rights;
-?use the programs to provide third party training on the content and/or functionality of the programs;
-?assign this agreement or give the programs, program access or an interest in the programs to any individual or entity;
-?cause or permit reverse engineering (unless required by law for interoperability), disassembly or decompilation of the programs;
-?disclose results of any program benchmark tests without our prior consent; or,
-?use any Oracle name, trademark or logo.
-
-
-Restricted Rights
-
-If you distribute a license to the United States government, the programs, including documentation, shall be considered commercial computer software and you will place a legend, in addition to applicable copyright notices, on the documentation, and on the media label, substantially similar to the following:
-
-NOTICE OF RESTRICTED RIGHTS
-
-"Programs delivered subject to the DOD FAR Supplement are 'commercial computer software' and use, duplication, and disclosure of the programs, including documentation, shall be subject to the licensing restrictions set forth in the applicable Oracle license agreement. Otherwise, programs delivered subject to the Federal Acquisition Regulations are 'restricted computer software' and use, duplication, and disclosure of the programs, including documentation, shall be subject to the restrictions in FAR 52.227-19, Commercial Computer Software-Restricted Rights (June 1987). Oracle America, Inc., 500 Oracle Parkway, Redwood City, CA 94065."
-
-License Terms for 	ORACLE DATABASE 10g XE
-License Rights
-We grant you a nonexclusive, nontransferable limited license to use the programs for: (a) purposes of developing, prototyping and running your applications for your own internal data processing operations; (b) you may also distribute the programs with your applications; (c) you may use the programs to provide third party demonstrations and training; and d) you may copy and distribute the programs to your licensees provided that each such licensee agrees to the terms of this Agreement. You are not permitted to use the programs for any purpose other than as permitted under this Agreement. Program documentation is either shipped with the programs, or documentation may accessed online at
-
-http://www.oracle.com/technetwork/indexes/documentation/index.html.
-
-Any use of the Oracle Database Express Edition is subject to the following limitations;
-
-1. Express Edition is limited to a single instance on any server;
-2. Express Edition may be installed on a multiple CPU server, but may only be executed on one processor in any server;
-3. Express Edition may only be used to support up to 4GB of user data (not including Express Edition system data);
-4. Express Edition may use up to 1 GB RAM of available memory.
-Trademarks and Copyrights
-
-You agree not to use Oracle trademarks (including "ORACLE") or potentially confusing variations (including "ORA") as a part of your product name(s), service name(s), company name, or domain name(s). In marketing, promoting, or distributing the programs, you agree to make it clear that Oracle is the source of the programs. You shall include on all copies of the programs used or distributed by you: A. A reproduction of Oracle's copyright notice; or
-B. A copyright notice indicating that the copyright is vested in you containing the following:
-1. A "c" in a circle and the word "copyright";
-2. Your name;
-3. The date of copyright; and
-4. The words "All rights reserved."
-
-Such notices shall be placed on the documentation, the sign-on screen for any software incorporating the programs, and any media containing the programs.
-Ownership and Restrictions
-
-We retain all ownership and intellectual property rights in the programs. You may make a reasonable number of copies of the programs for backup purposes.
-You may not:
-- remove or modify any program markings or any notice of our proprietary rights;
-- assign this Agreement or give or transfer the programs to another individual or entity except as specified in this Agreement;
-- cause or permit reverse engineering or decompilation of the programs;
-- disclose results of any program benchmark tests without our prior consent.
-
-
-Restricted Rights
-Use, duplication or disclosure by the United States government is subject to the restrictions as set forth in the Rights in Technical Data and Computer Software Clauses in DFARS 252.227-7013(c)(1)(ii) and FAR 52.227-19(c)(2) as applicable. The manufacturer is Oracle Corporation, 500 Oracle Parkway, Redwood City, California 94065, U.S.A.
+Relationship Between the Parties
+The relationship between you and us is that of licensee/licensor. Neither party will represent that it has any authority to assume or create any obligation, express or implied, on behalf of the other party, nor to represent the other party as agent, employee, franchisee, or in any other capacity. Nothing in this agreement shall be construed to limit either party's right to independently develop or distribute software that is functionally similar to the other party's products, so long as proprietary information of the other party is not included in such software.
 
 Open Source
 "Open Source" software - software available without charge for use, modification and distribution - is often licensed under terms that require the user to make the user's modifications to the Open Source software or any software that the user 'combines' with the Open Source software freely available in source code form. If you use Open Source software in conjunction with the programs, you must ensure that your use does not: (i) create, or purport to create, obligations of us with respect to the Oracle programs; or (ii) grant, or purport to grant, to any third party any rights to or immunities under our intellectual property or proprietary rights in the Oracle programs. For example, you may not develop a software program using an Oracle program and an Open Source program where such use results in a program file(s) that contains code from both the Oracle program and the Open Source program (including without limitation libraries) if the Open Source program is licensed under a license that requires any "modifications" be made freely available. You also may not combine the Oracle program with programs licensed under the GNU General Public License ("GPL") in any manner that could cause, or could be interpreted or asserted to cause, the Oracle program or any modifications thereto to become subject to the terms of the GPL.
 
-Other
-Upon 45 days written notice Oracle may audit the use of the program. You agree to cooperate with Oracle's audit and provide reasonable assistance and access to information. You agree that Oracle shall not be responsible for any of your costs incurred in cooperating with the audit.
-
 Entire Agreement
-You agree that this Agreement is the complete Agreement for the programs and licenses, and this Agreement supersedes all prior or contemporaneous Agreements or representations. If any term of this Agreement is found to be invalid or unenforceable, the remaining provisions will remain effective.
+You agree that this agreement is the complete agreement for the programs and licenses, and this agreement supersedes all prior or contemporaneous agreements or representations. If any term of this agreement is found to be invalid or unenforceable, the remaining provisions will remain effective.
+
+Last updated: 01/24/09
+
+
+Should you have any questions concerning this License Agreement, or if you desire to contact Oracle for any reason, please write:
+Oracle America, Inc.
+500 Oracle Parkway,
+Redwood City, CA 94065
+
+
+Oracle may contact you to ask if you had a satisfactory experience installing and using this OTN software download.
 ____________________________________________________________________________
 
-License Terms for 	JROCKIT (1.6.0_24)
-			SUN JDK (1.6.0_24)
+License Terms for 	Oracle JDK (1.7.0_40)
 
-The terms in this Section apply to Sun JDK 1.6.0_24 and JRockit 1.6.0_24.  If there is any conflict with earlier sections of this document, the terms of this section shall apply to JRockit and Sun JDK.
-
-Oracle Binary Code License Agreement for the Java SE Platform Products
+Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX
 
 ORACLE AMERICA, INC. ("ORACLE"), FOR AND ON BEHALF OF ITSELF AND ITS SUBSIDIARIES AND AFFILIATES UNDER COMMON CONTROL, IS WILLING TO LICENSE THE SOFTWARE TO YOU ONLY UPON THE CONDITION THAT YOU ACCEPT ALL OF THE TERMS CONTAINED IN THIS BINARY CODE LICENSE AGREEMENT AND SUPPLEMENTAL LICENSE TERMS (COLLECTIVELY "AGREEMENT"). PLEASE READ THE AGREEMENT CAREFULLY. BY SELECTING THE "ACCEPT LICENSE AGREEMENT" (OR THE EQUIVALENT) BUTTON AND/OR BY USING THE SOFTWARE YOU ACKNOWLEDGE THAT YOU HAVE READ THE TERMS AND AGREE TO THEM. IF YOU ARE AGREEING TO THESE TERMS ON BEHALF OF A COMPANY OR OTHER LEGAL ENTITY, YOU REPRESENT THAT YOU HAVE THE LEGAL AUTHORITY TO BIND THE LEGAL ENTITY TO THESE TERMS. IF YOU DO NOT HAVE SUCH AUTHORITY, OR IF YOU DO NOT WISH TO BE BOUND BY THE TERMS, THEN SELECT THE "DECLINE LICENSE AGREEMENT" (OR THE EQUIVALENT) BUTTON AND YOU MUST NOT USE THE SOFTWARE ON THIS SITE OR ANY OTHER MEDIA ON WHICH THE SOFTWARE IS CONTAINED.
 
-1. DEFINITIONS. "Software" means the Java SE Platform Products in binary form that you selected for download, install or use from Oracle or its authorized licensees, any other machine readable materials (including, but not limited to, libraries, source files, header files, and data files), any updates or error corrections provided by Oracle, and any user manuals, programming guides and other documentation provided to you by Oracle under this Agreement. "General Purpose Desktop Computers and Servers" means computers, including desktop and laptop computers, or servers, used for general computing functions under end user control (such as but not specifically limited to email, general purpose Internet browsing, and office suite productivity tools). The use of Software in systems and solutions that provide dedicated functionality (other than as mentioned above) or designed for use in embedded or function-specific software applications, for example but not limited to: Software embedded in or bundled with industrial control systems, wireless mobile telephones, wireless handheld devices, netbooks, kiosks, TV/STB, Blu-ray Disc devices, telematics and network control switching equipment, printers and storage management systems, and other related systems are excluded from this definition and not licensed under this Agreement. "Programs" means Java technology applets and applications intended to run on the Java Platform, Standard Edition platform on Java-enabled General Purpose Desktop Computers and Servers. ?ommercial Features?means those features identified in Table 1-1 (Commercial Features In Java SE Product Editions) of the Software documentation accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html. ?EADME File?means the README file for the Software accessible at http://www.oracle.com/technetwork/java/javase/terms/readme/index.html.
+1. DEFINITIONS. "Software" means the software identified above in binary form that you selected for download, install or use (in the version You selected for download, install or use) from Oracle or its authorized licensees, any other machine readable materials (including, but not limited to, libraries, source files, header files, and data files), any updates or error corrections provided by Oracle, and any user manuals, programming guides and other documentation provided to you by Oracle under this Agreement. "General Purpose Desktop Computers and Servers" means computers, including desktop and laptop computers, or servers, used for general computing functions under end user control (such as but not specifically limited to email, general purpose Internet browsing, and office suite productivity tools). The use of Software in systems and solutions that provide dedicated functionality (other than as mentioned above) or designed for use in embedded or function-specific software applications, for example but not limited to: Software embedded in or bundled with industrial control systems, wireless mobile telephones, wireless handheld devices, kiosks, TV/STB, Blu-ray Disc devices, telematics and network control switching equipment, printers and storage management systems, and other related systems are excluded from this definition and not licensed under this Agreement. "Programs" means (a) Java technology applets and applications intended to run on the Java Platform, Standard Edition platform on Java-enabled General Purpose Desktop Computers and Servers; and (b) JavaFX technology applications intended to run on the JavaFX Runtime on JavaFX-enabled General Purpose Desktop Computers and Servers. “Commercial Features” means those features identified in Table 1-1 (Commercial Features In Java SE Product Editions) of the Java SE documentation accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html. “README File” means the README file for the Software accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html.
 
 2. LICENSE TO USE. Subject to the terms and conditions of this Agreement including, but not limited to, the Java Technology Restrictions of the Supplemental License Terms, Oracle grants you a non-exclusive, non-transferable, limited license without license fees to reproduce and use internally the Software complete and unmodified for the sole purpose of running Programs. THE LICENSE SET FORTH IN THIS SECTION 2 DOES NOT EXTEND TO THE COMMERCIAL FEATURES. YOUR RIGHTS AND OBLIGATIONS RELATED TO THE COMMERCIAL FEATURES ARE AS SET FORTH IN THE SUPPLEMENTAL TERMS ALONG WITH ADDITIONAL LICENSES FOR DEVELOPERS AND PUBLISHERS.
 
@@ -1114,7 +1009,7 @@ ORACLE AMERICA, INC. ("ORACLE"), FOR AND ON BEHALF OF ITSELF AND ITS SUBSIDIARIE
 and Oracle that Oracle owns the ORACLE and JAVA trademarks and all ORACLE- and JAVA-related trademarks, service marks, logos and other brand
 designations ("Oracle Marks"), and you agree to comply with the Third
 Party Usage Guidelines for Oracle Trademarks currently located at
-http://www.oracle.com/us/legal/third-party-trademarks/index.html. Any use you make of the Oracle Marks inures to Oracle's benefit.
+http://www.oracle.com/us/legal/third-party-trademarks/index.html . Any use you make of the Oracle Marks inures to Oracle's benefit.
 
 9. U.S. GOVERNMENT LICENSE RIGHTS. If Software is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Software and accompanying documentation shall be only those set forth in this Agreement.
 
@@ -1132,26 +1027,33 @@ A. COMMERCIAL FEATURES. You may not use the Commercial Features for running Prog
 
 B. SOFTWARE INTERNAL USE FOR DEVELOPMENT LICENSE GRANT. Subject to the terms and conditions of this Agreement and restrictions and exceptions set forth in the README File incorporated herein by reference, including, but not limited to the Java Technology Restrictions of these Supplemental Terms, Oracle grants you a non-exclusive, non-transferable, limited license without fees to reproduce internally and use internally the Software complete and unmodified for the purpose of designing, developing, and testing your Programs.
 
-C. LICENSE TO DISTRIBUTE SOFTWARE. Subject to the terms and conditions of this Agreement and restrictions and exceptions set forth in the README File, including, but not limited to the Java Technology Restrictions of these Supplemental Terms, Oracle grants you a non-exclusive, non-transferable, limited license without fees to reproduce and distribute the Software, provided that (i) you distribute the Software complete and unmodified and only bundled as part of, and for the sole purpose of running, your Programs, (ii) the Programs add significant and primary functionality to the Software, (iii) you do not distribute additional software intended to replace any component(s) of the Software, (iv) you do not remove or alter any proprietary legends or notices contained in the Software, (v) you only distribute the Software subject to a license agreement that: (a) is a complete, unmodified reproduction of this Agreement; or (b) protects Oracle's interests consistent with the terms contained in this Agreement and that includes the notice set forth in Section G, and (vi) you agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of any and all Programs and/or Software.
+C. LICENSE TO DISTRIBUTE SOFTWARE. Subject to the terms and conditions of this Agreement and restrictions and exceptions set forth in the README File, including, but not limited to the Java Technology Restrictions and Limitations on Redistribution of these Supplemental Terms, Oracle grants you a non-exclusive, non-transferable, limited license without fees to reproduce and distribute the Software, provided that (i) you distribute the Software complete and unmodified and only bundled as part of, and for the sole purpose of running, your Programs, (ii) the Programs add significant and primary functionality to the Software, (iii) you do not distribute additional software intended to replace any component(s) of the Software, (iv) you do not remove or alter any proprietary legends or notices contained in the Software, (v) you only distribute the Software subject to a license agreement that: (a) is a complete, unmodified reproduction of this Agreement; or (b) protects Oracle's interests consistent with the terms contained in this Agreement and that includes the notice set forth in Section H, and (vi) you agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of any and all Programs and/or Software. The license set forth in this Section C does not extend to the Software identified in Section G.
 
-D. LICENSE TO DISTRIBUTE REDISTRIBUTABLES. Subject to the terms and conditions of this Agreement and restrictions and exceptions set forth in the README File, including but not limited to the Java Technology Restrictions of these Supplemental Terms, Oracle grants you a non-exclusive, non-transferable, limited license without fees to reproduce and distribute those files specifically identified as redistributable in the README File ("Redistributables") provided that: (i) you distribute the Redistributables complete and unmodified, and only bundled as part of Programs, (ii) the Programs add significant and primary functionality to the Redistributables, (iii) you do not distribute additional software intended to supersede any component(s) of the Redistributables (unless otherwise specified in the applicable README File), (iv) you do not remove or alter any proprietary legends or notices contained in or on the Redistributables, (v) you only distribute the Redistributables pursuant to a license agreement that: (a) is a complete, unmodified reproduction of this Agreement; or (b) protects Oracle's interests consistent with the terms contained in the Agreement and includes the notice set forth in Section G, (vi) you agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of any and all Programs and/or Software.
+D. LICENSE TO DISTRIBUTE REDISTRIBUTABLES. Subject to the terms and conditions of this Agreement and restrictions and exceptions set forth in the README File, including but not limited to the Java Technology Restrictions and Limitations on Redistribution of these Supplemental Terms, Oracle grants you a non-exclusive, non-transferable, limited license without fees to reproduce and distribute those files specifically identified as redistributable in the README File ("Redistributables") provided that: (i) you distribute the Redistributables complete and unmodified, and only bundled as part of Programs, (ii) the Programs add significant and primary functionality to the Redistributables, (iii) you do not distribute additional software intended to supersede any component(s) of the Redistributables (unless otherwise specified in the applicable README File), (iv) you do not remove or alter any proprietary legends or notices contained in or on the Redistributables, (v) you only distribute the Redistributables pursuant to a license agreement that: (a) is a complete, unmodified reproduction of this Agreement; or (b) protects Oracle's interests consistent with the terms contained in the Agreement and includes the notice set forth in Section H, (vi) you agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of any and all Programs and/or Software. The license set forth in this Section D does not extend to the Software identified in Section G.
 
-E. DISTRIBUTION BY PUBLISHERS. This section pertains to your distribution of the JavaTM SE Development Kit Software with your printed book or magazine (as those terms are commonly used in the industry) relating to Java technology ("Publication"). Subject to and conditioned upon your compliance with the restrictions and obligations contained in the Agreement, Oracle hereby grants to you a non-exclusive, nontransferable limited right to reproduce complete and unmodified copies of the Software on electronic media (the "Media") for the sole purpose of inclusion and distribution with your Publication(s), subject to the following terms: (i) You may not distribute the Software on a stand-alone basis; it must be distributed with your Publication(s); (ii) You are responsible for downloading the Software from the applicable Oracle web site; (iii) You must refer to the Software as JavaTM SE Development Kit; (iv) The Software must be reproduced in its entirety and without any modification whatsoever (including with respect to all proprietary notices) and distributed with your Publication subject to a license agreement that is a complete, unmodified reproduction of this Agreement; (v) The Media label shall include the following information: Copyright 2011, Oracle America, Inc. All rights reserved. Use is subject to license terms. ORACLE and JAVA trademarks and all ORACLE- and JAVA-related trademarks, service marks, logos and other brand
-designations are trademarks or registered trademarks of Oracle in the U.S. and other countries. This information must be placed on the Media label in such a manner as to only apply to the Oracle Software; (vi) You must clearly identify the Software as Oracle's product on the Media holder or Media label, and you may not state or imply that Oracle is responsible for any third-party software contained on the Media; (vii) You may not include any third party software on the Media which is intended to be a replacement or substitute for the Software; (viii) You agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of the Software and/or the Publication; ; and (ix) You shall provide Oracle with a written notice for each Publication; such notice shall include the following information: (1) title of Publication, (2) author(s), (3) date of Publication, and (4) ISBN or ISSN numbers. Such notice shall be sent to Oracle America, Inc., 500 Oracle Parkway, Redwood Shores, California 94065 U.S.A , Attention: General Counsel.
+E. DISTRIBUTION BY PUBLISHERS. This section pertains to your distribution of the JavaTM SE Development Kit Software (“JDK”) with your printed book or magazine (as those terms are commonly used in the industry) relating to Java technology ("Publication"). Subject to and conditioned upon your compliance with the restrictions and obligations contained in the Agreement, Oracle hereby grants to you a non-exclusive, nontransferable limited right to reproduce complete and unmodified copies of the JDK on electronic media (the "Media") for the sole purpose of inclusion and distribution with your Publication(s), subject to the following terms: (i) You may not distribute the JDK on a stand-alone basis; it must be distributed with your Publication(s); (ii) You are responsible for downloading the JDK from the applicable Oracle web site; (iii) You must refer to the JDK as JavaTM SE Development Kit; (iv) The JDK must be reproduced in its entirety and without any modification whatsoever (including with respect to all proprietary notices) and distributed with your Publication subject to a license agreement that is a complete, unmodified reproduction of this Agreement; (v) The Media label shall include the following information: “Copyright [YEAR], Oracle America, Inc. All rights reserved. Use is subject to license terms. ORACLE and JAVA trademarks and all ORACLE- and JAVA-related trademarks, service marks, logos and other brand designations are trademarks or registered trademarks of Oracle in the U.S. and other countries.” [YEAR] is the year of Oracle's release of the Software; the year information can typically be found in the Software’s “About” box or screen. This information must be placed on the Media label in such a manner as to only apply to the JDK; (vi) You must clearly identify the JDK as Oracle's product on the Media holder or Media label, and you may not state or imply that Oracle is responsible for any third-party software contained on the Media; (vii) You may not include any third party software on the Media which is intended to be a replacement or substitute for the JDK; (viii) You agree to defend and indemnify Oracle and its licensors from and against any damages, costs, liabilities, settlement amounts and/or expenses (including attorneys' fees) incurred in connection with any claim, lawsuit or action by any third party that arises or results from the use or distribution of the JDK and/or the Publication; ; and (ix) You shall provide Oracle with a written notice for each Publication; such notice shall include the following information: (1) title of Publication, (2) author(s), (3) date of Publication, and (4) ISBN or ISSN numbers. Such notice shall be sent to Oracle America, Inc., 500 Oracle Parkway, Redwood Shores, California 94065 U.S.A , Attention: General Counsel.
 
-F. JAVA TECHNOLOGY RESTRICTIONS. You may not create, modify, or change the behavior of, or authorize your licensees to create, modify, or change the behavior of, classes, interfaces, or subpackages that are in any way identified as "java", "javax", "sun", ?racle?or similar convention as specified by Oracle in any naming convention designation.
+F. JAVA TECHNOLOGY RESTRICTIONS. You may not create, modify, or change the behavior of, or authorize your licensees to create, modify, or change the behavior of, classes, interfaces, or subpackages that are in any way identified as "java", "javax", "sun", “oracle” or similar convention as specified by Oracle in any naming convention designation.
 
-G. COMMERCIAL FEATURES NOTICE. For purpose of complying with Supplemental Term Section C.(v)(b) and D.(v)(b), your license agreement shall include the following notice, where the notice is displayed in a manner that anyone using the Software will see the notice:
+G. LIMITATIONS ON REDISTRIBUTION. You may not redistribute or otherwise transfer patches, bug fixes or updates made available by Oracle through Oracle Premier Support, including those made available under Oracle's Java SE Support program.
 
-Use of the Commercial Features for any commercial or production purpose requires a separate license from Oracle. ?ommercial Features?means those features identified Table 1-1 (Commercial Features In Java SE Product Editions) of the Software documentation accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html
+H. COMMERCIAL FEATURES NOTICE. For purpose of complying with Supplemental Term Section C.(v)(b) and D.(v)(b), your license agreement shall include the following notice, where the notice is displayed in a manner that anyone using the Software will see the notice:
 
-H. SOURCE CODE. Software may contain source code that, unless expressly licensed for other purposes, is provided solely for reference purposes pursuant to the terms of this Agreement. Source code may not be redistributed unless expressly provided for in this Agreement.
+Use of the Commercial Features for any commercial or production purpose requires a separate license from Oracle. “Commercial Features” means those features identified Table 1-1 (Commercial Features In Java SE Product Editions) of the Java SE documentation accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html
 
-I. THIRD PARTY CODE. Additional copyright notices and license terms applicable to portions of the Software are set forth in the THIRDPARTYLICENSEREADME file accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html. In addition to any terms and conditions of any third party open source/freeware license identified in the THIRDPARTYLICENSEREADME file, the disclaimer of warranty and limitation of liability provisions in paragraphs 4 and 5 of the Binary Code License Agreement shall apply to all Software in this distribution.
 
-J. TERMINATION FOR INFRINGEMENT. Either party may terminate this Agreement immediately should any Software become, or in either party's opinion be likely to become, the subject of a claim of infringement of any intellectual property right.
 
-K. INSTALLATION AND AUTO-UPDATE. The Software's installation and auto-update processes transmit a limited amount of data to Oracle (or its service provider) about those specific processes to help Oracle understand and optimize them. Oracle does not associate the data with personally identifiable information. You can find more information about the data Oracle collects as a result of your Software download at http://www.oracle.com/technetwork/java/javase/documentation/index.html.
+I. SOURCE CODE. Software may contain source code that, unless expressly licensed for other purposes, is provided solely for reference purposes pursuant to the terms of this Agreement. Source code may not be redistributed unless expressly provided for in this Agreement.
+
+J. THIRD PARTY CODE. Additional copyright notices and license terms applicable to portions of the Software are set forth in the THIRDPARTYLICENSEREADME file accessible at http://www.oracle.com/technetwork/java/javase/documentation/index.html. In addition to any terms and conditions of any third party opensource/freeware license identified in the THIRDPARTYLICENSEREADME file, the disclaimer of warranty and limitation of liability provisions in paragraphs 4 and 5 of the Binary Code License Agreement shall apply to all Software in this distribution.
+
+K. TERMINATION FOR INFRINGEMENT. Either party may terminate this Agreement immediately should any Software become, or in either party's opinion be likely to become, the subject of a claim of infringement of any intellectual property right.
+
+L. INSTALLATION AND AUTO-UPDATE. The Software's installation and auto-update processes transmit a limited amount of data to Oracle (or its service provider) about those specific processes to help Oracle understand and optimize them. Oracle does not associate the data with personally identifiable information. You can find more information about the data Oracle collects as a result of your Software download at http://www.oracle.com/technetwork/java/javase/documentation/index.html.
 
 For inquiries please contact: Oracle America, Inc., 500 Oracle Parkway,
+
 Redwood Shores, California 94065, USA.
+
+Last updated 02 April 2013
+
