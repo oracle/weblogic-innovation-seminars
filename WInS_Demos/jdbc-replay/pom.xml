@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.demo.ApplicationContinuity</groupId>
+  <artifactId>jdbc-replay</artifactId>
+  <version>3.0</version>
+  <packaging>pom</packaging>
+  <name>jdbc-replay</name>
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../common/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+  <properties>
+    <domain.name>weblogic-basic-domain</domain.name>
+  </properties>
+  <!-- ==================================================================================== -->
+
+  <profiles>
+    <profile>
+      <id>create-datasource</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+                  <middlewareHome>/u01/wls1212/</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+
+
+                  <fileName>${project.basedir}/src/main/wlst/createSetup.py</fileName>
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+
+    <!-- +++++++++++++++++++++++++ -->
+
+    <profile>
+      <id>delete-datasource</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <user>weblogic</user>
+              <password>welcome1</password>
+              <name>${project.build.finalName}</name>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>configure</id>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>wlst</goal>
+                </goals>
+
+                <configuration>
+				<middlewareHome>/u01/wls1212/</middlewareHome>
+                  <weblogicHome>/u01/wls1212/wlserver</weblogicHome>
+
+
+                  <fileName>${project.basedir}/src/main/wlst/deleteSetup.py</fileName>
+                </configuration>
+		</execution>
+            </executions>
+          </plugin>
+
+
+        </plugins>
+      </build>
+
+    </profile>
+    <!-- +++++++++++++++++++++++++ -->
+
+</profiles>
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+  </build>
+
+</project>
