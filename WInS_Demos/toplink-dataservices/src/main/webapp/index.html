@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>eXaBid</title>
+		<link href="images/exabid.ico"/>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>
+		<link href="http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css" rel="stylesheet"/>
+		<link href="css/default.css" rel="stylesheet"/>
+		<link href="css/exabid.css" rel="stylesheet"/>
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+		<script src="http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js" type="text/javascript"></script>
+		<script src="js/auctionList.js" type="text/javascript"></script>
+		<script src="js/auctionDisplay.js" type="text/javascript"></script>
+		<script src="js/users.js" type="text/javascript"></script>
+		<script src="js/exabid.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div id="header">
+				<img alt="RESTful persistence and Query Change Notifications demo powered by TopLink Data Services" src="images/title.png"/>
+			</div>
+			<div id="loadingMessage">
+				<p class="center">
+					<img src="images/info.png" alt="information"/>
+					Retrieving the auction items...
+				</p>
+			</div>
+			<div id="errorMessage">
+				<p class="center">
+					<table>
+						<tr>
+							<td>
+								<img src="images/error.png" alt="error"/>
+							</td>
+							<td>
+								Encountered an error while retrieving the information. Make sure the Oracle database is running and the AUCTION schema has been generated and accessible. Refer to the log for more information.
+							</td>
+						</tr>
+					</table>
+			</div>
+			<div id="thumdnail-container"></div>
+			<hr class="separator">
+			<div id="editor" class="row-fluid">
+				<table>
+					<tr>
+						<td rowspan="3" class="image">
+							<img id="auction_image">
+						</td>
+						<td class="name">
+							<h1 id="auction_name"><span></span></h1>
+							<div class="price">
+								<span>Starting Price: </span>
+								<span id="auction_startPrice"></span>
+							</div>
+							<hr class="price"/>
+						</td>
+			      </tr>
+			      <tr>
+			      	<td class="description">
+							<p id="auction_description"><span></span></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="bidInfo">
+							<div id="bidInfo" class="span8">
+								<div class="bottom-gap">
+									<span>The current bid is</span>
+									<span id="auction_currentBid" class="text-bold"></span>
+									<span>made by</span>
+									<span id="auction_user" class="text-bold"></span>
+									<span>.</span>
+								</div>
+								<form class="form-inline horizontal">
+									<div class="control-group">
+										<label for="userSelect" id="userSelectLabel">User:</label>
+										<select id="userSelect" class="Selectpicker span4"></select>
+									</div>
+							      <div class="control-group">
+										<label id="bidTextLabel" for="bidText">Bid:</label>
+										<input type="text" id="bidText" name="bidText" placeholder="Enter bid…" class=""></input>
+										<input type="button" id="postBidButton" value="Place Bid" class="btn btn-primary btn-small" disabled></input>
+						        </div>
+								</form>
+								<div>
+									<span class="history">History:</span>
+									<ul id="bidList"></ul>
+								</div>
+							</div>
+						</td>
+			      </tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

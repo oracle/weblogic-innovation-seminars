@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.4"
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_4.xsd">
+
+	<package>oracle.toplink.examples.live.ws.auction</package>
+
+	<named-query name="Auction.all">
+		<query>SELECT a FROM Auction a</query>
+	</named-query>
+
+	<named-query name="Auction.allIds">
+		<query>SELECT a.id FROM Auction a ORDER BY a.id</query>
+	</named-query>
+
+	<named-query name="Auction.open">
+		<query>SELECT a FROM Auction a where a.sold = false</query>
+	</named-query>
+
+	<named-query name="Bid.All">
+		<query>SELECT b FROM Bid b ORDER BY b.time</query>
+	</named-query>
+
+	<named-query name="Bid.forAuctionId">
+		<query>SELECT b FROM Bid b WHERE b.auctionId = :auctionId</query>
+	</named-query>
+
+	<named-query name="Bid.forAuctionIdOrdered">
+		<query>SELECT b FROM Bid b WHERE b.auctionId = :auctionId ORDER BY b.bid DESC</query>
+	</named-query>
+
+	<named-query name="Bid.maxForAuctionId">
+		<query>SELECT MAX(b.bid) FROM Bid b WHERE b.auctionId =:auctionId</query>
+	</named-query>
+
+	<named-query name="Bid.forUserId">
+		<query>SELECT b FROM Bid b WHERE b.userId = :userId ORDER BY b.time</query>
+	</named-query>
+
+	<named-query name="User.all">
+		<query>SELECT u FROM User u</query>
+	</named-query>
+
+	<entity class="User" access="VIRTUAL">
+		<table name="USERS" />
+		<attributes>
+			<id name="id" attribute-type="java.lang.Integer">
+				<column name="ID" />
+				<generated-value />
+			</id>
+			<basic name="name" attribute-type="java.lang.String" />
+		</attributes>
+	</entity>
+
+	<entity class="Auction" access="VIRTUAL">
+		<table name="AUCTIONS" />
+		<attributes>
+			<id name="id" attribute-type="java.lang.Integer">
+				<column name="ID" />
+				<generated-value />
+			</id>
+			<basic name="name" attribute-type="java.lang.String" />
+			<basic name="image" attribute-type="java.lang.String" />
+			<basic name="description" attribute-type="java.lang.String">
+				<column column-definition="VARCHAR2(600)" />
+			</basic>
+			<basic name="startPrice" attribute-type="java.lang.Double" />
+			<basic name="endPrice" attribute-type="java.lang.Double" />
+			<basic name="sold" attribute-type="java.lang.Boolean" />
+		</attributes>
+	</entity>
+
+	<entity class="Bid" access="VIRTUAL">
+		<table name="BIDS" />
+		<cache type="NONE" />
+		<attributes>
+			<id name="id" attribute-type="java.lang.Integer">
+				<column name="ID" />
+				<generated-value />
+			</id>
+			<basic name="bid" attribute-type="java.lang.Double" />
+			<basic name="time" attribute-type="java.lang.Long" />
+			<basic name="userId" attribute-type="java.lang.Integer">
+				<column name="USER_ID" />
+			</basic>
+			<basic name="auctionId" attribute-type="java.lang.Integer">
+				<column name="AUCTION_ID" />
+			</basic>
+
+		</attributes>
+	</entity>
+
+</entity-mappings>

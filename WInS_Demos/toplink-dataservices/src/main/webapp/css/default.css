@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+/*******************************************************************************
+ *
+ *	This section overrides basic CSS styles.
+ *
+ ******************************************************************************/
+
+/**
+ * An image should never have a border;
+ */
+img {
+	border: none;
+}
+
+/**
+ * Make sure the cursor on a label is the default cursor.
+ */
+label {
+	cursor: default;
+}
+
+/**
+ * Make sure the font of a table (panelGrid) is not modified by PrimeFaces.
+ */
+table {
+	font-family: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+}
+
+td {
+	vertical-align: inherit;
+}
+
+/**
+ * The font properties of the entire application.
+ */
+* {
+	font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 100%;
+}
+
+/**
+ * Make sure padding and margin are part of the size of the widgets.
+ *
+ * Note: This assures 'width:100%' and 'height:100%' to work correctly
+ *       and the widgets are aligned properly.
+ */
+* {
+	/* Safari/Chrome, other WebKit */
+	-webkit-box-sizing: border-box;
+	/* Firefox, other Gecko */
+	-moz-box-sizing: border-box;
+	/* Opera/IE 8+ */
+	box-sizing: border-box;
+}
+
+/**
+ * Background color for a read-only input field.
+ */
+input[readonly],
+textarea[readonly],
+.ui-inputfield.ui-state-disabled,
+.ui-spinner.ui-state-disabled {
+	background-color: #F0F0F0 !important;
+}
+
+/**
+ *
+ */
+textarea {
+	vertical-align: baseline;
+}
+
+/**
+ * Remove the outline for the widget having the focus.
+ *
+ * Chrome: yellow outline
+ * Internet Explorer: dotted
+ */
+input[type="text"],
+input[type="text"]:FOCUS,
+input[type="password"],
+input[type="password"]:FOCUS,
+textarea,
+textarea:FOCUS { 
+	outline: none;
+}

@@ -1,0 +1,190 @@
+@CHARSET "UTF-8";
+
+/*******************************************************************************
+ *
+ *	This section overrides basic Bootstrap CSS styles.
+ *
+ ******************************************************************************/
+
+.container-fluid {
+	 padding-left: 0px;
+	 padding-right: 0px;
+ }
+ 
+.bootstrap-select.btn-group {
+	margin-bottom: 0;
+}
+
+
+/*******************************************************************************
+ *
+ *	This section contains the settings of the auction demo.
+ *
+ ******************************************************************************/
+
+body {
+	background-color: white;
+}
+
+hr.separator {
+	border-top: 1px solid #C8C8C8;
+	margin: 0;
+}
+
+div#errorMessage,
+div#loadingMessage {
+	padding-top: 2em;
+}
+
+div#errorMessage p,
+div#loadingMessage p {
+	margin: 0;
+}
+
+div#errorMessage .center,
+div#loadingMessage .center {
+	text-align: center;
+}
+
+div#errorMessage img,
+div#loadingMessage img {
+	min-width: 32px;
+	width: 32px;
+	height: 32px;
+}
+
+div#header {
+	padding: 0px;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 1px solid #C8C8C8;
+	padding: 1em;
+	background-color: white;
+}
+
+div#header img {
+	width: 495px;
+	max-width: 495px;
+	position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#thumdnail-container {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#thumdnail-container img.thumdnail {
+	min-width: 75px;
+	max-width: 75px;
+	height: auto;
+	margin: 0.5em;
+	padding: 0.2em;
+	border: 2px solid transparent;
+}
+
+div#thumdnail-container img.thumdnail[selected="selected"],
+div#thumdnail-container img.thumdnail:FOCUS,
+div#thumdnail-container img.thumdnail:HOVER {
+	border-radius: 3px;
+	border: 2px solid #6699FF;
+	transition: all 0.3s ease-in-out;
+}
+
+div#editor {
+	padding: 1.2em 0em 0em 0em;
+	height: 100%;
+}
+
+div#editor h1#auction_name {
+	font-size: 1.6em;
+	font-variant: normal;
+	font-style: normal;
+	font-family: Segoe UI, Tahoma;
+	font-weight: normal;
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+}
+
+div#editor td.description {
+	padding-left: 1em;
+}
+
+div#editor p#auction_description {
+	font-size: 1.1em;
+	line-height: 1.2em;
+}
+
+div#editor td.image {
+	vertical-align: top;
+	width: 300px;
+	max-width: 300px;
+}
+
+div#editor td.name {
+	padding-left: 1em;
+}
+
+div#editor div.price {
+	font-size: 0.8em;
+	padding-bottom: 1em;
+}
+
+div#editor hr.price {
+	margin: 0 0 1em 0;
+}
+
+div#editor td.bidInfo {
+	padding: 1em 0 0 1em;
+}
+
+div#editor div#bidInfo {
+	padding: 1em;
+	border: 1px solid #D7DF01;
+	border-radius: 5px;
+	background-color: #FBFBEF;
+}
+
+div#editor div#bidInfo .bottom-gap {
+	padding-bottom: 1em;
+}
+
+div#editor div#bidInfo .text-bold {
+	font-weight: bold;
+}
+
+div#editor div#bidInfo .control-group {
+	margin-bottom: 0.4em;
+}
+
+div#editor div#bidInfo button > div {
+	height: 100%;
+	padding-top: 2px;
+}
+
+div#editor div#bidInfo input#bidText {
+ 	margin: 4px 0px 4px 0px;
+ 	height: auto;
+}
+
+div#editor div#bidInfo td {
+	padding: 0px;
+	vertical-align: baseline;
+}
+
+div#editor div#bidInfo span.history {
+	line-height: 2em;
+	font-weight: bold;
+}
+
+div#editor div#bidInfo hr {
+	border-top: 1px solid #C8C8C8;
+	border-bottom: 0px solid transparent;
+}
+
+div#editor div#bidInfo ul#bidList li {
+	list-style: decimal;
+}
