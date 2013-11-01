@@ -6,8 +6,8 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<properties>
 				<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
-				<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/pdborcl" />
-				<property name="javax.persistence.jdbc.user" value="auction" />
+				<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:TLDS" />
+				<property name="javax.persistence.jdbc.user" value="system" />
 				<property name="eclipselink.logging.timestamp" value="false" />
 				<property name="eclipselink.logging.thread" value="false" />
 				<property name="eclipselink.logging.session" value="false" />
@@ -15,7 +15,7 @@
 				<property name="eclipselink.logging.connection" value="false" />
 				<property name="eclipselink.logging.level" value="FINE" />
 				<property name="eclipselink.logging.level.metadata" value="WARNING"/>
-				<property name="javax.persistence.jdbc.password" value="auction"/>
+				<property name="javax.persistence.jdbc.password" value="Welcome1"/>
 			</properties>
 	</persistence-unit>
 </persistence>
