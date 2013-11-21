@@ -22,4 +22,10 @@ alter pluggable database pdb2 open;
 exit
 EOF
 
+if [ "$1" == "wait" ]; then
 
+  echo "This window will close automatically in 3s..."
+
+  sleep 3
+
+ fi

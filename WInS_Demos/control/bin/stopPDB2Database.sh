@@ -19,8 +19,14 @@ $ORACLE_HOME/bin/sqlplus 'sys/welcome1 as sysdba' <<EOF
 
 alter pluggable database pdb2 close;
 
-
 exit
 EOF
 
+if [ "$1" == "wait" ]; then
+
+  echo "This window will close automatically in 3s..."
+
+  sleep 3
+
+ fi
 
