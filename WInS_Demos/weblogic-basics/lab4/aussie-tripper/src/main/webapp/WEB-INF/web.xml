@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee">
+  <description>The Little Aussie Tripper Version 1</description>
+
+  <distributable/>
+
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+
+  <context-param>
+    <param-name>app.version</param-name>
+    <param-value>${app.version}</param-value>
+  </context-param>
+
+  <servlet>
+    <servlet-name>TripServlet</servlet-name>
+    <servlet-class>com.oracle.demo.session.TripServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TripServlet</servlet-name>
+    <url-pattern>/trip</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>html</extension>
+    <mime-type>text/html</mime-type>
+  </mime-mapping>
+
+  <mime-mapping>
+    <extension>txt</extension>
+    <mime-type>text/plain</mime-type>
+  </mime-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

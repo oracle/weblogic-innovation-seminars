@@ -1,0 +1,201 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ==================================================================================== -->
+
+  <parent>
+    <groupId>com.oracle.weblogic.demo.wins</groupId>
+    <artifactId>common-deployable</artifactId>
+    <version>12.1.2.0.0</version>
+    <relativePath>../../common/common-deployable/pom.xml</relativePath>
+  </parent>
+
+  <!-- ==================================================================================== -->
+
+  <artifactId>aussie-tripper</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oracle.weblogic.demo.wins</groupId>
+  <packaging>war</packaging>
+  <version>12.1.2.0.0</version>
+  <name>aussie-tripper</name>
+
+  <!-- ==================================================================================== -->
+
+  <properties>
+    <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+
+   <weblogic.Deployer.adminurl>t3s://wins-vbox:7200</weblogic.Deployer.adminurl>
+    <weblogic.Deployer.user>weblogic</weblogic.Deployer.user>
+    <weblogic.Deployer.password>welcome1</weblogic.Deployer.password>
+    <weblogic.Deployer.application.targets>AdminServer</weblogic.Deployer.application.targets>
+    <weblogic.Deployer.remote>true</weblogic.Deployer.remote>
+    <weblogic.Deployer.upload>true</weblogic.Deployer.upload>
+  </properties>
+
+  <!-- ==================================================================================== -->
+
+  <profiles>
+    <profile>
+      <id>deploy-v1</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <properties>
+        <app.version>v1</app.version>
+      </properties>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+            <configuration>
+              <appversion>${app.version}</appversion>
+            </configuration>
+          </plugin>
+        </plugins>
+
+      </build>
+
+    </profile>
+
+    <!-- @@@@@@@@@@@@@@@@@@ -->
+
+    <profile>
+      <id>promote-v2</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <properties>
+        <app.version>v2</app.version>
+      </properties>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>start-app</goal>
+                </goals>
+
+                <configuration>
+                  <adminmode>false</adminmode>
+                  <appversion>${app.version}</appversion>
+                  <verbose>true</verbose>
+
+                  <middlewareHome>${middleware.home}</middlewareHome>
+                  <weblogicHome>${weblogic.home}</weblogicHome>
+                  <adminurl>${weblogic.Deployer.adminurl}</adminurl>
+                  <user>${weblogic.Deployer.user}</user>
+                  <password>${weblogic.Deployer.password}</password>
+                  <name>${project.artifactId}</name>
+                  <targets>${weblogic.Deployer.application.targets}</targets>
+                  <remote>${weblogic.Deployer.remote}</remote>
+                </configuration>
+
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+
+      </build>
+
+    </profile>
+    <profile>
+      <id>deploy-v2-admin</id>
+
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+
+      <properties>
+        <app.version>v2</app.version>
+      </properties>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+
+          <plugin>
+            <groupId>com.oracle.weblogic</groupId>
+            <artifactId>wls-maven-plugin</artifactId>
+
+            <configuration>
+              <adminmode>true</adminmode>
+              <appversion>${app.version}</appversion>
+              <verbose>true</verbose>
+
+              <middlewareHome>${middleware.home}</middlewareHome>
+              <weblogicHome>${weblogic.home}</weblogicHome>
+              <adminurl>${weblogic.Deployer.adminurl}</adminurl>
+              <user>${weblogic.Deployer.user}</user>
+              <password>${weblogic.Deployer.password}</password>
+              <name>${project.artifactId}</name>
+              <targets>${weblogic.Deployer.application.targets}</targets>
+              <remote>${weblogic.Deployer.remote}</remote>
+
+            </configuration>
+
+          </plugin>
+        </plugins>
+
+      </build>
+
+    </profile>
+  </profiles>
+
+  <!-- ==================================================================================== -->
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.1.1</version>
+
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+          <archive>
+            <manifestEntries>
+              <Extension-Name>${project.artifactId}</Extension-Name>
+
+              <Specification-Title>${project.description}</Specification-Title>
+              <Specification-Version>${project.version}</Specification-Version>
+              <Specification-Vendor>Oracle</Specification-Vendor>
+
+              <Implementation-Title>${project.artifactId}</Implementation-Title>
+              <Implementation-Version>${project.version}.${maven.build.timestamp}
+              </Implementation-Version>
+              <Implementation-Vendor>Oracle</Implementation-Vendor>
+              <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
