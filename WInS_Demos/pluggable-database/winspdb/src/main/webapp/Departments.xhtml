@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<title>WInS: Pluggable Database Demo</title>
+</h:head>
+<h:body>
+	<br />
+	<h:panelGrid columns="2">
+		<h:graphicImage library="img" name="Oracle_3d_v3.jpg" align="left"
+			width="216" height="47" />
+		<h2>Pluggable Database Demo</h2>
+	</h:panelGrid>
+	<br />
+
+	<div class="wrap">
+		<div class="left_col">
+			<h:form id="form1">
+			Data from:&nbsp;<h:inputText id="pdb1name" value="PDB1"
+					binding="#{pdb1}" class="inputtext" />
+			&nbsp;<h:commandButton id="aa" type="submit" value="Refresh"
+					action="#{department.getDepartmentList(pdb1.value)}" />
+				<br />
+				<br />
+				<h:dataTable value="#{department.getDepartmentList(pdb1.value)}"
+					var="c" styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+
+					<h:column>
+						<f:facet name="header">
+    				ID
+    			</f:facet>
+    				#{c.departmentID}
+    		</h:column>
+
+					<h:column>
+						<f:facet name="header">
+    				Name
+				</f:facet>
+    				#{c.name}
+    		</h:column>
+
+					<h:column>
+						<f:facet name="header">
+    				Address
+				</f:facet>
+    				#{c.address}
+    		</h:column>
+
+				</h:dataTable>
+			</h:form>
+		</div>
+
+		<div class="right_col">
+			<h:form id="form2">
+				Data from:&nbsp;<h:inputText id="pdb2name" value="PDB2"
+					binding="#{pdb2}" class="inputtext" />
+				&nbsp;<h:commandButton id="aa" type="submit" value="Refresh"
+					action="#{department.getDepartmentList(pdb2.value)}" />
+				<br />
+				<br />
+				<h:dataTable value="#{department.getDepartmentList(pdb2.value)}"
+					var="c" styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row">
+
+					<h:column>
+						<f:facet name="header">
+    					ID
+    					</f:facet>
+    				#{c.departmentID}
+    		</h:column>
+
+					<h:column>
+						<f:facet name="header">
+    				Name
+				</f:facet>
+    				#{c.name}
+    		</h:column>
+
+					<h:column>
+						<f:facet name="header">
+    				Address
+				</f:facet>
+    				#{c.address}
+    		</h:column>
+
+				</h:dataTable>
+			</h:form>
+		</div>
+
+	</div>
+
+</h:body>
+
+</html>

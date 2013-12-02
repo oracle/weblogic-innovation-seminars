@@ -1,0 +1,42 @@
+.inputtext{
+	text-align: left; 
+	width:5em;
+	margin:30;
+}
+
+.wrap {
+   width:800px;
+   margin:30 auto;
+}
+.left_col {
+   float:left;
+   width:350px;
+}
+.right_col {
+   float:right;
+   width:350px;
+}
+
+.order-table{   
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #F15359;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FDF6F6;
+	border-top:1px solid #BBBBBB;
+}
+
