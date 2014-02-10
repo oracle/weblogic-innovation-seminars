@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns = "http://java.sun.com/xml/ns/javaee" 
+         version = "3.1"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation = "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd">
+    <display-name>env_ejb</display-name>
+    <enterprise-beans>
+        <session>
+            <ejb-name>EjbEnv</ejb-name>
+            <env-entry>
+                <env-entry-name>com.oracle.example.EjbEnv/var1</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>Environment variables from ejb-jar.xml</env-entry-value>
+            </env-entry>
+
+            <env-entry>
+                <env-entry-name>com.oracle.example.EjbEnv/var2</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>999</env-entry-value>
+            </env-entry>
+
+        </session>
+    </enterprise-beans>
+</ejb-jar>

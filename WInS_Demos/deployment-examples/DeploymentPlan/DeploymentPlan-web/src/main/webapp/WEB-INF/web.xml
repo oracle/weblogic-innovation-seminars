@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+ id="env_web" version="2.5">
+
+  <display-name>env_web</display-name>
+
+  <servlet>
+    <description></description>
+    <display-name>WebEnv</display-name>
+    <servlet-name>WebEnv</servlet-name>
+    <servlet-class>com.oracle.example.WebEnv</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WebEnv</servlet-name>
+    <url-pattern>/WebEnv</url-pattern>
+  </servlet-mapping>
+
+  <env-entry>
+    <env-entry-name>webVar1</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>Environment variables from web.xml</env-entry-value>
+  </env-entry>
+
+  <env-entry>
+    <env-entry-name>webVar2</env-entry-name>
+    <env-entry-type>java.lang.Integer</env-entry-type>
+    <env-entry-value>888</env-entry-value>
+  </env-entry>
+</web-app>
+

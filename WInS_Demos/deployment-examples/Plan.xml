@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<deployment-plan xmlns="http://xmlns.oracle.com/weblogic/deployment-plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/deployment-plan http://xmlns.oracle.com/weblogic/deployment-plan/1.0/deployment-plan.xsd">
+    <application-name>DeploymentPlan-ear-1.0</application-name>
+    <variable-definition>
+        <variable>
+            <name>EjbReferenceDescription_ejb/ejbEnv_EjbRefName_13916983305350</name>
+            <value>ejb/ejbEnv</value>
+        </variable>
+        <variable>
+            <name>ServletDescriptor_WebEnv_ServletName_13916983305371</name>
+            <value>WebEnv</value>
+        </variable>
+        <variable>
+            <name>WebEnv_Var1</name>
+            <value>NEW environment variables from web.xml</value>
+        </variable>
+        <variable>
+            <name>WebEnv_Var2</name>
+            <value>800</value>
+        </variable>
+        <variable>
+            <name>EjbEnv_Var1</name>
+            <value>NEW environment variables from ejb-jar.xml</value>
+        </variable>
+        <variable>
+            <name>EjbEnv_Var2</name>
+            <value>900</value>
+        </variable>
+    </variable-definition>
+    <module-override>
+        <module-name>DeploymentPlan-ear-1.0.ear</module-name>
+        <module-type>ear</module-type>
+        <module-descriptor external="false">
+            <root-element>weblogic-application</root-element>
+            <uri>META-INF/weblogic-application.xml</uri>
+        </module-descriptor>
+        <module-descriptor external="false">
+            <root-element>application</root-element>
+            <uri>META-INF/application.xml</uri>
+        </module-descriptor>
+        <module-descriptor external="true">
+            <root-element>wldf-resource</root-element>
+            <uri>META-INF/weblogic-diagnostics.xml</uri>
+        </module-descriptor>
+    </module-override>
+    <module-override>
+        <module-name>/DeploymentPlan-ejb-1.0.jar</module-name>
+        <module-type>ejb</module-type>
+        <module-descriptor external="false">
+            <root-element>weblogic-ejb-jar</root-element>
+            <uri>META-INF/weblogic-ejb-jar.xml</uri>
+        </module-descriptor>
+        <module-descriptor external="false">
+            <root-element>ejb-jar</root-element>
+            <uri>META-INF/ejb-jar.xml</uri>
+            <variable-assignment>
+                <name>EjbEnv_Var1</name>
+                <xpath>/ejb-jar/enterprise-beans/session/[ejb-name="EjbEnv"]/env-entry/[env-entry-name="com.oracle.example.EjbEnv/var1"]/env-entry-value</xpath>
+                <operation>replace</operation>
+            </variable-assignment>
+
+            <variable-assignment>
+                <name>EjbEnv_Var2</name>
+                <xpath>/ejb-jar/enterprise-beans/session/[ejb-name="EjbEnv"]/env-entry/[env-entry-name="com.oracle.example.EjbEnv/var2"]/env-entry-value</xpath>
+                <operation>replace</operation>
+            </variable-assignment>
+
+        </module-descriptor>
+    </module-override>
+    <module-override>
+        <module-name>/DeploymentPlan-web-1.0.war</module-name>
+        <module-type>war</module-type>
+        <module-descriptor external="false">
+            <root-element>weblogic-web-app</root-element>
+            <uri>WEB-INF/weblogic.xml</uri>
+            <variable-assignment>
+                <name>EjbReferenceDescription_ejb/ejbEnv_EjbRefName_13916983305350</name>
+                <xpath>/weblogic-web-app/ejb-reference-description/[ejb-ref-name="ejb/ejbEnv"]/ejb-ref-name</xpath>
+                <origin>planbased</origin>
+            </variable-assignment>
+            <variable-assignment>
+                <name>ServletDescriptor_WebEnv_ServletName_13916983305371</name>
+                <xpath>/weblogic-web-app/servlet-descriptor/[servlet-name="WebEnv"]/servlet-name</xpath>
+                <origin>planbased</origin>
+            </variable-assignment>
+        </module-descriptor>
+        <module-descriptor external="false">
+            <root-element>web-app</root-element>
+            <uri>WEB-INF/web.xml</uri>
+            <variable-assignment>
+                <name>WebEnv_Var1</name>
+                <xpath>/web-app/env-entry/[env-entry-name="webVar1"]/env-entry-value</xpath>
+                <operation>replace</operation>
+            </variable-assignment>
+
+            <variable-assignment>
+                <name>WebEnv_Var2</name>
+                <xpath>/web-app/env-entry/[env-entry-name="webVar2"]/env-entry-value</xpath>
+                <operation>replace</operation>
+            </variable-assignment>
+
+        </module-descriptor>
+    </module-override>
+    <config-root>/u01/content/weblogic-innovation-seminars/WInS_Demos/deployment-examples/plan</config-root>
+</deployment-plan>
