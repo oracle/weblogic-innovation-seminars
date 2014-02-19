@@ -25,11 +25,17 @@
 
     <plugins>
       <plugin>
-        <groupId>com.oracle.weblogic</groupId>
-        <artifactId>wls-maven-plugin</artifactId>
+           <groupId>com.oracle.weblogic</groupId>
+           <artifactId>wls-maven-plugin</artifactId>
+           <configuration>
+                 <name>${project.build.finalName}</name>
+                 <middlewareHome>/u01/wls1212</middlewareHome>
+                 <adminurl>t3://localhost:9001</adminurl>
+                 <user>weblogic</user>
+                 <password>welcome1</password>
+           </configuration>
       </plugin>
-    </plugins>
-
+     </plugins>
   </build>
 
   <!-- ==================================================================================== -->
