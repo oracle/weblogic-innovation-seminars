@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/newWinsEnv.sh
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh
 
 $ORACLE_HOME/bin/dbstart $ORACLE_HOME
 
