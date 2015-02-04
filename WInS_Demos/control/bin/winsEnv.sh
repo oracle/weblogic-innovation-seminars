@@ -21,7 +21,6 @@ export PATH=$ORACLE_HOME/bin:$PATH
 export CONTENT_HOME="${USER_BASE}/content"
 export DEMOS_HOME="${CONTENT_HOME}/weblogic-innovation-seminars/WInS_Demos"
 
-export WORKSHOP_HOME="${CONTENT_HOME}/weblogic-workshop-1035"
 export USER_PROJECTS="${MW_HOME}/user_projects"
 export DOMAINS="${USER_PROJECTS}/domains"
 export OPS_DOMAIN_HOME="${USER_PROJECTS}/domains/ops-cluster"
@@ -39,6 +38,18 @@ export WL_HOME="${MW_HOME}/wlserver"
 export PATH="${PATH}:${WL_HOME}/common/bin"
 
 export PATH="${PATH}:${DEMOS_HOME}/control/bin"
+
+export ANT_HOME="${MW_HOME}/oracle_common/modules/org.apache.ant_1.9.2"
+export PATH=$ANT_HOME/bin:$PATH
+
+export CGGA_DEMO_HOME=$DEMOS_HOME/../Coherence_Demos
+export GG_HOME=$SW_BASE/goldengate
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$GG_HOME:$PATH
+
+#export LD_LIBRARY_PATH=${ORACLE_HOME}/lib:/lib:/usr/lib
+#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ORACLE_HOME}/lib:${WL_HOME}/server/native/linux/i686:${PLUGIN_HOME}/lib"
+
+export LD_LIBRARY_PATH=${JAVA_HOME}/jre/lib/amd64/server:$ORACLE_HOME/lib:$GG_HOME:$LD_LIBRARY_PATH
 
 ###################################################################
 
