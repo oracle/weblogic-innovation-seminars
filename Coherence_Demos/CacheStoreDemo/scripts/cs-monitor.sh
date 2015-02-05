@@ -1,3 +1,3 @@
 #!/bin/sh
-cd $CGGA_DEMO_HOME/workspace/CacheStoreDemo
+cd $CGGA_DEMO_HOME/CacheStoreDemo
 ant Monitor
