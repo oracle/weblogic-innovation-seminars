@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh
+
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
 PROXY_MESSAGE="Proxy NOT SET for Oracle Network!!!"
 
