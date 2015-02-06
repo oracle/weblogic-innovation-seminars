@@ -1,2 +1,2 @@
 #!/bin/sh
-sqlplus notcsdemo/notcsdemo
+sqlplus notcsdemo@pdborcl/notcsdemo

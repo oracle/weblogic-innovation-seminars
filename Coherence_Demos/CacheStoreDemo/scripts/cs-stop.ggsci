@@ -1,2 +1,10 @@
-stop cs-cgga
-stop cscap
+STOP EXTRACT cscap
+DELETE EXTRACT cscap
+
+DBLOGIN USERID c##ggs_admin@orcl, PASSWORD welcome1
+DELETE TRANDATA pdborcl.csdemo.employee
+
+UNREGISTER EXTRACT cscap DATABASE
+
+STOP EXTRACT cs-cgga
+DELETE EXTRACT cs-cgga

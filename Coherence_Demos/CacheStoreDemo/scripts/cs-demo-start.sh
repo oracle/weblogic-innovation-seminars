@@ -1,4 +1,7 @@
 #!/bin/sh
+
+$CGGA_DEMO_HOME/CacheStoreDemo/scripts/init.sh
+
 $CGGA_DEMO_HOME/CacheStoreDemo/scripts/cs-createdatabase.sh
 gnome-terminal -e $CGGA_DEMO_HOME/CacheStoreDemo/scripts/cs-cacheserver.sh -t "CacheStore Demo-Cache Server Console"
 $CGGA_DEMO_HOME/CacheStoreDemo/scripts/cs-cap-create.sh
