@@ -94,15 +94,13 @@ print 'Connecting to Node Manager...'
 print '============================================='
 print ''
 
-nmConnect(adminServer_Username, adminServer_Password, listen_address, 5556, DOMAIN_NAME, var_domain_dir, 'Plain')
+nmConnect(adminServer_Username, adminServer_Password, listen_address, 5556, DOMAIN_NAME, var_domain_dir, 'plain')
 
 print ''
 print '============================================='
 print 'Connected to NODE MANAGER Successfully'
 print '============================================='
 print ''
-
-startAdminServer()
 
 try:
     print 'Attempting to connect to AdminServer at URL='+adminURL
