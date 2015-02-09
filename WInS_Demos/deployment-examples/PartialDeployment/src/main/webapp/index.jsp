@@ -9,10 +9,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-	<!- This is the line you need to comment out when you are partial redeploying or hot deploying the application-->
-		<h1>This is version A of application and original application</h1>
-	  
-	<!-- This is the line you need do uncomment when redeploying  or hot deploying this application -->
-    <!--<h1>This is version B of application and modified application</h1> -->
+    <h1>This is version A of application and original application</h1>
     </body>
 </html>

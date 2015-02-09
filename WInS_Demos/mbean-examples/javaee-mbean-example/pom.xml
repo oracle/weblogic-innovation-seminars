@@ -30,7 +30,7 @@
     <plugins>
       <plugin>
         <groupId>com.oracle.weblogic</groupId>
-        <artifactId>wls-maven-plugin</artifactId>
+        <artifactId>weblogic-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
