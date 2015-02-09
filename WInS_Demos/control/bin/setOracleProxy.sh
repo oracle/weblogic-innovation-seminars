@@ -18,6 +18,9 @@ echo ${PROXY_MESSAGE}
 
 chmod +x ${PROXY_SCRIPT}
 
+echo "Set Maven proxy settings"
+cp $DEMOS_HOME/control/maven/settings.xml ~/.m2/
+
 if [ "$1" == "wait" ]; then
   echo "This window will close automatically in 5s..."
   sleep 5
