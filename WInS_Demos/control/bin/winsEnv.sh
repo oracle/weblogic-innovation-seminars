@@ -7,6 +7,8 @@ fi
 
 # User specific aliases and functions
 
+export CONFIG_JVM_ARGS=-Djava.security.egd=file:/dev/./urandom
+
 export SW_BASE="/u01"
 export USER_BASE="/u01"
 
