@@ -112,6 +112,7 @@
 			  executable="${middleware.home}/user_projects/domains/${project.name}/bin/startNodeManager.sh"		            
 		          spawn="true">  
 		    </exec>  
+		    <env key="JAVA_OPTIONS" value="-Djava.security.egd=file:/dev/./urandom"/>
 		  </tasks>  
 		</configuration>  
 		<goals>  
@@ -143,7 +144,7 @@
 		    <exec dir="${middleware.home}/user_projects/domains/${project.name}/bin"
 			  executable="${middleware.home}/user_projects/domains/${project.name}/bin/stopNodeManager.sh"		            
 		          spawn="true">  
-		    </exec>  
+		    </exec> 
 		  </tasks>  
 		</configuration>  
 		<goals>  
