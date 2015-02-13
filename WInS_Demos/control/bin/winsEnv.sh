@@ -23,6 +23,7 @@ export PATH=$ORACLE_HOME/bin:$PATH
 
 export CONTENT_HOME="${USER_BASE}/content"
 export DEMOS_HOME="${CONTENT_HOME}/weblogic-innovation-seminars/WInS_Demos"
+export MW_HOME="/u01/middleware"
 export NM_HOME="/u01/middleware/user_projects/domains/weblogic-examples-domain/nodemanager"
 export USER_PROJECTS="${MW_HOME}/user_projects"
 export DOMAINS="${USER_PROJECTS}/domains"
