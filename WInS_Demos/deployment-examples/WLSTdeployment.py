@@ -28,9 +28,9 @@ print ''
 connect('weblogic','welcome1', 't3://localhost:7001');
 
 #Deploying Application to WebLogic Server
-#deploy('weblogic-deployment-example','./weblogic-deployment-example/target/weblogic-deployment-example-12.1.3.0.0.war', targets='AdminServer')
+deploy('weblogic-deployment-example','./weblogic-deployment-example/target/weblogic-deployment-example-12.1.3.0.0.war', targets='AdminServer')
 startApplication('weblogic-deployment-example')
 
 # Undeploy the application
 
-undeploy('weblogic-deployment-example')
+#undeploy('weblogic-deployment-example')
