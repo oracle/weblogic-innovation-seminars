@@ -8,7 +8,7 @@ fi
 # User specific aliases and functions
 
 export CONFIG_JVM_ARGS=-Djava.security.egd=file:/dev/./urandom
-
+export JAVA_OPTIONS=$CONFIG_JVM_ARGS
 
 export SW_BASE="/u01"
 export USER_BASE="/u01"
@@ -99,9 +99,6 @@ alias tops2="tail ${TAIL_OPTS} ${OPS_DOMAIN_HOME}/servers/ms-2/logs/ms-2.out"
 export CGGA_DEMO_HOME=$DEMOS_HOME/../Coherence_Demos
 export GG_HOME=$SW_BASE/goldengate
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$GG_HOME:$PATH
-
-#export LD_LIBRARY_PATH=${ORACLE_HOME}/lib:/lib:/usr/lib
-#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ORACLE_HOME}/lib:${WL_HOME}/server/native/linux/i686:${PLUGIN_HOME}/lib"
 
 export LD_LIBRARY_PATH=${JAVA_HOME}/jre/lib/amd64/server:$ORACLE_HOME/lib:$GG_HOME:$LD_LIBRARY_PATH
 
