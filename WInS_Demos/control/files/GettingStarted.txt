@@ -1,0 +1,42 @@
+This WInS VirtualBox VM is for use by Oracle employees and Partners only!  Use at your own risk... 
+Usage of this appliance is governed by the applicable licenses of the various products and their concerned companies. 
+
+Accessing the Virtual Box at different locations
+-------------------------------------------------
+You may be using this Virtual Box in 3 locations:
+(a) At home / external location without VPN (so not in Oracle Network)
+(b) At home / external location with VPN (so in Oracle Network)
+(c) At Oracle Office (so in Oracle Network).
+Thus, to some extent (b) and (c) above are similar
+
+If (a) then please unset / remove the Oracle Proxy for Maven / GIT / Internet access using the shortcut (Remove Oracle Proxy) available at the desktop.
+If (b) or (c) then please set the Oracle Proxy for Maven / GIT / Internet access using the shortcut (Set Oracle Proxy) available at the desktop.
+
+Once this has been done, open a new Terminal and execute a simple command to check Internet connectivity : wget www.oracle.com.
+A successful run results in the creation of a index.html file at the desktop which contains the website that we were trying to access.
+
+Important information about WInS Demos
+--------------------------------------
+New modules, bug fixes to code will be pushed to the GitHub. Do execute the shortcut (Update WInS Demos) available at the Desktop to pull in the latest code. If you have made changes to the code, you could again use the shortcut to revert back all your changes to the original WInS code.
+
+By default, the Oracle Database 12C is not started. Please start the Database by using the shortcut (Start 12c Database) available at the desktop. This is essential for successful execution of the WInS demos. 
+
+Before creation of a domain, do check if it already exists.  If the domain you want to create already exists - find out if its associated processes are running, kill them and then delete the domain. Once you are sure the domain doesnt exist and neither does it have any associated processes, you could recreate the domain. We would recommend creation of a new domain for every run of a module (demo).
+Some simple commands to help :
+* check the domains already created : ls -ltr /u01/middleware/user_projects/domains
+* list the running Java processes : jps
+* check if any AdminServer of a domain is running : ps -aef | grep AdminServer
+* check if any Managed Server (say name is ms-1) is running : ps -aef | grep ms-1
+* kill any process : kill -9 <process id>
+* taking a thread dump : kill -3 <process id>
+* deleting any directory / domain : rm -Rf <directory / domain location eg : /u01/middleware/user_projects/domains/weblogic-examples-domain>
+
+Linux root   password:	oracle
+Database all passwords:	welcome1
+Middleware   passwords:	welcome1
+
+Database Information:
+Oracle CDB SID	: orcl (system/welcome1)
+Pluggable PDB1:	pdborcl
+Pluggable PDB2:	pdb2 (systempdb2/welcome1)
+
