@@ -30,6 +30,8 @@ cd ${CONTENT_DIR}
 
 git fetch --all
 
+git fetch --tags
+
 git reset --hard ${TAG_NAME}
 
 echo "========================================"
