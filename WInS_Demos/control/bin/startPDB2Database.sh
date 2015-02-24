@@ -5,7 +5,7 @@
 # Set ORA_OWNER to the user id of the owner of the
 # Oracle database software.
 
-. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh > /dev/null
 
 $ORACLE_HOME/bin/sqlplus 'sys/welcome1 as sysdba' <<EOF
 

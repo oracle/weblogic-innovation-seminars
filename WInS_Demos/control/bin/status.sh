@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh > /dev/null
+
 ADMIN_PORT="7001"
 DERBY_PORT="1527"
 NM_PORT="5556"
@@ -85,13 +87,13 @@ fi
 #*************************************************************
 echo --------------------------------------------------------------
 if [ -d $DOMAINS/weblogic-examples-domain ]; then
-    echo "weblogic-examples-domain exists in domain directory (${DOMAINS})"
+    echo "weblogic-examples-domain EXISTs in domain directory (${DOMAINS})"
 else
     echo "weblogic-examples-domain does NOT exist in domain directory (${DOMAINS})"
 fi
 
 if [ -d $DEMOS_HOME/grid-archive-examples/Oracle ]; then
-    echo "grid-archive-domain exists in domain directory (${DEMOS_HOME}/grid-archive-examples/Oracle)"
+    echo "grid-archive-domain EXISTs in domain directory (${DEMOS_HOME}/grid-archive-examples/Oracle)"
 else
     echo "grid-archive-domain does NOT exist in domain directory (${DEMOS_HOME}/grid-archive-examples/Oracle)"
 fi

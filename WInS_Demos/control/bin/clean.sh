@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh > /dev/null
+
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos/
 mvn clean
 

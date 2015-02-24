@@ -109,5 +109,5 @@ if [ -f /home/oracle/setProxy.sh ]; then
 	. /home/oracle/setProxy.sh
 fi
 
-cat /home/oracle/Desktop/readme.txt
+cat ${DEMOS_HOME}/control/files/bashdisplay.txt
 
