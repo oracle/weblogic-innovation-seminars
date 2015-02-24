@@ -28,7 +28,7 @@ fi
 
 cd ${CONTENT_DIR}
 
-git fetch --tags
+git fetch --all
 
 git reset --hard ${TAG_NAME}
 
