@@ -23,7 +23,7 @@ if [ ! -e ${CONTENT_DIR} ]; then
   git clone ${GIT_URL}
   cd ${CONTENT_DIR}
   git init
-  git checkout wins-v6 tags/${TAG_NAME}
+  git checkout wins-v6
 fi
 
 cd ${CONTENT_DIR}
