@@ -7,7 +7,7 @@ export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.g
 
 #. ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
 
-echo "Currenlty not using TAG_NAME=[${TAG_NAME}] that was puleld from file=[${TAG_NAME_FILE}]"
+echo "Using TAG_NAME=[${TAG_NAME}] that was pulled from file=[${TAG_NAME_FILE}]"
 echo "Updating WInS Demos in ${CONTENT_DIR}..."
 
 GIT_SYSTEM_PROXY=`git config --get --system http.proxy`
@@ -23,7 +23,7 @@ if [ ! -e ${CONTENT_DIR} ]; then
   git clone ${GIT_URL}
   cd ${CONTENT_DIR}
   git init
-  git checkout wins-v6 
+  git checkout wins-v6 tags/${TAG_NAME}
 fi
 
 cd ${CONTENT_DIR}
