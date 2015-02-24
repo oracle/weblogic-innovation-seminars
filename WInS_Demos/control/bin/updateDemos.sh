@@ -5,8 +5,6 @@ export TAG_NAME_FILE="/home/oracle/.wins/wins_git_tag"
 export TAG_NAME=`cat ${TAG_NAME_FILE}`
 export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 
-#. ${DEMOS_HOME}/control/bin/winsEnv.sh > /dev/null
-
 echo "Using TAG_NAME=[${TAG_NAME}] that was pulled from file=[${TAG_NAME_FILE}]"
 echo "Updating WInS Demos in ${CONTENT_DIR}..."
 
@@ -36,6 +34,8 @@ echo "========================================"
 echo "The file(s) below is not tracked by git:"
 git clean -n
 echo "========================================"
+
+cp /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/updateDemos.sh /home/oracle/
 
 if [ "$1" == "wait" ]; then
   read -p "Checkout complete. Press [Enter] to close the window"
