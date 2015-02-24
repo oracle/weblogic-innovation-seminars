@@ -28,9 +28,14 @@ fi
 
 cd ${CONTENT_DIR}
 
-git pull
+git fetch --all
 
+git reset --hard ${TAG_NAME}
+
+echo "========================================"
+echo "The file(s) below is not tracked by git:"
 git clean -n
+echo "========================================"
 
 if [ "$1" == "wait" ]; then
   read -p "Checkout complete. Press [Enter] to close the window"
