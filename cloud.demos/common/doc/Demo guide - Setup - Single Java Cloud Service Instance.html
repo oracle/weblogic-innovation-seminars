@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.0.0  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Peter Nagy">
+	<META NAME="CREATED" CONTENT="20151007;17140322">
+	<META NAME="CHANGEDBY" CONTENT="Peter Nagy">
+	<META NAME="CHANGED" CONTENT="20151008;14535860">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Mangal" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="hu-HU" DIR="LTR">
+<P><IMG SRC="/C:/Users/pnagy/AppData/Roaming/OpenOffice/4/user/backup/Demo%20guide%20-%20Setup%20-%20Single%20Java%20Cloud%20Service%20Instance.html_0_html_51542eb0.gif" NAME="graphics1" ALIGN=LEFT WIDTH=738 HEIGHT=72 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H1 LANG="en-US">Demo Guide: Setup Single Java Cloud Service
+(Including Storage and Database Service)</H1>
+<H2 LANG="en-US" CLASS="western">Description</H2>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><B>For Use By</B></P>
+		</TD>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Oracle
+			Sales / Pre-Sales, Consulting, Product Managers, Solution
+			Managers, etc .</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Internal/External
+			Consumption</B> </FONT></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P LANG="en-US">Internal</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><B>Target Audience</B></P>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P LANG="en-US">Customer / Partner</P>
+				<UL>
+					<LI><P LANG="en-US">Architects</P>
+					<LI><P LANG="en-US">Development Leads</P>
+				</UL>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><B>Demo Duration (Approximate)</B></P>
+		</TD>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Approximately
+			10 minutes, plus the time needed for Oracle Cloud to provision
+			your service instance. (Provisioning is the process of allocating
+			cloud resources for your service instance.)</SPAN></SPAN></FONT> </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><B>Background Knowledge Required/Suggested</B></P>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P LANG="en-US">WebLogic Architecture and Basic
+				Administration</P>
+				<LI><P LANG="en-US">Maven</P>
+				<LI><P LANG="en-US">Git</P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P LANG="en-US"><B>Related Materials</B></P>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P LANG="en-US">Oracle Public Cloud Services</P>
+				<UL>
+					<LI><P LANG="en-US">Java Cloud Services</P>
+					<LI><P LANG="en-US">Database Cloud Services</P>
+				</UL>
+				<LI><P LANG="en-US">Git or Downloaded Sources</P>
+				<LI><P LANG="en-US">Java Development Kit 1.8+</P>
+				<LI><P LANG="en-US">Apache Maven 3.2.5+</P>
+			</UL>
+		</TD>
+	</TR>
+</TABLE>
+<H2 LANG="en-US" CLASS="western">Feature Overview</H2>
+<P LANG="en-US">Oracle Java Cloud Service is part of the platform
+service offerings in Oracle Cloud. Powered by Oracle WebLogic Server,
+it provides a platform on top of Oracle's enterprise-grade cloud
+infrastructure for developing and deploying new or existing
+enterprise Java applications. You have the option of adding an Oracle
+Coherence caching and data grid tier to your deployment.</P>
+<P LANG="en-US">With Oracle Java Cloud Service, you can quickly
+create and configure Oracle WebLogic Server instances that are
+preconfigured to Oracle Database Cloud - Database as a Service, set
+up your enterprise Java application environment without worrying
+about the underlying infrastructure, and thus get your application
+users up and running faster.</P>
+<HR>
+<H2 LANG="en-US" CLASS="western">Demo Overview</H2>
+<P LANG="en-US">This tutorial tells you how to create Oracle Storage
+Service, Oracle Database Cloud Service and Oracle Java Cloud Service
+and instance through the REST based management API interface.</P>
+<HR>
+<H2 LANG="en-US" CLASS="western">Requirements / Prerequisites</H2>
+<UL TYPE=DISC>
+	<LI><P LANG="en-US">Windows or Linux operating system</P>
+	<LI><P LANG="en-US">Computer with 2 GB RAM 
+	</P>
+	<LI><P LANG="en-US">Java Development Kit 1.8+</P>
+	<LI><P LANG="en-US">Apache Maven 3.2.5</P>
+	<LI><P LANG="en-US">Git</P>
+	<LI><P LANG="en-US">A web browser is required for working with
+	Oracle Cloud services. These are the minimum requirements:</P>
+	<UL>
+		<LI><P LANG="en-US">Microsoft Internet Explorer 9 or 10 with
+		Browser Mode and Document Mode set to IE9 or IE10</P>
+		<LI><P LANG="en-US">Mozilla Firefox 24 and later</P>
+		<LI><P LANG="en-US">Google Chrome 29 and later</P>
+		<LI><P LANG="en-US">Apple Safari 6 and later</P>
+	</UL>
+	<LI><P LANG="en-US">Roles and Credentials - You must have the
+	following roles and credentials:</P>
+	<UL>
+		<LI><P><SPAN LANG="en-US">Roles and privileges described in <A HREF="http://www.oracle.com/pls/topic/lookup?ctx=cloud&amp;id=CSGSG170">Oracle
+		Cloud User Roles and Privileges</A> in Getting Started with Oracle
+		Cloud</SPAN></P>
+		<LI><P LANG="en-US">Log-in credentials for creating Oracle Java
+		Cloud Service instances and for working with the associated
+		database and storage services.</P>
+		<LI><P LANG="en-US">Java Administrator role (This role lets you
+		create Oracle Java Cloud Service instances.)</P>
+		<LI><P><SPAN LANG="en-US">For more information, see <A HREF="http://www.oracle.com/pls/topic/lookup?ctx=cloud&amp;id=JSCUG3121">About
+		Oracle Java Cloud Service Roles and User Accounts</A> in Using
+		Oracle Java Cloud Service.</SPAN></P>
+	</UL>
+</UL>
+<HR>
+<H2 LANG="en-US" CLASS="western">Tips</H2>
+<UL TYPE=DISC>
+	<LI><P LANG="en-US">Use FireFox browser</P>
+</UL>
+<HR>
+<H1 LANG="en-US">Demo Steps</H1>
+<H2 LANG="en-US" CLASS="western">Environment variables and
+directories</H2>
+<UL>
+	<LI><P LANG="en-US">This document will refer to the local clone of
+	WInS remote repository as <B>WINS_SOURCE_REPOSITORY.</B> Every steps
+	where it is used replace to your location.</P>
+	<LI><P LANG="en-US">Set JAVA_HOME to point your jdk location.
+	Example:</P>
+	<UL>
+		<LI><P LANG="en-US">Windows: <FONT FACE="Consolas, monospace"><SPAN STYLE="font-weight: normal">set
+		JAVA_HOME=c:\jdk1.8.0_31</SPAN></FONT></P>
+		<LI><P LANG="en-US">Linux: <FONT FACE="Consolas, monospace"><SPAN STYLE="font-weight: normal">export
+		JAVA_HOME=/usr/java/jdk1.8.0_31</SPAN></FONT></P>
+	</UL>
+	<LI><P LANG="en-US">Add Apache Maven to your PATH variable. In this
+	case it is easier to execute maven. Example:</P>
+	<UL>
+		<LI><P LANG="en-US">Windows: <FONT FACE="Consolas, monospace"><SPAN STYLE="font-weight: normal">set
+		PATH=%PATH%;c:\apache-maven-3.2.5\bin</SPAN></FONT></P>
+		<LI><P LANG="en-US">Linux: <FONT FACE="Consolas, monospace"><SPAN STYLE="font-weight: normal">export
+		PATH=$PATH:/usr/apache-maven-3.2.5/bin</SPAN></FONT></P>
+	</UL>
+</UL>
+<H2 LANG="en-US" CLASS="western">Setup &amp; Dependencies</H2>
+<OL>
+	<LI><P LANG="en-US">Install Java Development Kit and Apache Maven</P>
+	<LI><P LANG="en-US">Follow the steps outlined in &lsquo;WInS - Demo
+	Guides - Setup &ndash; Clone Git repository&rsquo; to get the
+	necessary sources ready. 
+	</P>
+	<LI><P><A HREF="http://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/javaservice/JCS/JCS_SSH/create_sshkey.html"><SPAN LANG="en-US">Create
+	your SSH Keys for use with Oracle Cloud Services</SPAN></A></P>
+</OL>
+<HR>
+<H2 LANG="en-US" CLASS="western">Executing the Demo</H2>
+<OL>
+	<P LANG="en-US">Instead of clicking through all the necessary step
+	on Oracle Cloud Service console the demo uses a custom developed
+	REST client tool to execute necessary management interface calls.</P>
+	<LI><P><SPAN LANG="en-US"><B>Prepare the property file</B></SPAN>
+	<SPAN LANG="en-US">which includes every information about OPC access
+	and desired services.<BR>Open the file
+	</SPAN><FONT FACE="Consolas, monospace"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">WINS_SOURCE_REPOSITORY\cloud.demos\environment.properties</SPAN></SPAN></FONT>
+	<FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">in
+	your favorite
+	editor.<BR><BR></SPAN></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2><SPAN STYLE="font-weight: normal">opc.base.url=</SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2><SPAN STYLE="font-weight: normal">jaas.oraclecloud.com<BR></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc.identity.domain=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcsdemo027<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc.username=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc_account_username<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc.password=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc_account_password<BR><BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	Storage information<BR># Check your generic storage url - see
+	documentation<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc.storage.generic.url=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>storage.oraclecloud.com<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	The name of the container to use by Database and Java Cloud
+	Services<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>opc.storage.container=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>wins_container<BR><BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	SSH key details<BR># first you need to create your SSH key pair. Use
+	example Putty's Keygen tool - see
+	documentation<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh.user=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh_username<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	public ssh key in the following format<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh.public.key=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh-rsa</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>AAAAB3NzaC1y........vaPU+vcppMHINDBAbPyT6qNIklg+bAJgE8zPerQ==</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>rsa-key-20150227<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh.passphrase=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ssh_passphrase<BR><BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	JCS
+	details<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.rest.url=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>/paas/service/jcs/api/v1.1/instances/<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.version.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>12.1.3.0.4<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.otd.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>true<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>winstestWLS<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.desc.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>winstest</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>instance</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>through</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>REST<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.admin.user.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>weblogic<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>jcs.instance.admin.password.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>Welcome1#<BR><BR></FONT></FONT></SPAN></FONT><FONT COLOR="#3f7f5f"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>#
+	DBCS
+	details<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.base.url=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbaas.oraclecloud.com<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.rest.url=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>/paas/service/dbcs/api/v1.1/instances/<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.version.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>12.1.0.2<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>winstestDB<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.sid.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>ORCL<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.pdb1.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>PDB1<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.desc.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>winstest</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>db</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>instance</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>through</FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+	</SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>REST<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.instance.usable.storage.1=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>15<BR><BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.dba.name=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>sys<BR></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>dbcs.dba.password=</FONT></FONT></SPAN></FONT><FONT COLOR="#2a00ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, sans-serif"><FONT SIZE=2>Welcome1#</FONT></FONT></SPAN></FONT></P>
+	<LI><P><FONT COLOR="#000000"><FONT SIZE=3><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><B>Create
+	storage.</B></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none">
+	</SPAN><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">Open
+	terminal/command prompt and change directory to
+	</SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">WINS_SOURCE_REPOSITORY\cloud.demos<BR></SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">Execute
+	the maven build with the following options:<BR></SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">mvn
+	install -DexecuteCloudUtil -Dgoal=storage-create</SPAN></SPAN></FONT></SPAN><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal"><BR>You
+	should get the following output:</SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+</OL>
+<P><IMG SRC="Demo%20guide%20-%20Setup%20-%20Single%20Java%20Cloud%20Service%20Instance_html_5fb633d7.gif" NAME="graphics2" ALIGN=LEFT WIDTH=988 HEIGHT=871 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<OL START=3>
+	<LI><P><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>Check
+	</B></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">the
+	previosly created storage endpoint with the following maven
+	build:<BR></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">mvn
+	install -DexecuteCloudUtil -Dgoal=storage-list</SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal"><BR>You
+	should see your container in the list.</SPAN></SPAN></FONT></FONT></SPAN></FONT></P>
+</OL>
+<P><IMG SRC="Demo%20guide%20-%20Setup%20-%20Single%20Java%20Cloud%20Service%20Instance_html_m38ec7d8.gif" NAME="graphics3" ALIGN=LEFT WIDTH=1148 HEIGHT=835 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<OL START=4>
+	<LI><P><B>Create </B>the prerequiste <B>Oracle Database Cloud
+	Service Instance</B>.</P>
+</OL>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>
