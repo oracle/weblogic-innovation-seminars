@@ -1,0 +1,49 @@
+# get Server status
+def getMSserverStatus(server):
+    try:
+       cd('/ServerLifeCycleRuntimes/' +server)
+    except:
+       print 'oops';
+       dumpStack();
+    return cmo.getState()
+ 
+
+# Stop all managed servers and then also the admin server if wanted
+def stopAllServers():
+   try:
+      print 'Loop through the managed servers and stop all servers ';
+      domainConfig()
+      svrs = cmo.getServers()
+ 
+      domainRuntime()
+      for server in svrs:
+          # Do not stop the adminserver, it's already running
+          if not 'adminserver' in server.getName():
+             # Get state and machine
+             serverState = getMSserverStatus(server.getName())
+             print server.getName() + " is " + serverState
+             # stop if needed
+             if serverState != "SHUTDOWN":
+                  print "Stopping " + server.getName();
+                  shutdown(server.getName(),'Server','true',1000,force='true', block='true')
+                  java.lang.Thread.sleep(30)
+                  serverState = getMSserverStatus(server.getName())
+                  print "Now " + server.getName() + " is " + serverState;
+ 
+   except:
+      print 'Exception while stopping servers !';
+      dumpStack();
+      
+connect('@weblogic.admin.user@','@weblogic.admin.pass@','t3://@jcs.instance@-wls-1.compute-@identity.domain@.oraclecloud.internal:7001')
+
+stopAllServers()
+
+edit()
+startEdit()
+
+cd('/')
+cmo.setAdministrationPort(7200)
+cmo.setAdministrationPortEnabled(true)
+
+save()
+activate()

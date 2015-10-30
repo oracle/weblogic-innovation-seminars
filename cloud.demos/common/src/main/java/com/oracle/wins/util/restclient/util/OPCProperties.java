@@ -57,13 +57,18 @@ public class OPCProperties {
 	public static final String HEADER_X_STORAGE_URL = "X-Storage-Url";
 	
 	private final Properties configProp = new Properties();
+	
+	private static OPCProperties INSTANCE = null;
 
+	
 	private OPCProperties() {
-		// Private constructor to restrict new instances
+	}
+	
+	public void init (String sPropertyFile) {
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
-				"environment.properties");
+				sPropertyFile);
 
-		System.out.println("Read all properties from file");
+		System.out.println("Read all properties from file: " + sPropertyFile);
 		try {
 			configProp.load(in);
 		} catch (IOException e) {
@@ -71,12 +76,11 @@ public class OPCProperties {
 		}
 	}
 
-	private static class LazyHolder {
-		private static final OPCProperties INSTANCE = new OPCProperties();
-	}
-
 	public static OPCProperties getInstance() {
-		return LazyHolder.INSTANCE;
+		if (INSTANCE == null) {
+			INSTANCE = new OPCProperties();
+		}
+		return INSTANCE;
 	}
 
 	public String getProperty(String key) {

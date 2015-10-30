@@ -20,21 +20,27 @@ public class ExecuteGoal {
 
 	public static void main(String[] args) {
 		
-		OPCProperties opcProperties = OPCProperties.getInstance();
+		OPCProperties opcProperties;
 				
 		String response = "";
 		StringBuffer sbTemp = null;
 		
-		String sGoal = args[0];
+		String sGoal = "";
 		String sJobId = "";
 		
-		if (args.length == 0) {
-			System.out.println("No goal specified!");
+		if (args.length < 2) {
+			System.out.println("Not enough parameters defined!");
 		} else {
-			System.out.println("Selected goal: " + args[0]);
 			
-			if (args.length > 1 && args[1] != null) {
-				sJobId = args[1];
+			opcProperties = OPCProperties.getInstance();
+			opcProperties.init(args[0]);
+			
+			System.out.println("Selected goal: " + args[1]);
+			
+			sGoal = args[1];
+			
+			if (args.length > 2 && args[2] != null) {
+				sJobId = args[2];
 			}
 			
 			Credentials credOPCUser = null;

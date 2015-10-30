@@ -1,0 +1,53 @@
+# get Server status
+def getMSserverStatus(server):
+        try:
+             cd('/ServerLifeCycleRuntimes/' +server)
+        except:
+             print 'oops';
+             dumpStack();
+        return cmo.getState()
+
+# Start all managed servers and then also the admin server if wanted
+def startAllServers():
+   try:
+      print 'Loop through the managed servers and start all servers ';
+      domainConfig()
+      svrs = cmo.getServers()
+ 
+      domainRuntime()
+      for server in svrs:
+          # Do not touch the adminserver
+          if not 'adminserver' in server.getName():
+             # Get state and machine
+             serverState = getMSserverStatus(server.getName())
+             print server.getName() + " is " + serverState
+             # start if needed
+             if serverState != "RUNNING":
+                  print "Starting " + server.getName();
+                  start(server.getName(),'Server')
+                  serverState = getMSserverStatus(server.getName())
+                  print "Now " + server.getName() + " is " + serverState;
+ 
+   except:
+      print 'Exception while starting servers !';
+      dumpStack();
+
+connect('@weblogic.admin.user@','@weblogic.admin.pass@','t3s://@jcs.instance@-wls-1.compute-@identity.domain@.oraclecloud.internal:7200')
+
+stopApplication('aussie-tripper-v1', versionIdentifier='v1')
+stopApplication('aussie-tripper-v1', versionIdentifier='v2')
+undeploy('aussie-tripper-v1', versionIdentifier='v1')
+undeploy('aussie-tripper-v1', versionIdentifier='v2')
+
+edit()
+startEdit()
+
+cd('/')
+cmo.setAdministrationPortEnabled(false)
+
+save()
+activate()
+
+startAllServers()
+
+

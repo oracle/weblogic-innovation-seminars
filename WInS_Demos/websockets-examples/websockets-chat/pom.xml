@@ -30,13 +30,13 @@
 
   <!-- ==================================================================================== -->
 
-	<dependencies>
-		<dependency>
+  <dependencies>
+    <dependency>
       <groupId>com.bea.core.weblogic.web</groupId>
       <artifactId>api</artifactId>
       <version>${weblogic.version}</version>
     </dependency>
-	</dependencies>
+  </dependencies>
  
   <!-- ======================================================== -->
 
@@ -45,10 +45,10 @@
 
     <plugins>
 
-      <plugin>
+      <!--plugin>
         <groupId>com.oracle.weblogic</groupId>
         <artifactId>weblogic-maven-plugin</artifactId>
-      </plugin>
+      </plugin-->
 
     </plugins>
 
