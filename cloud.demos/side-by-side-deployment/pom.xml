@@ -131,7 +131,7 @@
                       </target>
                     </configuration>
                   </execution>
-                  <!--execution>
+                  <execution>
                     <id>wlstdeploy</id>
                     <phase>install</phase>
                     <goals>
@@ -152,7 +152,7 @@
                         </taskdef>
                       </target>
                     </configuration>
-                  </execution-->                  
+                  </execution>                  
                 </executions>
                 <dependencies>
                   <dependency>
