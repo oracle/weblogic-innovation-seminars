@@ -1,42 +1,39 @@
-# get Server status
-def getMSserverStatus(server):
-    try:
-       cd('/ServerLifeCycleRuntimes/' +server)
-    except:
-       print 'oops';
-       dumpStack();
-    return cmo.getState()
- 
-
-# Stop all managed servers and then also the admin server if wanted
-def stopAllServers():
+# Get managed servers list
+def getManagedServers():
    try:
-      print 'Loop through the managed servers and stop all servers ';
+      print 'Get managed server list';
       domainConfig()
-      svrs = cmo.getServers()
- 
-      domainRuntime()
-      for server in svrs:
-          # Do not stop the adminserver, it's already running
-          if not 'adminserver' in server.getName():
-             # Get state and machine
-             serverState = getMSserverStatus(server.getName())
-             print server.getName() + " is " + serverState
-             # stop if needed
-             if serverState != "SHUTDOWN":
-                  print "Stopping " + server.getName();
-                  shutdown(server.getName(),'Server','true',1000,force='true', block='true')
-                  java.lang.Thread.sleep(30)
-                  serverState = getMSserverStatus(server.getName())
-                  print "Now " + server.getName() + " is " + serverState;
- 
+      return cmo.getServers()
    except:
-      print 'Exception while stopping servers !';
+      print 'Exception while getting managed server list!';
       dumpStack();
       
-connect('@weblogic.admin.user@','@weblogic.admin.pass@','t3://@jcs.instance@-wls-1.compute-@identity.domain@.oraclecloud.internal:7001')
 
-stopAllServers()
+adminserver='@jcs.instance@'
+#adminserver's name created from the first 8 char + '_adminserver' suffix
+adminserver = adminserver[0:8] + '_adminserver'
+nm_listener='@jcs.instance@-wls-1'
+
+connect('@weblogic.admin.user@','@weblogic.admin.pass@','t3://@jcs.instance@-wls-1.compute-@identity.domain@.oraclecloud.internal:7001')
+servers = getManagedServers()
+
+nmConnect('@weblogic.admin.user@', '@weblogic.admin.pass@', nm_listener.lower(), '6555', '@jcs.instance@_domain',os.environ["DOMAIN_HOME"],'ssl')
+for server in servers:
+  print server.getName() + ' status...' + nmServerStatus(server.getName());
+  # Do not stop the adminserver, it's already running
+  if adminserver != server.getName():
+    # Get state and machine
+    serverState = nmServerStatus(server.getName())
+    print server.getName() + " is " + serverState
+    # stop if needed
+    if serverState != 'SHUTDOWN':
+      print 'Stopping ' + server.getName();
+      nmKill(server.getName())
+      #java.lang.Thread.sleep(10)
+      print 'Now ' + server.getName() + ' status is ' + nmServerStatus(server.getName());
+
+
+nmDisconnect()
 
 edit()
 startEdit()
@@ -44,6 +41,9 @@ startEdit()
 cd('/')
 cmo.setAdministrationPort(7200)
 cmo.setAdministrationPortEnabled(true)
+
+cd('/Servers/' + adminserver)
+cmo.setTunnelingEnabled(true)
 
 save()
 activate()

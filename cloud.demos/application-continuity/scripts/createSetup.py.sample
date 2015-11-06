@@ -16,15 +16,6 @@ adminserver = adminserver[0:8] + '_adminserver'
 
 print 'Calculated adminserver name: ' + adminserver;
 
-nmConnect('@weblogic.admin.user@', '@weblogic.admin.pass@', nm_listener.lower(), '6555', '@jcs.instance@_domain',os.environ["DOMAIN_HOME"],'ssl')
-print adminserver + ' status...' + nmServerStatus(adminserver);
-
-nmKill(adminserver)
-
-nmStart(adminserver)
-
-nmDisconnect()
-
 print 'Create datasources...';
 
 connect('@weblogic.admin.user@','@weblogic.admin.pass@','t3://@jcs.instance@-wls-1.compute-@identity.domain@.oraclecloud.internal:7001')

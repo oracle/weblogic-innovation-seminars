@@ -122,7 +122,7 @@
                           keyfile="${main.dir}/../pk.openssh"  
                           username="${ssh.user}" passphrase="${ssh.passphrase}"
                           usepty="true"
-                          command="chmod 755 /tmp/Deploy-Aussie_tripper.sh;chmod 755 /tmp/DeployinAdminMode-Aussie_tripper_v2.sh;chmod 755 /tmp/Promote-Aussie_tripper_v2.sh;chmod 755 /tmp/prepareWLS.py;chmod 755 /tmp/restoreWLS.py;chmod 755 /tmp/prepareJCS.sh;chmod 755 /tmp/restoreJCS.sh;chmod 755 /tmp/aussie-tripper-v1.ear;chmod 755 /tmp/aussie-tripper-v2.ear"
+                          command="chmod 755 /tmp/Deploy-Aussie_tripper.sh /tmp/DeployinAdminMode-Aussie_tripper_v2.sh /tmp/Promote-Aussie_tripper_v2.sh /tmp/prepareWLS.py /tmp/restoreWLS.py /tmp/prepareJCS.sh /tmp/restoreJCS.sh /tmp/aussie-tripper-v1.ear /tmp/aussie-tripper-v2.ear"
                           timeout="1200000"  />
                         <taskdef name="scp"
                           classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp">
@@ -146,10 +146,6 @@
                           usepty="true"
                           command="sudo su - oracle -c /tmp/prepareJCS.sh oracle"
                           timeout="1200000"  />
-                        <taskdef name="scp"
-                          classname="org.apache.tools.ant.taskdefs.optional.ssh.Scp">
-                          <classpath refid="maven.plugin.classpath" />
-                        </taskdef>
                       </target>
                     </configuration>
                   </execution>                  
