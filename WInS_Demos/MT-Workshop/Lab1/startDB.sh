@@ -6,7 +6,6 @@ $ORACLE_HOME/bin/dbstart $ORACLE_HOME
 
 sqlplus sys/welcome1  as sysdba <<EOF
  alter pluggable database pdb2 open;
- alter pluggable database pdb3 open;
  exit;
 EOF
 
