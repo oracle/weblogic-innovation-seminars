@@ -77,10 +77,10 @@ export BEA_JAVA_HOME
 DEFAULT_BEA_JAVA_HOME=""
 export DEFAULT_BEA_JAVA_HOME
 
-SUN_JAVA_HOME="/u01/java/jdk1.8.0_60"
+SUN_JAVA_HOME="/usr/java/latest"
 export SUN_JAVA_HOME
 
-DEFAULT_SUN_JAVA_HOME="/u01/java/jdk1.8.0_60"
+DEFAULT_SUN_JAVA_HOME="/usr/java/latest"
 export DEFAULT_SUN_JAVA_HOME
 
 if [ "${SUN_JAVA_HOME}" = "" ] ; then
@@ -103,7 +103,7 @@ else
 	else
 		JAVA_VENDOR="Oracle"
 		export JAVA_VENDOR
-		JAVA_HOME="/u01/java/jdk1.8.0_60"
+		JAVA_HOME="/usr/java/latest"
 		export JAVA_HOME
 		VM_TYPE="HotSpot"
 		export VM_TYPE
