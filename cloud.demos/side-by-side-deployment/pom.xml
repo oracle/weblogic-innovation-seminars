@@ -109,7 +109,7 @@
                           knownhosts="${main.dir}/../known.hosts"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
-                          todir="opc@${jcs.ip}:/tmp"> 
+                          todir="${ssh.user}@${jcs.ip}:/tmp"> 
                           <fileset dir="${main.dir}/build">
                                 <include name="**/*.ear"/>
                           </fileset>

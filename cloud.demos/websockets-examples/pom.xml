@@ -132,7 +132,7 @@
                           knownhosts="${user.dir}/../known.hosts"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
-                          todir="opc@${jcs.ip}:/tmp"> 
+                          todir="${ssh.user}@${jcs.ip}:/tmp"> 
                           <fileset dir="${user.dir}../../../WInS_Demos/websockets-examples/websocket-snake-wls/target">
                                 <include name="**/*.war"/>
                           </fileset>

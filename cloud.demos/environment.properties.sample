@@ -11,7 +11,7 @@ opc.storage.container=wins_container
 
 # SSH key details
 # first you need to create your SSH key pair. Use example Putty's Keygen tool - see documentation
-ssh.user=ssh_username
+ssh.user=opc
 # public ssh key in the following format
 ssh.public.key=ssh-rsa AAAAB3NzaC1y........vaPU+vcppMHINDBAbPyT6qNIklg+bAJgE8zPerQ== rsa-key-20150227
 ssh.passphrase=ssh_passphrase
