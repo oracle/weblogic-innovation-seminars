@@ -13,4 +13,3 @@ rm -rf /u01/wins/wls1221/user_projects/domains/B_site_domain
 
 /u01/wins/wls1221/oracle_common/common/bin/unpack.sh -template=/u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Coherence.Federated.Cache/templates/B_site_template.jar -domain=/u01/wins/wls1221/user_projects/domains/B_site_domain -user_name=weblogic -password=welcome1 -log=B_site_domain_creation.log
 
-echo Domains are created!
