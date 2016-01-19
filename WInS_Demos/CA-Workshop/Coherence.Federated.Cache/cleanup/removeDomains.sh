@@ -6,6 +6,9 @@
 # what are used to demonstrate Coherence federated cache feature.
 #
 
+pkill -f weblogic.Server
+pkill -f weblogic.NodeManager
+
 rm -rf /u01/wins/wls1221/user_projects/domains/A_site_domain
 rm -rf /u01/wins/wls1221/user_projects/domains/B_site_domain
 
