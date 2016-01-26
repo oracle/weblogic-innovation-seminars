@@ -26,6 +26,8 @@ fi
 
 cd ${CONTENT_DIR}
 
+git fetch
+
 git reset --hard origin/${GIT_BRANCH}
 
 echo "========================================"
