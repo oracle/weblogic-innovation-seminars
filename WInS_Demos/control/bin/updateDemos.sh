@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
-export GIT_URL="http://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
+export GIT_URL="https://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 export GIT_BRANCH="caf-12.2.1"
 
 echo "Using GIT_URL=[${GIT_URL}]"

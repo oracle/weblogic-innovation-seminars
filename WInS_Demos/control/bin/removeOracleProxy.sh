@@ -4,7 +4,6 @@
 
 echo "Remove Maven proxy settings"
 rm -f ~/.m2/settings.xml
-rm -f  /u01/middleware/oracle_common/modules/org.apache.maven_3.0.5/conf/settings.xml
 
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
 PROXY_MESSAGE="Proxy NOT SET for Oracle Network!!!"

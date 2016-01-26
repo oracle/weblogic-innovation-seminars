@@ -2,7 +2,6 @@
 
 echo "Set Maven proxy settings"
 cp /u01/content/weblogic-innovation-seminars/WInS_Demos/control/maven/settings.xml ~/.m2/
-cp /u01/content/weblogic-innovation-seminars/WInS_Demos/control/maven/settings.xml /u01/middleware/oracle_common/modules/org.apache.maven_3.0.5/conf/
 
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
 ORACLE_HTTP_PROXY="http://www-proxy.us.oracle.com:80"
