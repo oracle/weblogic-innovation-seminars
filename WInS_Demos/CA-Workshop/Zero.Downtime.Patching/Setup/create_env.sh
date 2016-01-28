@@ -21,7 +21,7 @@ chmod 777 -Rf /u01/wins/patchVerification1221
 
 #Installing  WebLogic Server 12.2.1 using generic installer to /u01/wins/ma/OracleHome1221 as OracleHome
 cd /u01/wins/install
-java -jar wls_generic.jar -silent -invPtrLoc /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Zero.Downtime.Patching/Setup/oraInst_ma.loc ORACLE_HOME=/u01/wins/ma/OracleHome1221 INSTALL_TYPE="WebLogic Server" SECURITY_UPDATES_VIA_MYORACLESUPPORT=false DECLINE_AUTO_UPDATES=true DECLINE_SECURITY_UPDATES=true
+java -jar fmw_12.2.1.0.0_wls.jar -silent -invPtrLoc /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Zero.Downtime.Patching/Setup/oraInst_ma.loc ORACLE_HOME=/u01/wins/ma/OracleHome1221 INSTALL_TYPE="WebLogic Server" SECURITY_UPDATES_VIA_MYORACLESUPPORT=false DECLINE_AUTO_UPDATES=true DECLINE_SECURITY_UPDATES=true
 
 #Setting Environment to run copyBinary.sh files
 /u01/wins/ma/OracleHome1221/wlserver/server/bin/setWLSEnv.sh
