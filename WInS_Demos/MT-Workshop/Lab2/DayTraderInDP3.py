@@ -3,7 +3,7 @@ edit()
 
 startEdit()
 cd('/')
-cmo.createVirtualTarget('VT-daytrader ')
+cmo.createVirtualTarget('VT-daytrader')
 cd('/VirtualTargets/VT-daytrader')
 cmo.setHostNames(array(["localhost"],java.lang.String))
 cmo.setUriPrefix('/dp3')
@@ -152,14 +152,16 @@ cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSReso
 cmo.setSubDeploymentName('MySubdeployment')
 activate()
 
-startEdit()
-deploy(appName='web', partition='dp3', resourceGroup='app3RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/web-3.0.0.war')
-activate()
+
 
 startEdit()
 cd('/')
 partitionBean=cmo.lookupPartition('dp3')
 startPartitionWait(partitionBean)
+activate()
+
+startEdit()
+deploy(appName='web', partition='dp3', resourceGroup='app3RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/web-3.0.0.war')
 activate()
 
 disconnect()
