@@ -6,7 +6,7 @@ start('app-cluster','Cluster')
 activate()
 
 startEdit()
-deploy(appName='heapApp', partition='Medrec-Dev', resourceGroup='appRG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5/heapApp.war')
+deploy(appName='heapApp', partition='dp2', resourceGroup='app2RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5/heapApp.war')
 activate()
 
 disconnect()
