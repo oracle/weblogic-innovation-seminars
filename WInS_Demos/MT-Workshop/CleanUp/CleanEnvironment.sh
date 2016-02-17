@@ -4,6 +4,9 @@ echo "********************* Stop Servers and Node Manager **********************
 pkill -f weblogic.NodeManager
 pkill -f weblogic.Server
 
+
+sleep 15
+
 echo "**********************Removing Domains ****************************************"
 rm -Rf /u01/wins/wls1221/user_projects/domains/base_domain
 rm -Rf /u01/wins/wls1221/user_projects/domains/dev_domain
