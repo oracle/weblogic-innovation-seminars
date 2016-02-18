@@ -1,7 +1,7 @@
 #Configuration for medrec application in dev_domain
 connect('weblogic','welcome1','t3://localhost:9001')
 edit()
-
+print "************************ Creating appRG resource group in Medrec-Dev domain partition ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG')
 cmo.createJDBCSystemResource('MedRecGlobalDataSourceXA')
@@ -24,19 +24,19 @@ cmo.setValue('medrec1')
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JDBCSystemResources/MedRecGlobalDataSourceXA/JDBCResource/MedRecGlobalDataSourceXA/JDBCDataSourceParams/MedRecGlobalDataSourceXA')
 cmo.setGlobalTransactionsProtocol('TwoPhaseCommit')
 activate()
-
+print "************************ Creating Mail Session in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG')
 cmo.createMailSession('MedRecMailSession')
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/MailSessions/MedRecMailSession')
 cmo.setJNDIName('mail/MedRecMailSession')
 activate()
-
+print "************************ Creating File Store in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG')
 cmo.createFileStore('MedRec-fs')
 activate()
-
+print "************************ Creating JMS Server in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG')
 cmo.createJMSServer('MedRecJMSServer')
@@ -44,19 +44,19 @@ cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSServers/MedRecJMSServer')
 cmo.setPersistentStore(getMBean('/Partitions/Medrec-Dev/ResourceGroups/appRG/FileStores/MedRec-fs'))
 activate()
 
-
+print "************************ Creating JMS Module in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG')
 cmo.createJMSSystemResource('MedRecModule')
 activate()
-
+print "************************ Creating JMS Connection Factory in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule')
 cmo.createSubDeployment('MedRecJMS ')
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule/SubDeployments/MedRecJMS')
 set('Targets',jarray.array([ObjectName('com.bea:Name=MedRecJMSServer,Type=JMSServer,Partition=Medrec-Dev,ResourceGroup=appRG')], ObjectName))
 activate()
-
+print "************************ Creating Connection Factory in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule/JMSResource/MedRecModule')
 cmo.createConnectionFactory('MedRecConnectionFactory')
@@ -71,7 +71,7 @@ cmo.setMessagesMaximum(10)
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule/JMSResource/MedRecModule/ConnectionFactories/MedRecConnectionFactory/TransactionParams/MedRecConnectionFactory')
 cmo.setXAConnectionFactoryEnabled(true)
 activate()
-
+print "************************ Creating Uniform Distributed JMS Queue in appRG resource group ****************************"
 startEdit()
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule/JMSResource/MedRecModule')
 cmo.createUniformDistributedQueue('PatientNotificationQueue')
@@ -82,13 +82,13 @@ set('Targets',jarray.array([ObjectName('com.bea:Name=MedRecJMSServer,Type=JMSSer
 cd('/Partitions/Medrec-Dev/ResourceGroups/appRG/JMSSystemResources/MedRecModule/JMSResource/MedRecModule/UniformDistributedQueues/PatientNotificationQueue')
 cmo.setSubDeploymentName('MedRecJMS')
 activate()
-
+print "************************ Deploying Medrec application in appRG resource group ****************************"
 startEdit()
 deploy(appName='medrec', partition='Medrec-Dev', resourceGroup='appRG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/medrec.ear')
 deploy(appName='physician', partition='Medrec-Dev', resourceGroup='appRG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/physician.ear')
 deploy(appName='chat', partition='Medrec-Dev', resourceGroup='appRG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/chat.war')
 activate()
-
+print "************************ Starting Medrec-Dev domain partition ****************************"
 startEdit()
 cd('/')
 partitionBean=cmo.lookupPartition('Medrec-Dev')
@@ -101,13 +101,13 @@ disconnect()
 connect('weblogic','welcome1','t3://localhost:7001')
 
 edit()
-
+print "************************ Shuting down domain partition dp1 in base_domain ****************************"
 startEdit()
 cd('/')
 partitionBeanDP1=cmo.lookupPartition('dp1')
 forceShutdownPartitionWait(partitionBeanDP1)
 activate()
-
+print "************************ Removing domain partition dp1 from base_domain  ****************************"
 startEdit()
 editService.getConfigurationManager().removeReferencesToBean(getMBean('/Partitions/dp1'))
 cmo.destroyPartition(getMBean('/Partitions/dp1'))

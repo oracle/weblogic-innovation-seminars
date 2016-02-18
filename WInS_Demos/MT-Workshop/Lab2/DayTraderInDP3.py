@@ -1,6 +1,6 @@
 connect('weblogic','welcome1','t3://localhost:7001')
 edit()
-
+print "************************ Creating Virtual Target VT-daytrader for dp3 partition ****************************"
 startEdit()
 cd('/')
 cmo.createVirtualTarget('VT-daytrader')
@@ -9,7 +9,7 @@ cmo.setHostNames(array(["localhost"],java.lang.String))
 cmo.setUriPrefix('/dp3')
 set('Targets',jarray.array([ObjectName('com.bea:Name=app-cluster,Type=Cluster')], ObjectName))
 activate()
-
+print "************************ Creating domain partition in dp3 ****************************"
 startEdit()
 cd('/')
 cmo.createPartition('dp3')
@@ -21,14 +21,14 @@ cd('/Partitions/dp3')
 set('AvailableTargets',jarray.array([ObjectName('com.bea:Name=VT-daytrader,Type=VirtualTarget')], ObjectName))
 set('DefaultTargets',jarray.array([ObjectName('com.bea:Name=VT-daytrader,Type=VirtualTarget')], ObjectName))
 activate()
-
+print "************************ Creating resource group app3RG ****************************"
 startEdit()
 cmo.createResourceGroup('app3RG')
 cd('/Partitions/dp3/ResourceGroups/app3RG')
 cmo.setUseDefaultTarget(false)
 set('Targets',jarray.array([ObjectName('com.bea:Name=VT-daytrader,Type=VirtualTarget')], ObjectName))
 activate()
-
+print "************************ Creating JDBC datasources in app3RG resource group  ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG')
 cmo.createJDBCSystemResource('jdbc/datasources/TradeDataSource')
@@ -74,31 +74,31 @@ cmo.setValue('trade')
 cd('/Partitions/dp3/ResourceGroups/app3RG/JDBCSystemResources/jdbc/datasources/NoTxTradeDataSource/JDBCResource/jdbc/datasources/NoTxTradeDataSource/JDBCDataSourceParams/jdbc/datasources/NoTxTradeDataSource')
 cmo.setGlobalTransactionsProtocol('EmulateTwoPhaseCommit')
 activate()
-
+print "************************ Creating File Store in app3RG resource group  ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG')
 cmo.createFileStore('MyFileStore')
 activate()
-
+print "************************ Creating JMS Server in app3RG resource group ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG')
 cmo.createJMSServer('MyJMSServer')
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSServers/MyJMSServer')
 cmo.setPersistentStore(getMBean('/Partitions/dp3/ResourceGroups/app3RG/FileStores/MyFileStore'))
 activate()
-
+print "************************ Creating  JMS Module in app3RG resource group ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG')
 cmo.createJMSSystemResource('MyJMSModule ')
 activate()
-
+print "************************ Creating Subdeployment in app3RG resource group  ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule')
 cmo.createSubDeployment('MySubdeployment ')
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/SubDeployments/MySubdeployment')
 set('Targets',jarray.array([ObjectName('com.bea:Name=MyJMSServer,Type=JMSServer,Partition=dp3,ResourceGroup=app3RG')], ObjectName))
 activate()
-
+print "************************ Creating Connection factory in app3RG resource group ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSResource/MyJMSModule')
 cmo.createConnectionFactory('jms/myQueueConnectionFactory ')
@@ -128,7 +128,7 @@ cmo.setMessagesMaximum(10)
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSResource/MyJMSModule/ConnectionFactories/jms/myTopicConnectionFactory/TransactionParams/jms/myTopicConnectionFactory')
 cmo.setXAConnectionFactoryEnabled(true)
 activate()
-
+print "************************ Creating Uniform Distributed JMS Queue in app3RG ****************************"
 startEdit()
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSResource/MyJMSModule')
 cmo.createUniformDistributedQueue('jms/TradeBrokerQueue')
@@ -152,14 +152,14 @@ cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSReso
 cmo.setSubDeploymentName('MySubdeployment')
 activate()
 
-
+print "************************ Starting domain partition dp3 ****************************"
 
 startEdit()
 cd('/')
 partitionBean=cmo.lookupPartition('dp3')
 startPartitionWait(partitionBean)
 activate()
-
+print "************************ Deploying daytrader application in app3RG resource group ****************************"
 startEdit()
 deploy(appName='web', partition='dp3', resourceGroup='app3RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/web-3.0.0.war')
 activate()

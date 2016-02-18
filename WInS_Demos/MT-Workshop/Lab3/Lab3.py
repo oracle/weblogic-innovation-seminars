@@ -2,12 +2,13 @@ connect('weblogic','welcome1','t3://localhost:7001')
 edit()
 
 #Shutdown the domain partition dp1
+print "************************ Shuting down domain partition dp1 ****************************"
 startEdit()
 cd('/')
 partitionBeanDP1=cmo.lookupPartition('dp1')
 forceShutdownPartitionWait(partitionBeanDP1)
 activate()
-
+print "************************ Creating new security realm newrealm in base_domain ****************************"
 #Creating new security realm newrealm
 startEdit()
 cd('/SecurityConfiguration/base_domain')
@@ -30,6 +31,7 @@ activate()
 
 
 #Assiging newrealm to domain partition dp1
+print "************************ Assigning newrealm to domain partition dp1 ****************************"
 startEdit()
 cd('/Partitions/dp1')
 set('DefaultTargets',jarray.array([ObjectName('com.bea:Name=VT-Medrec-1,Type=VirtualTarget')], ObjectName))
@@ -40,6 +42,7 @@ cmo.setJobSchedulerTableName('WEBLOGIC_TIMERS')
 activate()
 
 #Starting domain parttion dp1
+print "************************ Starting domain partition dp1 ****************************"
 startEdit()
 cd('/')
 partitionBean=cmo.lookupPartition('dp1')
@@ -50,7 +53,7 @@ disconnect()
 
 # Adding the administrator user in newrealm security realm
 connect('weblogic','welcome1','t3://localhost:7001')
-
+print "************************ Adding Administrator user in newrealm security realm ****************************"
 cd('/SecurityConfiguration/base_domain/Realms/mynewrealm/AuthenticationProviders/DefaultAuthenticator/')
 cmo.createUser('administrator','welcome1','Medrec in DP2')
 
