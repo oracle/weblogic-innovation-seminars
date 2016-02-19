@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo "********************* Stop Servers and Node Manager ***************************"
+cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/CleanUp 
+/u01/wins/wls1221/oracle_common/common/bin/wlst.sh stopCluster.py
 pkill -f weblogic.NodeManager
 pkill -f weblogic.Server
 

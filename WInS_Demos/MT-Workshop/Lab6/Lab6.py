@@ -2,6 +2,14 @@
 connect('weblogic','welcome1','t3://localhost:7001')
 edit()
 
+print "***************************** Starting Domain partitin dp4 ************************************************************"
+startEdit()
+cd('/')
+partitionBean=cmo.lookupPartition('dp4')
+startPartitionWait(partitionBean)
+activate()
+
+print "***************************** Creating Dynamic Cluster new-cluster ************************************************************"
 startEdit()
 cd('/')
 cmo.createCluster('new-cluster')
@@ -27,13 +35,14 @@ cd('/ServerTemplates/new-cluster-Template/SSL/new-cluster-Template')
 cmo.setListenPort(10100)
 activate()
 
+print "***************************** Starting new-cluster-1 server *******************************************************"
 startEdit()
 start('new-cluster','Cluster')
 activate()
 
+print "***************************** Deploy heapApp in app4RG resource group ************************************************************"
 startEdit()
 deploy(appName='heapApp', partition='dp4', resourceGroup='app4RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/heapApp.war')
 activate()
-activate()
 
-
+disconnect()
