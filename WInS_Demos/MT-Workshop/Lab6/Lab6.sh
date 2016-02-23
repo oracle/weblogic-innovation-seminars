@@ -1,17 +1,14 @@
 #!/bin/bash
 echo "*********************************** Creating otd_domain ******************"
-/u01/wins/wls1221/oracle_common/common/bin/unpack.sh -template /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/otd_domain.jar -domain /u01/wins/wls1221/user_projects/domains/otd_domain -user_name=weblogic -password=welcome1 
+/u01/wins/wls1221/oracle_common/common/bin/unpack.sh -template /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/otd_domain.jar -domain /u01/wins/wls1221/user_projects/domains/otd_domain -user_name=weblogic -password=welcome1
 
 cd /u01/wins/wls1221/user_projects/domains/otd_domain/bin
 nohup ./startNodeManager.sh &>nmserver.log </dev/null  &
-nohup ./startWebLogic.sh &>adminserver.log </dev/null  &
-
-echo "Starting  Admin Server in otd_domain"
-sleep 180
 
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/
-
+sleep 10
 /u01/wins/wls1221/oracle_common/common/bin/wlst.sh otd-domain.py
+
 
 LIFECYCLE_URL="http://localhost:7001/management/lifecycle/latest"
 CURL_COMMON_OPTIONS="-v --user weblogic:welcome1 -H X-Requested-By:MyClient -H Accept:application/json -H Content-Type:application/json"

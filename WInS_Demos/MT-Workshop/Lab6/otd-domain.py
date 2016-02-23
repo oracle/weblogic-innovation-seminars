@@ -1,4 +1,8 @@
-# This is the start of the script
+nmConnect('weblogic','welcome1',domainName='otd_domain',hostname='localhost',port='5557')
+print "********************** Starting Admin Server ******************************"
+nmStart('AdminServer')
+nmDisconnect()
+
 connect('weblogic','welcome1','t3://localhost:8001')
 
 edit()
