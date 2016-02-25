@@ -43,5 +43,8 @@ if [ -f /home/oracle/setProxy.sh ]; then
 	. /home/oracle/setProxy.sh
 fi
 
+JAVA_VERSION=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
+echo "Default Java: $JAVA_VERSION"
+
 cat ${DEMOS_HOME}/control/files/bashdisplay.txt
 
