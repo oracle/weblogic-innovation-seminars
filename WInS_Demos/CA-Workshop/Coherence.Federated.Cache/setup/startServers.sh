@@ -4,4 +4,3 @@ StartServers_SCRIPT=/u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Work
 OracleHome=/u01/wins/wls1221
 ${OracleHome}/oracle_common/common/bin/wlst.sh $StartServers_SCRIPT
  
-

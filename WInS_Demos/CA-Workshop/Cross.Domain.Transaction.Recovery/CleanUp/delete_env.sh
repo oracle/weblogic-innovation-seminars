@@ -15,3 +15,14 @@ sqlplus system/welcome1@localhost:1521/pdb2 <<EOF
  exit;
 EOF
 
+echo "************************** Stopping Oracle Database ********************************"
+sqlplus sys/welcome1  as sysdba <<EOF
+ alter pluggable database pdb2 close;
+ exit;
+EOF
+
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/primaryDomain/primarydomain.log
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/primaryDomain/standbydomain.log
+
+. /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/winsEnv.sh
+$ORACLE_HOME/bin/dbshut $ORACLE_HOME
