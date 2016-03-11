@@ -55,7 +55,7 @@ disconnect()
 connect('weblogic','welcome1','t3://localhost:7001')
 print "************************ Adding Administrator user in newrealm security realm ****************************"
 cd('/SecurityConfiguration/base_domain/Realms/mynewrealm/AuthenticationProviders/DefaultAuthenticator/')
-cmo.createUser('administrator','welcome1','Medrec in DP2')
+cmo.createUser('administrator','welcome1','Medrec in DP1')
 
 disconnect()
 
