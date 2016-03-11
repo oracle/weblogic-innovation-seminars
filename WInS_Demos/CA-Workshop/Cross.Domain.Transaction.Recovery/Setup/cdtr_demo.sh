@@ -23,7 +23,12 @@ echo "********************* Starting Admin Server in primary domain ************
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/primaryDomain/
 nohup sudo docker run -p 8001:8001 --name=wlsadmin  -h aadrdemo samplewls:12.2.1 startWebLogic.sh &>primarydomain.log </dev/null &
 
+echo "*********************** Starting Admin Server in primary domain **********************"
+sleep 100
+
 echo "********************* Starting Admin Server in standby domain ***************************"
 cd /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/standbyDomain/
 nohup sudo docker run -p 8002:8001 --name=wlsadmin2  -h aadrdemo samplewls2:12.2.1 startWebLogic.sh &>standbydomain.log </dev/null &
 
+echo "*********************** Starting Admin Server in standby domain **********************"
+sleep 100
