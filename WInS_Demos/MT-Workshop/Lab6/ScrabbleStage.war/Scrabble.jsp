@@ -190,7 +190,8 @@
       a popular board game and then displayed in the table.
       <i>Server affinity</i> allows WebLogic Server to retrieve the same session the next time the client visits the page.
       </p>
-      <br>
+      <br><br><br>
+      <p>The server currently hosting this session is <B><%= serverName %></B><%= failoverMessage %></p>
 
 <%
       if (request.getParameter("AddValue") != null) {
@@ -294,8 +295,7 @@
   </table>
   </center>
 </form>
-      <br><br>
-      <p>The server currently hosting this session is <B><%= serverName %></B><%= failoverMessage %></p>
+
 </center>
 
 <%
