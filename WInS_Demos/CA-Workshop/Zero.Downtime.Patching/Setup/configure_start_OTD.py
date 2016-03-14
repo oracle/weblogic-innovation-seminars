@@ -1,4 +1,4 @@
-print "******************************************** Connecting to NodeManager *********************************"
+print "******************************************** Connecting to NodeManager in otd_domain *********************************"
 nmConnect('weblogic', 'welcome1', domainName='otd_domain', port='5556', host='localhost')
 
 print "******************************************* Starting AdminServer in otd_domain ****************************************"
