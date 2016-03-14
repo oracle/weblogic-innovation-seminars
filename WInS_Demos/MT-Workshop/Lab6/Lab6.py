@@ -42,7 +42,7 @@ activate()
 
 print "***************************** Deploy heapApp in app4RG resource group ************************************************************"
 startEdit()
-deploy(appName='heapApp', partition='dp4', resourceGroup='app4RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/heapApp.war')
+deploy(appName='Scrabble', partition='dp4', resourceGroup='app4RG', path='/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/ScrabbleStage.war')
 activate()
 
 disconnect()
