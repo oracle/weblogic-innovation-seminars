@@ -17,6 +17,8 @@ echo “*****************CREATING base_domain *************************”
 /u01/wins/wls1221/oracle_common/common/bin/unpack.sh -template /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/base_domain.jar -domain /u01/wins/wls1221/user_projects/domains/base_domain -user_name=weblogic -password=welcome1 
 echo “*****************STARTING NODE MANAGER******************”
 cd /u01/wins/wls1221/user_projects/domains/base_domain/bin
+
+export PATCH_CLASSPATH="/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/Patch.jar"
 nohup ./startNodeManager.sh &>nmserver.log </dev/null  &
 #nohup ./startWebLogic.sh &>adminserver.log </dev/null  &
 
