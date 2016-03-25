@@ -112,6 +112,8 @@ cmo.setSubscriptionSharingPolicy('Exclusive')
 cmo.setMessagesMaximum(10)
 cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSResource/MyJMSModule/ConnectionFactories/jms/myQueueConnectionFactory/TransactionParams/jms/myQueueConnectionFactory')
 cmo.setXAConnectionFactoryEnabled(true)
+cd('/Partitions/dp3/ResourceGroups/app3RG/JMSSystemResources/MyJMSModule/JMSResource/MyJMSModule/ConnectionFactories/jms/myQueueConnectionFactory')
+cmo.setDefaultTargetingEnabled(true)
 activate()
 
 startEdit()
