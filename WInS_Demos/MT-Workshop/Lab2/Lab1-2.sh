@@ -18,7 +18,7 @@ echo “*****************CREATING base_domain *************************”
 echo “*****************STARTING NODE MANAGER******************”
 cd /u01/wins/wls1221/user_projects/domains/base_domain/bin
 
-export PATCH_CLASSPATH="/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2/Patch.jar"
+
 nohup ./startNodeManager.sh &>nmserver.log </dev/null  &
 #nohup ./startWebLogic.sh &>adminserver.log </dev/null  &
 

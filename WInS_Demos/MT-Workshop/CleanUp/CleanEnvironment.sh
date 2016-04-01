@@ -17,6 +17,8 @@ rm -Rf /u01/wins/wls1221/user_projects/applications/base_domain
 rm -Rf /u01/wins/wls1221/user_projects/applications/otd_domain
 rm /home/oracle/Desktop/Medrec-Dev.zip
 rm /home/oracle/Desktop/Medrec-Dev-attributes.json
+rm /home/oracle/Desktop/dp2.zip
+rm /home/oracle/Desktop/dp2-attributes.json
 
 echo "********************** Removing user and table in database ***********************"
 sqlplus system/welcome1@localhost:1521/pdborcl <<EOF
