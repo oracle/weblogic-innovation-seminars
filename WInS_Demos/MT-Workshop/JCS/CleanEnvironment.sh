@@ -11,6 +11,8 @@ sleep 15
 echo "**********************Removing Domains ****************************************"
 rm -Rf /u01/wins/wls1221/user_projects/domains/base_domain
 rm -Rf /u01/wins/wls1221/user_projects/applications/base_domain
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/JCS/base_domain.log
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/JCS/nmserver.log
 rm /home/oracle/Desktop/dp1.zip
 rm /home/oracle/Desktop/dp1-attributes.json
 
