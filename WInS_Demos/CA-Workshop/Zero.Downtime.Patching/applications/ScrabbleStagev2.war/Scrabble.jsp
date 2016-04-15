@@ -1,10 +1,11 @@
-<!doctype html public "-//w3c/dtd HTML 4.0//en">
+<!DOCTYPE html>
 <!-- Copyright (c) @COPYRIGHT_CURRENTYEAR, Oracle and/or its affiliates. All Rights Reserved.-->
 <%@ page import="javax.naming.Context,
                  javax.naming.InitialContext,
                  java.lang.System,
                  java.io.PrintWriter,
                  java.util.Enumeration,
+                 java.util.Vector,
                  javax.management.MBeanServer,
                  javax.management.ObjectName,
                  patching.SessionCompat" %>
@@ -51,9 +52,21 @@
 
 <html>
   <head>
-  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
   <meta name="description" content="Oracle WebLogic Server">
   <meta name="keywords" content="Oracle WebLogic Server">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- This is the main css file for the default Alta theme -->
+  <link rel="stylesheet" href="css/libs/oj/v2.0.0/alta/oj-alta-min.css" type="text/css"/>
+
+  <!-- RequireJS configuration file -->
+  <script data-main="js/main" src="js/libs/require/require.js"></script>
+  
+  <script type="text/javascript" src="js/libs/oj/v2.0.0/debug/oj.js"></script>
+  
+  
   <title>Zero Downtime Patching Demo - Scrabble Example - Stage Mode - Version 2</title>
   <link rel="stylesheet"
         type="text/css"
@@ -121,133 +134,119 @@
 
   <style>
 .RuleTable {
-	margin:0px;padding:0px;
+  margin:0px;padding:0px;
         width: 180px;
-	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #000000;
-	
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
-	
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
-	
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
-	
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
+  box-shadow: 10px 10px 5px #888888;
+  border:1px solid #000000;
+  
+  -moz-border-radius-bottomleft:0px;
+  -webkit-border-bottom-left-radius:0px;
+  border-bottom-left-radius:0px;
+  
+  -moz-border-radius-bottomright:0px;
+  -webkit-border-bottom-right-radius:0px;
+  border-bottom-right-radius:0px;
+  
+  -moz-border-radius-topright:0px;
+  -webkit-border-top-right-radius:0px;
+  border-top-right-radius:0px;
+  
+  -moz-border-radius-topleft:0px;
+  -webkit-border-top-left-radius:0px;
+  border-top-left-radius:0px;
 }.RuleTable table{
     border-collapse: collapse;
         border-spacing: 0;
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
+  width:100%;
+  height:100%;
+  margin:0px;padding:0px;
 }.RuleTable tr:last-child td:last-child {
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
+  -moz-border-radius-bottomright:0px;
+  -webkit-border-bottom-right-radius:0px;
+  border-bottom-right-radius:0px;
 }
 .RuleTable table tr:first-child td:first-child {
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
+  -moz-border-radius-topleft:0px;
+  -webkit-border-top-left-radius:0px;
+  border-top-left-radius:0px;
 }
 .RuleTable table tr:first-child td:last-child {
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
+  -moz-border-radius-topright:0px;
+  -webkit-border-top-right-radius:0px;
+  border-top-right-radius:0px;
 }.RuleTable tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
+  -moz-border-radius-bottomleft:0px;
+  -webkit-border-bottom-left-radius:0px;
+  border-bottom-left-radius:0px;
 }.RuleTable tr:hover td{
-	
+  
 }
 .RuleTable tr:nth-child(odd){ background-color:#aad4ff; }
 .RuleTable tr:nth-child(even)    { background-color:#ffffff; }.RuleTable td{
-	vertical-align:middle;
-	
-	
-	border:1px solid #000000;
-	border-width:0px 1px 1px 0px;
-	text-align:left;
-	padding:7px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:normal;
-	color:#000000;
+  vertical-align:middle;
+  
+  
+  border:1px solid #000000;
+  border-width:0px 1px 1px 0px;
+  text-align:left;
+  padding:7px;
+  font-size:10px;
+  font-family:Arial;
+  font-weight:normal;
+  color:#000000;
 }.RuleTable tr:last-child td{
-	border-width:0px 1px 0px 0px;
+  border-width:0px 1px 0px 0px;
 }.RuleTable tr td:last-child{
-	border-width:0px 0px 1px 0px;
+  border-width:0px 0px 1px 0px;
 }.RuleTable tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
+  border-width:0px 0px 0px 0px;
 }
 .RuleTable tr:first-child td{
-		background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
+    background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+  background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");  background: -o-linear-gradient(top,#005fbf,003f7f);
 
-	background-color:#005fbf;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#ffffff;
+  background-color:#005fbf;
+  border:0px solid #000000;
+  text-align:center;
+  border-width:0px 0px 1px 1px;
+  font-size:14px;
+  font-family:Arial;
+  font-weight:bold;
+  color:#ffffff;
 }
 .RuleTable tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");	background: -o-linear-gradient(top,#005fbf,003f7f);
+  background:-o-linear-gradient(bottom, #005fbf 5%, #003f7f 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #005fbf), color-stop(1, #003f7f) );
+  background:-moz-linear-gradient( center top, #005fbf 5%, #003f7f 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#005fbf", endColorstr="#003f7f");  background: -o-linear-gradient(top,#005fbf,003f7f);
 
-	background-color:#005fbf;
+  background-color:#005fbf;
 }
 .RuleTable tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
+  border-width:0px 0px 1px 0px;
 }
 .RuleTable tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
+  border-width:0px 0px 1px 1px;
 }
 
 
   </style>
 
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
     //<![CDATA[
 
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(onInit);
-
-    var data;
-    var options;
-    var chart;
-    var button;
-    var count;
-
-    function onInit() {
-
-      options = {
-        title: 'Scrabble Word Scores',
-        animation:{
-          duration: 1000,
-          easing: 'out',
-        },
-        vAxis: {minValue:0, maxValue:30, title: 'Points', titleTextStyle: {color: 'blue'}},
-        legend: { position: "none" }
-      };
-
-      //data = new google.visualization.DataTable();
-      //data.addColumn('string', 'N');
-      //data.addColumn('number', 'Score');
+  require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojchart', 'ojs/ojtoolbar'],
+    function(oj, ko, $) // this callback gets executed when all required modules are loaded
+    {
+      function ChartModel() {
+          var self = this;
+          
+          /* toggle button variables */
+          self.stackValue = ko.observable('off');
+          self.orientationValue = ko.observable('vertical');
+          
+          var barSeries;
 <%
       Enumeration graphNames = session.getAttributeNames();
       String graphName;
@@ -255,6 +254,7 @@
       // only interested in attributes with the prefix
       Vector<String> filteredNames = new Vector<String>();
       while(graphNames.hasMoreElements()) {
+      
             graphName = (String)graphNames.nextElement();
             if (!graphName.startsWith(PREFIX_LABEL)) continue;
             if (removePrefix(graphName).length() < 1) continue;
@@ -262,44 +262,53 @@
       }
            
       if(filteredNames.size() == 0) {
-%>
-      data = new google.visualization.DataTable();
-      data.addColumn('string', 'N');
-      data.addColumn('number', 'Score');
+%>          
+          /* chart data */
+          barSeries = [];
+                           
 <%
       } else {
+        for(int i = 0; i < filteredNames.size(); i++) {
+          graphName = filteredNames.elementAt(i);
 %>
-        data = google.visualization.arrayToDataTable([
-        ['Word', 'Score', { role: 'style' } ]
-
 <%
-      for(int i = 0; i < filteredNames.size(); i++) {
-        graphName = filteredNames.elementAt(i);
-
+        if (i > 0) {
 %>
-        , ['<%= removePrefix(graphName) %>', <%= "" + session.getAttribute(graphName) %>, 'stroke-color: blue; stroke-width: 4; stroke-opacity: 1; fill-color: blue; opacity: 0.6']
+    ,
+<%
+        } else {
+%>
+    barSeries = [
+<%
+    }
+%>
+          {name: '<%= removePrefix(graphName) %>', items: [<%= "" + session.getAttribute(graphName) %>]}
 <%
        } // end of while loop for session names
-%>
-      ]);
-      data.sort([{column: 1},{column:0}]);
-
+%>                           
+          ];
 <%
       } // end of else
-%>
+%>                                
+      
+          self.barSeriesValue = ko.observableArray(barSeries);
+          
 
-      chart = new google.visualization.ColumnChart(
-          document.getElementById('chart_div'));
-
-      function drawChart() {
-        chart.draw(data, options);
       }
-
-      drawChart();
+      
+      var chartModel = new ChartModel();
+      
+      $(document).ready(
+    function(){
+              ko.applyBindings(chartModel, document.getElementById('chart-container'));
     }
-
-
+      );
+    }
+  );
     //]]>
+
+
+
 
     </script>
 
@@ -346,7 +355,6 @@
 
 <%
   try {
-    System.out.println("getting Servername");
     serverName = getServerName();
 %>
       <p>
@@ -363,6 +371,7 @@
 <%
       if (request.getParameter("AddValue") != null) {
         String nameField = request.getParameter("NameField");
+        
         if (nameField != null && nameField.trim().length() > 0) {
 
           String word = nameField.trim();
@@ -416,7 +425,6 @@
              
           }
 
-
           session.setAttribute(addPrefix(nameField.trim()),score); 
         }
 %>
@@ -463,7 +471,21 @@
 
          </table>
       </div>
-      <div id="chart_div" style="width: 550px; height: 355px; float:center;"></div>
+        <div id='chart-container'>  
+        <div id="barChart" data-bind="ojComponent: {
+                component: 'ojChart', 
+                type: 'bar', 
+                orientation: orientationValue,
+                stack: stackValue,
+                series: barSeriesValue, 
+                groups: ['Powered by Oracle JET'],
+                animationOnDisplay: 'auto',
+                animationOnDataChange: 'auto',
+                hoverBehavior: 'dim'
+            }"
+             style="max-width:500px;width:100%;height:350px;">
+        </div>
+    </div>
       </center>
 
   <br>

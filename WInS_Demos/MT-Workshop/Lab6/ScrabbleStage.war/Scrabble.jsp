@@ -1,4 +1,4 @@
-<!doctype html public "-//w3c/dtd HTML 4.0//en">
+<!DOCTYPE html>
 <!-- Copyright (c) @COPYRIGHT_CURRENTYEAR, Oracle and/or its affiliates. All Rights Reserved.-->
 <%@ page import="javax.naming.Context,
                  javax.naming.InitialContext,
@@ -49,10 +49,22 @@
 %>
 
 <html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+<head>
   <meta name="description" content="Oracle WebLogic Server">
   <meta name="keywords" content="Oracle WebLogic Server">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- This is the main css file for the default Alta theme -->
+  <link rel="stylesheet" href="css/libs/oj/v2.0.0/alta/oj-alta-min.css" type="text/css"/>
+
+  <!-- RequireJS configuration file -->
+  <script data-main="js/main" src="js/libs/require/require.js"></script>
+  
+  <script type="text/javascript" src="js/libs/oj/v2.0.0/debug/oj.js"></script>
+  
+  
   <title>Zero Downtime Patching Demo - Scrabble Example - Stage Mode - Version 1</title>
   <link rel="stylesheet"
         type="text/css"
@@ -60,81 +72,71 @@
         title="Oracle WebLogic Server">
 
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
     //<![CDATA[
 
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(onInit);
-
-    var data;
-    var options;
-    var chart;
-    var button;
-    var count;
-
-    function onInit() {
-
-      options = {
-        title: 'Scrabble Word Scores',
-        animation:{
-          duration: 1000,
-          easing: 'out',
-        },
-        vAxis: {minValue:0, maxValue:30, title: 'Points', titleTextStyle: {color: 'green'}},
-        legend: { position: "none" }
-      };
-
-      //data = new google.visualization.DataTable();
-      //data.addColumn('string', 'N');
-      //data.addColumn('number', 'Score');
+  require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojchart', 'ojs/ojtoolbar'],
+    function(oj, ko, $) // this callback gets executed when all required modules are loaded
+    {
+      function ChartModel() {
+          var self = this;
+          
+          /* toggle button variables */
+          self.stackValue = ko.observable('off');
+          self.orientationValue = ko.observable('vertical');
+          
+          var barSeries;
 <%
       Enumeration graphNames = session.getAttributeNames();
       String graphName;
-      if(!graphNames.hasMoreElements()) {
-%>
-      data = new google.visualization.DataTable();
-      data.addColumn('string', 'N');
-      data.addColumn('number', 'Score');
+      if(!graphNames.hasMoreElements()) {   
+%>          
+          /* chart data */
+          barSeries = [];
+                           
 <%
       } else {
-%>
-        data = google.visualization.arrayToDataTable([
-        ['Word', 'Score', { role: 'style' } ]
-
-<%
-      //Enumeration graphNames = session.getAttributeNames();
-      //String graphName;
-      while (graphNames.hasMoreElements()) {
+        int i = 0;
+    while(graphNames.hasMoreElements()) {
         graphName = (String)graphNames.nextElement();
         if (!graphName.startsWith(PREFIX_LABEL)) continue;
         if (removePrefix(graphName).length() < 1) continue;
-
 %>
-        , ['<%= removePrefix(graphName) %>', <%= "" + session.getAttribute(graphName) %>, 'fill-color: green;']
 <%
-       } // end of while loop for session names
+      if (i > 0) {
 %>
-      ]);
-      data.sort([{column: 1},{column:0}]);
+,
+<%
+          } else {
+%>
+      barSeries = [
+<%
+      }
+%>      
+      {name: '<%= removePrefix(graphName) %>', items: [<%= "" + session.getAttribute(graphName) %>]}
+<%
+          i++;
+        } // end of while loop for session names
+%>                           
+      ];
 <%
       } // end of else
-%>
-
-      chart = new google.visualization.ColumnChart(
-          document.getElementById('chart_div'));
-
-      function drawChart() {
-        chart.draw(data, options);
+%>                                
+      self.barSeriesValue = ko.observableArray(barSeries);
       }
-
-      drawChart();
+      
+      var chartModel = new ChartModel();
+      
+      $(document).ready(
+    function(){
+              ko.applyBindings(chartModel, document.getElementById('chart-container'));
     }
-
-
+      );
+    }
+  );
     //]]>
-
     </script>
+
 
 </head>
 
@@ -180,7 +182,6 @@
 
 <%
   try {
-    System.out.println("getting Servername");
     serverName = getServerName();
 %>
       <p>
@@ -190,7 +191,8 @@
       a popular board game and then displayed in the table.
       <i>Server affinity</i> allows WebLogic Server to retrieve the same session the next time the client visits the page.
       </p>
-      <br><br><br>
+      <br>
+    <br><br>
       <p>The server currently hosting this session is <B><%= serverName %></B><%= failoverMessage %></p>
 
 <%
@@ -274,7 +276,22 @@
       <br>
 
       <center>
-      <div id="chart_div" style="width: 550px; height: 355px; float:center;"></div>
+         <div id='chart-container'>  
+       <div id="barChart" data-bind="ojComponent: {
+                component: 'ojChart', 
+                type: 'bar', 
+                orientation: orientationValue,
+                stack: stackValue,
+                series: barSeriesValue, 
+                groups: ['Powered by Oracle JET'],
+                animationOnDisplay: 'auto',
+                animationOnDataChange: 'auto',
+                hoverBehavior: 'dim'
+            }"
+             style="max-width:500px;width:100%;height:350px;">
+       </div>
+     </div>
+
       </center>
 
   <br>
@@ -295,7 +312,7 @@
   </table>
   </center>
 </form>
-
+ 
 </center>
 
 <%
