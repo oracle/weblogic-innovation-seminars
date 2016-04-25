@@ -19,11 +19,14 @@ rm /home/oracle/Desktop/Medrec-Dev.zip
 rm /home/oracle/Desktop/Medrec-Dev-attributes.json
 rm /home/oracle/Desktop/dp2.zip
 rm /home/oracle/Desktop/dp2-attributes.json
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8/JCS/dp6.zip
+rm /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8/JCS/dp6-attributes.json
 
 echo "********************** Removing user and table in database ***********************"
 sqlplus system/welcome1@localhost:1521/pdborcl <<EOF
  drop user medrec1 cascade;
  drop user trade cascade;
+ drop user conference cascade;
  exit;
 EOF
 sqlplus system/welcome1@localhost:1521/pdb2 <<EOF

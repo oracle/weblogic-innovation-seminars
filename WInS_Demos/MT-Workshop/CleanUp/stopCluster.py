@@ -2,8 +2,8 @@ connect('weblogic','welcome1','t3://localhost:7001')
 edit()
 
 startEdit()
-shutdown('app-cluster','Cluster')
-shutdown('new-cluster','Cluster')
+shutdown('app-cluster','Cluster',force='true')
+shutdown('new-cluster','Cluster',force='true')
 activate()
 
 disconnect()

@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/JCS
+cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
 
 sqlplus system/welcome1@localhost:1521/pdborcl <<EOF
  create user conference identified by conference;
