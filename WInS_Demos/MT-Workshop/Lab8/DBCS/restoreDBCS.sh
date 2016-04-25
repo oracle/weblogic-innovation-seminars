@@ -1,8 +1,6 @@
 #!/bin/sh
 
-. /tmp/dbcs.properties
-
-sqlplus $user/$pass@$hostname:1521/$pdbname <<EOF
+sqlplus system/Welcome_1@winstestDB:1521/PDB1.jcsdemo026.oraclecloud.internal <<EOF
  drop user conference cascade;
  exit;
 EOF

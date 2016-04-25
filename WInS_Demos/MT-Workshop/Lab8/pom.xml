@@ -72,6 +72,60 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.8</version>
                 <executions>
+	          <execution>
+                    <id>replaceJCS</id>
+                    <phase>install</phase>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                    <configuration>
+                      <target>
+                        <copy todir="${main.dir}/JCS" overwrite="true">
+                          <fileset dir="${main.dir}/JCS">
+                            <include name="**/*.sample"/>
+                          </fileset>
+			  <mapper type="regexp" from="^(.*?)(\$$[^/\\\.]*)?\.sample$$" to="\1"/>
+                          <filterset>
+                            <filter token="jcs.instance" value="${jcs.instance.1}"/>
+                            <filter token="identity.domain" value="${opc.identity.domain}"/>
+                            <filter token="weblogic.admin.user" value="${jcs.instance.admin.user.1}"/>
+                            <filter token="weblogic.admin.pass" value="${jcs.instance.admin.password.1}"/>
+                            <filter token="database.dba.user" value="${dbcs.dba.name}"/>
+                            <filter token="database.dba.pass" value="${dbcs.dba.password}"/>
+                            <filter token="database.instance.pdb1.1" value="${dbcs.instance.pdb1.1}"/>
+                            <filter token="database.instance.1" value="${dbcs.instance.1}"/>
+                          </filterset>
+                        </copy>
+                      </target>
+                    </configuration>
+                  </execution>
+		  <execution>
+                    <id>replaceDBCS</id>
+                    <phase>install</phase>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                    <configuration>
+                      <target>
+                        <copy todir="${main.dir}/DBCS" overwrite="true">
+                          <fileset dir="${main.dir}/DBCS">
+                            <include name="**/*.sample"/>
+                          </fileset>
+                          <mapper type="regexp" from="^(.*?)(\$$[^/\\\.]*)?\.sample$$" to="\1"/>
+                          <filterset>
+                            <filter token="jcs.instance" value="${jcs.instance.1}"/>
+                            <filter token="identity.domain" value="${opc.identity.domain}"/>
+                            <filter token="weblogic.admin.user" value="${jcs.instance.admin.user.1}"/>
+                            <filter token="weblogic.admin.pass" value="${jcs.instance.admin.password.1}"/>
+                            <filter token="database.dba.user" value="system"/>
+                            <filter token="database.dba.pass" value="${dbcs.dba.password}"/>
+                            <filter token="database.instance.pdb1.1" value="${dbcs.instance.pdb1.1}"/>
+                            <filter token="database.instance.1" value="${dbcs.instance.1}"/>
+                          </filterset>
+                        </copy>
+                      </target>
+                    </configuration>
+                  </execution>
                   <execution>
                     <id>copy2DBCS</id>
                     <phase>install</phase>
@@ -88,15 +142,14 @@
                           todir="oracle@${dbcs.ip}:/tmp"> 
                           <fileset dir="${main.dir}/DBCS">
                             <include name="**/*.sh"/>
-			    <include name="**/*.properties"/>
-                            <include name="**/*.sql"/>
+			    <include name="**/*.sql"/>
 		          </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
                           keyfile="${main.dir}/winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
-                          command="chmod 755 /tmp/conference.sql /tmp/dbcs.properties /tmp/prepareDBCS.sh /tmp/restoreDBCS.sh"
+                          command="chmod 755 /tmp/conference.sql /tmp/prepareDBCS.sh /tmp/restoreDBCS.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
                           keyfile="${main.dir}/winsmt"  
@@ -251,7 +304,7 @@
                           keyfile="${main.dir}/winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
-                          command="rm -f /tmp/conference.sql /tmp/dbcs.properties /tmp/prepareDBCS.sh /tmp/restoreDBCS.sh"
+                          command="rm -f /tmp/conference.sql  /tmp/prepareDBCS.sh /tmp/restoreDBCS.sh"
                           timeout="1200000"  />
                       </target>
                     </configuration>
