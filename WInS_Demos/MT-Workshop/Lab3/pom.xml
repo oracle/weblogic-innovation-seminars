@@ -13,7 +13,7 @@
   <artifactId>Lab3</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   
-  <name>Lab2</name>
+  <name>Lab3</name>
   
   <properties>
     <main.dir>${user.dir}</main.dir>
