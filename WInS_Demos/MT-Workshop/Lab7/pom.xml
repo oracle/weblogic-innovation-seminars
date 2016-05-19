@@ -113,7 +113,7 @@
                       <target>
                         <echo message="Copy artifacts to JCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/winsmt"
+                          keyfile="${main.dir}/../winsmt"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="opc@${jcs.ip}:/tmp"> 
@@ -124,13 +124,13 @@
                           </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/Patch.jar /tmp/Lab7_prep.sh /tmp/Lab7.py /tmp/setDomainEnv.sh"
                           timeout="1200000"  />
 			<sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="sudo su - oracle -c /tmp/Lab7_prep.sh oracle"

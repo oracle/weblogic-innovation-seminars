@@ -130,7 +130,7 @@
                       </target>
                     </configuration>
                   </execution>
-                  <execution>
+                <execution>
                     <id>copy2DBCS</id>
                     <phase>install</phase>
                     <goals>
@@ -140,7 +140,7 @@
                       <target>
                         <echo message="Copy artifacts to DBCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/winsmt"
+                          keyfile="${main.dir}/../winsmt"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="oracle@${dbcs.ip}:/tmp"> 
@@ -150,25 +150,25 @@
 		          </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/Medrec.sql /tmp/Medrec1DB.sh /tmp/Medrec2DB.sh /tmp/DayTrader3DB.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="/tmp/Medrec1DB.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="/tmp/Medrec2DB.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="/tmp/DayTrader3DB.sh"
@@ -179,7 +179,7 @@
                         </taskdef>                        
                       </target>
                     </configuration>
-                  </execution> 
+                  </execution>
                   <execution> 
                     <id>copyScript2JCS</id>
                     <phase>install</phase>
@@ -188,9 +188,9 @@
                     </goals>
                     <configuration>
                       <target>
-                     <echo message="Copy artifacts to JCS." />
+                      <echo message="Copy artifacts to JCS." />
                        <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/winsmt"
+                          keyfile="${main.dir}/../winsmt"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="opc@${jcs.ip}:/tmp"> 
@@ -202,13 +202,13 @@
                           </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/chat.war /tmp/Lab1-2.py /tmp/Lab1-2.sh /tmp/medrec.ear /tmp/physician.ear /tmp/web-3.0.0.war"
-                          timeout="1200000"  />
+                          timeout="1200000"  /> 
 		        <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="sudo su - oracle -c /tmp/Lab1-2.sh oracle"
