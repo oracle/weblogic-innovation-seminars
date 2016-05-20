@@ -42,7 +42,7 @@
 
   <profiles>
     <profile>
-          <id>copyToJCS</id>
+          <id>CleanUp</id>
           <activation>
             <property>
               <name>CleanUp</name>
@@ -140,7 +140,7 @@
                       <target>
                         <echo message="Copy artifacts to JCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/winsmt"
+                          keyfile="${main.dir}/../winsmt"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="opc@${jcs.ip}:/tmp"> 
@@ -150,13 +150,13 @@
                           </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/restoreJCS.sh /tmp/restoreJCS.py /tmp/restartServer.py"
                           timeout="1200000"  />
 		        <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/winsmt"  
+                          keyfile="${main.dir}/../winsmt"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="sudo su - oracle -c /tmp/restoreJCS.sh oracle"
@@ -234,7 +234,7 @@
           </build>
         </profile>
         <profile>
-          <id>copyToJCS</id>
+          <id>CleanDBCS</id>
           <activation>
             <property>
               <name>CleanDBCS</name>
