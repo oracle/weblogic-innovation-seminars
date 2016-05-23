@@ -169,10 +169,7 @@ public class ExecuteGoal {
 	    		sbTemp.append("      \"sid\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_SID_1) + "\",");
 	    		sbTemp.append("      \"pdb\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_PDB1_1) + "\",");
 	    		sbTemp.append("      \"failoverDatabase\": \"no\",");
-	    		sbTemp.append("      \"backupDestination\": \"BOTH\",");
-	    		sbTemp.append("    \"cloudStorageContainer\" : \"Storage-" + opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN) + "/" + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "\",");
-	    		sbTemp.append("      \"cloudStorageUser\": \"" + opcProperties.getProperty(OPCProperties.OPC_USERNAME) + "\",");
-	    		sbTemp.append("      \"cloudStoragePwd\": \"" + opcProperties.getProperty(OPCProperties.OPC_PASSWORD) + "\"");
+	    		sbTemp.append("      \"backupDestination\": \"NONE\",");
 	    		sbTemp.append("    }");
 	    		sbTemp.append("  ]");
 	    		sbTemp.append("}");
