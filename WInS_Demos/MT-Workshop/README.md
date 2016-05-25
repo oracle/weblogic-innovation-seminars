@@ -54,8 +54,7 @@ The above maven commands stops the domain partition dp1 and creates new security
 
 1. cd  /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4
 2. **./Lab4_cloud.sh**
-
-This Lab4_cloud.sh scripts start the Database in local Virtual box, then it creates the user and populate the database with sample data. Then it creates a dev_domain, and starts admin server in it, later we configure all the resources required for conference planner application. This is simple application which we used during Java One in 2011 for registration purpose of various events. At the end of execution of this script, you can access the application on [http://localhost:9001/dp6/ConferencePlanner/](http://localhost:9001/dp6/ConferencePlanner/) .  
+> This Lab4_cloud.sh scripts start the Database in local Virtual box, then it creates the user and populate the database with sample data. Then it creates a dev_domain, and starts admin server in it, later we configure all the resources required for conference planner application. This is simple application which we used during Java One in 2011 for registration purpose of various events. At the end of execution of this script, you can access the application on [http://localhost:9001/dp6/ConferencePlanner/](http://localhost:9001/dp6/ConferencePlanner/) .  
 3. Open a new tab in browser, and type the URL for Admin Console for dev_domain [http://localhost:9001/console] (http://localhost:9001/console).
 4. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**.
 5. Click on **Domain Partitions** from left side, then check the box for **dp6** and then click on **Export**.
@@ -63,19 +62,17 @@ This Lab4_cloud.sh scripts start the Database in local Virtual box, then it crea
 7. Verify the creation of **dp6.zip** and **dp6-attributes.json** file in the **JCS** folder inside **Lab4** folder. 
 8. ls /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/JCS
 9. **mvn install -DLab4 -Djcs.ip=PUBLIC IP OF JCS INSTANCE -Ddbcs.ip=PUBLIC IP OF DBCS INSTANCE**
-The above maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that, In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simply the demo, we used the SQL scripts here.
-Then it copies the ZIP and JSON file to /tmp folder of JCS instance, and provides it sufficient permissions. It also creates the Virtual Target **VT6**, which we will use during the import partition.
+> The above maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that, In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simply the demo, we used the SQL scripts here.Then it copies the ZIP and JSON file to /tmp folder of JCS instance, and provides it sufficient permissions. It also creates the Virtual Target **VT6**, which we will use during the import partition.
 10. Open a new tab in terminal. 
 11. Click on **Terminal -> Set Title**, enter **remote** as **Title** and then click on **OK**.
 12. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop
 13. **ssh  -i winsmt -L 7001:PUBLIC IP OF JCS INSTANCE:7001 opc@PUBLIC IP OF JCS INSTANCE**
-The above ssh commands, open an ssh tunnel to remote jcs instance, and port forwarding for admin server port 7001, in that way you can run the commands in remote machine as opc user. And access the admin console running in JCS by http://localhost:7001/console .
+> The above ssh commands, open an ssh tunnel to remote jcs instance, and port forwarding for admin server port 7001, in that way you can run the commands in remote machine as opc user. And access the admin console running in JCS by http://localhost:7001/console .
 14. Go to Admin Console of JCS instance [http://localhost:7001/console](http://localhost:7001/console) and enter **weblogic/welcome1** as **Username/Password** and then click on **Login**.
 15. Click on **Domain Partitions** and then click on **Lock & Edit**.
 16. Click on **Import**, specify the file **/tmp/dp6.zip** in **Path** and click on **OK**.
 17. Click on **Lock & Edit**, and then click on **Services -> Data Sources -> cp**.
-18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with 
-	**jdbc:oracle:thin:@DBCS_INSTANCE_NAME:1521/PDB1._opc.identity_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
+18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with 	**jdbc:oracle:thin:@DBCS_INSTANCE_NAME:1521/PDB1._opc.identity_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
 19. Click on **Domain Partitions**, go to **Control** tab, Check the box near **dp6** partition and then click on **Start**. On Confirmation screen click on **Yes**.
 20. Click on the refresh icon, once the partition is in **RUNNING** state, go to the browser and access the application [http://{PUBLIC_IP_OF_JCS_INSTANCE/dp6/ConferencePlanner/](http://{PUBLIC_IP_OF_JCS_INSTANCE/dp6/ConferencePlanner/) .
 Here we showed how can you lift and shift the partition running in development mode in on premise to production mode domain in Java Cloud Service. 
@@ -84,7 +81,7 @@ Here we showed how can you lift and shift the partition running in development m
 
 1. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5
 2. **mvn install -DLab5 -Djcs.ip=PUBLIC IP OF JCS INSTANCE -Ddbcs.ip=PUBLIC IP OF DBCS INSTANCE**
-The above maven commands configure the parameter for **RCM** in **setDomainEnv.sh** script then it restart the cluster and also deploys the **heapApp.war** in **dp2** partition in **winsdemoWLS_domain**. 
+> The above maven commands configure the parameter for **RCM** in **setDomainEnv.sh** script then it restart the cluster and also deploys the **heapApp.war** in **dp2** partition in **winsdemoWLS_domain**. 
 3. You need to **Lock & Edit** in **Fusion middleware control console** of **winsdemoWLS_domain**, then you need to create **Add resource manager** as specified in workshop or you can specify the value 200,300 and 400 respectively for Notify, Slow and Shutdown action for **smallHeap** and  then you need to **assign it to domain partition dp2**. Make sure to activate the changes at the end. 
 4. Go back to **remote** tab, where you open ssh tunnel to JCS instance. 
 5. **sudo su**
@@ -95,7 +92,7 @@ The above maven commands configure the parameter for **RCM** in **setDomainEnv.s
 
 1. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab7
 2. **mvn install -DLab7 -Djcs.ip=PUBLIC IP OF JCS INSTANCE -Ddbcs.ip=PUBLIC IP OF DBCS INSTANCE**
-The above maven scripts applies the patch, for this it stops the cluster and Admin Server first, add the patch jar in **PATCH_CLASSPATH** and then it starts Admin Server and Cluster, and later it creates Virtual target **VT5** in winsdemoWLS_domain. 
+> The above maven scripts applies the patch, for this it stops the cluster and Admin Server first, add the patch jar in **PATCH_CLASSPATH** and then it starts Admin Server and Cluster, and later it creates Virtual target **VT5** in winsdemoWLS_domain. 
 3. Go back to remote tab; enter **CTRL+C** to stop the execution of tail command. 
 4. **chmod -Rf 777 /tmp**
 5. Go back to Admin Console of winsdemoWLS_domain [http://localhost:7001/console] (http://localhost:7001/console) .
