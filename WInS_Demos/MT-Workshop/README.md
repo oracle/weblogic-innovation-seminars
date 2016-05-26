@@ -52,19 +52,18 @@ Accessing Daytrader application in dp3: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp
 5. Click on **Domain Partitions** from left side, then check the box for **dp6** and then click on **Export**.
 6. Check the box for **Include Application Bits** and Enter the Path **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/JCS** and then click on **OK**. 
 7. Verify the creation of **dp6.zip** and **dp6-attributes.json** file in the **JCS** folder inside **Lab4** folder. 
-8. ls /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/JCS
-9. **mvn install -DLab4 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** (This maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that, In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simply the demo, we used the SQL scripts here.Then it copies the ZIP and JSON file to /tmp folder of JCS instance, and provides it sufficient permissions. It also creates the Virtual Target **VT6**, which we will use during the import partition.)
-10. Open a new tab in terminal. 
-11. Click on **Terminal -> Set Title**, enter **remote** as **Title** and then click on **OK**.
-12. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop
-13. **ssh  -i winsmt -L 7001:_{PUBLIC IP OF JCS INSTANCE}_:7001 opc@_{PUBLIC IP OF JCS INSTANCE}_** (This ssh commands, open an ssh tunnel to remote jcs instance, and port forwarding for admin server port 7001, in that way you can run the commands in remote machine as **opc** user. And access the admin console running in JCS by http://localhost:7001/console.)
-14. Go to Admin Console of JCS instance [https://_{PUBLIC IP OF JCS INSTANCE}_:7002/console](https://_{PUBLIC IP OF JCS INSTANCE}_:7002/console) and enter **weblogic/welcome1** as **Username/Password** and then click on **Login**.
-15. Click on **Domain Partitions** and then click on **Lock & Edit**.
-16. Click on **Import**, specify the file **/tmp/dp6.zip** in **Path** and click on **OK**.
-17. Click on **Lock & Edit**, and then click on **Services -> Data Sources -> cp**.
-18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@_{DBCS_INSTANCE_NAME}_:1521/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
-19. Click on **Domain Partitions**, go to **Control** tab, Check the box near **dp6** partition and then click on **Start**. On Confirmation screen click on **Yes**.
-20. Click on the refresh icon, once the partition is in **RUNNING** state, go to the browser and access the application [http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/](http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/) .
+8. **mvn install -DLab4 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** (This maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that, In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simply the demo, we used the SQL scripts here.Then it copies the ZIP and JSON file to /tmp folder of JCS instance, and provides it sufficient permissions. It also creates the Virtual Target **VT6**, which we will use during the import partition.)
+9. Open a new tab in terminal. 
+10. Click on **Terminal -> Set Title**, enter **remote** as **Title** and then click on **OK**.
+11. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop
+12. **ssh  -i winsmt -L 7001:_{PUBLIC IP OF JCS INSTANCE}_:7001 opc@_{PUBLIC IP OF JCS INSTANCE}_** (This ssh commands, open an ssh tunnel to remote jcs instance, and port forwarding for admin server port 7001, in that way you can run the commands in remote machine as **opc** user. And access the admin console running in JCS by http://localhost:7001/console.)
+13. Go to Admin Console of JCS instance [https://_{PUBLIC IP OF JCS INSTANCE}_:7002/console](https://_{PUBLIC IP OF JCS INSTANCE}_:7002/console) and enter **weblogic/welcome1** as **Username/Password** and then click on **Login**.
+14. Click on **Domain Partitions** and then click on **Lock & Edit**.
+15. Click on **Import**, specify the file **/tmp/dp6.zip** in **Path** and click on **OK**.
+16. Click on **Lock & Edit**, and then click on **Services -> Data Sources -> cp**.
+17. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@_{DBCS_INSTANCE_NAME}_:1521/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
+18. Click on **Domain Partitions**, go to **Control** tab, Check the box near **dp6** partition and then click on **Start**. On Confirmation screen click on **Yes**.
+19. Click on the refresh icon, once the partition is in **RUNNING** state, go to the browser and access the application [http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/](http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/) .
 Here we showed how can you lift and shift the partition running in development mode in on premise to production mode domain in Java Cloud Service. 
 
 ## LAB 5: RESOURCE CONSUMPTION MANAGEMENT
