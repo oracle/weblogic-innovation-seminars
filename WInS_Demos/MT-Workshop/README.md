@@ -62,7 +62,7 @@ Accessing Daytrader application in dp3: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp
 15. Click on **Domain Partitions** and then click on **Lock & Edit**.
 16. Click on **Import**, specify the file **/tmp/dp6.zip** in **Path** and click on **OK**.
 17. Click on **Lock & Edit**, and then click on **Services -> Data Sources -> cp**.
-18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@_{DBCS_INSTANCE_NAME:1521}_/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
+18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@_{DBCS_INSTANCE_NAME}_:1521/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
 19. Click on **Domain Partitions**, go to **Control** tab, Check the box near **dp6** partition and then click on **Start**. On Confirmation screen click on **Yes**.
 20. Click on the refresh icon, once the partition is in **RUNNING** state, go to the browser and access the application [http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/](http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/) .
 Here we showed how can you lift and shift the partition running in development mode in on premise to production mode domain in Java Cloud Service. 
@@ -74,7 +74,7 @@ Here we showed how can you lift and shift the partition running in development m
 3. You need to **Lock & Edit** in **Fusion middleware control console** of **winsdemoWLS_domain**, then you need to create **Add resource manager** as specified in workshop or you can specify the value 200,300 and 400 respectively for Notify, Slow and Shutdown action for **smallHeap** and  then you need to **assign it to domain partition dp2**. Make sure to activate the changes at the end. 
 4. Go back to **remote** tab, where you open ssh tunnel to JCS instance. 
 5. **sudo su**
-6. **tail -f /u01/data/domains/winsdemoWLS_domain/servers/winsdemo_server_1/logs/winsdemo_server_1.log|grep 'RCM' **
+6. **tail -f /u01/data/domains/winsdemoWLS_domain/servers/winsdemo_server_1/logs/winsdemo_server_1.log|grep 'RCM'**
 7. Go to **heap Application** page **http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp2/heapApp**   Add the Value 100 each time, and observe the logs output, wait for 10 seconds after entering 100 every time. At the end of this lab, your partition dp2 will be shutdown. As in this case, Cluster has only one managed server, while in on premise Lab5, we have cluster with two managed server. 
 
 ## LAB 7: CLONNING A PARTITION
