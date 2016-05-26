@@ -31,8 +31,7 @@ The above steps creates a domain **winsdemoWLS_domain** inside the JCS VM, and p
 ##LAB 2: MULTITENANCY CONFIGURATION
 
 1. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2
-2. **mvn install -DLab2 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** 
-The above maven commands create users and populate the database for all the domain partitions, after that it creates three domain partitions dp1, dp2 and dp3. Basically it creates the similar environment as we have at the end of Lab 2 in workshop for on premise, but here on the cloud environment.
+2. **mvn install -DLab2 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** (This maven commands create users and populate the database for all the domain partitions, after that it creates three domain partitions dp1, dp2 and dp3. Basically it creates the similar environment as we have at the end of Lab 2 in workshop for on premise, but here on the cloud environment.
 
 You can access the Medrec application running in domain partition dp1 and dp2; you can also access the day trader application running in dp3 partition.
 Accessing Medrec application in dp1: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp1/medrec](http://_{PUBLIC IP OF JCS INSTANCE}_/dp1/medrec)
@@ -42,9 +41,7 @@ Accessing Daytrader application in dp3: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp
 ## LAB 3: SECURITY ISOLATION
 
 1. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab3
-2. **mvn install -DLab3 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_**
-
-The above maven commands stops the domain partition dp1 and creates new security realm  **newrealm** and assign this security realm to dp1, and adds the user **administrator** to new security realm with password **welcome1**, and then starts the domain partition dp1.It perform the same task, we do as part of Lab 3 of Multitenancy workshop in on premise. 
+2. **mvn install -DLab3 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** (This maven commands stops the domain partition dp1 and creates new security realm  **newrealm** and assign this security realm to dp1, and adds the user **administrator** to new security realm with password **welcome1**, and then starts the domain partition dp1.It perform the same task, we do as part of Lab 3 of Multitenancy workshop in on premise.) 
 
 ## LAB 4: EXPORT/IMPORT PARTITION
 
@@ -65,7 +62,7 @@ The above maven commands stops the domain partition dp1 and creates new security
 15. Click on **Domain Partitions** and then click on **Lock & Edit**.
 16. Click on **Import**, specify the file **/tmp/dp6.zip** in **Path** and click on **OK**.
 17. Click on **Lock & Edit**, and then click on **Services -> Data Sources -> cp**.
-18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@DBCS_INSTANCE_NAME:1521/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
+18. Click on the **Connection Pool** tab for **cp** datasource, and modify the URL  **jdbc:oracle:thin:@localhost:1521/pdborcl** with **jdbc:oracle:thin:@_{DBCS_INSTANCE_NAME:1521}_/PDB1._{Value of opc.identity from environment.properties}_.oraclecloud.internal** and then click on **Save**. Click on **Activate Changes**. Where **DBCS _INSTANCE_NAME** should be **winsdemo**, if you did not modify it in environment.properties file, and **opc.identity** name is your identity domain name, you specified in environment.properties file.
 19. Click on **Domain Partitions**, go to **Control** tab, Check the box near **dp6** partition and then click on **Start**. On Confirmation screen click on **Yes**.
 20. Click on the refresh icon, once the partition is in **RUNNING** state, go to the browser and access the application [http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/](http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp6/ConferencePlanner/) .
 Here we showed how can you lift and shift the partition running in development mode in on premise to production mode domain in Java Cloud Service. 
@@ -77,7 +74,7 @@ Here we showed how can you lift and shift the partition running in development m
 3. You need to **Lock & Edit** in **Fusion middleware control console** of **winsdemoWLS_domain**, then you need to create **Add resource manager** as specified in workshop or you can specify the value 200,300 and 400 respectively for Notify, Slow and Shutdown action for **smallHeap** and  then you need to **assign it to domain partition dp2**. Make sure to activate the changes at the end. 
 4. Go back to **remote** tab, where you open ssh tunnel to JCS instance. 
 5. **sudo su**
-6. **tail -f /u01/data/domains/winsdemoWLS_domain/servers/winsdemo_server_1/logs/winsdemo_server_1.log|grep 'RCM'
+6. **tail -f /u01/data/domains/winsdemoWLS_domain/servers/winsdemo_server_1/logs/winsdemo_server_1.log|grep 'RCM' **
 7. Go to **heap Application** page **http://_{PUBLIC_IP_OF_JCS_INSTANCE}_/dp2/heapApp**   Add the Value 100 each time, and observe the logs output, wait for 10 seconds after entering 100 every time. At the end of this lab, your partition dp2 will be shutdown. As in this case, Cluster has only one managed server, while in on premise Lab5, we have cluster with two managed server. 
 
 ## LAB 7: CLONNING A PARTITION
@@ -102,8 +99,10 @@ Note: In Lab 4, we also copied the dp6.zip to /tmp folder, But here when we Expo
 
 ## CLEANUP:
 
-**cd  /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/CleanUp**
+* **cd  /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/CleanUp**
+
 Here we have two options for the cleanup.
+
 **_First case_**, if you execute all the labs Lab2, Lab3, Lab4, Lab5 and Lab7. Then you can reuse both the JCS instance and DBCS instance for the demo purpose. You need to perform the next step.
 * **mvn install -DCleanUp -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_**
 * **./CleanEnvironment.sh** (This script stops the admin server running in dev_domain and deletes the domain. It removes the user conference from database and stops the database.)
