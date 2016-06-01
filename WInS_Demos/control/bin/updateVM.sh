@@ -11,4 +11,24 @@ else
     echo "Default Java version fixed to: $JAVA_VERSION"
 fi
 
+echo "========================================"
+echo "Update Firefox TLS setting"
+FFPROFILE_FOLDER=$(cat ~/.mozilla/firefox/profiles.ini | grep Path | sed s/^Path=//)
+
+USERJS_FILE=~/.mozilla/firefox/$FFPROFILE_FOLDER/user.js
+USERJS_CONTENT="user_pref(\"security.tls.version.max\", 3);"
+
+grepresult=$(grep -c "$USERJS_CONTENT" $USERJS_FILE -s)
+
+if [ -f $USERJS_FILE ] && [ $grepresult == 1 ]
+then
+    # property already overrided
+    echo "Firefox TLS setting is correct."
+else
+    # property not yet overrided
+    echo $USERJS_CONTENT >> $USERJS_FILE
+    echo "Firefox TLS setting has been updated."
+fi
+echo "========================================"
+
 echo "Everything is up to date!"
