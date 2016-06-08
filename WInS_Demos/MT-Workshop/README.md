@@ -9,22 +9,25 @@ All the resources in or referenced by a resource group are targeted together (to
 ## Virtual Target:
 Encapsulate where a partition or resource group runs and how to route traffic to them, including addresses, protocol settings, and targeting, Request routing is determined by the host name and optional URI. 
 May Include:-
-·	Host name and port
-·	Optional URI 
-·	Network Access Point or Channel
-·	Protocol specific configuration
-§	T3, IIOP
-§	Web Server
-·	Target Clusters and managed servers
+* Host name and port
+* Optional URI 
+* Network Access Point or Channel
+* Protocol specific configuration
+* T3, IIOP
+* Web Server
+* Target Clusters and managed servers
+
 In Multitenant environment, We create Virtual Target first, In previous versions of WebLogic Server, We Targeted our application, system resources (JDBC or JMS Resources) to Clusters, Managed Servers part of Cluster or stand alone managed server. But here we target our resources to Virtual Target. After creation of Virtual Target, we create a domain partition, while creating domain partition we can create resource group. A domain partition can have multiple resource groups. Then we target domain partition to the Virtual Target. Below diagram gives you the picture how they work together.
+
 ![alt text](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/images/1.JPG)
+
 As in the Above Diagram, We created Virtual target 1, Virtual Target 2 which are Targeted to WebLogic Server. Then we created Two Domain partitions, Domain partition 1 has Resource Group 1 and Domain Partition 2 has Resource Group 2. 
 
 To know more about the Multitenancy, you can follow the link ![here](https://docs.oracle.com/middleware/1221/wls/WLSMT/concepts.htm#WLSMT715) 
 
 We have total 7 Labs; the brief information about each lab is given below. 
 
- Lab 1 consist Non MT configuration, in this Lab we create basic configuration required for each lab. First we create **base_domain** using the **Restricted-JRF** template. This is the domain we are using in each lab. Using the Fusion Middleware Control Console, we will create machine and one dynamic cluster of initial size of two managed server inside it. 
+Lab 1 consist Non MT configuration, in this Lab we create basic configuration required for each lab. First we create **base_domain** using the **Restricted-JRF** template. This is the domain we are using in each lab. Using the Fusion Middleware Control Console, we will create machine and one dynamic cluster of initial size of two managed server inside it. 
 
 Lab 2 consist creation of MT configuration, in which we creates virtual target, domain partition and resource group. We show you can easily deploy one application twice in a domain in different domain partition. In this case both applications will be connected to different database. Good thing is that you don’t need to modify the application deploying to different domain partition because we have JNDI isolation. We also use day trader application which is build by IBM, we made few changes in the application to run the application in Non MT environment, and we took the same application to deploy in MT environment (inside domain partition). So you don’t need any specific application development to deploy the application in Multitenant environment. 
 
@@ -48,40 +51,46 @@ We create a domain partition Medrec-Dev inside it, which we later export and imp
 **otd_domain:** We create this domain as part of Lab 6. This domain consist Admin Server, and Load Balance instance. 
 
 How to Use Individual Labs:
+
 Lab 1 and Lab 2 are compulsory. 
+
 Lab 3: You need to run Lab 1 and Lab2 before executing Lab 3. 
+
 Lab 4: You need to run Lab 1 and Lab 2 before executing Lab 4. 
+
 Lab 5: You need to run Lab 1 and Lab 2 compulsory for it. And if you do not execute Lab 4 before running Lab 5, then instead of modifying the changes to Medrec-Dev domain, you need to modify the domain partition dp1. 
+
 Lab 6: You need to run Lab 1 before executing the Lab 6. 
+
 # Virtual Box Environment
+
 ## The Hands on Lab Environment
 
 **Operating System Details**
+
 Operating System |Oracle Linux 6.4 x86_64
----------------------------------------------------------
 Hostname |localhost, wins-vbox
----------------------------------------------
 Root User |Root User
----------------------------------------------
 Oracle User| oracle/welcome1
 
 Note:  For this hand on lab you should only need to use **oracle** user account.
 
 **Installation Directories**	
+
 JDK 1.8.0_60|/usr/java/jdk1.8.0_60/
--------------------------------------------------
 WebLogic Server 12.2.1|/u01/wins/wls1221/
-------------------------------------------------------------
 Oracle Traffic Director 12.2.1|/u01/wins/wls1221/
------------------------------------------------------------------------
 Oracle Database 12c|/u01/app/oracle/product/12.1.0/dbhome_1/
 
 **Workshop Content:**
+
 Labs Directory|/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/
+
 # LAB 1: DOMAIN CREATION AND NON-MT CONFIG
+
 ## Overview
 In this lab, we are going to perform the below operations.
-·	We create a WebLogic domain, in that domain we create machine, dynamic cluster.
+*·	We create a WebLogic domain, in that domain we create machine, dynamic cluster.
 ## Start the database
 We have two Pluggable database **pdborcl** and **pdb2**; we are going to start both the database.
 1.	In Desktop, Double Click on Icon **“Start Database”**.
@@ -93,11 +102,12 @@ Note: Wait until the Window disappears.
 4.	Select **“Create a new domain”** and Enter **“/u01/wins/wls1221/user_projects/domains/base_domain”** as Domain Location then click on **Next**.
 5.	Select  **“Oracle Enterprise Manager –Restricted JRF-12.2.1 [em]”** as it also select the remaining required check boxes then click on **Next**.
 6.	Leave Default on **Application Location** then click on **Next**.
-7.	Enter  **weblogic/welcome1 ** as Name/Password then click on  **Next **.
-8.	Leave Default on  **Domain Mode and JDK Screen** then click on  **Next **.
-9.	Leave Default on  **Advanced Configuration** then click on  **Next **.
-10.	Click on  **Create **.
+7.	Enter  **weblogic/welcome1** as Name/Password then click on  **Next**.
+8.	Leave Default on  **Domain Mode and JDK Screen** then click on  **Next**.
+9.	Leave Default on  **Advanced Configuration** then click on  **Next**.
+10.	Click on  **Create**.
 11.	Click on  **Next** then click on  **Finish**.
+
 ## Configuration of WebLogic base_domain
 1.	cd  /u01/wins/wls1221/user_projects/domains/base_domain/bin/
 2.	**./startNodeManager.sh**
@@ -109,20 +119,20 @@ Note: Wait until the Window disappears.
 8.	Go back to Firefox and type the Fusion Middleware Control URL [http://localhost:7001/em](http://localhost:7001/em)
 9.	Enter **weblogic/welcome1** as **username/password** then click on **Login**.
 10.	Create a Machine.
-10a.	Click on **WebLogic Domain-> Environment -> Machine**.
-10b.	Click on **Create**.
-10c.	Enter ** “machine”** as Name, Select ** “Unix”** as Machine OS, then click on **Next**.
-10d.	Leave Defaults on Node Manager Properties then click on **Create**.
-10e.	Click on the Machine name **machine**.
-10f.	Click on **Monitoring** tab and verify the status as **Reachable**.
+ *  Click on **WebLogic Domain-> Environment -> Machine**.
+ *	Click on **Create**.
+ *	Enter ** “machine”** as Name, Select ** “Unix”** as Machine OS, then click on **Next**.
+ *	Leave Defaults on Node Manager Properties then click on **Create**.
+ *	Click on the Machine name **machine**.
+ *	Click on **Monitoring** tab and verify the status as **Reachable**.
 11.	Create a Dynamic Cluster
-11a.	Click on **WebLogic Domain -> Environment -> Clusters**.
-11b.	Click on **Create -> Dynamic Cluster**.
-11c.	Enter **app-cluster** as Name then click on **Next**.
-11d.	Leave Default on **Dynamic Server Properties** page and click on **Next**.
-11e.	Select **“Use a single machine for all dynamic servers”** and choose the **machine**, then click on **Next**.
-11f.	Leave Default on Listen Port Bindings, and then click on **Next**.
-11g.	Review the Configuration and click on **Create**.
+ *	Click on **WebLogic Domain -> Environment -> Clusters**.
+ *	Click on **Create -> Dynamic Cluster**.
+ *  Enter **app-cluster** as Name then click on **Next**.
+ *  Leave Default on **Dynamic Server Properties** page and click on **Next**.
+ *	Select **“Use a single machine for all dynamic servers”** and choose the **machine**, then click on **Next**.
+ *	Leave Default on Listen Port Bindings, and then click on **Next**.
+ *  Review the Configuration and click on **Create**.
 
 12.	Start Managed Servers.
 12a.	Click on **WebLogic Domain -> Control ->Clusters**.
