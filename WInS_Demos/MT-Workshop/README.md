@@ -4,7 +4,7 @@ Multitenancy in WebLogic Server provides a sharable infrastructure for use by cl
 ## Domain Partition:
 WebLogic Server MT provides resource isolation with in domain partitions, an administrative and runtime slice of a WebLogic domain that is dedicated to running application instances and related resources for a tenant. Domain Partition achieve greater density by allowing application instances and related resources to share the domain, WebLogic Server itself, the Java virtual machine, and the operating system while isolating tenant specific application data, configuration, and runtime traffic. Each domain partition has its own runtime copy of the application and resources. 
 ## Resource Groups:
-WLS MT introduces resource groups, simply as a convenient way to group together Java EE applications and the resources they use into a distinct administrative unit within the domain.  The resources and applications are ìfully qualifiedî in that administrator provides all information needed to start or connect to those resources, including credentials for connecting to data source and targeting information for Java EE application. A resource group will either contain these deployable resources directly or refer to a resource group templates which contain the resources. Resource group can be defined at the domain level, or be specific to domain partition. 
+WLS MT introduces resource groups, simply as a convenient way to group together Java EE applications and the resources they use into a distinct administrative unit within the domain.  The resources and applications are ‚Äúfully qualified‚Äù in that administrator provides all information needed to start or connect to those resources, including credentials for connecting to data source and targeting information for Java EE application. A resource group will either contain these deployable resources directly or refer to a resource group templates which contain the resources. Resource group can be defined at the domain level, or be specific to domain partition. 
 All the resources in or referenced by a resource group are targeted together (to the same target). Resource group can be started and stopped. 
 ## Virtual Target:
 Encapsulate where a partition or resource group runs and how to route traffic to them, including addresses, protocol settings, and targeting, Request routing is determined by the host name and optional URI. 
@@ -19,7 +19,7 @@ May Include:-
 
 In Multitenant environment, We create Virtual Target first, In previous versions of WebLogic Server, We Targeted our application, system resources (JDBC or JMS Resources) to Clusters, Managed Servers part of Cluster or stand alone managed server. But here we target our resources to Virtual Target. After creation of Virtual Target, we create a domain partition, while creating domain partition we can create resource group. A domain partition can have multiple resource groups. Then we target domain partition to the Virtual Target. Below diagram gives you the picture how they work together.
 
-![alt text](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/images/1.JPG)
+![alt text](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/images/1.JPG "Multitenancy Architecture")
 
 As in the Above Diagram, We created Virtual target 1, Virtual Target 2 which are Targeted to WebLogic Server. Then we created Two Domain partitions, Domain partition 1 has Resource Group 1 and Domain Partition 2 has Resource Group 2. 
 
@@ -29,7 +29,7 @@ We have total 7 Labs; the brief information about each lab is given below.
 
 Lab 1 consist Non MT configuration, in this Lab we create basic configuration required for each lab. First we create **base_domain** using the **Restricted-JRF** template. This is the domain we are using in each lab. Using the Fusion Middleware Control Console, we will create machine and one dynamic cluster of initial size of two managed server inside it. 
 
-Lab 2 consist creation of MT configuration, in which we creates virtual target, domain partition and resource group. We show you can easily deploy one application twice in a domain in different domain partition. In this case both applications will be connected to different database. Good thing is that you donít need to modify the application deploying to different domain partition because we have JNDI isolation. We also use day trader application which is build by IBM, we made few changes in the application to run the application in Non MT environment, and we took the same application to deploy in MT environment (inside domain partition). So you donít need any specific application development to deploy the application in Multitenant environment. 
+Lab 2 consist creation of MT configuration, in which we creates virtual target, domain partition and resource group. We show you can easily deploy one application twice in a domain in different domain partition. In this case both applications will be connected to different database. Good thing is that you don‚Äôt need to modify the application deploying to different domain partition because we have JNDI isolation. We also use day trader application which is build by IBM, we made few changes in the application to run the application in Non MT environment, and we took the same application to deploy in MT environment (inside domain partition). So you don‚Äôt need any specific application development to deploy the application in Multitenant environment. 
 
 Lab3 shows how you can have two or more security realms active inside a domain. Traditionally in WebLogic server, we have more than one Security realm but only one is active for the domain. Here, we have multiple domain partition, so you can have separate security realm for each domain partition. In Lab 2 we deploy Medrec application in domain partition dp1 and dp2. As while creating domain partition dp2 we do not choose any security realm so it uses the default security realm. In Lab 3 we create a new security realm and assign it to domain partition dp1. So both domain partitions will have different set of authorized user. 
 
@@ -90,17 +90,17 @@ Labs Directory|/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/
 
 ## Overview
 In this lab, we are going to perform the below operations.
-*∑	We create a WebLogic domain, in that domain we create machine, dynamic cluster.
+*¬∑	We create a WebLogic domain, in that domain we create machine, dynamic cluster.
 ## Start the database
 We have two Pluggable database **pdborcl** and **pdb2**; we are going to start both the database.
-1.	In Desktop, Double Click on Icon **ìStart Databaseî**.
+1.	In Desktop, Double Click on Icon **‚ÄúStart Database‚Äù**.
 Note: Wait until the Window disappears.
 ## Create WebLogic Restricted JRF Domain
 1.	Open a new terminal.
 2.	cd /u01/wins/wls1221/oracle_common/common/bin/
 3.	./config.sh
-4.	Select **ìCreate a new domainî** and Enter **ì/u01/wins/wls1221/user_projects/domains/base_domainî** as Domain Location then click on **Next**.
-5.	Select  **ìOracle Enterprise Manager ñRestricted JRF-12.2.1 [em]î** as it also select the remaining required check boxes then click on **Next**.
+4.	Select **‚ÄúCreate a new domain‚Äù** and Enter **‚Äú/u01/wins/wls1221/user_projects/domains/base_domain‚Äù** as Domain Location then click on **Next**.
+5.	Select  **‚ÄúOracle Enterprise Manager ‚ÄìRestricted JRF-12.2.1 [em]‚Äù** as it also select the remaining required check boxes then click on **Next**.
 6.	Leave Default on **Application Location** then click on **Next**.
 7.	Enter  **weblogic/welcome1** as Name/Password then click on  **Next**.
 8.	Leave Default on  **Domain Mode and JDK Screen** then click on  **Next**.
@@ -121,7 +121,7 @@ Note: Wait until the Window disappears.
 10.	Create a Machine.
  *  Click on **WebLogic Domain-> Environment -> Machine**.
  *	Click on **Create**.
- *	Enter ** ìmachineî** as Name, Select ** ìUnixî** as Machine OS, then click on **Next**.
+ *	Enter ** ‚Äúmachine‚Äù** as Name, Select ** ‚ÄúUnix‚Äù** as Machine OS, then click on **Next**.
  *	Leave Defaults on Node Manager Properties then click on **Create**.
  *	Click on the Machine name **machine**.
  *	Click on **Monitoring** tab and verify the status as **Reachable**.
@@ -130,7 +130,7 @@ Note: Wait until the Window disappears.
  *	Click on **Create -> Dynamic Cluster**.
  *  Enter **app-cluster** as Name then click on **Next**.
  *  Leave Default on **Dynamic Server Properties** page and click on **Next**.
- *	Select **ìUse a single machine for all dynamic serversî** and choose the **machine**, then click on **Next**.
+ *	Select **‚ÄúUse a single machine for all dynamic servers‚Äù** and choose the **machine**, then click on **Next**.
  *	Leave Default on Listen Port Bindings, and then click on **Next**.
  *  Review the Configuration and click on **Create**.
 
@@ -140,10 +140,10 @@ Note: Wait until the Window disappears.
 # LAB 2: MULTITENANCY CONFIGURATION	
 ## Overview:
 In this lab, we are going to learn the following:
-∑	Configuration of Virtual Target, Domain Partition and Resource Group
-∑	Run multiple instances of Medrec application in different domain partition without modifying the application. We try to show **JNDI Isolation** for that we are using the same Medrec applications and same JNDI name for the Datasources, connection factory and Distributed queue in both the domain partition.
-∑	 Run Day trader application which is build by WebSphere to WebLogic 12.2.1.
-∑	You donít need to modify your application to run in Multitenant environment. So no special application development needed.
+¬∑	Configuration of Virtual Target, Domain Partition and Resource Group
+¬∑	Run multiple instances of Medrec application in different domain partition without modifying the application. We try to show **JNDI Isolation** for that we are using the same Medrec applications and same JNDI name for the Datasources, connection factory and Distributed queue in both the domain partition.
+¬∑	 Run Day trader application which is build by WebSphere to WebLogic 12.2.1.
+¬∑	You don‚Äôt need to modify your application to run in Multitenant environment. So no special application development needed.
 The final deployment architecture will look like the below where we will create three domain partitions .Deploy Medrec application in domain partition dp1 and dp2. And Day Trader application on domain partition dp3.
 ## Configuration of Medrec Application in Domain Partition 1
 In the next step we are creating the below configuration for Medrec application in domain partition dp1.
@@ -180,18 +180,18 @@ app1RG:
 7.	Enter **VT-Medrec-1** as Name and **/dp1** as Uri Prefix and Add **localhost** as Hosts then click on **Next**.
 8.	Select Cluster **app-cluster** as Target then click on **Create**.
 9.	Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
-10.	Click on ** ìEnable Lifecycle Managerî**.
+10.	Click on ** ‚ÄúEnable Lifecycle Manager‚Äù**.
 11.	Go back to base_admin terminal, press CTRL+C, to stop the admin server.
 12.	./startWebLogic.sh
 13.	Go back to Firefox, and type the Fusion Middleware Control Console URL [http://localhost:7001/em]( http://localhost:7001/em) .
 14.	Enter **weblogic/welcome1** as **User Name/Password** then Click on **Login**.
-15.	Click on **WebLogic Domain -> Environment ñ> Domain Partition**.
+15.	Click on **WebLogic Domain -> Environment ‚Äì> Domain Partition**.
 16.	Click on **Create**.
 17.	Enter **dp1** as Name then click on **Next**.
 18.	Check the left box near **VT-Medrec-1** and also check the box for **Set as Default** then click on **Next**.
 19.	Enter **app1RG** as Resource Group name and **None** as Resource Group Template, Move the **VT-Medrec-1** virtual target to **Selected targets** then click on **Next**.
 20.	Verify the configuration and click on **Create**.
-21.	Check the box near **dp1** and click on **Control -> Start**. Once you notice the message ** ìPartition state after the operation is RUNNINGî** then Click on **Close**.
+21.	Check the box near **dp1** and click on **Control -> Start**. Once you notice the message ** ‚ÄúPartition state after the operation is RUNNING‚Äù** then Click on **Close**.
 22.	Click on the Domain Partition **dp1**.
 23.	Click on **Domain Partition -> Administration -> Resource Group**. 
 24.	Click on Resource Group **app1RG**. 
@@ -199,7 +199,7 @@ app1RG:
 25a.	Select the **Services** tab. 
 25b.	Choose JDBC tab, click on **Create -> Generic Data Source**. 
 25c.	Enter **MedRecGlobalDataSourceXA** as Data Source Name and **jdbc/MedRecGlobalDataSourceXA** as JNDI Name, and then click on **Select**. 
-25d.	Select **Oracle** as Database Type and ** ìOracleís Driver (Thin XA) for service connections; Versions: Anyî ** as JDBC Driver then click on **OK**.
+25d.	Select **Oracle** as Database Type and ** ‚ÄúOracle‚Äôs Driver (Thin XA) for service connections; Versions: Any‚Äù ** as JDBC Driver then click on **OK**.
 25e.	 Click on **Next**.
 25f.	Click on **Generate URL and Properties** and Enter the following:
 		Host Name:		localhost
@@ -265,14 +265,14 @@ Note: You must restart domain partition before going to deploy Medrec Applicatio
 30a.	Click on **WebLogic Domain -> Environment -> Resource Groups**. 
 30b.	Click on Resource Group **app1RG**, click on **Deployments** tab.
 30c.	Click on **Deployment -> Deploy**.
-30d.	Select ** ìArchive or exploded directory is on the server where Enterprise Manager is runningî** then click on **Browse**. Specify the location of **medrec.ear** from **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2** then click on **OK**.
+30d.	Select ** ‚ÄúArchive or exploded directory is on the server where Enterprise Manager is running‚Äù** then click on **Browse**. Specify the location of **medrec.ear** from **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2** then click on **OK**.
 30e.	Click on **Next** then click on **Deploy**. Click on **Close**.
 30f.	Deploy **physician.ear** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2**	location.
 30g.	Deploy **chat.war** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2**	location.
 ## Accessing Medrec Application in Domain Partition dp1
 1.	Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/](http://localhost:7101/dp1/medrec/)
 2.	Click on Getting Started. 
-3.	Under Patient, Click on **Iím New Here**
+3.	Under Patient, Click on **I‚Äôm New Here**
 4.	Enter the following or any other data then click on Submit.
 		Email:			weblogic@oracle.com
 		Password:		welcome1
@@ -295,8 +295,8 @@ Note: Make sure you not use 123456789 as SSN Number.
 ## Configuration of Medrec Application in Domain Partition 2
 
 In the next step we are creating the below configuration for Medrec application in domain partition dp2. We are using the same Medrec applications and same JNDI name for the Datasources, connection factory and Distributed queue but we will connect to different database. So there are two benefits of Multitenancy.
-∑	In a domain, you can deploy the same application in two different domain partitions and there will be no JNDI conflict. You do not have to make any changes in application. 
-∑	In single domain, you can have same application deployed in two different domain partitions and connected to two databases. So both the application will have different Set of Users in our case or different set of Application Specific Data.
+¬∑	In a domain, you can deploy the same application in two different domain partitions and there will be no JNDI conflict. You do not have to make any changes in application. 
+¬∑	In single domain, you can have same application deployed in two different domain partitions and connected to two databases. So both the application will have different Set of Users in our case or different set of Application Specific Data.
 Virtual Target: 		VT-Medrec-2
 Domain Partition:	dp2
 Resource Group 	app2RG
@@ -326,7 +326,7 @@ The Scripts MedrecInDP2.sh creates the Virtual Target, Domain Partition, Resourc
 6b.	Click on **WebLogic Domain ->Environment ->Domain Partition**. 
 6c.	Click on Domain Partition **dp2** then Select **Domain Partition -> Administration -> Resource Groups**.
 6d.	Click on Resource group **app2RG**.
-6e.	In the ** ìServicesî ** and ** ìDeploymentsî ** tab, you can verify the creation of above System Resources here.
+6e.	In the ** ‚ÄúServices‚Äù ** and ** ‚ÄúDeployments‚Äù ** tab, you can verify the creation of above System Resources here.
 ## Accessing Medrec Application in Domain Partition dp2
 While accessing the application we need to use the Virtual Target URI. As domain partition dp2 is targeted to Virtual Target VT-Medrec-2, which has /dp2 as URI, we need to add it in URL for the accessing the application.
 1.	In Firefox, type the URL: [http://localhost:7101/dp2/medrec/](http://localhost:7101/dp2/medrec/) 
@@ -382,24 +382,24 @@ You can create many domain partitions in WebLogic 12.2.1. Your application does 
 ## Overview 
 
 A security realm comprises mechanism for protecting WebLogic resources. Each security realm consists of a set of configured security providers, users, groups, security roles, and security policies. You use realms to configure authentication, authorization, role mapping, credential mapping, auditing and other services. 
-WebLogic Server traditionally supports multiple realms in a domain configuration, but only one realm- typically referred to as the ìdefault realmî or ìadmin realmî ñcan be active at any given time. 
+WebLogic Server traditionally supports multiple realms in a domain configuration, but only one realm- typically referred to as the ‚Äúdefault realm‚Äù or ‚Äúadmin realm‚Äù ‚Äìcan be active at any given time. 
 In contrast, WebLogic Server MT supports multiple active realms and allows each partition to execute against a different realm. 
- This means that a partition can have unique security providers, users, groups, security roles and security policies. Resources and applications in the domain partition are available to only to users within the domain partitionís security realm. Other tenants cannot see or access the resources or applications. 
+ This means that a partition can have unique security providers, users, groups, security roles and security policies. Resources and applications in the domain partition are available to only to users within the domain partition‚Äôs security realm. Other tenants cannot see or access the resources or applications. 
 
 Note: Partition can share a security realm, with consequent loss of independence isolation. In particular if you do not specify a realm when you create a partition, the default realm is shared with the partition and there is no security isolation between the partition and the domain. 
 
 In this Lab, first we will create a new security realm then we will assign the security realms to a partition dp1. So we will have two security realms in our domain one which we created and one is default security realm. Domain partition dp1 will have new security realm and other domain partitions will have default security realm. Default security realm has a user administrator with password administrator123. And new security realm will have user administrator with password welcome1. So Medrec application deployed in dp1 can be used by users of new security realm. You will not be able to login as an Admin in Medrec Application with default security realm user (administrator/administrator123).
 
 In this lab we are going to perform the following operations:
-∑	Creation of New Security Realm. 
-∑	Assigning a new Security realm to Domain Partition.
-∑	Medrec application deployed in two different domain partitions which are using two different security realms in single domain.
+¬∑	Creation of New Security Realm. 
+¬∑	Assigning a new Security realm to Domain Partition.
+¬∑	Medrec application deployed in two different domain partitions which are using two different security realms in single domain.
 ## Creating a New Security Realm
 1.	The creation of Security Realm is more automated still inside WebLogic Console versus Fusion Middleware Control. This is why we will use WebLogic Console for that action. Go to Firefox and type the WebLogic Admin Console URL: [http://localhost:7001/console]( http://localhost:7001/console).
 2.	Enter **weblogic/welcome1** as username/password then click on **Login**.
 3.	Under Domain Structure, click on **Security Realms**. 
 4.	Click on **New**.
-5.	Enter **mynewrealm** as Name; check the box for **ìCreate default 	providers within new realmî** and **ìIgnore Deploy Credential Mappingî** then click on **OK**.
+5.	Enter **mynewrealm** as Name; check the box for **‚ÄúCreate default 	providers within new realm‚Äù** and **‚ÄúIgnore Deploy Credential Mapping‚Äù** then click on **OK**.
 6.	Click on **mynewrealm**.
 7.	Click on **Users and Groups -> Users** tab. 
 8.	Click on **New**.
@@ -420,13 +420,13 @@ In this lab we are going to perform the following operations:
 1.	Go to Firefox and type the URL: 	[http://localhost:7101/dp1/medrec/index.xhtml]( http://localhost:7101/dp1/medrec/index.xhtml)
 2.	Under Administrator, click on Login. 
 3.	Login with old security realm credential that is administrator/administrator123.
-4.	You must get ìIncorrect username or password!î
+4.	You must get ‚ÄúIncorrect username or password!‚Äù
 5.	Login with new security realm credential that is administrator/welcome1.
 6.	Click on Logout. Click on Logout again.
 7.	Go to Firefox and type the URL: 	[http://localhost:7101/dp2/medrec/index.xhtml]( http://localhost:7101/dp2/medrec/index.xhtml)
 8.	Under Administrator, click on Login.
 9.	Login with new security realm credential that is administrator/welcome1.
-10.	You must get ìIncorrect username or password!î
+10.	You must get ‚ÄúIncorrect username or password!‚Äù
 11.	Login with old security realm credential that is administrator/adminsitrator123.
 12.	Click on Logout. Click on Logout again.
 
@@ -438,31 +438,31 @@ Exporting and importing partitions let WLS system administrators easily move par
 Exporting a domain partition creates a partition backup and stores it in an archived format. You can export a domain partition from source domain with its entire configuration and data. With few configuration changes, you can then import the partition archive into another instance of multi-tenant WLS (the target domain). You might need to update any domain dependencies, such as targets and security realms, and optionally update other attributes in the partition configuration to make it valid. 
 
 When a partition is exported from the source domain it is packaged in a partition archive. Included in the partition archive is:
-∑	The partition configuration.
-∑	Any resource group contained in the partitions.
-∑	Any resource group templates referred to by those resource groups. 
-∑	The contents of the file system, <partition-file-system>/config directory. 
-∑	Optionally, application binaries and configuration for applications deployed to the partition. 
+¬∑	The partition configuration.
+¬∑	Any resource group contained in the partitions.
+¬∑	Any resource group templates referred to by those resource groups. 
+¬∑	The contents of the file system, <partition-file-system>/config directory. 
+¬∑	Optionally, application binaries and configuration for applications deployed to the partition. 
 No application runtime state or application-specific runtime configuration is included in the partition archive. Examples of what would not be exported are JMS messages in queues, users in an embedded LDAP realm.
 In this Lab, We will create a Non-JRF domain dev_domain and configure it with all required resources for Medrec application. You will remove domain partition dp1 from base_domain. As this domain partition is targeted to Virtual Target VT-Medrec-1 and we are going to import a new domain partition on this Virtual target. So we need to remove this domain partition dp1 for this Lab2.
 
  We are going to learn the following:
-∑	Exporting a domain partition from a Non-JRF domain dev_domain and importing it to a Restricted JRF domain base_domain. 
-Note: To simplify import/export both domains contain Virtual Target with the same name. In our case, base_domain and dev_domain has VT-Medrec-1 as Virtual Target. It is possible to make import/export without that restriction. To import partition and bind it to virtual target of different name, you should modify settings inside associated ì*-attributes.JSONî file
+¬∑	Exporting a domain partition from a Non-JRF domain dev_domain and importing it to a Restricted JRF domain base_domain. 
+Note: To simplify import/export both domains contain Virtual Target with the same name. In our case, base_domain and dev_domain has VT-Medrec-1 as Virtual Target. It is possible to make import/export without that restriction. To import partition and bind it to virtual target of different name, you should modify settings inside associated ‚Äú*-attributes.JSON‚Äù file
 
-Please remember that Virtual Target may be assigned to the one and only one domain partition. This is why before importing please ensure that original domain partition ìdp1î was completely removed from domain configuration .
+Please remember that Virtual Target may be assigned to the one and only one domain partition. This is why before importing please ensure that original domain partition ‚Äúdp1‚Äù was completely removed from domain configuration .
 ## Stop and remove domain partition dp1 from base_domain.
 1.	In Fusion Middleware Control [http://localhost:7001/em]( http://localhost:7001/em) , Click on **WebLogic Domain -> Environment -> Domain Partition**. 
-2.	Check the **box** near **dp1** then click on **Control -> Stop->Force Stop Now**. On the Confirmation Screen Click on **OK**. Once you see the message ** ìPartition state after the operation is SHUTDOWNî** then click on **Close**.
+2.	Check the **box** near **dp1** then click on **Control -> Stop->Force Stop Now**. On the Confirmation Screen Click on **OK**. Once you see the message ** ‚ÄúPartition state after the operation is SHUTDOWN‚Äù** then click on **Close**.
 3.	Check the box near **dp1** and make it highlighted then click on **Delete**. In Delete Domain Partition Screen, click on OK. 
 4.	Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/](http://localhost:7101/dp1/medrec/)
-5.	Confirm that page return **ìError 404óNot Foundî**.
+5.	Confirm that page return **‚ÄúError 404‚ÄîNot Found‚Äù**.
 ## Create a new dev single server (Admin Server) domain
 We are going to create a domain which contains only Admin Server, as the previous domain base_domain is created with RESTRICTED-JRF template. But this domain will be created by default template that is with basic template. 
 1.	Open a new tab. 
 2.	cd /u01/wins/wls1221/oracle_common/common/bin/
 3.	./config.sh
-4.	Select **ìCreate a new domainî** and Enter **ì/u01/wins/wls1221/user_projects/domains/dev_domainî** as Domain Location then click on **Next**.
+4.	Select **‚ÄúCreate a new domain‚Äù** and Enter **‚Äú/u01/wins/wls1221/user_projects/domains/dev_domain‚Äù** as Domain Location then click on **Next**.
 5.	Leave **Default** on Templates then click on **Next**.
 6.	Enter **weblogic/welcome1** as Name/Password in Administrator Account then click on **Next**.
 7.	Leave default on Domain Mode and JDK then click on **Next**.
@@ -501,7 +501,7 @@ Name:		MedRecGlobalDataSourceXA
 JNDI Name:		jdbc/MedRecGlobalDataSourceXA
 Scope:		appRG in Medrec-Dev
 Database Type:	Oracle
-9c.	Select **ìOracleís Driver (Thin XA) for Service connections; Version: Any ì** then click on Next.
+9c.	Select **‚ÄúOracle‚Äôs Driver (Thin XA) for Service connections; Version: Any ‚Äú** then click on Next.
 9d.	In Transaction Options, click on **Next**.
 9e.	Enter the following and click on **Next**. 
 	Database Name:		pdborcl
@@ -518,14 +518,14 @@ Database Type:	Oracle
 	Name:		DevJMSServer
 	Scope:		appRG in Medrec-Dev
 10d.	Click on **Create a New Store**.
-10e.	Select **ìFile Storeî** as Type then click on **Next**.
-10f.	Enter **ìMedrecDev-fsî** as Name and **ìappRG in Medrec-Devî** as Scope then click on **Next**. Click on **Finish**. 
-10g.	Select **ìMedrecDev-fsî** as Persistent Store then click on **Next**.
+10e.	Select **‚ÄúFile Store‚Äù** as Type then click on **Next**.
+10f.	Enter **‚ÄúMedrecDev-fs‚Äù** as Name and **‚ÄúappRG in Medrec-Dev‚Äù** as Scope then click on **Next**. Click on **Finish**. 
+10g.	Select **‚ÄúMedrecDev-fs‚Äù** as Persistent Store then click on **Next**.
 10h.	Click on **Finish**.
 11.	Creation of JMS Module.
 11a.	Click on **Services -> Messaging -> JMS Modules** then click on New.
-11b.	Enter **DevJMSModule** as Name and **ìappRG in Medrec-Devî** then click on **Next**. 
-11c.	Check the box for **ìWould you like to add resources to this JMS system moduleî** then click on **Finish**. 
+11b.	Enter **DevJMSModule** as Name and **‚ÄúappRG in Medrec-Dev‚Äù** then click on **Next**. 
+11c.	Check the box for **‚ÄúWould you like to add resources to this JMS system module‚Äù** then click on **Finish**. 
 12.	Creation of Subdeployment.
 12a.	Select **Subdeployments** tab then click on **New**.
 12b.	Enter **DevMedrecJMS** as Name then click on **Next**.
@@ -551,26 +551,26 @@ Database Type:	Oracle
 16.	Deployments of Application
 16a.	Click on **Deployments** then on **Install**.
 16b.	Select the medrec.ear application from the Path **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/** then click on **Next**.
-16c.	Select **ìInstall this deployment as an applicationî** and **ìappRG in Medrec-Devî** as Scope then click on **Next**. Click on **Finish**. 
+16c.	Select **‚ÄúInstall this deployment as an application‚Äù** and **‚ÄúappRG in Medrec-Dev‚Äù** as Scope then click on **Next**. Click on **Finish**. 
 16d.	Click on Install then Select the physician.ear application from the Path **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/** then click on **Next**.
-16e.	 Select **ìInstall this deployment as an applicationî** and **ìappRG in Medrec-Devî** as Scope then click on **Next**. Click on **Finish**.
+16e.	 Select **‚ÄúInstall this deployment as an application‚Äù** and **‚ÄúappRG in Medrec-Dev‚Äù** as Scope then click on **Next**. Click on **Finish**.
 16f.	Click on **Install** then Select the chat.war application from the Path /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/ then click on **Next**.
-16g.	Select **ìInstall this deployment as an applicationî** and **ìappRG in Medrec-Devî** as Scope then click on **Next**. Click on **Finish**.
+16g.	Select **‚ÄúInstall this deployment as an application‚Äù** and **‚ÄúappRG in Medrec-Dev‚Äù** as Scope then click on **Next**. Click on **Finish**.
 16h.	Go to Firefox and type the URL: [http://localhost:9001/devDP/medrec/](http://localhost:9001/devDP/medrec/) and confirm the execution of application.
 ## Exporting the domain partition
 1.	Go back to admin console [http://localhost:9001/console/](http://localhost:9001/console/)  of dev_domain.
-2.	Click on **Domain Partition**, and then check the box near to **ìMedrec-Dev** then click on **Export**.
-3.	Select the box for **ìInclude Application Bitsî** and enter **/home/oracle/Desktop** as Path then click on **OK**.
+2.	Click on **Domain Partition**, and then check the box near to **‚ÄúMedrec-Dev** then click on **Export**.
+3.	Select the box for **‚ÄúInclude Application Bits‚Äù** and enter **/home/oracle/Desktop** as Path then click on **OK**.
 4.	Go to Desktop and Verify the Creation of **Medrec-Dev-attributes.json** and **Medrec-Dev.zip** file.
 ## Importing the domain partition 
 1.	Go back to EM console of base_domain. Go to Firefox and type the WebLogic Admin Console URL: [http://localhost:7001/em]( http://localhost:7001/em).
 2.	Enter **weblogic/welcome1** as **Username/Password** and click on **Login**.
 3.	 Click on **WebLogic Domain-> Environment ->Domain Partition**. 
 4.	Click on Import. Click on **Browse** button, Select the file **Medrec-Dev.zip** from **/home/oracle/Desktop** directory then click on **OK**.
-5.	Initially it will have State **ìUnknownî**. Wait for 1 or 2 minute, click on Refresh icon to get the current state. 
+5.	Initially it will have State **‚ÄúUnknown‚Äù**. Wait for 1 or 2 minute, click on Refresh icon to get the current state. 
 6.	Once the status for **Medrec-Dev** domain partition is **Shutdown**, check the box, near Medrec-Dev then click on **Control -> Start**. Click on **Close**. Click on the Refresh icon to get the current state.
 7.	Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/](http://localhost:7101/dp1/medrec/)
-8.	Click on **ìGetting Started!î** Under Administrator, click on **Login**.
+8.	Click on **‚ÄúGetting Started!‚Äù** Under Administrator, click on **Login**.
 9.	 Enter **administrator/administrator123** as Username/Password then click on **Sign in**. 
 10.	Click on Logout. Click on Logout again.
 Note: As we have VT-Medrec-1 as Virtual target in both the domains base_domain and dev_domain. In base_domain, we have added administrator user to default security realm. So as this domain partition becomes part of this domain. It also uses the default security realm. Here you are accessing the application using /dp1 in the URL because, we have Virtual target VT-Medrec-1 has /dp1 as URI, So Virtual target definition do not change during import. 
@@ -579,14 +579,14 @@ Note: As we have VT-Medrec-1 as Virtual target in both the domains base_domain a
 # LAB 5: RESOURCE CONSUMPTION MANAGEMENT
 ## Overview
 When applications that are deployed to multiple collocated Domain Partitions, access shared resources (low level resources such as CPU, network, storage) two key problems are likely to be faced:
-∑	Contention and unfairness during allocation: Multiple request for a Shared resources results in contention and interference. Abnormal resource consumption requests may happen due to benign reasons (high traffic-genuine or DDoS), misbehaving, buggy applications or malicious code. These requests could overload the capacity of shared resources, thereby preventing another consumerís access to the resource.
-∑	Variable performance leading to potential Service Level Agreement (SLA) violations: From a cloud operations perspective, performance for different collocated consumers.
+¬∑	Contention and unfairness during allocation: Multiple request for a Shared resources results in contention and interference. Abnormal resource consumption requests may happen due to benign reasons (high traffic-genuine or DDoS), misbehaving, buggy applications or malicious code. These requests could overload the capacity of shared resources, thereby preventing another consumer‚Äôs access to the resource.
+¬∑	Variable performance leading to potential Service Level Agreement (SLA) violations: From a cloud operations perspective, performance for different collocated consumers.
 
 It is therefore critical to manage and isolate access to shared resources in the WebLogic application Server by domain partition to ensure fairness in allocation, prevent contention/interferences of access to shared resources and to provide consistent performance for multiple co resident tenants. The Resource Consumption Management (RCM) feature in WebLogic 12.2.1 Multitenancy allows WebLogic System administrator to specify resource consumption management policies (allows the specification of constraints, recourse actions and notification) on shared resources such as CPU, Heap, File and Network.
 You can create resource manager based on the following parameter:
-∑	Retained Heap
-∑	CPU Time
-∑	Open File Descriptor 
+¬∑	Retained Heap
+¬∑	CPU Time
+¬∑	Open File Descriptor 
 You need to provide the value for below action, as it reaches to that value. It will trigger the following action:
 	**Notify:** 		Inform administrator that a threshold has been crossed.
 	**Slow:**		Reduce Partition ability to consume more resources. 
@@ -595,10 +595,10 @@ You need to provide the value for below action, as it reaches to that value. It 
 In this lab first we create a resource manager based on the Heap size then we specify the values with respective actions. So as following values reaches that action get triggered. We will use sample application through which we can modify the value of Heap size and we will see the action associated. 
 
 In this lab we are going to perform the following operations:
-∑	Enabling RCM by adding extra arguments in Server Java Arguments.
-∑	Creating Resource manager on the basis of Heap Size. 
-∑	Assign Resource manager to a Domain Partition.
-∑	Running an example to understand the functioning of RCM.
+¬∑	Enabling RCM by adding extra arguments in Server Java Arguments.
+¬∑	Creating Resource manager on the basis of Heap Size. 
+¬∑	Assign Resource manager to a Domain Partition.
+¬∑	Running an example to understand the functioning of RCM.
 ## Enabling RCM by adding extra arguments in Server JAVA_OPTION Arguments
 1.	Go to Firefox and type the Fusion Middleware Control Console URL: [http://localhost:7001/em]( http://localhost:7001/em)
 2.	Click on **WebLogic Domain -> Control -> Clusters**.
@@ -625,16 +625,16 @@ In this lab we are going to perform the following operations:
 ## Associate the Resource Manager with Medrec-Dev domain partition.
 1.	Click on **WebLogic Domain -> Environment->Domain Partition** then click on **Medrec-Dev**.
 2.	Click on **Domain Partition ->Administration -> Resource Sharing**.
-3.	Under **Resource Manager Configuration**, and Select **ìUse a Resource Manager configured for the domainî** and choose **ìsmallHeapî** then click on **Save**. 
+3.	Under **Resource Manager Configuration**, and Select **‚ÄúUse a Resource Manager configured for the domain‚Äù** and choose **‚ÄúsmallHeap‚Äù** then click on **Save**. 
 4.	Click on **Start Up** near Domain partition. Click on **Close**.
 5.	Open a new tab. 
 6.	cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5
 7.	**./DeployHeap.sh**
 8.	Close the tab. 
 9.	Go back to Firefox and type the URL: [http://localhost:7101/dp1/heapApp/](http://localhost:7101/dp1/heapApp/) 
-10.	Enter 160 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. After that no Warning message should be observed in the log as we didnít cross the boundary of any RCM action.
-11.	 Enter 50 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. We will cross the first (**ìNotifyî**) boundary of RCM actions. So we should see associated log message.
-12.	Enter 50 in Allocate Heap then click on Submit then observe the logs of app-cluster-1 managed server. We crossed the second limit (**ìSlowî**) so the associated message should be seen in the log.
+10.	Enter 160 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. After that no Warning message should be observed in the log as we didn‚Äôt cross the boundary of any RCM action.
+11.	 Enter 50 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. We will cross the first (**‚ÄúNotify‚Äù**) boundary of RCM actions. So we should see associated log message.
+12.	Enter 50 in Allocate Heap then click on Submit then observe the logs of app-cluster-1 managed server. We crossed the second limit (**‚ÄúSlow‚Äù**) so the associated message should be seen in the log.
 13.	Enter 150 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. This will exceed the limit of memory allowed to be used by that partition. So to prevent other partitions from suffering of lack of memory WebLogic will shutdown the partition.
 14.	Refresh the page, [http://localhost:7101/dp1/heapApp/](http://localhost:7101/dp1/heapApp/) which return 404 and confirm shutdown of the domain partition Medrec-dev in managed server 1. 
 Note: As this domain partition is target to virtual target which is target at cluster which consists of two managed servers. So this domain partition stopped working on managed server 1, but if you access the application on managed server 2, you still will be able to access the application in this domain partition. If similar things happen in managed server 2 and domain partition shutdown on managed server 2 as well, then domain partition will be shutdown. 
@@ -647,24 +647,24 @@ Oracle Traffic Director has an administration plug in which is responsible for h
 When you create a WLS MT partition, a corresponding Oracle Traffic Director partition is created for you. The Oracle Traffic Director partition is simply a grouping with the same name as the partition and the resource group. The life cycle of an Oracle Traffic Director partition and its corresponding artifacts are linked to the life cycle of the partition. 
 The Oracle Traffic Director console provided a partition table with the list of Oracle Traffic Director Partitions to identify the Oracle Traffic director artifacts that are mapped to partitions and resource groups.
 Oracle Traffic Director Artifacts map to WebLogic Server MT artifacts as follows:
-∑	Each cluster maps to an origin server pool.
-∑	The hostnames of a virtual target that is associated with the partitions and/or resource groups maps to a virtual server.
-∑	Each partition or resource group maps to a route within the virtual server corresponding to the hostname of the virtual target. 
+¬∑	Each cluster maps to an origin server pool.
+¬∑	The hostnames of a virtual target that is associated with the partitions and/or resource groups maps to a virtual server.
+¬∑	Each partition or resource group maps to a route within the virtual server corresponding to the hostname of the virtual target. 
 
 In this lab, we are going to perform the below operations.
-∑	We create an OTD domain; in that domain we create a machine and OTD configuration.
-∑	We register that OTD Runtime instance inside the WebLogic domain. 
-∑	We create a domain partition front ended by OTD. 
-∑	We deploy a simple application to verify the OTD integration with domain partition. 
-∑	We migrate a resource group from one cluster to other cluster. 
+¬∑	We create an OTD domain; in that domain we create a machine and OTD configuration.
+¬∑	We register that OTD Runtime instance inside the WebLogic domain. 
+¬∑	We create a domain partition front ended by OTD. 
+¬∑	We deploy a simple application to verify the OTD integration with domain partition. 
+¬∑	We migrate a resource group from one cluster to other cluster. 
 ## Create OTD Restricted JRF Domain
 1.	Open a new tab.
 2.	cd /u01/wins/wls1221/oracle_common/common/bin/
 3.	**./config.sh**
-4.	Select ìCreate a new domainî and enter **ì/u01/wins/wls1221/user_projects/domains/otd_domainî** as Domain Location then Click on Next.
-5.	Enter **ìOracle Traffic Director- Restricted JRFî** Template as it also selects other required template then Click on **Next**.
-6.	Enter **ì/u01/wins/wls1221/user_projects/applications/otd_domainî** as Application Location then Click on **Next**.
-7.	Enter **ìweblogic/welcome1î** as **Username/Password** then Click on **Next**.
+4.	Select ‚ÄúCreate a new domain‚Äù and enter **‚Äú/u01/wins/wls1221/user_projects/domains/otd_domain‚Äù** as Domain Location then Click on Next.
+5.	Enter **‚ÄúOracle Traffic Director- Restricted JRF‚Äù** Template as it also selects other required template then Click on **Next**.
+6.	Enter **‚Äú/u01/wins/wls1221/user_projects/applications/otd_domain‚Äù** as Application Location then Click on **Next**.
+7.	Enter **‚Äúweblogic/welcome1‚Äù** as **Username/Password** then Click on **Next**.
 8.	Leave Default in **Domain Mode and JDK** then Click on **Next**.
 9.	In **Advanced Configuration**, Select the box near **Administration Server** then Click on **Next**.
 10.	Change Listen port to **8001** then click on **Next**.
@@ -680,21 +680,21 @@ In this lab, we are going to perform the below operations.
 20.	bin/startNodeManager.sh
 21.	In tab, Click on **Terminal -> Set Title**. Enter **otd_nm** as Title then click on **OK**.
 22.	Go to Firefox and type the Fusion Middleware Control URL [http://localhost:8001/em]( http://localhost:8001/em) .
-23.	Enter **ìweblogic/welcome1î** as **Username/Password** then click on **Login**. 
+23.	Enter **‚Äúweblogic/welcome1‚Äù** as **Username/Password** then click on **Login**. 
 24.	 Create a Machine.
 24a.	Click on **WebLogic Domain ->Environment ->Machines**.
-24b.	Click on Create, Enter **ìotd_machineî** as Name and **ìUnixî** as Machine OS then Click on **Next**.
+24b.	Click on Create, Enter **‚Äúotd_machine‚Äù** as Name and **‚ÄúUnix‚Äù** as Machine OS then Click on **Next**.
 24c.	Change Listen Port to **5557** then Click on **Next**.
 24d.	Click on **Create**.
 25.	Create an OTD Configuration.
 25a.	Click on **WebLogic Domain -> Administration -> OTD Configurations**. 
 25b.	Click on **Create**.
-25c.	Enter **ìmtî** as Name and **ìHTTPî** as **Origin Server Type** then click on **Next**.
-25d.	Leave Default in **ìCreate Configuration: Listenerî** then click on **Next**.
-25e.	Leave Default in **ìCreate Configuration: Server Poolî** then click on **Next**.
-25f.	Select the **ìotd_machineî** then click on **Next**.
-25g.	Click on **ìCreate Configurationî**.
-25h.	Check the box near **ìmtî** to make it highlighted and then click on **Start Instances**. Click on **Close**.
+25c.	Enter **‚Äúmt‚Äù** as Name and **‚ÄúHTTP‚Äù** as **Origin Server Type** then click on **Next**.
+25d.	Leave Default in **‚ÄúCreate Configuration: Listener‚Äù** then click on **Next**.
+25e.	Leave Default in **‚ÄúCreate Configuration: Server Pool‚Äù** then click on **Next**.
+25f.	Select the **‚Äúotd_machine‚Äù** then click on **Next**.
+25g.	Click on **‚ÄúCreate Configuration‚Äù**.
+25h.	Check the box near **‚Äúmt‚Äù** to make it highlighted and then click on **Start Instances**. Click on **Close**.
 Note:  Go to Firefox and type the URL [http://localhost:8080/](http://localhost:8080/) to verify that server is listening.
 ## Registering an OTD Runtime Instance
 1.	Go to base domain Fusion Middleware Control Console [http://localhost:7001/em]( http://localhost:7001/em) .
@@ -713,11 +713,11 @@ Note:  Go to Firefox and type the URL [http://localhost:8080/](http://localhost:
 1.	Click on **WebLogic Domain -> Environment ->Virtual Targets**.
 2.	 Click on **Create**.
 3.	Enter **VT-1** as Name and **/dp4** as Uri Prefix then click on Add to Enter **localhost** as Host Name then click on **Next**.
-4.	Select **ìapp-clusterî** as Cluster then click on **Create**.
+4.	Select **‚Äúapp-cluster‚Äù** as Cluster then click on **Create**.
 5.	Click on **W ebLogic Domain -> Environment -> Domain Partition**.
 6.	Click on **Create**.
-7.	Enter **dp4** as name and Check the box for **ìUse OTD for load balancingî** and select **ìotd_runtimeî** then click on **Next**.
-8.	Check the box for ìVT-1î as shown below then click on Next.
+7.	Enter **dp4** as name and Check the box for **‚ÄúUse OTD for load balancing‚Äù** and select **‚Äúotd_runtime‚Äù** then click on **Next**.
+8.	Check the box for ‚ÄúVT-1‚Äù as shown below then click on Next.
 9.	Enter **app4RG** as Resource Group Name and Move **VT-1** to **Selected Targets** then click on **Next**.
 10.	Review the Configuration then click on **Create**.
 11.	Check box near to **dp4** and click on **Control -> Start**. Click on **Close**.
@@ -727,20 +727,20 @@ Here we are going to deploy heapApp.war which we used in Lab5. We will access th
 2.	Click on **Domain Partition -> Administration -> Resource Groups**.
 3.	Click on Resource Group **app4RG**.
 4.	Click on **Deployments** tab, and then click on **Deployment -> Deploy**.
-5.	Select **ìArchive or exploded directory is on the server where Enterprise Manager is runningî** then click on **Browse**. Select the file **ScrabbleStage.war** from /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/ location then click on OK.
+5.	Select **‚ÄúArchive or exploded directory is on the server where Enterprise Manager is running‚Äù** then click on **Browse**. Select the file **ScrabbleStage.war** from /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/ location then click on OK.
 6.	Click on **Next** then click on **Deploy**. Click on **Close**.
 7.	Go to Firefox and type the URL [http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp]( http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp).
 ## Migration Resource Group from one Cluster to other Cluster
 Now we are going to migrate Resource Group app4RG from app-cluster to another cluster. As the application deployed in app4RG are front ended by OTD, when you migrate your resource group on other cluster. WebLogic automatically detect the server setting and you can access the application continuously without doing any manual configuration.
-∑	When you click on **migrate** the following actions performs:
-∑	Migrate API is called 
-∑	Resource Group starts on new hosts
-∑	Sessions are replicated to new hosts.
-∑	New origin server pool added to the OTD Configuration
+¬∑	When you click on **migrate** the following actions performs:
+¬∑	Migrate API is called 
+¬∑	Resource Group starts on new hosts
+¬∑	Sessions are replicated to new hosts.
+¬∑	New origin server pool added to the OTD Configuration
 o	Old pool used for sticky request to old pool only
 o	New pool used for all new requests.
-∑	Graceful shutdown called on resource group on original hosts.
-∑	Virtual target configuration updated with new cluster only. 
+¬∑	Graceful shutdown called on resource group on original hosts.
+¬∑	Virtual target configuration updated with new cluster only. 
 So using the same URL, you can access the application. 
 1.	Go back to Fusion middleware control console [http://localhost:7001/em](http://localhost:7001/em) 
 2.	Create a new Cluster.
@@ -748,7 +748,7 @@ So using the same URL, you can access the application.
 2b.	Click on **Create -> Dynamic Cluster**.
 2c.	Enter **new-cluster** as Name then click on **Next**.
 2d.	Enter **1** as Dynamic Cluster Size then click on Next.
-2e.	Select the box for **ìUse a single machine for all dynamic serversî** and choose **ìmachineî** as Selected Machine then click on **Next**.
+2e.	Select the box for **‚ÄúUse a single machine for all dynamic servers‚Äù** and choose **‚Äúmachine‚Äù** as Selected Machine then click on **Next**.
 2f.	Enter 9100 and 10101 as **Base Listen Port** and **SSL Base Listen Port** Respectively then click on Next.
 2g.	Review the Configuration then click on **Create**.
 2h.	Click on **WebLogic Domain -> Control -> Clusters**.
@@ -758,7 +758,7 @@ So using the same URL, you can access the application.
 3a.	Click on **WebLogic Domain -> Environment -> Resource Groups**..
 3b.	Check the box near to app4RG to make it highlighted and then click on Migrate. 
 Select **new-cluster** as New Target then click on Migrate. In Confirmation window, click on Migrate.
-3c.	Once you notice **ìMigrating resource group ìapp4RGî ñ Completed successfullyî** message then click on Close.
+3c.	Once you notice **‚ÄúMigrating resource group ‚Äúapp4RG‚Äù ‚Äì Completed successfully‚Äù** message then click on Close.
 
 
 ## Access Application through OTD
@@ -785,7 +785,7 @@ We have found some bug in existing installer, so we are using an interim patch P
 3.	Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
 4.	Check the box near **dp2** to make it highlighted, and then Click on **Export**.
 5.	Click on Browse and Select the **Desktop** folder from **/home/oracle** location and click on **OK**.
-6.	Check the box for **ìInclude application bits in the zip archiveî** then click **OK**.
+6.	Check the box for **‚ÄúInclude application bits in the zip archive‚Äù** then click **OK**.
 7.	You can go to the Desktop and verify the creation of **dp2.zip** and **dp2-attributes.json** file. 
 ## Importing a domain:
 1.	Click on **WebLogic Domain -> Environment -> Virtual Targets**.
@@ -799,10 +799,10 @@ We have found some bug in existing installer, so we are using an interim patch P
 6.	sed -i -e 's/VT-Medrec-2/VT5/g' /home/oracle/Desktop/dp2-attributes.json
 7.	Go back to Firefox in Fusion Middleware Control Console, Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
 8.	Click on Import, Browse to the /home/oracle/Desktop/dp2.zip and click on OK.
-9.	Specify the new domain partition name dp5 in **ìOverride domain partition name (optional)î** and then click on **Ok**.
+9.	Specify the new domain partition name dp5 in **‚ÄúOverride domain partition name (optional)‚Äù** and then click on **Ok**.
 10.	Click on Refresh icon.
 11.	Check the box near **dp5** to make it highlighted, and then click on **Control -> Start**.
-12.	Once you see **ìStart Operation on target dp5 successfulî** in Confirmation window, click on **Close**.
+12.	Once you see **‚ÄúStart Operation on target dp5 successful‚Äù** in Confirmation window, click on **Close**.
 13.	Verify the execution of Medrec application in dp5 at [http://localhost:7101/dp5/medrec]( http://localhost:7101/dp5/medrec) .
 # CLEANING AND RESETING
 ## Cleaning up Environment
@@ -845,12 +845,12 @@ You need to modify the **environment.properties.MT** file present in **/u01/cont
 5. Verify the creation of storage container by below command. 
 6. **mvn install -DexecuteCloudUtil -Dgoal=storage-list**
 7. We create the DBCS instance with name **winsdemo**.
-8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please donít execute creation of JCS instance until you get information that DBCS is in ìRunningî state)
-9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in ìRunningî state ñ in that case write down DBCS IP address) 
+8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please don‚Äôt execute creation of JCS instance until you get information that DBCS is in ‚ÄúRunning‚Äù state)
+9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in ‚ÄúRunning‚Äù state ‚Äì in that case write down DBCS IP address) 
 10. We create the JCS instance with name **winsdemoWLS**.
 11. **mvn install -DexecuteCloudUtil -Dgoal=jcs-create**
 12. Creation of JCS instance may take about 20 minutes!! Verify the creation of JCS instance. 
-13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in ìRunningî state ñ in that case write down JCS IP address) 
+13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in ‚ÄúRunning‚Äù state ‚Äì in that case write down JCS IP address) 
 
 The above steps creates a domain **winsdemoWLS_domain** inside the JCS VM, and pluggable database **PDB1._{ Value of opc.identity from environment.properties}_.oraclecloud.internal**. A WebLogic domain contains the cluster **winsdemoWLS_cluster** with **winsdemo_adminserver** as Admin Server and **winsdemo_server_1** as managed server.
 
