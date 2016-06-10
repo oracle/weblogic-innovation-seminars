@@ -19,7 +19,7 @@ May Include:-
 
 In Multitenant environment, We create Virtual Target first, In previous versions of WebLogic Server, We Targeted our application, system resources (JDBC or JMS Resources) to Clusters, Managed Servers part of Cluster or stand alone managed server. But here we target our resources to Virtual Target. After creation of Virtual Target, we create a domain partition, while creating domain partition we can create resource group. A domain partition can have multiple resource groups. Then we target domain partition to the Virtual Target. Below diagram gives you the picture how they work together.
 
-![alt text] (https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/1.JPG  "Multitenancy Architecture")
+![alt text](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/1.JPG  "Multitenancy Architecture")
 
 As in the Above Diagram, We created Virtual target 1, Virtual Target 2 which are Targeted to WebLogic Server. Then we created Two Domain partitions, Domain partition 1 has Resource Group 1 and Domain Partition 2 has Resource Group 2. 
 
