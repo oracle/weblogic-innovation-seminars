@@ -13,6 +13,7 @@ public class OPCProperties {
 	public static final String GOAL_DBCS_INSTANCE_DELETE = "dbcs-delete";
 	public static final String GOAL_DBCS_INSTANCE_CREATE = "dbcs-create";
 	public static final String GOAL_JCS_INSTANCE_CREATE = "jcs-create";
+	public static final String GOAL_CREATE_JCS_AUTO = "jcs-create-auto";
 	public static final String GOAL_JCS_GET_SPECIFIC_JOB_DETAILS = "jcs-get-job-details";
 	
 	public static final String GOAL_STORAGE_DETAILS = "storage-get-details";
@@ -55,6 +56,15 @@ public class OPCProperties {
 	
 	public static final String HEADER_X_AUTH_TOKEN = "X-Auth-Token";
 	public static final String HEADER_X_STORAGE_URL = "X-Storage-Url";
+	
+	public static final String SERVICE_STATUS = "Running";
+	
+	public static final String HTTP_REQUEST_FAILED = "HTTP Request Failed";
+	public static final String HTTP_ERROR_404_NOT_FOUND = "404";
+	
+	public static final int EXIST = 0;
+	public static final int NOT_EXIST = 1;
+	public static final int FAILED = 2;
 	
 	private final Properties configProp = new Properties();
 	

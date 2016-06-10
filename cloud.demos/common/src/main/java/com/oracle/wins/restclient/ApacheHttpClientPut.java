@@ -3,7 +3,6 @@ package com.oracle.wins.restclient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -54,9 +53,10 @@ public class ApacheHttpClientPut {
 			
 			if (response.getStatusLine().getStatusCode() != 202 
 					&& (sUri.toLowerCase().contains("storage") && response.getStatusLine().getStatusCode() != 201) ) {
-				System.out.println("FAILED check the error : HTTP error code : "
-						+ response.getStatusLine().getStatusCode());
+				System.out.println("FAILED. HTTP error code: " + response.getStatusLine().getStatusCode());
 				System.out.println("Reason: " + response.getStatusLine().getReasonPhrase());
+				return OPCProperties.HTTP_REQUEST_FAILED + ":" + response.getStatusLine().getStatusCode() 
+						+ " Reason:" + response.getStatusLine().getReasonPhrase();
 			}
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -69,14 +69,9 @@ public class ApacheHttpClientPut {
 
 			httpClient.close();
 
-		} catch (MalformedURLException e) {
-
-			e.printStackTrace();
-
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
+			sbOutput = new StringBuffer(OPCProperties.HTTP_REQUEST_FAILED + ": IOException " + e.getMessage()); 
 		}
 
 		return sbOutput.toString();

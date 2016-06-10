@@ -21,10 +21,7 @@ public class ExecuteGoal {
 	public static void main(String[] args) {
 		
 		OPCProperties opcProperties;
-				
 		String response = "";
-		StringBuffer sbTemp = null;
-		
 		String sGoal = "";
 		String sJobId = "";
 		
@@ -52,19 +49,7 @@ public class ExecuteGoal {
 	        case OPCProperties.GOAL_JCS_GET_INSTANCE_DETAILS:
 	        	System.out.println("JCS get specific instance details----------------------------------------");
 	
-	        	aHeaders = new BasicNameValuePair[2];
-	        	
-	        	aHeaders[0] = new BasicNameValuePair("accept", OPCProperties.CONTENT_TYPE_JSON);
-	        	aHeaders[1] = new BasicNameValuePair("X-ID-TENANT-NAME", opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN));
-	        	
-				sUri = "http://" + opcProperties.getProperty(OPCProperties.OPC_BASE_URL) 
-						+ opcProperties.getProperty(OPCProperties.JCS_REST_URL)
-						+ opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN)
-						+ "/" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_1);
-	        	
-				credOPCUser = new UsernamePasswordCredentials(opcProperties.getProperty(OPCProperties.OPC_USERNAME), opcProperties.getProperty(OPCProperties.OPC_PASSWORD));
-				
-	    		response = ApacheHttpClientGet.httpClientGET(sUri, aHeaders, null, credOPCUser);
+	        	response = OPCJava.getJCSInstanceDetail();
 		        
 	        	System.out.println("Output from Server .... \n");
 	    		System.out.println(response);
@@ -73,19 +58,7 @@ public class ExecuteGoal {
 	        case OPCProperties.GOAL_DBCS_GET_INSTANCE_DETAILS:
 	        	System.out.println("DBCS get specific instance details----------------------------------------");
 	        	
-        		aHeaders = new BasicNameValuePair[2];
-	        	
-	        	aHeaders[0] = new BasicNameValuePair("accept", OPCProperties.CONTENT_TYPE_JSON);
-	        	aHeaders[1] = new BasicNameValuePair("X-ID-TENANT-NAME", opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN));
-	        	
-				sUri = "http://" + opcProperties.getProperty(OPCProperties.OPC_BASE_URL) 
-						+ opcProperties.getProperty(OPCProperties.DBCS_REST_URL)
-						+ opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN)
-						+ "/" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_1);
-	        	
-				credOPCUser = new UsernamePasswordCredentials(opcProperties.getProperty(OPCProperties.OPC_USERNAME), opcProperties.getProperty(OPCProperties.OPC_PASSWORD));
-				
-	    		response = ApacheHttpClientGet.httpClientGET(sUri, aHeaders, null, credOPCUser);
+        		response = OPCDatabase.getDBCSInstanceDetail();
 		        	
 	        	System.out.println("Output from Server .... \n");
 	    		System.out.println(response);
@@ -150,125 +123,16 @@ public class ExecuteGoal {
 	            break;
 	        case OPCProperties.GOAL_DBCS_INSTANCE_CREATE:
 	        	System.out.println("DBCS create instance----------------------------------------");
-	
-	    		sbTemp = new StringBuffer();
-	    		sbTemp.append("{");
-	    		sbTemp.append("  \"serviceName\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_1) + "\",");
-	    		sbTemp.append("  \"version\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_VERSION_1) + "\",");
-	    		sbTemp.append("  \"level\": \"PAAS\",");
-	    		sbTemp.append("  \"edition\": \"EE\",");
-	    		sbTemp.append("  \"subscriptionType\": \"MONTHLY\",");
-	    		sbTemp.append("  \"description\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_DESC_1) + "\",");
-	    		sbTemp.append("  \"shape\": \"oc3\",");
-	    		sbTemp.append("  \"vmPublicKeyText\": \"" + opcProperties.getProperty(OPCProperties.SSH_PUBLIC_KEY) + "\",");
-	    		sbTemp.append("  \"parameters\": [");
-	    		sbTemp.append("    {");
-	    		sbTemp.append("      \"type\": \"db\",");
-	    		sbTemp.append("      \"usableStorage\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_USABLE_STORAGE_1) + "\",");
-	    		sbTemp.append("      \"adminPassword\": \"" + opcProperties.getProperty(OPCProperties.DBCS_DBA_PASSWORD) + "\",");
-	    		sbTemp.append("      \"sid\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_SID_1) + "\",");
-	    		sbTemp.append("      \"pdb\": \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_PDB1_1) + "\",");
-	    		sbTemp.append("      \"failoverDatabase\": \"no\",");
-	    		sbTemp.append("      \"backupDestination\": \"NONE\",");
-	    		sbTemp.append("    }");
-	    		sbTemp.append("  ]");
-	    		sbTemp.append("}");
-	
-	    		seBody = null;
-	    		try {
-	    			seBody = new StringEntity(sbTemp.toString());
-	    		} catch (UnsupportedEncodingException e) {
-	    			throw new RuntimeException("Failed to construct body: " + e.getMessage());
-	    		}
 	    		
-	    		response = ApacheHttpClientPost.httpClientPOST(
-	    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
-	    				opcProperties.getProperty(OPCProperties.OPC_PASSWORD),
-	    				opcProperties.getProperty(OPCProperties.DBCS_REST_URL),
-	    				opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN),
-	    				opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_1),
-	    				opcProperties.getProperty(OPCProperties.DBCS_BASE_URL),
-	    				OPCProperties.CONTENT_TYPE_JSON,
-	    				seBody);
+	    		response = OPCDatabase.createDBCSInstance();
 	    		
-	    		System.out.println("Output from Server .... \n");
+	    		System.out.println("Response.... \n");
 	    		System.out.println(response);
 	            break;
 	        case OPCProperties.GOAL_JCS_INSTANCE_CREATE:
 	        	System.out.println("JCS create instance----------------------------------------");
-	
-	    		sbTemp = new StringBuffer();
-	    		sbTemp.append("{");
-	    		sbTemp.append("    \"serviceName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_1) + "\",");
-	    		sbTemp.append("	   \"level\" : \"PAAS\",");
-	    		sbTemp.append("    \"subscriptionType\" : \"HOURLY\",");
-	    		sbTemp.append("    \"description\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_DESC_1) + "\",");
-	    		sbTemp.append("    \"provisionOTD\" : " + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_OTD_1) + " ,");
-	    		sbTemp.append("    \"cloudStorageContainer\" : \"Storage-" + opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN) + "/" + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "\",");
-	    		sbTemp.append("    \"cloudStorageUser\" : \"" + opcProperties.getProperty(OPCProperties.OPC_USERNAME) + "\",");
-	    		sbTemp.append("    \"cloudStoragePassword\" : \"" + opcProperties.getProperty(OPCProperties.OPC_PASSWORD) + "\",");
-	    		sbTemp.append("    \"parameters\" : [");
-	    		sbTemp.append("    {");
-	    		sbTemp.append("        \"type\" : \"weblogic\",");
-	    		sbTemp.append("        \"version\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_VERSION_1) + "\",");
-	    		sbTemp.append("        \"edition\" : \"EE\",");
-	    		sbTemp.append("        \"domainMode\" : \"PRODUCTION\",");
-	    		sbTemp.append("        \"managedServerCount\" : \"1\",");
-	    		sbTemp.append("        \"adminPort\" : \"7001\",");
-	    		sbTemp.append("        \"deploymentChannelPort\" : \"9001\",");
-	    		sbTemp.append("        \"securedAdminPort\" : \"7002\",");
-	    		sbTemp.append("        \"contentPort\" : \"8001\",");
-	    		sbTemp.append("        \"securedContentPort\" : \"8002\",");
-	    		sbTemp.append("        \"domainName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_1) + "_domain\",");
-	    		sbTemp.append("        \"clusterName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_1) + "_cluster\",");
-	    		sbTemp.append("        \"adminUserName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_USER_1) + "\",");
-	    		sbTemp.append("        \"adminPassword\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_PASSWORD_1) + "\",");
-	    		sbTemp.append("        \"nodeManagerPort\" : \"6555\",");
-	    		sbTemp.append("        \"nodeManagerUserName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_USER_1) + "\",");
-	    		sbTemp.append("        \"nodeManagerPassword\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_PASSWORD_1) + "\",");
-	    		sbTemp.append("        \"dbServiceName\" : \"" + opcProperties.getProperty(OPCProperties.DBCS_INSTANCE_1) + "\",");
-	    		sbTemp.append("        \"dbaName\" : \"" + opcProperties.getProperty(OPCProperties.DBCS_DBA_NAME) + "\",");
-	    		sbTemp.append("        \"dbaPassword\" : \"" + opcProperties.getProperty(OPCProperties.DBCS_DBA_PASSWORD) + "\",");
-	    		sbTemp.append("        \"shape\" : \"oc3\",");
-	    		sbTemp.append("        \"domainVolumeSize\" : \"10G\",");
-	    		sbTemp.append("        \"backupVolumeSize\" : \"50G\",");
-	    		sbTemp.append("        \"VMsPublicKey\" : \"" + opcProperties.getProperty(OPCProperties.SSH_PUBLIC_KEY) + "\"");
-	    		sbTemp.append("    }");
-	    		
-	    		if (opcProperties.getProperty(OPCProperties.JCS_INSTANCE_OTD_1).equals("true")) {
-	    			sbTemp.append(",    {");
-    				sbTemp.append("        \"type\" : \"otd\",");
-    				sbTemp.append("        \"adminUserName\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_USER_1) + "\",");
-    		        sbTemp.append("        \"adminPassword\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_ADMIN_PASSWORD_1) + "\",");
-    		        sbTemp.append("        \"listenerPortsEnabled\" : true,");
-    		        sbTemp.append("        \"listenerType\" : \"http\",");
-    		        sbTemp.append("        \"loadBalancingPolicy\" : \"least_connection_count\",");
-    		        sbTemp.append("        \"privilegedListenerPort\" : \"80\",");
-    		        sbTemp.append("        \"privilegedSecuredListenerPort\" : \"443\",");
-    		        sbTemp.append("        \"adminPort\" : \"8989\",");
-    		        sbTemp.append("        \"shape\" : \"oc3\",");
-    		        sbTemp.append("        \"VMsPublicKey\" : \"" + opcProperties.getProperty(OPCProperties.SSH_PUBLIC_KEY) + "\"");
-    		        sbTemp.append("    }");
-	    		}
-	    		
-	    		sbTemp.append("    ]");
-	    		sbTemp.append("}");
-	    		
-	    		try {
-	    			seBody = new StringEntity(sbTemp.toString());
-	    		} catch (UnsupportedEncodingException e) {
-	    			throw new RuntimeException("Failed to construct body: " + e.getMessage());
-	    		}
-	    		
-	    		response = ApacheHttpClientPost.httpClientPOST(
-	    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
-	    				opcProperties.getProperty(OPCProperties.OPC_PASSWORD),
-	    				opcProperties.getProperty(OPCProperties.JCS_REST_URL),
-	    				opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN),
-	    				opcProperties.getProperty(OPCProperties.JCS_INSTANCE_1),
-	    				opcProperties.getProperty(OPCProperties.OPC_BASE_URL),
-	    				OPCProperties.CONTENT_TYPE_VND_SERVICE_JSON,
-	    				seBody);
+
+	        	response = OPCJava.createJCSInstance();
 	    		
 	    		System.out.println("Output from Server .... \n");
 	    		System.out.println(response);
@@ -296,19 +160,7 @@ public class ExecuteGoal {
 	        case OPCProperties.GOAL_STORAGE_CREATE:
 	        	System.out.println("Create storage----------------------------------------");
 	        	
-	        	storageProperties = getStorageAuthToken(
-	    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
-	    				opcProperties.getProperty(OPCProperties.OPC_PASSWORD),
-	    				opcProperties.getProperty(OPCProperties.OPC_STORAGE_GENERIC_URL),
-	    				opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN));
-
-	        	sUri = storageProperties.getProperty(OPCProperties.HEADER_X_STORAGE_URL) + "/" + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER);
-	        	
-	        	aHeaders = new BasicNameValuePair[1];
-	        	
-	        	aHeaders[0] = new BasicNameValuePair("X-Auth-Token", storageProperties.getProperty(OPCProperties.HEADER_X_AUTH_TOKEN));
-	        	
-	        	response = ApacheHttpClientPut.httpClientPUT(sUri, aHeaders, null, null, true);
+	        	response = OPCStorage.createStorage();
 	        	
 	        	System.out.println("Output from Server .... \n");
 	    		System.out.println(response);
@@ -316,21 +168,8 @@ public class ExecuteGoal {
 	        case OPCProperties.GOAL_STORAGE_LIST:
 	        	System.out.println("List storage endpoints----------------------------------------");
 	        	
-	        	storageProperties = getStorageAuthToken(
-	    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
-	    				opcProperties.getProperty(OPCProperties.OPC_PASSWORD),
-	    				opcProperties.getProperty(OPCProperties.OPC_STORAGE_GENERIC_URL),
-	    				opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN));
+	        	response = OPCStorage.getStorageInformation();
 	        	
-	        	sUri = storageProperties.getProperty(OPCProperties.HEADER_X_STORAGE_URL);
-	        	
-	        	aHeaders = new BasicNameValuePair[1];
-	        	
-	        	aHeaders[0] = new BasicNameValuePair("X-Auth-Token", storageProperties.getProperty(OPCProperties.HEADER_X_AUTH_TOKEN));
-
-				
-	    		response = ApacheHttpClientGet.httpClientGET(sUri, aHeaders, null, null);
-		        
 	        	System.out.println("Output from Server .... \n");
 	    		System.out.println(response);
 	        	break;
@@ -380,7 +219,6 @@ public class ExecuteGoal {
 		        	try {
 						seBody = new StringEntity(response);
 					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 		        	
@@ -404,6 +242,13 @@ public class ExecuteGoal {
 	        	}
 	        	break;
 
+	        case OPCProperties.GOAL_CREATE_JCS_AUTO:
+	        	System.out.println("Create JCS including Storage, DBCS ----------------------------------------");
+
+	        	response = ExecuteBatch.createJCSAuto();
+	        	System.out.println(response);        	
+
+	        	break;	
 	        default: 
 	        	System.out.println("Wrong goal specified: " + sGoal);
 	            break;
@@ -453,7 +298,7 @@ public class ExecuteGoal {
 			
 			e.printStackTrace();
 		}
-
+		
 		return storageProp;
 	}
 

@@ -24,16 +24,15 @@ public class ApacheHttpClientGet {
 			Credentials credOPCUser) {
 
 		StringBuffer sbOutput = new StringBuffer();
-
+		CredentialsProvider credsProvider = null;
 		try {
 
 			CloseableHttpClient httpclient = null;
 			if (credOPCUser != null) {
-				CredentialsProvider credsProvider = new BasicCredentialsProvider();
+				credsProvider = new BasicCredentialsProvider();
 				credsProvider.setCredentials(new AuthScope(OPCProperties
 						.getInstance().getProperty(OPCProperties.OPC_BASE_URL),
 						443), credOPCUser);
-				System.out.println("Auth: " + credsProvider.toString());
 
 				httpclient = HttpClients.custom()
 						.setDefaultCredentialsProvider(credsProvider).build();
@@ -41,27 +40,23 @@ public class ApacheHttpClientGet {
 				httpclient = HttpClients.custom().build();
 			}
 
-			System.out.println("URI: " + sUri);
 			HttpGet httpGet = new HttpGet(sUri);
 
 			for (BasicNameValuePair header : aHeaders) {
 				httpGet.addHeader(header.getName(), header.getValue());
 			}
 
-			System.out.println("Executing request " + httpGet.getRequestLine());
+			System.out.println("Executing request " + httpGet.getRequestLine() + (credsProvider != null ? (" Auth: " + credsProvider): "") );
 			CloseableHttpResponse response = httpclient.execute(httpGet);
 
 			System.out.println("Response: " + response.getStatusLine());
 
 			if (!(response.getStatusLine().getStatusCode() == 200 || response.getStatusLine().getStatusCode() == 204 
-					|| response.getStatusLine().getStatusCode() == 202)) {
-				System.out
-						.println("FAILED check the error : HTTP error code : "
-								+ response.getStatusLine().getStatusCode());
+					|| response.getStatusLine().getStatusCode() == 202 || response.getStatusLine().getStatusCode() == 404)) {
+				System.out.println("FAILED. HTTP error code: " + response.getStatusLine().getStatusCode());
 				System.out.println("Reason: " + response.getStatusLine().getReasonPhrase());
-				if (response.getEntity() == null) {
-					return "Executon failed";
-				}
+				return OPCProperties.HTTP_REQUEST_FAILED + ":" + response.getStatusLine().getStatusCode() 
+						+ " Reason:" + response.getStatusLine().getReasonPhrase();
 			}
 
 			if (response.getEntity() != null) {
@@ -79,8 +74,8 @@ public class ApacheHttpClientGet {
 			response.close();
 
 		} catch (IOException e) {
-
 			e.printStackTrace();
+			sbOutput = new StringBuffer(OPCProperties.HTTP_REQUEST_FAILED + ": IOException " + e.getMessage()); 
 		}
 
 		return sbOutput.toString();
