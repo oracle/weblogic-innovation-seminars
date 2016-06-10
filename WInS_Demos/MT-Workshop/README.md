@@ -4,7 +4,7 @@ Multitenancy in WebLogic Server provides a sharable infrastructure for use by cl
 ## Domain Partition:
 WebLogic Server MT provides resource isolation with in domain partitions, an administrative and runtime slice of a WebLogic domain that is dedicated to running application instances and related resources for a tenant. Domain Partition achieve greater density by allowing application instances and related resources to share the domain, WebLogic Server itself, the Java virtual machine, and the operating system while isolating tenant specific application data, configuration, and runtime traffic. Each domain partition has its own runtime copy of the application and resources. 
 ## Resource Groups:
-WLS MT introduces resource groups, simply as a convenient way to group together Java EE applications and the resources they use into a distinct administrative unit within the domain.  The resources and applications are “fully qualified” in that administrator provides all information needed to start or connect to those resources, including credentials for connecting to data source and targeting information for Java EE application. A resource group will either contain these deployable resources directly or refer to a resource group templates which contain the resources. Resource group can be defined at the domain level, or be specific to domain partition. 
+WLS MT introduces resource groups, simply as a convenient way to group together Java EE applications and the resources they use into a distinct administrative unit within the domain.  The resources and applications are â€œfully qualifiedâ€ in that administrator provides all information needed to start or connect to those resources, including credentials for connecting to data source and targeting information for Java EE application. A resource group will either contain these deployable resources directly or refer to a resource group templates which contain the resources. Resource group can be defined at the domain level, or be specific to domain partition. 
 All the resources in or referenced by a resource group are targeted together (to the same target). Resource group can be started and stopped. 
 ## Virtual Target:
 Encapsulate where a partition or resource group runs and how to route traffic to them, including addresses, protocol settings, and targeting, Request routing is determined by the host name and optional URI. 
@@ -19,7 +19,7 @@ May Include:-
 
 In Multitenant environment, We create Virtual Target first, In previous versions of WebLogic Server, We Targeted our application, system resources (JDBC or JMS Resources) to Clusters, Managed Servers part of Cluster or stand alone managed server. But here we target our resources to Virtual Target. After creation of Virtual Target, we create a domain partition, while creating domain partition we can create resource group. A domain partition can have multiple resource groups. Then we target domain partition to the Virtual Target. Below diagram gives you the picture how they work together.
 
-![alt text](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/1.JPG  "Multitenancy Architecture")
+![Multitenancy Architecture](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/1.JPG)
 
 As in the Above Diagram, We created Virtual target 1, Virtual Target 2 which are Targeted to WebLogic Server. Then we created Two Domain partitions, Domain partition 1 has Resource Group 1 and Domain Partition 2 has Resource Group 2. 
 
@@ -29,7 +29,7 @@ We have total 7 Labs; the brief information about each lab is given below.
 
 Lab 1 consist Non MT configuration, in this Lab we create basic configuration required for each lab. First we create **base_domain** using the **Restricted-JRF** template. This is the domain we are using in each lab. Using the Fusion Middleware Control Console, we will create machine and one dynamic cluster of initial size of two managed server inside it. 
 
-Lab 2 consist creation of MT configuration, in which we creates virtual target, domain partition and resource group. We show you can easily deploy one application twice in a domain in different domain partition. In this case both applications will be connected to different database. Good thing is that you don’t need to modify the application deploying to different domain partition because we have JNDI isolation. We also use day trader application which is build by IBM, we made few changes in the application to run the application in Non MT environment, and we took the same application to deploy in MT environment (inside domain partition). So you don’t need any specific application development to deploy the application in Multitenant environment. 
+Lab 2 consist creation of MT configuration, in which we creates virtual target, domain partition and resource group. We show you can easily deploy one application twice in a domain in different domain partition. In this case both applications will be connected to different database. Good thing is that you donâ€™t need to modify the application deploying to different domain partition because we have JNDI isolation. We also use day trader application which is build by IBM, we made few changes in the application to run the application in Non MT environment, and we took the same application to deploy in MT environment (inside domain partition). So you donâ€™t need any specific application development to deploy the application in Multitenant environment. 
 
 Lab3 shows how you can have two or more security realms active inside a domain. Traditionally in WebLogic server, we have more than one Security realm but only one is active for the domain. Here, we have multiple domain partition, so you can have separate security realm for each domain partition. In Lab 2 we deploy Medrec application in domain partition dp1 and dp2. As while creating domain partition dp2 we do not choose any security realm so it uses the default security realm. In Lab 3 we create a new security realm and assign it to domain partition dp1. So both domain partitions will have different set of authorized user. 
 
@@ -406,13 +406,13 @@ In this lab we are going to perform the following operations:
 1. Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/index.xhtml]( http://localhost:7101/dp1/medrec/index.xhtml)
 2. Under Administrator, click on Login. 
 3. Login with old security realm credential that is administrator/administrator123.
-4. You must get “Incorrect username or password!”
+4. You must get â€œIncorrect username or password!â€
 5. Login with new security realm credential that is administrator/welcome1.
 6. Click on Logout. Click on Logout again.
 7. Go to Firefox and type the URL: [http://localhost:7101/dp2/medrec/index.xhtml]( http://localhost:7101/dp2/medrec/index.xhtml)
 8. Under Administrator, click on Login.
 9. Login with new security realm credential that is administrator/welcome1.
-10. You must get **Incorrect username or password!**.�
+10. You must get **Incorrect username or password!**.
 11. Login with old security realm credential that is administrator/adminsitrator123.
 12. Click on Logout. Click on Logout again.
 
@@ -440,13 +440,13 @@ In this Lab, We will create a Non-JRF domain dev_domain and configure it with al
 We are going to learn the following:
 * Exporting a domain partition from a Non-JRF domain dev_domain and importing it to a Restricted JRF domain base_domain. 
 
-Note: To simplify import/export both domains contain Virtual Target with the same name. In our case, base_domain and dev_domain has VT-Medrec-1 as Virtual Target. It is possible to make import/export without that restriction. To import partition and bind it to virtual target of different name, you should modify settings inside associated “*-attributes.JSON� file
+Note: To simplify import/export both domains contain Virtual Target with the same name. In our case, base_domain and dev_domain has VT-Medrec-1 as Virtual Target. It is possible to make import/export without that restriction. To import partition and bind it to virtual target of different name, you should modify settings inside associated â€œ*-attributes.JSON file
 
-Please remember that Virtual Target may be assigned to the one and only one domain partition. This is why before importing please ensure that original domain partition dp1� was completely removed from domain configuration .
+Please remember that Virtual Target may be assigned to the one and only one domain partition. This is why before importing please ensure that original domain partition dp1 was completely removed from domain configuration .
 
 ## Stop and remove domain partition dp1 from base_domain.
 1. In Fusion Middleware Control [http://localhost:7001/em]( http://localhost:7001/em) , Click on **WebLogic Domain -> Environment -> Domain Partition**. 
-2. Check the **box** near **dp1** then click on **Control -> Stop->Force Stop Now**. On the Confirmation Screen Click on **OK**. Once you see the message ** “Partition state after the operation is SHUTDOWN** then click on **Close**.
+2. Check the **box** near **dp1** then click on **Control -> Stop->Force Stop Now**. On the Confirmation Screen Click on **OK**. Once you see the message ** â€œPartition state after the operation is SHUTDOWN** then click on **Close**.
 3. Check the box near **dp1** and make it highlighted then click on **Delete**. In Delete Domain Partition Screen, click on OK. 
 4. Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/](http://localhost:7101/dp1/medrec/)
 5. Confirm that page return **Error 404 Not Found**.
@@ -766,7 +766,7 @@ Runtime Name:			otd_runtime
 5. Click on **WebLogic Domain -> Environment -> Domain Partition**.
 6. Click on **Create**.
 7. Enter **dp4** as name and Check the box for **Use OTD for load balancing** and select **otd_runtime** then click on **Next**.
-8. Check the box for **VT-1**� as shown below then click on Next.
+8. Check the box for **VT-1** as shown below then click on Next.
 9. Enter **app4RG** as Resource Group Name and Move **VT-1** to **Selected Targets** then click on **Next**.
 10. Review the Configuration then click on **Create**.
 11. Check box near to **dp4** and click on **Control -> Start**. Click on **Close**.
@@ -864,10 +864,10 @@ We have found some bug in existing installer, so we are using an interim patch P
 6. sed -i -e 's/VT-Medrec-2/VT5/g' /home/oracle/Desktop/dp2-attributes.json
 7. Go back to Firefox in Fusion Middleware Control Console, Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
 8. Click on Import, Browse to the /home/oracle/Desktop/dp2.zip and click on OK.
-9. Specify the new domain partition name dp5 in **“Override domain partition name (optional)”** and then click on **Ok**.
+9. Specify the new domain partition name dp5 in **â€œOverride domain partition name (optional)â€** and then click on **Ok**.
 10. Click on Refresh icon.
 11. Check the box near **dp5** to make it highlighted, and then click on **Control -> Start**.
-12. Once you see **“Start Operation on target dp5 successful”** in Confirmation window, click on **Close**.
+12. Once you see **â€œStart Operation on target dp5 successfulâ€** in Confirmation window, click on **Close**.
 13. Verify the execution of Medrec application in dp5 at [http://localhost:7101/dp5/medrec]( http://localhost:7101/dp5/medrec) .
 
 # CLEANING AND RESETING
@@ -921,12 +921,12 @@ You need to modify the **environment.properties.MT** file present in **/u01/cont
 5. Verify the creation of storage container by below command. 
 6. **mvn install -DexecuteCloudUtil -Dgoal=storage-list**
 7. We create the DBCS instance with name **winsdemo**.
-8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please don’t execute creation of JCS instance until you get information that DBCS is in “Running” state)
-9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in “Running” state – in that case write down DBCS IP address) 
+8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please donâ€™t execute creation of JCS instance until you get information that DBCS is in â€œRunningâ€ state)
+9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in â€œRunningâ€ state â€“ in that case write down DBCS IP address) 
 10. We create the JCS instance with name **winsdemoWLS**.
 11. **mvn install -DexecuteCloudUtil -Dgoal=jcs-create**
 12. Creation of JCS instance may take about 20 minutes!! Verify the creation of JCS instance. 
-13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in “Running” state – in that case write down JCS IP address) 
+13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in â€œRunningâ€ state â€“ in that case write down JCS IP address) 
 
 The above steps creates a domain **winsdemoWLS_domain** inside the JCS VM, and pluggable database **PDB1._{ Value of opc.identity from environment.properties}_.oraclecloud.internal**. A WebLogic domain contains the cluster **winsdemoWLS_cluster** with **winsdemo_adminserver** as Admin Server and **winsdemo_server_1** as managed server.
 
