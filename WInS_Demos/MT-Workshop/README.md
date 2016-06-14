@@ -731,54 +731,68 @@ In this lab we are going to perform the following operations:
 * Running an example to understand the functioning of RCM.
 
 ## Enabling RCM by adding extra arguments in Server JAVA_OPTION Arguments
+
 1. Go to Firefox and type the Fusion Middleware Control Console URL: [http://localhost:7001/em]( http://localhost:7001/em)
 2. Click on **WebLogic Domain -> Control -> Clusters**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/98.JPG)
-3. Check the boxes near app-cluster then click on **Control -> Shutdown ->Force Shutdown Now**.  Click on **Forcibly Shutdown Servers**. 
+3. Check the boxes near app-cluster then click on **Control -> Shutdown ->Force Shutdown Now**.  Click on **Forcibly Shutdown Servers**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/99.JPG)
 4. Open a new tab.
 5. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5
 6. cp setDomainEnv.sh /u01/wins/wls1221/user_projects/domains/base_domain/bin/
-7. In above command we have modified the JAVA_OPTIONS as specified below. JAVA_OPTIONS="**-XX:+UnlockCommercialFeatures -XX:+ResourceManagement -XX:+UseG1GC** ${JAVA_OPTIONS} ${JAVA_PROPERTIES}"
+7. In above command we have modified the JAVA\_OPTIONS as specified below. JAVA\_OPTIONS="**-XX:+UnlockCommercialFeatures -XX:+ResourceManagement -XX:+UseG1GC** ${JAVA_OPTIONS} ${JAVA_PROPERTIES}"
 8. Go back to Fusion middleware control then click on **WebLogic Domain -> Control -> Clusters**.
 9. Check the box near to **app-cluster** to make it highlighted and then click on **Control -> Start -> Start Servers**.
 10. tail -f /u01/wins/wls1221/user_projects/domains/base_domain/servers/app-cluster-1/logs/app-cluster-1.log
 11. In this tab, Click on Enter **Terminal -> Set Title** and **app-cluster-1** then click on **OK**.We will use these logs to monitor resource consumption manager lab.
 
 ## Creating a Resource Manager and Configuring Resource Manager for a domain partition
+
 1. Go to FMW control [http://localhost:7001/em]( http://localhost:7001/em)
 2. Enter weblogic/welcome1 as Username/Password then click on Login.
 3. Click on **WebLogic Domain->Environment -> Resource Consumption Managers**.
 4. Click on **Add Resource Manager** and Enter the following value then click on **OK**
 	
-Resource Manager:		smallHeap
+		Resource Manager:		smallHeap
 
-	Policy Type:			HeapRetained
+		Policy Type:			HeapRetained
 
-	Shutdown:			400
+		Shutdown:			400
 
-	Slow:				250
+		Slow:				250
 
-	Notify:				200
+		Notify:				200
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/100.JPG)
 
-## Associate the Resource Manager with Medrec-Dev domain partition.
+## Associate the Resource Manager with Medrec-Dev domain partition
+
 1. Click on **WebLogic Domain -> Environment->Domain Partition** then click on **Medrec-Dev**.
 2. Click on **Domain Partition ->Administration -> Resource Sharing**.
-3. Under **Resource Manager Configuration**, and Select **Use a Resource Manager configured for the domain** and choose **smallHeap** then click on **Save**. 
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/101.JPG)
+3. Under **Resource Manager Configuration**, and Select **Use a Resource Manager configured for the domain** and choose **smallHeap** then click on **Save**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/102.JPG)
 4. Click on **Start Up** near Domain partition. Click on **Close**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/103.JPG)
 5. Open a new tab. 
 6. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5
 7. **./DeployHeap.sh**
 8. Close the tab. 
 9. Go back to Firefox and type the URL: [http://localhost:7101/dp1/heapApp/](http://localhost:7101/dp1/heapApp/) 
 10. Enter 160 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. After that no Warning message should be observed in the log as we didn't cross the boundary of any RCM action.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/104.JPG)
 11. Enter 50 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. We will cross the first (**Notify**) boundary of RCM actions. So we should see associated log message.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/105.JPG)
 12. Enter 50 in Allocate Heap then click on Submit then observe the logs of app-cluster-1 managed server. We crossed the second limit (**Slow**) so the associated message should be seen in the log.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/106.JPG)
 13. Enter 150 in **Allocate Heap** then click on **Submit** then observe the logs of app-cluster-1 managed server. This will exceed the limit of memory allowed to be used by that partition. So to prevent other partitions from suffering of lack of memory WebLogic will shutdown the partition.
-14. Refresh the page, [http://localhost:7101/dp1/heapApp/](http://localhost:7101/dp1/heapApp/) which return 404 and confirm shutdown of the domain partition Medrec-dev in managed server 1. 
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/107.JPG)
+14. Refresh the page, [http://localhost:7101/dp1/heapApp/](http://localhost:7101/dp1/heapApp/) which return 404 and confirm shutdown of the domain partition Medrec-dev in managed server 1.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/108.JPG)
 
 Note: As this domain partition is target to virtual target which is target at cluster which consists of two managed servers. So this domain partition stopped working on managed server 1, but if you access the application on managed server 2, you still will be able to access the application in this domain partition. If similar things happen in managed server 2 and domain partition shutdown on managed server 2 as well, then domain partition will be shutdown. 
 
 # LAB 6: OTD INTEGRATION AND RESOURCE MIGRATION
+
 ## Overview
 
 This lab describes how Oracle Traffic Director can front end a WLS MT Deployment topology for a large enterprise, providing an integrated, end to end administration experience for the server life cycle, and partition management. 
@@ -803,94 +817,131 @@ In this lab, we are going to perform the below operations.
 * We migrate a resource group from one cluster to other cluster. 
 
 ## Create OTD Restricted JRF Domain
+
 1. Open a new tab.
 2. cd /u01/wins/wls1221/oracle_common/common/bin/
 3. **./config.sh**
 4. Select **Create a new domain** and enter **/u01/wins/wls1221/user_projects/domains/otd_domain** as Domain Location then Click on Next.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/109.JPG)
 5. Enter **Oracle Traffic Director- Restricted JRF** Template as it also selects other required template then Click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/110.JPG)
 6. Enter **/u01/wins/wls1221/user_projects/applications/otd_domain** as Application Location then Click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/111.JPG)
 7. Enter **weblogic/welcome1** as **Username/Password** then Click on **Next**.
 8. Leave Default in **Domain Mode and JDK** then Click on **Next**.
 9. In **Advanced Configuration**, Select the box near **Administration Server** then Click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/112.JPG)
 10. Change Listen port to **8001** then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/113.JPG)
 11. Click on **Create**.
 12. Click on **Next** then Click on **Finish**.
 13. cd /u01/wins/wls1221/user_projects/domains/otd_domain/
 14. **./startWebLogic.sh**
 15. In terminal, Click on **Terminal -> Set Title**. Enter **otd_admin** as Title then click on **OK**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/114.JPG)
 16. Open a New tab.
 17. cd /u01/wins/wls1221/user_projects/domains/otd_domain/
 18. vi nodemanager/nodemanager.properties
 19. Change Listen Port to 5557 then save the file and close it.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/115.JPG)
 20. bin/startNodeManager.sh
 21. In tab, Click on **Terminal -> Set Title**. Enter **otd_nm** as Title then click on **OK**.
-22. Go to Firefox and type the Fusion Middleware Control URL [http://localhost:8001/em]( http://localhost:8001/em) .
-23. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**. 
+22. Go to Firefox and type the Fusion Middleware Control URL [http://localhost:8001/em](http://localhost:8001/em) .
+23. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/116.JPG)
 24. Create a Machine.
  * Click on **WebLogic Domain ->Environment ->Machines**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/117.JPG)
  * Click on Create, Enter **otd_machine** as Name and **Unix** as Machine OS then Click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/118.JPG)
  * Change Listen Port to **5557** then Click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/119.JPG)
  * Click on **Create**.
  * Create an OTD Configuration.
- * Click on **WebLogic Domain -> Administration -> OTD Configurations**. 
+ * Click on **WebLogic Domain -> Administration -> OTD Configurations**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/120.JPG)
  * Click on **Create**.
  * Enter **mt** as Name and **HTTP** as **Origin Server Type** then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/121.JPG)
  * Leave Default in **Create Configuration: Listener** then click on **Next**.
  * Leave Default in **Create Configuration: Server Pool** then click on **Next**.
  * Select the **otd_machine** then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/122.JPG)
  * Click on **Create Configuration**.
  * Check the box near **mt** to make it highlighted and then click on **Start Instances**. Click on **Close**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/123.JPG)
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/124.JPG)
 
 Note:  Go to Firefox and type the URL [http://localhost:8080/](http://localhost:8080/) to verify that server is listening.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/125.JPG)
 
 ## Registering an OTD Runtime Instance
-1. Go to base domain Fusion Middleware Control Console [http://localhost:7001/em]( http://localhost:7001/em) .
+
+1. Go to base domain Fusion Middleware Control Console [http://localhost:7001/em](http://localhost:7001/em) .
 2. Enter weblogic/welcome1 as User Name/Password then click on Login. 
 3. Click on **Weblogic Domain -> Environment -> OTD Runtimes**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/126.JPG)
 4. Click on **Register Runtime**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/127.JPG)
 5. Enter the following and then click on OK.
 	
-Runtime Name:			otd_runtime
+		Runtime Name:			otd_runtime
 
-	OTD Configuration Name:	mt
+		OTD Configuration Name:		mt
 
-	Admin Server Host:		localhost
+		Admin Server Host:		localhost
 
-	Admin Server Port:		8001
+		Admin Server Port:		8001
 
-	Username:			weblogic
+		Username:			weblogic
 
-	Password:			welcome1
+		Password:			welcome1
 
-	OTD Domain Name:		otd_domain
+		OTD Domain Name:		otd_domain
+		
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/128.JPG)
 
 ## Creating Domain Partition front ended by OTD
+
 1. Click on **WebLogic Domain -> Environment ->Virtual Targets**.
 2. Click on **Create**.
 3. Enter **VT-1** as Name and **/dp4** as Uri Prefix then click on Add to Enter **localhost** as Host Name then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/129.JPG)
 4. Select **app-cluster** as Cluster then click on **Create**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/130.JPG)
 5. Click on **WebLogic Domain -> Environment -> Domain Partition**.
 6. Click on **Create**.
 7. Enter **dp4** as name and Check the box for **Use OTD for load balancing** and select **otd_runtime** then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/131.JPG)
 8. Check the box for **VT-1** as shown below then click on Next.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/132.JPG)
 9. Enter **app4RG** as Resource Group Name and Move **VT-1** to **Selected Targets** then click on **Next**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/133.JPG)
 10. Review the Configuration then click on **Create**.
 11. Check box near to **dp4** and click on **Control -> Start**. Click on **Close**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/134.JPG)
 
 ## Deploying simple application to test OTD integration with weblogic
 
 Here we are going to deploy heapApp.war which we used in Lab5. We will access that application through **load balancer** now.
+
 1. Click on dp4.
 2. Click on **Domain Partition -> Administration -> Resource Groups**.
 3. Click on Resource Group **app4RG**.
 4. Click on **Deployments** tab, and then click on **Deployment -> Deploy**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/135.JPG)
 5. Select **Archive or exploded directory is on the server where Enterprise Manager is running** then click on **Browse**. Select the file **ScrabbleStage.war** from /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab6/ location then click on OK.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/136.JPG)
 6. Click on **Next** then click on **Deploy**. Click on **Close**.
-7. Go to Firefox and type the URL [http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp]( http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp).
+7. Go to Firefox and type the URL [http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp](http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp).
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/137.JPG)
 
 ## Migration Resource Group from one Cluster to other Cluster
 
 Now we are going to migrate Resource Group app4RG from app-cluster to another cluster. As the application deployed in app4RG are front ended by OTD, when you migrate your resource group on other cluster. WebLogic automatically detect the server setting and you can access the application continuously without doing any manual configuration.
+
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/138.JPG)
+
 * When you click on **migrate** the following actions performs:
 * Migrate API is called 
 * Resource Group starts on new hosts
@@ -912,32 +963,38 @@ So using the same URL, you can access the application.
  * Enter 9100 and 10101 as **Base Listen Port** and **SSL Base Listen Port** Respectively then click on Next.
  * Review the Configuration then click on **Create**.
  * Click on **WebLogic Domain -> Control -> Clusters**.
- * Check the box near **new-cluster** to make it highlighted and then click on **Control -> Start -> Start Servers**.
-	
-Note: Before going to next step, wait till managed server in new-cluster get started, you can 	monitor the progress in base_nm tab.
+ * Check the box near **new-cluster** to make it highlighted and then click on **Control -> Start -> Start Servers**.(Note: Before going to next step, wait till managed server in new-cluster get started, you can monitor the progress in base_nm tab.)
 3. Migration of Resource Group.
  * Click on **WebLogic Domain -> Environment -> Resource Groups**..
  * Check the box near to app4RG to make it highlighted and then click on Migrate. 
  * Select **new-cluster** as New Target then click on Migrate. In Confirmation window, click on Migrate.
- * Once you notice **Migrating resource group app4RG Completed successfully** message then click on Close.
+ * Once you notice **Migrating resource group app4RG -Completed successfully** message then click on Close.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/139.JPG)
 
 
 ## Access Application through OTD
-1. Go to Firefox and type the URL [http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp]( http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp) .
+
+1. Go to Firefox and type the URL [http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp](http://localhost:8080/dp4/ScrabbleStage/Scrabble.jsp) .
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/140.JPG)
 2. As the Resource group migrated from app-cluster to new-cluster. But still you are able to access the application through same URL. Load balancer is redirecting all requests to new cluster. new-cluster-1 is running on 9101 port and app-cluster-2 is running on 7102.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/141.JPG)
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/142.JPG)
 
 So you can successfully migrate the resource group from one cluster to another cluster without affecting the front end of your application. 
 
 # LAB 7: CLONING A PARTITION
+
 ## Overview:
+
 This lab describes, how you can clone the existing partition, Earlier in Lab 2, we created two domain partitions dp1, dp2 for Medrec applications. The differences are both the partitions were targeted to different Virtual target and database connections and they were using different security realms. Instead of creating dp2 manually and configure it manually through WLST, Admin Console or Fusion Middleware Console. We can use the dp2 partition and we can clone it and later modify it to use different database and use different security realms. 
 
 We will use dp2 partition for cloning.
 
 ## Applying Patch to domain:
 
-We have found some bug in existing installer, so we are using an interim patch Patch.jar as a workaround. There is bug opened for it ![OWLS-35927](https://jira.oraclecorp.com/jira/browse/OWLS-35927). 
-1. In Fusion Middleware Console, Click on Weblogic Domain -> Environment -> Clusters.
+We have found some bug in existing installer, so we are using an interim patch Patch.jar as a workaround. There is bug opened for it ![OWLS-35927](https://jira.oraclecorp.com/jira/browse/OWLS-35927).
+
+1. In Fusion Middleware Console, Click on **Weblogic Domain -> Environment -> Clusters**.
 2. Check the box near app-cluster to make it highlighted, and then click on **Control -> Shutdown -> Force Shutdown Now -> Forcibly Shutdown Servers**.  
 3. Go back to terminal named **base_admin**.
 4. Press CTRL+C to shutdown the Admin Server in base_domain.
@@ -947,7 +1004,8 @@ We have found some bug in existing installer, so we are using an interim patch P
 8. Check the box near app-cluster to make it highlighted and then click on **Control -> Start -> Start Servers**.
 
 ## Exporting a domain:
-1. Go back to Firefox and type the Fusion Middleware Control Console URL: [http://localhost:7001/em]( http://localhost:7001/em) .
+
+1. Go back to Firefox and type the Fusion Middleware Control Console URL: [http://localhost:7001/em](http://localhost:7001/em) .
 2. Enter **weblogic/welcome1** as **Username/Password** then Click on **Login**.
 3. Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
 4. Check the box near **dp2** to make it highlighted, and then Click on **Export**.
@@ -956,32 +1014,38 @@ We have found some bug in existing installer, so we are using an interim patch P
 7. You can go to the Desktop and verify the creation of **dp2.zip** and **dp2-attributes.json** file. 
 
 ## Importing a domain:
+
 1. Click on **WebLogic Domain -> Environment -> Virtual Targets**.
 2. Click on **Create**.
 3. Enter the following and then click on Next.
 	
-	Name:			VT5
+		Name:			VT5
 
 		Uri Prefix:		/dp5
 
 		Hosts:			localhost
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/143.JPG)
 4. Select **app-cluster** as Cluster and then click on **Create**.
 5. Go back to the terminal. The below command will modify the Virtual Target name in JSON file.
 6. sed -i -e 's/VT-Medrec-2/VT5/g' /home/oracle/Desktop/dp2-attributes.json
 7. Go back to Firefox in Fusion Middleware Control Console, Click on **WebLogic Domain -> Environment -> Domain Partitions**. 
 8. Click on Import, Browse to the /home/oracle/Desktop/dp2.zip and click on OK.
-9. Specify the new domain partition name dp5 in **â€œOverride domain partition name (optional)â€** and then click on **Ok**.
+9. Specify the new domain partition name dp5 in **Override domain partition name (optional)** and then click on **Ok**.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/144.JPG)
 10. Click on Refresh icon.
+
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/145.JPG)
 11. Check the box near **dp5** to make it highlighted, and then click on **Control -> Start**.
-12. Once you see **â€œStart Operation on target dp5 successfulâ€** in Confirmation window, click on **Close**.
+12. Once you see **Start Operation on target dp5 successful** in Confirmation window, click on **Close**.
 13. Verify the execution of Medrec application in dp5 at [http://localhost:7101/dp5/medrec]( http://localhost:7101/dp5/medrec) .
 
 # CLEANING AND RESETING
 
 ## Cleaning up Environment
-1. Go back to Fusion Middleware Control [http://localhost:7001/em]( http://localhost:7001/em) 
+1. Go back to Fusion Middleware Control [http://localhost:7001/em](http://localhost:7001/em) 
 2. Click on WebLogic Domain -> Control -> Cluster. 
 3. Check the boxes near to both the cluster then click on Control -> Shutdown -> Force Shutdown now.  Click on Forcibly Shutdown Servers.
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/146.JPG)
 4. Press CTRL + C on Tab title with otd_admin, otd_nm, base_nm, base_admin, dev_admin,app-cluster-1. 
 5. Open a new terminal.
 6. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/CleanUp/
