@@ -187,7 +187,7 @@ In the next step we are creating the below configuration for Medrec application 
 12. ./startWebLogic.sh
 13. Go back to Firefox, and type the Fusion Middleware Control Console URL [http://localhost:7001/em]( http://localhost:7001/em).
 14. Enter **weblogic/welcome1** as **User Name/Password** then Click on **Login**.
-15. Click on **WebLogic Domain -> Environments> Domain Partition**.
+15. Click on **WebLogic Domain -> Environment -> Domain Partition**.
 16. Click on **Create**.
 17. Enter **dp1** as Name then click on **Next**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/17.JPG)
@@ -240,28 +240,28 @@ In the next step we are creating the below configuration for Medrec application 
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/30.JPG)
  * Enter the following then click on **Create**.
 
-		Name:			administrator
+			Name:			administrator
 		
-		Description:		Medrec Admin	
+			Description:		Medrec Admin	
 		
-		Provider:		Default Authenticator
+			Provider:		Default Authenticator
 		
-		Password:		administrator123
+			Password:		administrator123
 		
-		Confirm Password:	administrator123
+			Confirm Password:	administrator123
 27. Configuring Mail Session.
- * Click on **Weblogic Domain ->Environment ->Domain Partition**.
+ * Click on **Weblogic Domain -> Environment -> Domain Partition**.
  * Click on Domain Partition **dp1**.
  * Click on **Domain Partition -> Other Services -> Mail Sessions**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/31.JPG)
  * Click on **Create**. 
  * Enter the following and click on **Next**.
 		
-		Name:			MedRecMailSession
+			Name:			MedRecMailSession
 		
-		Scope:			Leave as default
+			Scope:			Leave as default
 		
-		JNDI Name:		mail/MedRecMailSession
+			JNDI Name:		mail/MedRecMailSession
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/32.JPG)
  * Click on **Create**.
 28. Configuring JMS Server.
@@ -273,7 +273,6 @@ In the next step we are creating the below configuration for Medrec application 
  * In **JMS Server: General Setting**, Select the newly created file store as persistent store then click on **Next**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/35.JPG)
  * Click on **Create**.
-
 29. Configure JMS Module.
  * Click on **Domain Partition -> Messaging -> JMS Resources and Modules**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/36.JPG)
@@ -299,20 +298,18 @@ In the next step we are creating the below configuration for Medrec application 
  * Click on **Next**. 
  * Enter the following and click on **Next**. 
 
-		Name: 		PatientNotificationQueue
+			Name: 		PatientNotificationQueue
 
-		JNDI Name: 	com.oracle.medrec.jms.PatientNotificationQueue
+			JNDI Name: 	com.oracle.medrec.jms.PatientNotificationQueue
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/46.JPG)
  * Click on **Create**. Click on **PatientNotificationQueue**, Under **Targeting**, Select **Subdeployment targeting** as **Targeting Policy** and **MedRecJMS** as **Subdeployment** then click on **Apply**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/47.JPG)
-
 Note: You must restart domain partition before going to deploy Medrec Application.
  * Click on Change Center -> View Restart Checklist.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/48.JPG)
  * Select the box near to dp1 then click on Restart.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/49.JPG)
  * On Confirmation Screen, Click on Restart.
-
 30. Deployment of Medrec Application.
  * Click on **WebLogic Domain -> Environment -> Resource Groups**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/50.JPG)
@@ -322,8 +319,8 @@ Note: You must restart domain partition before going to deploy Medrec Applicatio
  * Select **Archive or exploded directory is on the server where Enterprise Manager is running** then click on **Browse**. Specify the location of **medrec.ear** from **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2** then click on **OK**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/52.JPG)
  * click on **Next** then click on **Deploy**. Click on **Close**.
- * Deploy **physician.ear** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2**	location.
- * Deploy **chat.war** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2**	location.
+ * Deploy **physician.ear** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2** location.
+ * Deploy **chat.war** file similarly from the **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab2** location.
 
 ## Accessing Medrec Application in Domain Partition dp1
 
@@ -333,21 +330,21 @@ Note: You must restart domain partition before going to deploy Medrec Applicatio
 3. Under Patient, Click on **I am New Here**
 4. Enter the following or any other data then click on Submit.
 
-		Email:				weblogic@oracle.com
+			Email:				weblogic@oracle.com
 
-		Password:			welcome1
+			Password:			welcome1
 
-		Confirm Password:		welcome1
+			Confirm Password:		welcome1
 
-		First Name:			Ankit
+			First Name:			Ankit
 
-		Last Name:			Pandey
+			Last Name:			Pandey
 
-		Gender:				Male
+			Gender:				Male
 
-		DOB:				Jun 23, 1988
+			DOB:				Jun 23, 1988
 
-		SSN:				123456788
+			SSN:				123456788
 Note: Make sure you not use 123456789 as SSN Number. 
 5. Click on **Getting Started** again on Medrec Home Page.
 6. Under Administrator, Click on **Login**.
@@ -388,7 +385,7 @@ While accessing the application we need to use the Virtual Target URI. As domain
 1. In Firefox, type the URL: [http://localhost:7101/dp2/medrec/](http://localhost:7101/dp2/medrec/)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/57.JPG)
 2. As both this application has exactly same JNDI name used within application, JNDI name of Datasource, JMS connection factory, mail sessions, Distributed Queue.
-3. Click on Getting Started! 
+3. Click on **Getting Started!**. 
 4. Under **Patient**, Click on Login, Try to login with weblogic@oracle.com/welcome1. You will not be able to login. As both Medrec application is connected to different database. So in Multitenant WebLogic Server, you can deploy exactly same application with same configuration but with different database and there will be no JNDI conflict in domain.
 
 ## Configuration of Day Trader application in domain partition 3
@@ -452,15 +449,15 @@ In this lab we are going to perform the following operations:
 8. Click on **New**.
 9. Enter the following then click on **OK**.
 	
- 	Name:			administrator
-		
-	Description:		Domain Partition 1 users
+			Name:			administrator
+
+			Description:		Domain Partition 1 users
 	
-	Provider:		Default Authenticator
+			Provider:		Default Authenticator
 	
-	Password:		welcome1
+			Password:		welcome1
 	
-	Confirm Password: 	welcome1
+			Confirm Password: 	welcome1
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/63.JPG)
 
 ## Assign the mynewrealm security realm to domain partition dp1.
@@ -477,13 +474,13 @@ In this lab we are going to perform the following operations:
 
 ## Verified that we have two security realms in different domain partition in single domain
 
-1. Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/index.xhtml]( http://localhost:7101/dp1/medrec/index.xhtml)
+1. Go to Firefox and type the URL: [http://localhost:7101/dp1/medrec/index.xhtml](http://localhost:7101/dp1/medrec/index.xhtml)
 2. Under Administrator, click on Login. 
 3. Login with old security realm credential that is administrator/administrator123.
 4. You must get **Incorrect username or password!**.
 5. Login with new security realm credential that is administrator/welcome1.
 6. Click on Logout. Click on Logout again.
-7. Go to Firefox and type the URL: [http://localhost:7101/dp2/medrec/index.xhtml]( http://localhost:7101/dp2/medrec/index.xhtml)
+7. Go to Firefox and type the URL: [http://localhost:7101/dp2/medrec/index.xhtml](http://localhost:7101/dp2/medrec/index.xhtml)
 8. Under Administrator, click on Login.
 9. Login with new security realm credential that is administrator/welcome1.
 10. You must get **Incorrect username or password!**.
@@ -520,7 +517,7 @@ Please remember that Virtual Target may be assigned to the one and only one doma
 
 ## Stop and remove domain partition dp1 from base_domain.
 
-1. In Fusion Middleware Control [http://localhost:7001/em]( http://localhost:7001/em) , Click on **WebLogic Domain -> Environment -> Domain Partition**. 
+1. In Fusion Middleware Control [http://localhost:7001/em](http://localhost:7001/em) , Click on **WebLogic Domain -> Environment -> Domain Partition**. 
 2. Check the **box** near **dp1** then click on **Control -> Stop->Force Stop Now**. On the Confirmation Screen Click on **OK**. Once you see the message **Partition state after the operation is SHUTDOWN** then click on **Close**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/67.JPG)
 3. Check the box near **dp1** and make it highlighted then click on **Delete**. In Delete Domain Partition Screen, click on OK.
@@ -557,15 +554,14 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 5. Enter **weblogic/welcome1** as **Username/Password** then click on Login.
 6. Creation of Virtual Target.
  * Click on **Environment -> Virtual Targets**.
-![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/72.JPG)
  * Click on New.
  * Enter the following then click on **OK**.
 	
-		Name:		VT-Medrec-1 (Both Virtual Target Name will be same)
+			Name:		VT-Medrec-1 (Both Virtual Target Name will be same)
 
-		Target:		Admin Server
+			Target:		Admin Server
 
-		URI Prefix:	/devDP
+			URI Prefix:	/devDP
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/73.JPG)
 7. Creation of Domain Partition.
  * Click on **Domain Partition -> New**.
@@ -586,27 +582,27 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/78.JPG)
  * Enter the following and click on **Next**.
 
-		Name:			MedRecGlobalDataSourceXA
+			Name:			MedRecGlobalDataSourceXA
 
-		JNDI Name:		jdbc/MedRecGlobalDataSourceXA
+			JNDI Name:		jdbc/MedRecGlobalDataSourceXA
 
-		Scope:			appRG in Medrec-Dev
+			Scope:			appRG in Medrec-Dev
 
-		Database Type:		Oracle
+			Database Type:		Oracle
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/79.JPG)
  * Select **Oracle's Driver (Thin XA) for Service connections; Version: Any** then click on Next.
  * In Transaction Options, click on **Next**.
  * Enter the following and click on **Next**. 
 	
-		Database Name:			pdborcl
+			Database Name:			pdborcl
 
-		Host Name:			localhost
+			Host Name:			localhost
 
-		Port:				1521
+			Port:				1521
 	
- 		Database User Name:		medrec1
+			Database User Name:		medrec1
 	
-		Password:			medrec1
+			Password:			medrec1
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/80.JPG)
  * click on **Test Configuration** and verify the connectivity.
  * Click on **Next** then Click on **Finish**.
@@ -616,9 +612,9 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/81.JPG)
  * Enter the following and click on **Next**.
 	
-		Name:		DevJMSServer
+			Name:		DevJMSServer
 	
-		Scope:		appRG in Medrec-Dev
+			Scope:		appRG in Medrec-Dev
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/82.JPG)
  * Click on **Create a New Store**.
  * Select **File Store** as Type then click on **Next**.
@@ -656,11 +652,11 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
  * Click on **New**.
  * Enter the following then click on **Next**.
 	
-		Name:			MedRecMailSession
+			Name:			MedRecMailSession
 
-		JNDI Name:		mail/MedRecMailSession
+			JNDI Name:		mail/MedRecMailSession
 
-		Scope:		appRG in Medrec-Dev
+			Scope:			appRG in Medrec-Dev
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/91.JPG)
  * Click on **Finish**.
 16. Deployments of Application
@@ -740,7 +736,7 @@ In this lab we are going to perform the following operations:
 4. Open a new tab.
 5. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab5
 6. cp setDomainEnv.sh /u01/wins/wls1221/user_projects/domains/base_domain/bin/
-7. In above command we have modified the JAVA\_OPTIONS as specified below. JAVA\_OPTIONS="**-XX:+UnlockCommercialFeatures -XX:+ResourceManagement -XX:+UseG1GC** ${JAVA_OPTIONS} ${JAVA_PROPERTIES}"
+7. In above command we have modified the JAVA_OPTIONS as specified below. JAVA_OPTIONS="**-XX:+UnlockCommercialFeatures -XX:+ResourceManagement -XX:+UseG1GC** ${JAVA_OPTIONS} ${JAVA_PROPERTIES}"
 8. Go back to Fusion middleware control then click on **WebLogic Domain -> Control -> Clusters**.
 9. Check the box near to **app-cluster** to make it highlighted and then click on **Control -> Start -> Start Servers**.
 10. tail -f /u01/wins/wls1221/user_projects/domains/base_domain/servers/app-cluster-1/logs/app-cluster-1.log
@@ -753,15 +749,15 @@ In this lab we are going to perform the following operations:
 3. Click on **WebLogic Domain->Environment -> Resource Consumption Managers**.
 4. Click on **Add Resource Manager** and Enter the following value then click on **OK**
 	
-		Resource Manager:		smallHeap
+			Resource Manager:		smallHeap
 
-		Policy Type:			HeapRetained
+			Policy Type:			HeapRetained
 
-		Shutdown:			400
+			Shutdown:			400
 
-		Slow:				250
+			Slow:				250
 
-		Notify:				200
+			Notify:				200
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/100.JPG)
 
 ## Associate the Resource Manager with Medrec-Dev domain partition
@@ -885,19 +881,19 @@ Note:  Go to Firefox and type the URL [http://localhost:8080/](http://localhost:
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/127.JPG)
 5. Enter the following and then click on OK.
 	
-		Runtime Name:			otd_runtime
+			Runtime Name:			otd_runtime
 
-		OTD Configuration Name:		mt
+			OTD Configuration Name:		mt
 
-		Admin Server Host:		localhost
+			Admin Server Host:		localhost
 
-		Admin Server Port:		8001
+			Admin Server Port:		8001
 
-		Username:			weblogic
+			Username:			weblogic
 
-		Password:			welcome1
+			Password:			welcome1
 
-		OTD Domain Name:		otd_domain
+			OTD Domain Name:		otd_domain
 		
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/128.JPG)
 
@@ -1019,11 +1015,11 @@ We have found some bug in existing installer, so we are using an interim patch P
 2. Click on **Create**.
 3. Enter the following and then click on Next.
 	
-		Name:			VT5
+			Name:			VT5
 
-		Uri Prefix:		/dp5
+			Uri Prefix:		/dp5
 
-		Hosts:			localhost
+			Hosts:			localhost
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/143.JPG)
 4. Select **app-cluster** as Cluster and then click on **Create**.
 5. Go back to the terminal. The below command will modify the Virtual Target name in JSON file.
@@ -1033,7 +1029,6 @@ We have found some bug in existing installer, so we are using an interim patch P
 9. Specify the new domain partition name dp5 in **Override domain partition name (optional)** and then click on **Ok**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/144.JPG)
 10. Click on Refresh icon.
-
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/145.JPG)
 11. Check the box near **dp5** to make it highlighted, and then click on **Control -> Start**.
 12. Once you see **Start Operation on target dp5 successful** in Confirmation window, click on **Close**.
@@ -1091,12 +1086,12 @@ You need to modify the **environment.properties.MT** file present in **/u01/cont
 5. Verify the creation of storage container by below command. 
 6. **mvn install -DexecuteCloudUtil -Dgoal=storage-list**
 7. We create the DBCS instance with name **winsdemo**.
-8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please donâ€™t execute creation of JCS instance until you get information that DBCS is in â€œRunningâ€ state)
-9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in â€œRunningâ€ state â€“ in that case write down DBCS IP address) 
+8. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-create** (Creation of DBCS instance may take about 20 minutes!! Please don't execute creation of JCS instance until you get information that DBCS is in **Running** state)
+9. **mvn install -DexecuteCloudUtil -Dgoal=dbcs-get-instance-details** (execute as many times until DBCS is in **Running** state in that case write down DBCS IP address) 
 10. We create the JCS instance with name **winsdemoWLS**.
 11. **mvn install -DexecuteCloudUtil -Dgoal=jcs-create**
 12. Creation of JCS instance may take about 20 minutes!! Verify the creation of JCS instance. 
-13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in â€œRunningâ€ state â€“ in that case write down JCS IP address) 
+13. **mvn install -DexecuteCloudUtil -Dgoal=jcs-get-instance-details** (execute as many times until JCS is in **Running** state in that case write down JCS IP address) 
 
 The above steps creates a domain **winsdemoWLS_domain** inside the JCS VM, and pluggable database **PDB1._{ Value of opc.identity from environment.properties}_.oraclecloud.internal**. A WebLogic domain contains the cluster **winsdemoWLS_cluster** with **winsdemo_adminserver** as Admin Server and **winsdemo_server_1** as managed server.
 
@@ -1106,8 +1101,11 @@ The above steps creates a domain **winsdemoWLS_domain** inside the JCS VM, and p
 2. **mvn install -DLab2 -Djcs.ip=_{PUBLIC IP OF JCS INSTANCE}_ -Ddbcs.ip=_{PUBLIC IP OF DBCS INSTANCE}_** (This maven commands create users and populate the database for all the domain partitions, after that it creates three domain partitions dp1, dp2 and dp3. Basically it creates the similar environment as we have at the end of Lab 2 in workshop for on premise, but here on the cloud environment.
 
 You can access the Medrec application running in domain partition dp1 and dp2; you can also access the day trader application running in dp3 partition.
+
 Accessing Medrec application in dp1: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp1/medrec](http://_{PUBLIC IP OF JCS INSTANCE}_/dp1/medrec)
-Accessing Medrec application in dp2: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp2/medrec] (http://_{PUBLIC IP OF JCS INSTANCE}_/dp2/medrec)  
+
+Accessing Medrec application in dp2: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp2/medrec](http://_{PUBLIC IP OF JCS INSTANCE}_/dp2/medrec)  
+
 Accessing Daytrader application in dp3: [http://_{PUBLIC IP OF JCS INSTANCE}_/dp3/daytrader] (http://_{PUBLIC IP OF JCS INSTANCE}_/dp3/daytrader) 
 
 ## LAB 3: SECURITY ISOLATION
