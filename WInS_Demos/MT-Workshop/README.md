@@ -552,8 +552,9 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 3. In Tab, Click on Terminal -> Set Title, Enter **dev_admin** as Title then Click on OK.
 4. Go to Firefox and type the WebLogic Admin Console URL: [http://localhost:9001/console](http://localhost:9001/console).
 5. Enter **weblogic/welcome1** as **Username/Password** then click on Login.
-6. Creation of Virtual Target.
- * Click on **Environment -> Virtual Targets**.
+6. Creation of Virtual Target.                      
+ * Click on **Environment -> Virtual Targets**.                                                        
+![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/72.JPG)
  * Click on New.
  * Enter the following then click on **OK**.
 	
@@ -644,10 +645,10 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
  * Click on **New**. 
  * Select the box for Distributed Queue then click on **Next**.
  * Enter **PatientNotificationQueue** as Name and **com.oracle.medrec.jms.PatientNotificationQueue** as JNDI Name and leave other default then click on **Next**. 
- * Click on **Advanced Targeting**, Select DevMedrecJMS as Subdeployments and DevJMSServer as Targets then click on **Finish**.
+ * Click on **Advanced Targeting**, Select DevMedrecJMS as Subdeployments and DevJMSServer as Targets then click on **Finish**.    
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/89.JPG)
 15. Creation of Mail Session. 
- * Click on **Services -> Mail Sessions**.
+ * Click on **Services -> Mail Sessions**.                              
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/90.JPG)
  * Click on **New**.
  * Enter the following then click on **Next**.
@@ -662,7 +663,7 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 16. Deployments of Application
  * Click on **Deployments** then on **Install**.
  * Select the medrec.ear application from the Path **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/** then click on **Next**.
- * Select **Install this deployment as an application** and **appRG in Medrec-Dev** as Scope then click on **Next**. Click on **Finish**.
+ * Select **Install this deployment as an application** and **appRG in Medrec-Dev** as Scope then click on **Next**. Click on **Finish**.                                  
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/92.JPG)
  * Click on Install then Select the physician.ear application from the Path **/u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab4/** then click on **Next**.
  * Select **Install this deployment as an application** and **appRG in Medrec-Dev** as Scope then click on **Next**. Click on **Finish**.
@@ -684,7 +685,7 @@ In Lab 2, you configure the domain using Fusion Middleware console, but here we 
 1. Go back to EM console of base_domain. Go to Firefox and type the WebLogic Admin Console URL: [http://localhost:7001/em](http://localhost:7001/em).
 2. Enter **weblogic/welcome1** as **Username/Password** and click on **Login**.
 3. Click on **WebLogic Domain-> Environment ->Domain Partition**. 
-4. Click on Import. Click on **Browse** button, Select the file **Medrec-Dev.zip** from **/home/oracle/Desktop** directory then click on **OK**.
+4. Click on Import. Click on **Browse** button, Select the file **Medrec-Dev.zip** from **/home/oracle/Desktop** directory then click on **OK**.                                             
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/95.JPG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/MT-Workshop/md.resources/96.JPG)
 5. Initially it will have State **Unknown**. Wait for 1 or 2 minute, click on Refresh icon to get the current state. 
@@ -988,7 +989,7 @@ We will use dp2 partition for cloning.
 
 ## Applying Patch to domain:
 
-We have found some bug in existing installer, so we are using an interim patch Patch.jar as a workaround. There is bug opened for it ![OWLS-35927](https://jira.oraclecorp.com/jira/browse/OWLS-35927).
+We have found some bug in existing installer, so we are using an interim patch Patch.jar as a workaround. There is bug opened for it [OWLS-35927](https://jira.oraclecorp.com/jira/browse/OWLS-35927).
 
 1. In Fusion Middleware Console, Click on **Weblogic Domain -> Environment -> Clusters**.
 2. Check the box near app-cluster to make it highlighted, and then click on **Control -> Shutdown -> Force Shutdown Now -> Forcibly Shutdown Servers**.  
