@@ -1,7 +1,16 @@
 package com.oracle.wins.restclient;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.http.Header;
@@ -14,6 +23,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.oracle.wins.keygen.JSCHKeyGenerator;
 import com.oracle.wins.util.restclient.util.OPCProperties;
 
 public class ExecuteGoal {
@@ -248,7 +258,72 @@ public class ExecuteGoal {
 	        	response = ExecuteBatch.createJCSAuto();
 	        	System.out.println(response);        	
 
-	        	break;	
+	        	break;
+	        case OPCProperties.GOAL_GENERATE_SSH_KEYPAIR:
+	        	System.out.println("Generate SSH key pair ----------------------------------------");
+	        	System.out.println("WARNING! This will create new public and private key and overwrite the existing keypairs!");
+	        	System.out.println("The current keypairs will be copied with date postfix.");
+	        	System.out.println("Passphrase used from properties file (" + args[0] + "): " + opcProperties.getProperty(OPCProperties.SSH_PASSPHRASE));
+	        	System.out.println();
+	        	
+	        	String datePostfix =  new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+	        	
+	        	
+	        	//backup existing private key
+	        	File file = new File("pk.openssh");
+	        	File backupFile = new File("pk.openssh." + datePostfix);
+	        	
+	        	file.renameTo(backupFile);
+	        	
+	        	System.out.println("Private key backup: " + "pk.openssh." + datePostfix);
+	        	
+	        	//backup public key from properties file to separate file
+	        	FileInputStream in;
+				try {
+					in = new FileInputStream(args[0]);
+		        	Properties props = new Properties();
+		        	props.load(in);
+		        	in.close();
+		        	
+		        	PrintWriter out = new PrintWriter("public.key." + datePostfix);
+		        	
+		        	out.print(props.get(OPCProperties.SSH_PUBLIC_KEY));
+		        	out.close();
+		        	
+		        	System.out.println("Public key backup: " + "public.key." + datePostfix);
+		        	
+				} catch (IOException e) {
+					e.printStackTrace();
+					response = "Failure during private key backup.";
+				}
+				
+				//generate new keypair
+				response = JSCHKeyGenerator.generateKeys("pk.openssh", opcProperties.getProperty(OPCProperties.SSH_PASSPHRASE));
+				//System.out.println("Public key: " + response);
+				
+				//replace public key in properties file
+				try {
+					List<String> fileContent = new ArrayList<>(Files.readAllLines(new File(args[0]).toPath(), StandardCharsets.UTF_8));
+
+					for (int i = 0; i < fileContent.size(); i++) {
+					    if (fileContent.get(i).startsWith(OPCProperties.SSH_PUBLIC_KEY)) {
+					        fileContent.set(i, OPCProperties.SSH_PUBLIC_KEY + "=ssh-rsa " + response + " rsa-key-" + datePostfix);
+					        break;
+					    }
+					}
+
+					Files.write(new File(args[0]).toPath(), fileContent, StandardCharsets.UTF_8);
+				} catch (IOException e) {
+					e.printStackTrace();
+					response = "Failure during public key update.";
+				}
+
+				
+				response = "Keypair has been generated.";
+
+	        	System.out.println(response);        	
+
+	        	break;	        	
 	        default: 
 	        	System.out.println("Wrong goal specified: " + sGoal);
 	            break;

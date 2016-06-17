@@ -15,6 +15,7 @@ public class OPCProperties {
 	public static final String GOAL_JCS_INSTANCE_CREATE = "jcs-create";
 	public static final String GOAL_CREATE_JCS_AUTO = "jcs-create-auto";
 	public static final String GOAL_JCS_GET_SPECIFIC_JOB_DETAILS = "jcs-get-job-details";
+	public static final String GOAL_GENERATE_SSH_KEYPAIR = "generate-ssh-keypair";
 	
 	public static final String GOAL_STORAGE_DETAILS = "storage-get-details";
 	public static final String GOAL_STORAGE_CREATE = "storage-create";
@@ -33,6 +34,7 @@ public class OPCProperties {
 	public static final String OPC_STORAGE_GENERIC_URL = "opc.storage.generic.url";
 		
 	public static final String SSH_PUBLIC_KEY = "ssh.public.key";
+	public static final String SSH_PASSPHRASE = "ssh.passphrase";
 
 	public static final String JCS_REST_URL = "jcs.rest.url";
 	public static final String JCS_INSTANCE_VERSION_1 = "jcs.instance.version.1";
