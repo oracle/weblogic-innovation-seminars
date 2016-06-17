@@ -45,6 +45,7 @@
     <profile>
       <id>cloudAPI</id>
       <activation>
+        <activeByDefault>true</activeByDefault>
         <property>
           <name>executeCloudUtil</name>
         </property>
