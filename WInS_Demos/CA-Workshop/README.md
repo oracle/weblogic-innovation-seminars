@@ -60,10 +60,10 @@ Administrator do not requires any special skills or domain expertise in areas li
 
 Variable | Value
 ---------- | ----------
-Operating  | Oracle Linux 6.4 x86_64
-Hostname |  localhost, wins-vbox
-Root User  |  root/oracle
-Oracle User  | oracle/welcome1
+Operating | Oracle Linux 6.4 x86_64
+Hostname | localhost, wins-vbox
+Root User | root/oracle
+Oracle User | oracle/welcome1
 Note:  For this hand on lab you should only need to use **oracle** user account.
 
 **Installation Directories**	
@@ -230,7 +230,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 4. /u01/wins/wls1221/user_projects/domains/otd_domain/bin/startWebLogic.sh (It starts the Admin Server in otd_domain.)
 5. In terminal, Click on **Terminal -> Set Title**. Enter **otd_Admin** as Title then click on **OK**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/3.PNG)
-6. Go to Firefox, and type the URL for Fusion Middleware Control Console for otd_domain http://localhost:9001/em .
+6. Go to Firefox, and type the URL for Fusion Middleware Control Console for otd_domain [http://localhost:9001/em](http://localhost:9001/em).
 7. Enter **weblogic/welcome1** as **Username/Password** then Click on **Login**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/4.PNG)
 8. Click on **WebLogic Domain -> Administration -> OTD Configurations**.
@@ -250,7 +250,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 15. Once **zdp** created, check the box near zdp to make it highlighted then click on Start Instances. Wait until you see the Message **Start Operation on target Domain_otd_domain/otd_domain/zdp Completed successfully**. Then click on **Close** on that 	window. Do not close this FMW Console later we will use it to stop this load balancer instance.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/9.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/10.PNG)
-16. Go to Firefox and type the URL http://localhost:8080/ to verify that load balancer instance is running.
+16. Go to Firefox and type the URL [http://localhost:8080/](http://localhost:8080/) to verify that load balancer instance is running.                           
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/11.PNG)
 
 ## Starting Node Managers and Servers:
@@ -267,7 +267,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 9. /u01/wins/m2/Domain1221/bin/startNodeManager.sh
 10. In this tab, Click on Terminal -> Set Title.  Enter **m2_nm** as Title then click on OK.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/13.PNG)
-11. Go to Firefox and type the URL for Admin Console http://localhost:7001/console .
+11. Go to Firefox and type the URL for Admin Console [http://localhost:7001/console](http://localhost:7001/console).
 12. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/14.PNG)
 13. Click on **Environment -> Servers**. Click on **Control** tab then click on **Customize this table**.
@@ -281,7 +281,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 ## Rolling Restart Rollout:
 
 1. Now on each of these managed servers, we have application deployed, which we will be accessing during the rollout to show that even during the rollout user can access their applications and their session data. So for the end user the rollout will be transparent. 
-2. Go to Firefox and type the URL http://localhost:8080/ScrabbleStage/Scrabble.jsp for application. We are accessing the application through OTD. This Application also includes the Name of the Server which is fulfilling the request. This application is a simple **Word score counter**, so whatever the word you add here, it gives you the score based on how many letters and the value of each letter in the word. So the Score for word **WebLogic** is 16. We are using this application to show that even after the rollout user session data is maintained.
+2. Go to Firefox and type the URL [http://localhost:8080/ScrabbleStage/Scrabble.jsp](http://localhost:8080/ScrabbleStage/Scrabble.jsp) for application. We are accessing the application through OTD. This Application also includes the Name of the Server which is fulfilling the request. This application is a simple **Word score counter**, so whatever the word you add here, it gives you the score based on how many letters and the value of each letter in the word. So the Score for word **WebLogic** is 16. We are using this application to show that even after the rollout user session data is maintained.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/19.PNG)
 3. What we will see during the Rolling Restart is that ms2 will get shutdown and brought up again and then the rollout will wait until all the application on that ms2 are ready and then it will shutdown ms1 and bring it up again and will see that throughout this process we can access this application with session information still preserved.
 4. In **Domain Structure**, click on Domain name **Domain1221**.
@@ -289,7 +289,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 6. The first three tabs you use to select the target of the Rollout (Domain, Cluster and Servers). In this case we are going to rollout the Clusters.
 7. Check the box near **Cluster** then Click on **Patch**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/20.PNG)
-8. The kind of rollout which we are going to perform is **Rolling Restart**, so choose the box for **Rolling Restart** and click on **Next**.
+8. The kind of rollout which we are going to perform is **Rolling Restart**, so choose the box for **Rolling Restart** and click on **Next**.                                                                                                     
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/21.PNG)
 9. On this page we have some options, Migration Properties allows you to handle singleton service migration during the rollout. **Shutdown Timeout** is a timeout if you have sessions that may persist for very longtime and you can set this timeout so that it can try graceful shutdown. **Delay between Nodes** is just a propagation time. It will pause for this amount of time after successfully doing the rollout on one node before starting on the Next node. 60 is the default value, but in order to speed up the Lab, we make it 6. **Dry run** is used when the user wants to check that all of the pre conditions for doing this particular roll out are met, without actually performing the rollout. So finally to make sure that I could connect to all of the Node Managers and this topology is valid. If you are going to do Java Home rollout, so it will identify that java Home path is correct and valid. So it is the way through which you can identify issue with the rollout before actually attempting the rollout. So you can do Dry Run for a rollout. Here we are not choosing this box. So click on **Finish**.                                       
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/22.PNG)
@@ -334,14 +334,14 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 1. In this case we are going to rolling out new Oracle Home with a new patched version. If you look in Servers page, Admin Server, ms1 and ms2 has **WebLogic Server 12.2.1.0.0 Tue Oct 6 10:05:47 PDT 2015 1721936** as WebLogic Version. We will show that during the process it shutdown the managed server and update the WebLogic Version. As we described in the Environment section that we create a new Oracle Home with modified WebLogic Server version and it implementation time. So you can verify the Oracle Home rollout by the WebLogic Version.
 2. Click on Domain name **Domain1221**, and then click on **ZDT Control** tab.
 3. Click on **Cluster** tab, Select the box near **Cluster** and then click on **Patch**.
-4. The kind of rollout which we are going to perform is OracleHome, so choose the box for **Oracle Home** and click on **Next**.   ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/37.PNG)
+4. Choose the box for **Oracle Home** and click on **Next**.                                                                    ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/37.PNG)
 5. In **Rollout OracleHome**, We need to specify the location of patched Oracle Home, Enter **/u01/wins/OracleHome1221p2.jar** here. This is the archive file which we created in Environment Section. 
 6. In the **Backup OracleHome** we are going to specify the location **/u01/wins/OracleHome1221p1-Backup** where to store the current OracleHome. So in the future if we want to rollback, then backup will be there for us.
 7. Edit the value for **Delay between Nodes** to 6 second then click on **Finish**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/38.PNG)
 8. You can see the **Workflow Task id**, **Rollout Type** and **Status of Last Action**.
 9. Click on the **Environment -> Server**, and then Click on **Control** tab.
-10. We can see that ms2 is in Shutdown state. So while its down, go back to Application page, click on refresh, and we see that WebLogic Session data is still available and now we connected to ms1. Because ms2 is down, so OTD redirected us to ms1.
+10. We can see that ms2 is in Shutdown state. So while its down, go back to Application page, click on refresh, and we see that WebLogic Session data is still available and now we connected to ms1. Because ms2 is down, so OTD redirected us to ms1.            
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/39.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/40.PNG)
 11. On the Servers page, click on the **Refresh** icon, to get the current state after each 10 seconds.
@@ -368,9 +368,9 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 7. You can see the **Workflow Task id**, **Rollout Type** and **Status of Last Action**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/48.PNG)
 8. Click on the **Environment -> Server**, and then Click on **Control** tab.
-9. We can see that ms2 is in Shutdown state. So while its down, go back to Application page, click on refresh, and we see that WebLogic Session data is still available and now we connected to ms1. Because ms2 is down, so OTD redirected us to ms1.
+9. We can see that ms2 is in Shutdown state. So while its down, go back to Application page, click on refresh, and we see that WebLogic Session data is still available and now we connected to ms1. Because ms2 is down, so OTD redirected us to ms1.         
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/49.PNG)
-10. On the Server Page, Now the ms2 is running, so ms1 will shutdown now. Now reload the application page, we are connected to ms2, and we can see the Version 2 of the application. And session data is still preserved. When ms1 will be running, it will also update to run application version 2. So this is done without no application downtime and loss of session.
+10. On the Server Page, Now the ms2 is running, so ms1 will shutdown now. Now reload the application page, we are connected to ms2, and we can see the Version 2 of the application. And session data is still preserved. When ms1 will be running, it will also update to run application version 2. So this is done without no application downtime and loss of session.                             
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/50.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/51.PNG)
 This completes our Lab 1. You must follow the **Clean Up** Section before proceeding to next Lab.
@@ -380,7 +380,7 @@ This completes our Lab 1. You must follow the **Clean Up** Section before procee
 1. Click on **Environment -> Server**, and then click on **Control** tab.
 2. Check the box near to **Admin Server, ms1 and ms2** then click on **Shutdown -> Force Shutdown Now**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/52.PNG)
-3. Go back to Fusion Middleware Control Console of **otd_domain** http://localhost:9001/em . 
+3. Go back to Fusion Middleware Control Console of **otd_domain** [http://localhost:9001/em](http://localhost:9001/em). 
 4. Check the box near **zdp** to make it highlighted and click on **Stop Instances**. In **Confirmation** Page, Click on **OK**. It will stop the load balancer. Click on **Close**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/53.PNG)
 5. Press **Ctrl+ C** on all terminals with name **otd_nm, otd_Admin, Admin_nm, ms1_nm and ms2_nm**. Then close all the terminals.
@@ -482,72 +482,75 @@ Note: If any of images does not create successfully, you can delete the exiting 
 
 ## Starting Admin Server in respective domains:
 
-1. **sudo docker run -p 8001:8001 --name=wlsadmin  -h aadrdemo samplewls:12.2.1 startWebLogic.sh** (It starts the docker container with name wlsadmin inside the docker image **samplewls:12.2.1**. The docker container is running the WebLogic Admin Server with aadrdemo as hostname and 8001 as port number inside the docker image. But you can access the Admin Console on URL 	http://localhost:8001/console in the host machine Firefox browser.)
+1. **sudo docker run -p 8001:8001 --name=wlsadmin  -h aadrdemo samplewls:12.2.1 startWebLogic.sh** (It starts the docker container with name wlsadmin inside the docker image **samplewls:12.2.1**. The docker container is running the WebLogic Admin Server with aadrdemo as hostname and 8001 as port number inside the docker image. But you can access the Admin Console on URL 	[http://localhost:8001/console](http://localhost:8001/console) in the host machine Firefox browser.)                    
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/61.PNG)
 2. In this tab, Click on **Terminal -> Set Title**. Enter **primaryDomain** as Title then click on **OK**.
 3. Wait until the **Admin Server** is in **Running** State. Then only proceed to next step.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/62.PNG)
 4. Open a new tab.
-5. **sudo docker run -p 8002:8001 --name=wlsadmin2  -h aadrdemo samplewls2:12.2.1** startWebLogic.sh (It starts the docker container with name **wlsadmin2** inside the docker image **samplewls2:12.2.1**. The docker container is running the WebLogic Admin Server with aadrdemo as hostname and 8001 as port number inside the docker image. But you can access the Admin Console on URL 	http://localhost:8002/console in the host machine Firefox browser)
+5. **sudo docker run -p 8002:8001 --name=wlsadmin2  -h aadrdemo samplewls2:12.2.1** startWebLogic.sh (It starts the docker container with name **wlsadmin2** inside the docker image **samplewls2:12.2.1**. The docker container is running the WebLogic Admin Server with aadrdemo as hostname and 8001 as port number inside the docker image. But you can access the Admin Console on URL 	[http://localhost:8002/console](http://localhost:8002/console) in the host machine Firefox browser)
 6. In this tab, Click on **Terminal -> Set Title**.  Enter **standbyDomain** as Title then click on **OK**.
 7. Wait until the Admin Server is in Running State. Then only proceed to next step.
 
 Note: Both the base_domain are running in **development mode**. If somehow you container is not started successfully with WebLogic Server. You can stop the container and remove the container by below commands.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/63.PNG)
+
 **sudo docker stop <container_name>;#sudo docker stop wlsadmin; or sudo docker stop wlsadmin2**
 
 **sudo docker rm $(sudo docker ps -a -q)**
 
 ## Cross Domain Transaction Recovery show case:
 
-1. Go to Firefox, and type the URL for **primary Domain** Admin Console http://localhost:8001/console .
+1. Go to Firefox, and type the URL for **primary Domain** Admin Console [http://localhost:8001/console](http://localhost:8001/console).
 2. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/64.PNG)
 3. Click on domain name base_domain, Go down in the **Configuration -> General** tab, Click on **Advanced** and then verify the Site Name to **DEMOPRI**.
 4. Click on **Configuration -> JTA** tab, then click on **Advanced** and then verify the **Recovery Site Name** to **DEMOSTD** and **Cross Domain Recovery Retry Interval** to **120**.
 5. Click on **Deployments**, and verify the **CADemo** application deployments.
-6. Open another tab in Firefox and Enter the URL for standbyDomain Admin Console http://localhost:8002/console .
+6. Open another tab in Firefox and Enter the URL for standbyDomain Admin Console [http://localhost:8002/console](http://localhost:8002/console) .
 7. Enter **weblogic/welcome1** as **Username/Password** then click on **Login**.
 8. Click on domain name **base_domain**, Go down in the **Configuration -> General** tab, Click on **Advanced** and then verify the **Site Name** to **DEMOSTD**.
 9. Click on **Configuration -> JTA** tab, then click on **Advanced** and then verify the **Recovery Site Name** to **DEMOPRI** and **Cross Domain Recovery Retry Interval** to **120**.
 10. Click on **Deployments**, and verify the **CADemo** application deployments.
-11. Open a new tab in browser and type the URL http://localhost:8001/CADemo/Initialize to **initialize the Database table**. Click on **go to online shop**.  This is the application deployed on primary domain. We will refer this tab as primarySite tab for next few steps.
+11. Open a new tab in browser and type the URL [http://localhost:8001/CADemo/Initialize](http://localhost:8001/CADemo/Initialize) to **initialize the Database table**. Click on **go to online shop**. This is the application deployed on primary domain. We will refer this tab as primarySite tab for next few steps.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/65.PNG)
-12. Open a new tab in Firefox and type the URL http://localhost:8002/CADemo/  to access the application deployed in standbyDomain. We will refer this tab as **standbySite** tab for next few steps.
+12. Open a new tab in Firefox and type the URL [http://localhost:8002/CADemo/](http://localhost:8002/CADemo/)  to access the application deployed in standbyDomain. We will refer this tab as **standbySite** tab for next few steps.
 13. In the standbySite, Click on **See Inventory** and make sure every Item has Quantity equal to **3**. Click on **return to main page** link.
 14. Go back to the **primarySite** tab, Click on **See Inventory** and verify the value of **Quantity** be the same with standbySite value. Click on **return to main page** link
 15. In the **primarySite**, Click on **Get Activity Report**. It will be blank as of now. Click on **return to main page** link.
 16. In the **standbySite**, Click on **Get Activity Report**. It will be blank as of now. Click on **return to main page** link.
 17. In the **primarySite**, Click on **Would you like to buy something?**, and then enter the following value or any other data then click on **Submit**.
+
 			Men T Shirt:		1
 			Women T Shirt:		1
 			Name:			Kyle
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/66.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/67.PNG)
-You will see the page like below. Click on **return to main page**, Click on **Get Activity Report**. Click on **return to main page** link.
+18. You will see the page like below. Click on **return to main page**, Click on **Get Activity Report**. Click on **return to main page** link.                                  
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/68.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/69.PNG)
-18. In the standbySite, Click on **Get Activity Report**, and verify the transaction. Click on **return to main page** link. Both sites will have same **Activity Log** and same **Inventory Stocks Quantity**.
+19. In the standbySite, Click on **Get Activity Report**, and verify the transaction. Click on **return to main page** link. Both sites will have same **Activity Log** and same **Inventory Stocks Quantity**.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/70.PNG)
-19. This application has few basic checks before performing a transaction:
+20. This application has few basic checks before performing a transaction:
  * While purchasing or returning the Item, if you do not enter any Quantity and Name both. It will ask you to provide both.
  * While purchasing or returning the item, if you provide the quantity but not the Name, It will ask you to provide the Name.
  * While purchasing or returning the item, if you enter the Name but not the Quantity, it will ask you to provide the Quantity Value.
  * If you are purchasing the Item and that much quantity of items is not available, transaction will not happen.
 You can check the above conditions by yourself.
-20. In the primarySite, on main page of application, Click on **Would you like to Buy Something**, and then enter the following value or any other data and choose the box for **Procedure Failure** then click on **Submit**.
+21. In the primarySite, on main page of application, Click on **Would you like to Buy Something**, and then enter the following value or any other data and choose the box for **Procedure Failure** then click on **Submit**.
+
 			Women Pants:		2
 			Man Pants:		2
 			Name:			Maciej
 	
-As you click on Submit, you will see **The Connection was reset** on this tab, It means Admin 	Server on this domain has been **Shutdown**. You can go back to Terminal in **primaryDomain** tab; you can verify the Shutdown of Admin Server.
+22. As you click on Submit, you will see **The Connection was reset** on this tab, It means Admin Server on this domain has been **Shutdown**. You can go back to Terminal in **primaryDomain** tab; you can verify the Shutdown of Admin Server.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/71.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/72.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/73.PNG)
-21. We have configured the Recovery Interval to 120 seconds, so we need to wait some time.
-22. In the standbySite, Click on **Get Activity Report**. You can see the details of the Transaction. Click on **return to main page** link.
+23. We have configured the Recovery Interval to 120 seconds, so we need to wait some time.
+24. In the standbySite, Click on **Get Activity Report**. You can see the details of the Transaction. Click on **return to main page** link.                                            
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/74.PNG)
-23. Click on **See Inventory**, and the Items quantity has been modified as well.
+25. Click on **See Inventory**, and the Items quantity has been modified as well.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/75.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/76.PNG)
 
@@ -556,7 +559,7 @@ Note: As this is the Active-Active configuration, so like we performed transacti
 ## Clean Up:
 1. Go back to terminal, with name **primaryDomain**.
 2. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/CleanUp
-3. **./delete_env.sh**
+3. **./delete_env.sh**                              
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/77.PNG)
 
 Note: It stops the running docker container and then removes the docker container. Then it deletes the docker images we created during the Lab. At last it drops users in both the databases.
@@ -591,6 +594,7 @@ These artifacts are grouped in a jar called a Coherence Grid Archive (GAR) that 
 ## Coherence Application Deployment Models
 
 Coherence Applications are typically deployed in tier. The simplest model is a two-tiered deployment. A data tier, used to host Coherence Server instances responsible for storing the data related to the application. And an application tier that hosts the application consuming data stored in the data tier. 
+
 Each tier is managed using standard WLS principles combined with the new functionality integrated for the 12.1.2 release. The new Coherence Cluster definition represents the operational (runtime) configuration of a Coherence cluster. Coherence clusters are then associated with a WLS cluster representing the data tier, and a separate WLS cluster representing the application tier. In the data tier, the grid archive is deployed to each managed server, which is configured as a storage enabled coherence node. The application tier would deploy the identical GAR, packaged in an EAR and the EAR is then deployed to each storage disabled managed server representing the application tier.
 
 Note: it is considered best practice to have dedicated storage tiers, separate from the application tier to ensure optimum cluster performance. Please refer to the diagram below.
@@ -635,10 +639,11 @@ The objective of this step is to create the environment for sample application.
 
 **Run the domain creation script** 
 
-The domain configuration come in domain template form and we must execute the unpack command to create the two domains. Carry out the following: 
+The domain configuration come in domain template form and we must execute the unpack command to create the two domains. Carry out the following:
+
 1. Open a new terminal 
 2. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Coherence.Federated.Cache/setup/ 
-3. Run the following script to create (unpack) the two domains: **./createDomains.sh**
+3. Run the following script to create (unpack) the two domains: **./createDomains.sh**                           
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/80.PNG)
 
 This indicates the two domains have been unpacked successfully. If you have any errors first check the domain creation logs: 
@@ -655,20 +660,20 @@ And/or consult your instructor. You can re-run **createDomain.sh**, but first cl
 1. Once the previous step has been completed, do the following:
 2. In this tab, click on **Terminal -> Set Title**, Enter **A_site_nodemanager** as Title then click on **OK**.
 3. cd /u01/wins/wls1221/user_projects/domains/A_site_domain/bin/
-4. Run the following to start the node manager for **site A**: ./startNodeManager.sh
+4. Run the following to start the node manager for **site A**: **./startNodeManager.sh**
 5. Open a new tab.
 6. In this tab, click on **Terminal -> Set Title**, Enter **B_site_nodemanager** as Title then click on **OK**.
 7. cd /u01/wins/wls1221/user_projects/domains/B_site_domain/bin/
-8. Run the following to start the node manager for **site B**:  ./startNodeManager.sh
+8. Run the following to start the node manager for **site B**:  **./startNodeManager.sh**
 9. Open a new tab.
 10. /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Coherence.Federated.Cache/setup/startA_site_adminserver.sh (This script starts the Admin Server in A_site_domain through NodeManager.)
 11. /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Coherence.Federated.Cache/setup/startB_site_adminserver.sh (This script starts the Admin Server in B_site_domain through NodeManager)
-12. Open Firefox and login to the A_site_domain's console at the following URL http://localhost:7001/console using weblogic/welcome1.
+12. Open Firefox and login to the A_site_domain's console at the following URL [http://localhost:7001/console](http://localhost:7001/console) using weblogic/welcome1.                                                               
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/81.PNG)
 13. Click on **Environment -> Servers**. (Check the **configuration** and status of the managed servers.According to the architecture here we can see one cache server which acts as the data grid layer and a web application server which hosts the demo application.)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/82.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/83.PNG)
-14. Open a New Private Firefox Window and login to the B_site_domain's console at the following URL http://localhost:8001/console  using weblogic/welcome1. It is important to use this type of separate browser to login the B_site_domain's console; otherwise Firefox will always kick out from the other site's admin console.
+14. Open a New Private Firefox Window and login to the B_site_domain's console at the following URL [http://localhost:8001/console](http://localhost:8001/console) using weblogic/welcome1. It is important to use this type of separate browser to login the B_site_domain's console; otherwise Firefox will always kick out from the other site's admin console.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/84.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/85.PNG)
 15. Click on **Environment -> Servers**.
@@ -691,11 +696,11 @@ The demo application must now be deployed for both domains. Carry out the follow
 Run the federated cache demo application. Once the previous step has been completed, access to the demo application on both sites:
 
 1. Open a new tab in browser which is used for A_site_domain. 
-2. To run the demo application, go to the following URL. Choose port **7007**. http://localhost:7007/WebApp/faces/ContactList.jsp 
+2. To run the demo application, go to the following URL. Choose port **7007**. [http://localhost:7007/WebApp/faces/ContactList.jsp](http://localhost:7007/WebApp/faces/ContactList.jsp) 
 On the application's page you can see lot of information. Currently this application's domain is A_site_domain; hosting server is webapp_server1, the Coherence data grid layer ensured by **CoherenceClusterA** in this domain which is one of the participants of the federated cache. If you have questions about the architecture see the diagram in the overview section or consult your instructor.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/88.PNG)
 3. Open a new tab in the (private) browser which is used for **B_site_domain**.
-4. To access to the same demo application in the secondary site go to the following URL. Choose port **8007**. http://localhost:8007/WebApp/faces/ContactList.jsp .(On the application's page here you can also find information about the hosting environment and the replication status as well. As you can see this application belongs to **B_site_domain** and part of the **CoherenceClusterB** which is the other participant of the federated cache. If you have questions about the architecture see the diagram in the overview section or consult your instructor. Note:  If you do not see the above output in any of site or both the site follow the instruction in **Troubleshoot** section given in the last of part of Lab 3.)
+4. To access to the same demo application in the secondary site go to the following URL. Choose port **8007**. [http://localhost:8007/WebApp/faces/ContactList.jsp](http://localhost:8007/WebApp/faces/ContactList.jsp). (On the application's page here you can also find information about the hosting environment and the replication status as well. As you can see this application belongs to **B_site_domain** and part of the **CoherenceClusterB** which is the other participant of the federated cache. If you have questions about the architecture see the diagram in the overview section or consult your instructor. Note:  If you do not see the above output in any of site or both the site follow the instruction in **Troubleshoot** section given in the last of part of Lab 3.)                                   
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/89.PNG)
 5. Now test the behavior of the **Active-Active** configured federated cache.
 6. Click in the **Insert 5 Random Contacts** button. The browser for A_site_domain should resemble the following. The red background indicates the recently (in the last 5-7 sec.) inserted/updated records.
@@ -725,7 +730,7 @@ On the application's page you can see lot of information. Currently this applica
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/102.PNG)
 18. Restart the replication by clicking on **Start replication** button on the A_site_domain.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/103.PNG)
-19. Switch to the B_site_domain's (private) browser and check the result. You should see the updated records with the correct values.
+19. Switch to the B_site_domain's (private) browser and check the result. You should see the updated records with the correct values.                                    
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/104.PNG)
 
 ## Clean Up:
