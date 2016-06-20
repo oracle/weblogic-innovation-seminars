@@ -345,7 +345,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/39.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/40.PNG)
 11. On the Servers page, click on the **Refresh** icon, to get the current state after each 10 seconds.
-12. What is happening now the original OracleHome on with ms2 was running is backed up on the location which we specified. And the patched Oracle Home archive that we provided is being expanded in its place. Once that is done, the Node manager and the managed server will be started again and will pick up the changes in new Patched Oracle Home and we can verify it by looking the WebLogic Version in the Server page, which will be **WebLogic Server 12.2.1.0.0 Mon Oct 23 12:22:22 PDT**.
+12. What is happening now the original OracleHome on with ms2 was running is backed up on the location which we specified. And the patched Oracle Home archive that we provided is being expanded in its place. Once that is done, the Node manager and the managed server will be started again and will pick up the changes in new Patched Oracle Home and we can verify it by looking the WebLogic Version in the Server page, which will be **WebLogic Server 12.2.1.0.0 Mon Oct 23 12:22:22 PDT**.                    
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/41.PNG)
 13. Now we see that ms2 is starting, when it comes to Running State, you can verify that it will be running on new WebLogic Version. Now ms1 will get in Shutdown state and the same process will happen on this node. So while its down, go back to Application page, click on refresh, and we see that WebLogic Session data is still available and now we connected to ms2. Because ms1 is down, so OTD redirected us to ms2.
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/42.PNG)
@@ -373,6 +373,7 @@ For Oracle Home rollout we need a patched WebLogic Oracle Home, we modify the We
 10. On the Server Page, Now the ms2 is running, so ms1 will shutdown now. Now reload the application page, we are connected to ms2, and we can see the Version 2 of the application. And session data is still preserved. When ms1 will be running, it will also update to run application version 2. So this is done without no application downtime and loss of session.                             
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/50.PNG)
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/51.PNG)
+
 This completes our Lab 1. You must follow the **Clean Up** Section before proceeding to next Lab.
 
 ## Clean Up:
