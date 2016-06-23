@@ -141,7 +141,7 @@
                       <target>
                         <echo message="Copy artifacts to DBCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/../winsmt"
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="oracle@${dbcs.ip}:/tmp"> 
@@ -151,13 +151,13 @@
 		          </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/../winsmt"  
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/conference.sql /tmp/prepareDBCS.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/../winsmt"  
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="/tmp/prepareDBCS.sh"
@@ -179,7 +179,7 @@
                       <target>
                         <echo message="Copy artifacts to JCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/../winsmt"
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="opc@${jcs.ip}:/tmp"> 
@@ -191,13 +191,13 @@
                           </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/../winsmt"  
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/dp6-attributes.json /tmp/dp6.zip /tmp/createVT.sh /tmp/createVT.py"
                           timeout="1200000"  />
 			<sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/../winsmt"  
+                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="sudo su - oracle -c /tmp/createVT.sh oracle"
