@@ -2,11 +2,13 @@ package com.oracle.wins.util.restclient.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.Set;
 
 public class OPCProperties {
-	
+
 	public static final String GOAL_JCS_GET_INSTANCE_DETAILS = "jcs-get-instance-details";
 	public static final String GOAL_DBCS_GET_INSTANCE_DETAILS = "dbcs-get-instance-details";
 	public static final String GOAL_JCS_INSTANCE_DELETE = "jcs-delete";
@@ -16,23 +18,23 @@ public class OPCProperties {
 	public static final String GOAL_CREATE_JCS_AUTO = "jcs-create-auto";
 	public static final String GOAL_JCS_GET_SPECIFIC_JOB_DETAILS = "jcs-get-job-details";
 	public static final String GOAL_GENERATE_SSH_KEYPAIR = "generate-ssh-keypair";
-	
+
 	public static final String GOAL_STORAGE_DETAILS = "storage-get-details";
 	public static final String GOAL_STORAGE_CREATE = "storage-create";
 	public static final String GOAL_STORAGE_LIST = "storage-list";
 	public static final String GOAL_STORAGE_DELETE = "storage-delete";
-	
+
 	public static final String CONTENT_TYPE_VND_SERVICE_JSON = "application/vnd.com.oracle.oracloud.provisioning.Service+json";
 	public static final String CONTENT_TYPE_JSON = "application/json";
 	public static final String CONTENT_TYPE_TEXT = "text/plain";
-	
+
 	public static final String OPC_BASE_URL = "opc.base.url";
 	public static final String OPC_USERNAME = "opc.username";
 	public static final String OPC_PASSWORD = "opc.password";
 	public static final String OPC_IDENTITY_DOMAIN = "opc.identity.domain";
 	public static final String OPC_STORAGE_CONTAINER = "opc.storage.container";
 	public static final String OPC_STORAGE_GENERIC_URL = "opc.storage.generic.url";
-		
+
 	public static final String SSH_PUBLIC_KEY = "ssh.public.key";
 	public static final String SSH_PASSPHRASE = "ssh.passphrase";
 
@@ -52,38 +54,39 @@ public class OPCProperties {
 	public static final String DBCS_INSTANCE_PDB1_1 = "dbcs.instance.pdb1.1";
 	public static final String DBCS_INSTANCE_VERSION_1 = "dbcs.instance.version.1";
 	public static final String DBCS_INSTANCE_USABLE_STORAGE_1 = "dbcs.instance.usable.storage.1";
-	
+
 	public static final String DBCS_DBA_NAME = "dbcs.dba.name";
 	public static final String DBCS_DBA_PASSWORD = "dbcs.dba.password";
-	
+
 	public static final String HEADER_X_AUTH_TOKEN = "X-Auth-Token";
 	public static final String HEADER_X_STORAGE_URL = "X-Storage-Url";
-	
+
 	public static final String SERVICE_STATUS = "Running";
-	
+
 	public static final String HTTP_REQUEST_FAILED = "HTTP Request Failed";
 	public static final String HTTP_ERROR_404_NOT_FOUND = "404";
-	
+
 	public static final int EXIST = 0;
 	public static final int NOT_EXIST = 1;
 	public static final int FAILED = 2;
-	
+
 	private final Properties configProp = new Properties();
-	
+
 	private static OPCProperties INSTANCE = null;
 
-	
+
 	private OPCProperties() {
 	}
-	
+
 	public void init (String sPropertyFile) {
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
 				sPropertyFile);
 
-		System.out.println("Read all properties from file: " + sPropertyFile);
 		try {
+			URL url = getClass().getClassLoader().getResource(sPropertyFile);
+			System.out.println("Read all properties from: " + url.toURI());
 			configProp.load(in);
-		} catch (IOException e) {
+		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
