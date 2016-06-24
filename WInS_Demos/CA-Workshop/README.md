@@ -414,7 +414,7 @@ As Part of the Lab, We will create two domains, which you can say one domain wil
 
 1. Double click on the **Start Database** Icon on Desktop to start both the pluggable databases.
 2. cd /u01/content/weblogic-innovation-seminars/WInS_Demos/CA-Workshop/Cross.Domain.Transaction.Recovery/Setup
-3. **./create_env.sh** (This script provides required permission to the files, and it also creates the user cdtr in both the 	pluggable database.)
+3. **./create_env.sh** (This script provides required permission to the files, and it also creates the user cdtr in both the 	pluggable database.)           
 ![alt text](https://raw.githubusercontent.com/oracle-weblogic/weblogic-innovation-seminars/caf-12.2.1/WInS_Demos/CA-Workshop/md.resources/57.PNG)
 
 ## Creation of Primary and Standby Domain:
