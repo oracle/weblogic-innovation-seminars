@@ -42,6 +42,7 @@ public class OPCJava {
 		sbTemp.append("	   \"level\" : \"PAAS\",");
 		sbTemp.append("    \"subscriptionType\" : \"HOURLY\",");
 		sbTemp.append("    \"description\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_DESC_1) + "\",");
+		sbTemp.append("    \"enableAdminConsole\": \"true\",");
 		sbTemp.append("    \"provisionOTD\" : " + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_OTD_1) + " ,");
 		sbTemp.append("    \"cloudStorageContainer\" : \"Storage-" + opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN) + "/" + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "\",");
 		sbTemp.append("    \"cloudStorageUser\" : \"" + opcProperties.getProperty(OPCProperties.OPC_USERNAME) + "\",");
@@ -52,6 +53,7 @@ public class OPCJava {
 		sbTemp.append("        \"version\" : \"" + opcProperties.getProperty(OPCProperties.JCS_INSTANCE_VERSION_1) + "\",");
 		sbTemp.append("        \"edition\" : \"EE\",");
 		sbTemp.append("        \"domainMode\" : \"PRODUCTION\",");
+		sbTemp.append("        \"domainPartitionCount\" : \"" + opcProperties.getProperty(OPCProperties.JCS_PARTITION_1) + "\",");
 		sbTemp.append("        \"managedServerCount\" : \"1\",");
 		sbTemp.append("        \"adminPort\" : \"7001\",");
 		sbTemp.append("        \"deploymentChannelPort\" : \"9001\",");

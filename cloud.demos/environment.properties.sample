@@ -23,10 +23,11 @@ jcs.instance.version.1=12.1.3.0.4
 jcs.instance.otd.1=true
 
 # For using the WLS12.2.1 instance uncomment the below two lines
-#jcs.instance.version.1=12.2.1.0.160119
+#jcs.instance.version.1=12.2.1.0.160419
 #jcs.instance.otd.1=false
 jcs.instance.1=winstestWLS
 jcs.instance.desc.1=winstest instance through REST
+jcs.instance.partition.1=0
 jcs.instance.admin.user.1=weblogic_admin_username
 jcs.instance.admin.password.1=weblogic_admin_password
 

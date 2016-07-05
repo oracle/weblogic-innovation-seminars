@@ -21,10 +21,11 @@ ssh.passphrase=
 # JCS details
 jcs.base.url=jaas.oraclecloud.com
 jcs.rest.url=/paas/service/jcs/api/v1.1/instances/
-jcs.instance.version.1=12.2.1.0.160119
+jcs.instance.version.1=12.2.1.0.160419
 jcs.instance.otd.1=false
 jcs.instance.1=winsdemoWLS
 jcs.instance.desc.1=winsdemo instance through REST
+jcs.instance.partition.1=1
 jcs.instance.admin.user.1=weblogic
 jcs.instance.admin.password.1=welcome1
 

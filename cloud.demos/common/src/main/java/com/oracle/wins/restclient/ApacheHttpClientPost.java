@@ -52,6 +52,7 @@ public class ApacheHttpClientPost {
 			if (response.getStatusLine().getStatusCode() != 202) {
 				System.out.println("FAILED. HTTP error code: " + response.getStatusLine().getStatusCode());
 				System.out.println("Reason: " + response.getStatusLine().getReasonPhrase());
+				response.getEntity().writeTo(System.out);
 				return OPCProperties.HTTP_REQUEST_FAILED + ":" + response.getStatusLine().getStatusCode() 
 						+ " Reason:" + response.getStatusLine().getReasonPhrase();
 			}

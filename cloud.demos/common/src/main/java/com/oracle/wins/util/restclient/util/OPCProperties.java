@@ -45,6 +45,7 @@ public class OPCProperties {
 	public static final String JCS_INSTANCE_DESC_1 = "jcs.instance.desc.1";
 	public static final String JCS_INSTANCE_ADMIN_USER_1 = "jcs.instance.admin.user.1";
 	public static final String JCS_INSTANCE_ADMIN_PASSWORD_1 = "jcs.instance.admin.password.1";
+	public static final String JCS_PARTITION_1 = "jcs.instance.partition.1";
 
 	public static final String DBCS_BASE_URL = "dbcs.base.url";
 	public static final String DBCS_REST_URL = "dbcs.rest.url";
