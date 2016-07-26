@@ -38,7 +38,11 @@ dbcs.instance.sid.1=ORCL
 dbcs.instance.pdb1.1=PDB1
 dbcs.instance.pdb2.1=PDB2
 dbcs.instance.desc.1=winsdemo db instance through REST
-dbcs.instance.usable.storage.1=15
+dbcs.instance.usable.storage.1=25
+# DEMOS will be an additional pluggable database with the service name: DEMOS.{identity-domain}.oraclecloud.internal
+# If DEMOS required DBCS storage must be larger than 25GB
+# You need to enable demo users/schemas explicitly after provisioning
+dbcs.instance.demos.1=yes
 
 dbcs.dba.name=sys
 dbcs.dba.password=Welcome_1

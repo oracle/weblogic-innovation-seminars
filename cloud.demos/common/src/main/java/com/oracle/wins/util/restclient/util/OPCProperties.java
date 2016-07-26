@@ -55,6 +55,7 @@ public class OPCProperties {
 	public static final String DBCS_INSTANCE_PDB1_1 = "dbcs.instance.pdb1.1";
 	public static final String DBCS_INSTANCE_VERSION_1 = "dbcs.instance.version.1";
 	public static final String DBCS_INSTANCE_USABLE_STORAGE_1 = "dbcs.instance.usable.storage.1";
+	public static final String DBCS_INSTANCE_DEMOS_1 = "dbcs.instance.demos.1";
 
 	public static final String DBCS_DBA_NAME = "dbcs.dba.name";
 	public static final String DBCS_DBA_PASSWORD = "dbcs.dba.password";
