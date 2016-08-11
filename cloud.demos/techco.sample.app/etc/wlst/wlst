@@ -1,0 +1,2 @@
+#!/bin/sh
+java weblogic.WLST -skipWLSModuleScanning $1
