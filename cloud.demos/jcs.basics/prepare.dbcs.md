@@ -45,7 +45,7 @@ You will need to create an OE user in your DBCS PDB. This user will need rights 
 Use the init-dbcs-pdb.sh script to automate the creation of the user, tables and data. Usage is:
 
     usage: ./init-dbcs-pdb.sh <db user> <db password> <ssh key file> <db server ip> [<PDB name>]
-`<db user>` should be `system`.  `<ssh key file>` should be the private key part of the key used when the DBCS instance was created.  `<db server ip>` can be found on the DBCS service instance page.  `<PDB name>` is likely 'PDB1' and the script will default to this value if it is not given however you may override.
+`<db user>` should be `system`.  `<ssh key file>` the privateKey what is extracted to `/u01/content/weblogic-innovation-seminars/cloud.demos` folder.  `<db server ip>` the public IP address was determined in the steps above. `<PDB name>` is likely 'PDB1' and the script will default to this value if it is not given however you may override.
 
     [oracle@localhost techco.sample.app]$ ./init-dbcs-pdb.sh system syspassword ../privateKey 140.86.6.100 PDB1
     SQL*Plus: Release 12.1.0.2.0 Production on Fri Aug 19 14:02:30 2016
