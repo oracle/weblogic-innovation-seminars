@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "SUDO1========================================START"
+echo "SUDO1==============================START"
 
 GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
 if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
@@ -21,4 +21,4 @@ yum -y install zlib-devel-1.2.7-15.el7.x86_64
 
 yum -y install openssl-devel-1.0.1e-51.el7_2.5.x86_64
 
-echo "SUDO1========================================END"
+echo "SUDO1================================END"

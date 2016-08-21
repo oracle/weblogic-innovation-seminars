@@ -32,14 +32,14 @@ fi
 
 echo "========================================"
 
-sudo /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/sudo1.sh
-
-echo "========================================"
-
-if [ -f /u01/python ] 
+if [ -d /u01/python/ ] 
 then
   echo "Python 3.5.2 is already installed."
 else
+  echo "Install Python prerequisites..."
+  
+  sudo /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/sudo1.sh
+  
   echo "Install Python 3.5.2"
   
   GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
@@ -67,6 +67,8 @@ else
   ./configure --prefix=/u01/python
   make
   sudo make install
+  
+  sleep 3
   
   sudo rm -rf /u01/Python-3.5.2
   sudo rm -f Python-3.5.2.tgz
