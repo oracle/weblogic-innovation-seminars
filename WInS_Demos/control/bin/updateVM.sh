@@ -31,4 +31,41 @@ else
 fi
 echo "========================================"
 
+if [ -f /u01/python ] 
+then
+  echo "Python 3.5.2 is already installed."
+else
+  echo "Install Python 3.5.2"
+  
+  if [ -n "$GIT_SYSTEM_PROXY" ]; then
+    export http_proxy=$GIT_SYSTEM_PROXY
+    echo "http_proxy=$http_proxy"
+  else
+    unset http_proxy
+    echo "http_proxy=$http_proxy"  
+  fi
+  
+  wget --no-check-certificate  -P /u01/ http://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+  
+  cd /u01
+  
+  tar -xzf Python-3.5.2.tgz
+
+  mkdir /u01/python
+  cd Python-3.5.2
+ 
+  ./configure --prefix=/u01/python
+  make
+  sudo make install
+  
+  rm -rf /u01/Python-3.5.2
+  rm Python-3.5.2.tgz
+  
+  export PATH=/u01/python/bin:$PATH
+  
+  echo "Python 3.5.2 has been installed"
+fi
+
+echo "========================================"
+
 echo "Everything is up to date!"

@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific aliases and functions
@@ -38,9 +38,13 @@ export WL_HOME="${MW_HOME}/wlserver"
 
 ###################################################################
 
+export PATH=/u01/python/bin:$PATH
+
+###################################################################
+
 # Source global definitions
 if [ -f /home/oracle/setProxy.sh ]; then
-	. /home/oracle/setProxy.sh
+  . /home/oracle/setProxy.sh
 fi
 
 JAVA_VERSION=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
