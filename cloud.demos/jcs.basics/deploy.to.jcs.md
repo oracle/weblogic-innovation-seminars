@@ -10,7 +10,8 @@ This tutorial demonstrates how to:
 
 ### Prerequisites ###
 
-To deploy sample application you need to build the web archive from the provided sources.
+- [Prepared Database Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/prepare.dbcs.md) instance which holds the sample appliaction's data.
+- Running [Java Cloud Service instance](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.jcs.ui.md) configured to access to the prepared Database Cloud Service
 
 ### Steps ###
 

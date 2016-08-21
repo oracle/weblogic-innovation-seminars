@@ -10,10 +10,8 @@ This tutorial demonstrates how to:
 
 ### Prerequisites ###
 
-Before you use the ssh utility to connect to a compute node, you need the following:
-
-- The IP address of the compute node. The IP address of a compute node associated with a database deployment on Oracle Database Cloud Service is listed on the Oracle Database Cloud Service Overview page.
-
+- [Running Database Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.dbcs.ui.md) instance to prepare.
+- The IP address of a compute node associated with a database deployment on Database Cloud Service. The Public IP address is listed on the Database Cloud Service Overview page.
 - The SSH private key file that matches the public key associated with the deployment.
 
 ### Steps ###
