@@ -32,6 +32,7 @@ echo "GIT _system_ Proxy set to: [${GIT_SYSTEM_PROXY}]"
 echo "GIT _global_ Proxy set to: [${GIT_GLOBAL_PROXY}]"
 echo "GIT _project_ Proxy set to: [${GIT_PROJECT_PROXY}]"
 
+sudo rm /etc/profile.d/setproxy.sh
 
 if [ "$1" == "wait" ]; then
   echo "This window will close automatically in 5s..."

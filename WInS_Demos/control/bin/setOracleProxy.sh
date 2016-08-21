@@ -17,6 +17,10 @@ sudo git config --system http.proxy ${ORACLE_HTTP_PROXY}
 #cd $DEMOS_HOME
 #sudo git config http.proxy ${ORACLE_HTTP_PROXY}
 
+echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTTP_PROXY}" > /home/oracle/setproxy.sh
+
+sudo cp /home/oracle/setproxy.sh /etc/profile.d
+
 echo ${PROXY_MESSAGE}
 
 chmod +x ${PROXY_SCRIPT}
