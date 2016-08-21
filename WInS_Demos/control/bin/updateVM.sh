@@ -50,8 +50,8 @@ else
     echo "https_proxy=$https_proxy"
   fi
   
-  wget --no-check-certificate  -P /u01/ http://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
-  
+  wget --no-check-certificate  -P /u01/ https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+    
   cd /u01
   
   tar -xzf Python-3.5.2.tgz
@@ -63,7 +63,7 @@ else
   make
   sudo make install
   
-  rm -rf /u01/Python-3.5.2
+  sudo rm -rf /u01/Python-3.5.2
   rm Python-3.5.2.tgz
   
   export PATH=/u01/python/bin:$PATH
