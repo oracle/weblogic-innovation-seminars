@@ -29,6 +29,11 @@ else
     echo $USERJS_CONTENT >> $USERJS_FILE
     echo "Firefox TLS setting has been updated."
 fi
+
+echo "========================================"
+
+sudo /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/sudo1.sh
+
 echo "========================================"
 
 if [ -f /u01/python ] 
@@ -64,7 +69,7 @@ else
   sudo make install
   
   sudo rm -rf /u01/Python-3.5.2
-  rm Python-3.5.2.tgz
+  sudo rm -f Python-3.5.2.tgz
   
   export PATH=/u01/python/bin:$PATH
   
