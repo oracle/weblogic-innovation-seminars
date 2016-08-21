@@ -37,8 +37,9 @@ then
 else
   echo "Install Python 3.5.2"
   
-  if [ -n "$GIT_SYSTEM_PROXY" ]; then
-    export http_proxy=$GIT_SYSTEM_PROXY
+  GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
+  if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
+    export http_proxy=$GIT_SYSTEM_PROXY_CHECK
     echo "http_proxy=$http_proxy"
   else
     unset http_proxy
