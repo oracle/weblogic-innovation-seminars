@@ -5,7 +5,6 @@ cp /u01/content/weblogic-innovation-seminars/WInS_Demos/control/maven/settings.x
 
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
 ORACLE_HTTP_PROXY="http://www-proxy.us.oracle.com:80"
-ORACLE_HTTPS_PROXY="https://www-proxy.us.oracle.com:80"
 PROXY_MESSAGE="Proxy Configured for Oracle Network!!!"
 
 echo "#!/bin/sh" > ${PROXY_SCRIPT}
@@ -18,7 +17,7 @@ sudo git config --system http.proxy ${ORACLE_HTTP_PROXY}
 #cd $DEMOS_HOME
 #sudo git config http.proxy ${ORACLE_HTTP_PROXY}
 
-echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTTPS_PROXY}" > /home/oracle/setproxy.sh
+echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTTP_PROXY}" > /home/oracle/setproxy.sh
 
 sudo cp /home/oracle/setproxy.sh /etc/profile.d
 
