@@ -80,4 +80,5 @@ fi
 
 echo "========================================"
 
+echo "Oracle Proxy settings has been changed. Please run again Oracle Proxy ON/OFF on the desktop depending on your network connection."
 echo "Everything is up to date!"
