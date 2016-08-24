@@ -1,4 +1,4 @@
-# ORACLE Public Cloud Service tutorial
+# ORACLE Public Cloud Services tutorial
 
 ## Introduction ##
 
@@ -30,6 +30,6 @@ Oracle Cloud is the industry’s broadest and most integrated public cloud. It o
 + [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
 + [Create continuous build integration using Oracle Developer Cloud Service and Oracle Application Container Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/devcs.accs.ci.md)
 + [Using Eclipse IDE (Oracle Enterprise Pack for Eclipse) with Oracle Developer Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/setup.oepe.md)
-+ Support change management using Oracle Developer Cloud Service
++ [Change management using Eclipse IDE (Oracle Enterprise Pack for Eclipse) with Oracle Developer Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/change.mgmt.devcs.md)
 + Monitor and tune SpringBoot application deployed on Oracle Application Container Cloud Service
 

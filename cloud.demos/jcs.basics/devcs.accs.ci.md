@@ -12,7 +12,7 @@ This tutorial demonstrates how to:
 
 ### Prerequisites ###
 
-- Oracle Public Cloud Service account including Developer Cloud Service
++ [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
 
 ### Steps ###
 
@@ -21,7 +21,7 @@ This tutorial demonstrates how to:
 [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
 ![](images/dcs/dcs.00.png)
 
-Open the project and click Build tab. The Build page, also called as the Jobs Overview page, displays information about all build jobs and provides links to configure and manage them. To run builds and generate artifacts that you can deploy, you must create a job. Click +New Job on the Build page.
+Open the SpringBoot project and click Build tab. The Build page, also called as the Jobs Overview page, displays information about all build jobs and provides links to configure and manage them. To run builds and generate artifacts that you can deploy, you must create a job. Click +New Job on the Build page.
 ![](images/dcs/dcs.07.png)
 
 Enter a name for the new job. Select the *Create a free-style job* option and save. On the Main configuration page of the newly created job make sure JDK 8 is the selected JDK.

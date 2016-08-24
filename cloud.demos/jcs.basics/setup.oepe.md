@@ -1,4 +1,4 @@
-# ORACLE Public Cloud Service tutorial #
+# ORACLE Public Cloud Services tutorial #
 -----
 ## Using Eclipse IDE (Oracle Enterprise Pack for Eclipse) with Oracle Developer Cloud Service ##
 
@@ -22,7 +22,7 @@ This tutorial demonstrates how to:
 
 ### Prerequisites ###
 
-- Oracle Public Cloud Service account including Developer Cloud Service
+- [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
 - Eclipse IDE with Oracle Cloud Tools plugin or Oracle Enterprise Plugin for Eclipse installed.
 
 ### Steps ###
@@ -52,7 +52,7 @@ Provide a master password to store securely your credentials, so in the future y
 After your credentials have been validated, you are logged in to Oracle Developer Cloud Service and the Oracle Cloud view displays all projects that are assigned to you. Open the tree view myOracle Cloud(Cloud connection name) -> Developer -> springboot(DevCS project name) -> Code and there you can see the Git repository hosted on Oracle Developer Cloud Service.
 ![](images/dcs/oepe.06.png)
 
-To clone the Git repository to your machine double click on the Git repository. The clone will start.
+To clone the Git repository to your machine double click or right click -> Activate on the Git repository and clone will start.
 ![](images/dcs/oepe.07.png)
 
 After the successful clone your local copy will be available in your workspace.
