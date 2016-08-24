@@ -1,4 +1,4 @@
-# ORACLE Publics Cloud Service tutorial #
+# ORACLE Public Cloud Service tutorial #
 -----
 ## Deploy Tomcat based application to Application Container Cloud Service ##
 

@@ -1,4 +1,4 @@
-# ORACLE Public s Cloud Service tutorial #
+# ORACLE Public Cloud Service tutorial #
 -----
 ## Deploy Application to Java Cloud Service ##
 

@@ -27,9 +27,9 @@ Oracle Cloud is the industry’s broadest and most integrated public cloud. It o
 
 ####Support SpringBoot application development lifecycle using Oracle Developer Cloud Service, Application Container Cloud Service and Oracle Enterprise Pack For Eclipse####
 
-+ Create Oracle Developer Cloud Service project for SpringBoot application
-+ Create continous build integration using Oracle Developer Cloud Service and Oracle Application Container Cloud Service
-+ Setup developer (IDE) environment
++ [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
++ [Create continuous build integration using Oracle Developer Cloud Service and Oracle Application Container Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/devcs.accs.ci.md)
++ [Using Eclipse IDE (Oracle Enterprise Pack for Eclipse) with Oracle Developer Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/setup.oepe.md)
 + Support change management using Oracle Developer Cloud Service
 + Monitor and tune SpringBoot application deployed on Oracle Application Container Cloud Service
 
