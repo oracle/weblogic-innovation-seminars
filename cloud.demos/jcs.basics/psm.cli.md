@@ -15,15 +15,15 @@ For more information about PSM see the [documentation](https://docs.oracle.com/c
 
 ### Steps ###
 #### Download the latest version of command line tool ####
-First identify your REST API server name. If you log in to your Oracle cloud account with a US data center, use *psm.us.oraclecloud.com* otherwise, use *psm.europe.oraclecloud.com*.
+First identify your REST API server name. If you log in to your Oracle cloud account with a US data center, use **psm.us.oraclecloud.com** otherwise, use **psm.europe.oraclecloud.com**.
 
 Use cURL to send a request. The format is:
 
-	curl -X GET -u username:password -H X-ID-TENANT-NAME:identitydomain https://<rest-server>/paas/core/api/v1.1/cli/<identitydomain>/client -o psmcli.zip
+	curl -X GET -u username:password -H X-ID-TENANT-NAME:<identitydomain> https://<rest-server>/paas/core/api/v1.1/cli/<identitydomain>/client -o /u01/psmcli.zip
 
 This will write the response to a file named `psmcli.zip`.
 
-Open a terminal and execute the cURL command above with your credentials, identity domain identifier and REST API server name.
+Open a terminal and execute the cURL command above with your credentials, identity domain identifier and REST API server name. REST 
 
 	[oracle@localhost Desktop]$ curl -X GET -u john.i.smith@xxxxx.com:password -H X-ID-TENANT-NAME:hujohni https://psm.europe.oraclecloud.com/paas/core/api/v1.1/cli/hujohni/client -o /u01/psmcli.zip
 	% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
