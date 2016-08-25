@@ -22,8 +22,9 @@ This tutorial demonstrates how to:
 
 ### Prerequisites ###
 
-- [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
-- Eclipse IDE with Oracle Cloud Tools plugin or Oracle Enterprise Plugin for Eclipse installed.
++ [Create Oracle Developer Cloud Service project for SpringBoot application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.devcs.project.springboot.md)
++ [Create continuous build integration using Oracle Developer Cloud Service and Oracle Application Container Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/devcs.accs.ci.md)
++ Eclipse IDE with Oracle Cloud Tools plugin or Oracle Enterprise Plugin for Eclipse installed.
 
 ### Steps ###
 
@@ -72,4 +73,56 @@ Click Finish.
 OEPE now starts to validate and build the project which can take few seconds. Finally you can see the imported project in the Project Explorer area.
 ![](images/dcs/oepe.12.png)
 
-Now this is time when a developer can start to modify/add code and later push changes to the remote, Developer Cloud Service's Project hosted Git repository.
+#### Change code and test using continuous integration ####
+
+The project hosted on Oracle Developer Cloud Service has build job which ensures that new application build and deployment to Application Container Cloud Service happens when any developer oush code changes to Git repository.
+
+Check the process modifying small piece on the application. First check the default page of the application. Open the tree view myOracleCloud -> Applications -> springboot-demo. Right click on springboot-demo and select Open In Browser menu item.
+
+![](images/dcs/oepe.13.png)
+
+New browser is opened and you should see the application's home page.
+
+![](images/dcs/oepe.14.png)
+
+Go back to OEPE and in the Project Explorer area find the *springbootdemo* project and open the **src/main/resources -> META-INF -> resources -> WEB-INF -> jsp -> welcome.jsp**
+
+![](images/dcs/oepe.15.png)
+
+Modify the following part:
+
+	<body style="padding: 10px; border: 10px;">
+		SpringBoot application demo. Current server time: ${time}
+
+To what you would like to see on the page. For example:
+
+	<body style="padding: 10px; border: 10px;">
+		SpringBoot application demo <font color="red">MODIFIED IN OEPE.</font> Current server time: ${time}
+
+Save the changes. To commit and push changes to Git right click on project and select Team -> Commit...
+
+![](images/dcs/change.16.png) 
+
+Git Staging view is displayed. First move the `welcome.jsp` to the Staged Changes area. You don't need to add Eclipse specific files created in the local Git repository. Type a commit message. Enter your name and Cloud username (email address). Click Commit and Push...
+
+![](images/dcs/oepe.16.png)
+
+In the Push dialog leave the default branch and click OK.
+
+![](images/dcs/oepe.17.png)
+
+Now change back to the browser and check the Build page in the Oracle Developer Cloud Service project. You should see that a new build (in our case: *springboot_build*) has been fired by the Git changes.
+
+![](images/dcs/change.20.png)
+
+Once the job is done change to the tab to Deploy and you can see that a new deployment has been started too. If you remember the Deployment was configured to redeploy every time when a new successful build artifact is ready.
+
+![](images/dcs/change.21.png)
+
+Now check the changes of the home page of the application. Open the tree view myOracleCloud -> Applications -> springboot-demo. Right click on springboot-demo and select Open In Browser menu item.
+
+![](images/dcs/oepe.13.png)
+
+New browser (tab) is opened and you should see the changes (red text) on the application's home page.
+
+![](images/dcs/oepe.18.png)

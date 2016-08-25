@@ -23,7 +23,7 @@ This tutorial demonstrates how to:
 
 ### Steps ###
 
-#### Create Issue/Task using Oracle Developer Cloud Service user interface ####
+#### Create Issue using Oracle Developer Cloud Service user interface ####
 
 [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
 ![](images/dcs/dcs.00.png)
@@ -301,7 +301,7 @@ Git Staging view is displayed. First move the pom.xml, restcall.jsp and WelcomeC
 
 ![](images/dcs/change.17.png)
 
-Leave the default and click OK on the branch selection dialog.
+In the Push dialog leave the default branch and click OK.
 
 ![](images/dcs/change.18.png)
 
@@ -309,11 +309,11 @@ Now change back to the browser and check the Build page in the Oracle Developer 
 
 ![](images/dcs/change.20.png)
 
-Once the job is done change the tab to Deploy and you can see that a new deployment has been started too. If you remember the Deployment was configured to redeploy every time when a new successful build artifact is ready.
+Once the job is done change to the tab to Deploy and you can see that a new deployment has been started too. If you remember the Deployment was configured to redeploy every time when a new successful build artifact is ready.
 
 ![](images/dcs/change.21.png)
 
-After the deployment to the Application Container Cloud Service a new entry appears on the righ side about the result. Hopefully it shows the Deployment Succeeded. To access to the application click on the link next to the *Deploy to ACCS*.
+After the successful deployment to the Application Container Cloud Service a new entry appears on the righ side about the result. Hopefully it shows the Deployment Succeeded. To access to the application click on the link next to the *Deploy to ACCS*.
 
 ![](images/dcs/change.22.png)
 
@@ -366,3 +366,34 @@ When the restart ready (use refresh button to update the information) switch to 
 ![](images/dcs/change.29.png)
 
 If the Service Bindings creation was successful the SpringBoot demo application can invoke TechCo application's REST interface (using the bindings) and you should see the product list result printed in HTML table.
+
+#### Close Issue using OEPE Cloud Tooling ####
+
+The new feature has been implemented so you can change your task's state to Resolved. Go back to OEPE and open your task if it is not opened already.
+
+![](images/dcs/change.30.png)
+
+In the detail view scroll down enter new description and change state to Resolved.
+
+![](images/dcs/change.31.png)
+
+#### Check changes using Oracle Developer Cloud Service user interface ####
+
+Now change to browser where Oracle Developer Cloud Service is open. If you have closed then [sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
+![](images/dcs/dcs.00.png)
+
+On the Home page you can see the recent activities. Check what has happened with your project. If the page remained opened refresh to get the latest entries. You can see the changes you made on the task assigned. Scroll down and find the log entry related to code changes pushed to master branch in `<projectname>.git` (*springboot.git*) repository. The Git icon ![](images/dcs/git.icon.png) can help to find this event. Click on the link named with the identifier of the git changes.
+
+![](images/dcs/change.32.png)
+
+This link redirects you to the Code page where you can see the modifications belong to the specific git identifier. Scroll down to check what changes have happened on the source code.
+
+![](images/dcs/change.33.png)
+
+On the top right area you can see the comment of the Git commit. If you remember when you entered *Task 1* into the comment it was converted to link immediately. It is happened because Developer Cloud Service recognized as a valid Issue identifier. Now click the **Task 1** link to jump the related issue. You can modify the issue if you need, but in a typical development workflow the QA team will test the Fixed issues and step forward to Verified or Reopened status depending on the test result.
+
+![](images/dcs/change.34.png)
+
+Please note that in a project, you can define products, components, owners of components, releases, and tags, of your project before creating and assigning issues to project members. You can define multiple product categories, components, and sub-components; customize the releases; provide custom tags; and add custom fields for your project. For more information see the [documentation](http://docs.oracle.com/cloud/latest/devcs_common/CSDCS/GUID-FFB070E5-DA29-43EB-A0CA-3FA8BB3FC3E1.htm#CSDCS3146).
+
+
