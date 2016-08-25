@@ -31,12 +31,15 @@ This tutorial demonstrates how to:
 #### Configure Cloud Tools Plugin ####
 
 Open OEPE and set (leave the default, `home/oracle/workspace`) workspace location. Close the Welcome page. To open the *Oracle Cloud* view from the Window menu, click *Show View* and then *Other*.
+
 ![](images/dcs/oepe.01.png)
 
 From the list open *Oracle Cloud* and select *Oracle Cloud*.
+
 ![](images/dcs/oepe.02.png)
 
 If you are connecting to Oracle Developer Cloud Service for the first time, click the Connect link.
+
 ![](images/dcs/oepe.03.png)
 
 In the Oracle Cloud Service Connection dialog, enter the following:
@@ -45,32 +48,41 @@ In the Oracle Cloud Service Connection dialog, enter the following:
 + **Identity Domain**: Enter the identity domain of Oracle Developer Cloud Service.
 + **Username** and **Password**: Enter the user name and password.
 + **Connection Name**: Enter a name for the service instance, if necessary. By default, the connection name is set to the identity domain name.
+
 ![](images/dcs/oepe.04.png)
 
 Provide a master password to store securely your credentials, so in the future you don't need to enter every time when you open OEPE. Don't forget to note the master password.
+
 ![](images/dcs/oepe.05.png)
 
 After your credentials have been validated, you are logged in to Oracle Developer Cloud Service and the Oracle Cloud view displays all projects that are assigned to you. Open the tree view myOracle Cloud(Cloud connection name) -> Developer -> springboot(DevCS project name) -> Code and there you can see the Git repository hosted on Oracle Developer Cloud Service.
+
 ![](images/dcs/oepe.06.png)
 
 To clone the Git repository to your machine double click or right click -> Activate on the Git repository and clone will start.
+
 ![](images/dcs/oepe.07.png)
 
 After the successful clone your local copy will be available in your workspace.
+
 ![](images/dcs/oepe.08.png)
 
 To import a Maven based project right click on the Project Exporer area and will pop up the menu where you can select Import projects -> Import...
+
 ![](images/dcs/oepe.09.png)
 
 Select Existing Maven Projects and click Next.
+
 ![](images/dcs/oepe.10.png)
 
 Give the location of the cloned repository. If the workspace location is the default it should look like the following: `/home/oracle/workspace/springboot.git-9534/acc/springboot-sample`
 Please note, that you need to give one of the subfolder of the local repository.
 Click Finish.
+
 ![](images/dcs/oepe.11.png)
 
 OEPE now starts to validate and build the project which can take few seconds. Finally you can see the imported project in the Project Explorer area.
+
 ![](images/dcs/oepe.12.png)
 
 #### Change code and test using continuous integration ####
