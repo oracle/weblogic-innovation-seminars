@@ -33,23 +33,29 @@ This tutorial demonstrates how to:
 #### Create Issue using Oracle Developer Cloud Service user interface ####
 
 [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
+
 ![](images/dcs/dcs.00.png)
 
 Open the SpringBoot project and click Issues tab. Click New Issue.
+
 ![](images/dcs/change.01.png)
 
 Enter properties of the new task. The new task will be to create new page in SpringBoot demo application to show TechCo products using that [application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.to.jcs.md)'s REST interface. You can use values on the picture but the point is only to create new Issue assigned to your account which can be used to simulate task assignement to specific user.
+
 ![](images/dcs/change.02.png)
 
 Now switch to OEPE to check your tasks. If your OEPE is already opened and cloud connection is activeted then you can see Eclipse notification about the assignement. To open the task  in OEPE click on notification link or activate your cloud connection and open myOracleCloud(cloud connaction name) -> Developer -> springboot(DevCS project name) -> Issues -> Mine
+
 ![](images/dcs/change.03.png)
 
 Double click on the task to open details. Scroll down and ACCEPT the assignement. Click Submit and start the development.
+
 ![](images/dcs/change.04.png)
 
 #### Implement new feature in the application ####
 
 As first step add required dependencies to the Maven project. These dependencies the `org.apache.httpcomponents` to make REST call and `org.glassfish.javax.json` to process JSON formatted response. Open the pom.xml. Select Dependencies view of the project file and click Add... to add the dependencies.
+
 ![](images/dcs/change.05.png)
 
 The `org.apache.httpcomponents` properties are the following:
@@ -73,6 +79,7 @@ Click OK.
 ![](images/dcs/change.07.png)
 
 The result for the pom.xml should look like the following:
+
 ![](images/dcs/change.08.png)
 
 Here is the time to code. In the *springbootdemo* project open the **src/main/java -> com.example.springboot -> WelcomeController.java** and copy or write the following method in the class:
@@ -123,15 +130,19 @@ The WelcomeController.class should look like as the following:
 	}
 
 In the OEPE:
+
 ![](images/dcs/change.09.png)
 
 This part above route the `/restcall` path to the new JSP page. Now create this new page. In  the **src/main/resources -> META-INF -> resources -> WEB-INF -> jsp** create a new JSP page. Right click on the **jsp** folder and select New -> Other...
+
 ![](images/dcs/change.10.png)
 
 Select JSP in the Web folder. Click Next.
+
 ![](images/dcs/change.11.png)
 
 Enter name: `restcall.jsp` and click Finish.
+
 ![](images/dcs/change.12.png)
 
 The new page will open in the editor using Design View. In the source code window select all and replace to the following:
