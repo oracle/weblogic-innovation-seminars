@@ -1,9 +1,15 @@
 # ORACLE Public Cloud Services tutorial #
 -----
-## Change management using Eclipse IDE (Oracle Enterprise Pack for Eclipse) with Oracle Developer Cloud Service ##
+## Development lifecycle management using Eclipse IDE (Oracle Enterprise Pack for Eclipse) and Oracle Developer Cloud Service ##
 
 ### Introduction ###
 This tutorial based on standardized developer workflow using Oracle Developer Cloud Service. The intent is to showcase how a team starting on the Oracle Developer Cloud Service would collaborate to address change management use-case.
+
+One of the biggest change using cloud (micro)services after on-premise, silo type application  architecture is to configure dependencies between services. For example application deployed on Application Cloud Container need to access to e.g. service running on Java Cloud Service. In the cloud world you can not wire the specific endpoint and even the configuration into the application. Service endpoints (e.g. IP address, URL) can change quickly. To keep application architecture flexible Application Container Cloud Service provides **Service Bindings**. You can add service bindings to other subscribed Oracle Cloud services (e.g. Java Cloud Service and Database Cloud Service) using the Application Console or define in the `deployment.json` metadata file.
+
+![](images/dcs/service.bindings.png)
+
+In this tutorial the change (new feature) for the SpringBoot demo application is to create new page which prints a REST call response. The REST endpoint is hosted on Java Cloud Service. 
 
 ### About this tutorial ###
 This tutorial demonstrates how to:
@@ -12,6 +18,7 @@ This tutorial demonstrates how to:
 + Open/Close issue/task using OEPE Cloud Tooling
 + Add changes to the source code and push to remote (DevCS hosted) repository
 + How continuous integration can be triggered by source code changes
++ Create service bindings for Application Container Cloud Service
 + Check Application Cloud Container redeployment using OEPE Cloud Tooling
 
 ### Prerequisites ###
