@@ -189,6 +189,8 @@ public class ExecuteGoal {
 
 	        case OPCProperties.GOAL_STORAGE_DELETE:
 	        	System.out.println("Delete storage endpoints----------------------------------------");
+	        	
+	        	long tokenTimeStart = System.currentTimeMillis();
 
 	        	storageProperties = getStorageAuthToken(
 	    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
@@ -215,15 +217,12 @@ public class ExecuteGoal {
 	        		needDelete = false;
 	        	} else if (response.indexOf("No Content") == -1) {
 
-	        		System.out.println("Objects query: " + (response.length() > 1000 ? response.substring(0, 1000) + "...and more" : response));
-
+	        		/*TODO: BULK DELETE IS NOT WORKING!!!
 	        		response = response.replace("\n", "\n" + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "/");
 					response = opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "/" + response;
 					response = response.substring(0, response.lastIndexOf(opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER)));
-
-					System.out.println("Prepared for bulk-delete: " + (response.length() > 1000 ? response.substring(0, 1000) + "...and more" : response));
-
-		        	aHeaders = new BasicNameValuePair[2];
+					
+					aHeaders = new BasicNameValuePair[2];
 
 		        	aHeaders[0] = new BasicNameValuePair("X-Auth-Token", storageProperties.getProperty(OPCProperties.HEADER_X_AUTH_TOKEN));
 		        	aHeaders[1] = new BasicNameValuePair("Content-Type", storageProperties.getProperty(OPCProperties.CONTENT_TYPE_TEXT));
@@ -237,9 +236,39 @@ public class ExecuteGoal {
 
 		        	//delete objects in the container
 		        	response = ApacheHttpClientDelete.httpClientDELETE(sUri + "/?bulk-delete", aHeaders, seBody, null);
+	        		*/
+	        		
+	        		//System.out.println("Objects query: " + (response.length() > 1000 ? response.substring(0, 1000) + "...and more" : response));
 
-		        	System.out.println("Response to object delete .... \n");
-		    		System.out.println(response);
+					aHeaders = new BasicNameValuePair[1];
+		        	aHeaders[0] = new BasicNameValuePair("X-Auth-Token", storageProperties.getProperty(OPCProperties.HEADER_X_AUTH_TOKEN));
+	        		
+		        	
+	        		//delete objects 1 by 1
+					String[] lines = response.split("\n");
+					System.out.println("Number of objects to delete: " + lines.length);
+					for (int i = 0; i < lines.length; i++) {
+						
+						if (System.currentTimeMillis() - tokenTimeStart > 600000) {
+							System.out.println("Authentication token for storage will expire. Getting new one.");
+							
+							tokenTimeStart = System.currentTimeMillis();
+				        	storageProperties = getStorageAuthToken(
+				    				opcProperties.getProperty(OPCProperties.OPC_USERNAME),
+				    				opcProperties.getProperty(OPCProperties.OPC_PASSWORD),
+				    				opcProperties.getProperty(OPCProperties.OPC_STORAGE_GENERIC_URL),
+				    				opcProperties.getProperty(OPCProperties.OPC_IDENTITY_DOMAIN));
+							aHeaders[0] = new BasicNameValuePair("X-Auth-Token", storageProperties.getProperty(OPCProperties.HEADER_X_AUTH_TOKEN));
+						}
+						
+						
+						response = ApacheHttpClientDelete.httpClientDELETE(
+								sUri + "/"  + opcProperties.getProperty(OPCProperties.OPC_STORAGE_CONTAINER) + "/" + lines[i], aHeaders, null, null, true);
+			            if ((lines.length - i) % 100 == 0) {
+			                System.out.println("Number of objects to delete: " + (lines.length - i));
+			            }
+					}
+
 	        	}
 
 	        	//delete container

@@ -20,7 +20,7 @@ import com.oracle.wins.util.restclient.util.OPCProperties;
 
 public class ApacheHttpClientDelete {
 
-	public static String httpClientDELETE(String sUri, BasicNameValuePair[] aHeaders, StringEntity seBody, Credentials credOPCUser) {
+	public static String httpClientDELETE(String sUri, BasicNameValuePair[] aHeaders, StringEntity seBody, Credentials credOPCUser, boolean nolog) {
 
 		StringBuffer sbOutput = new StringBuffer();
 		try {
@@ -35,8 +35,9 @@ public class ApacheHttpClientDelete {
 				httpClient = HttpClients.custom().build();
 			}
 			
-
-			System.out.println("URI: " + sUri);
+			if (!nolog) {
+				System.out.println("URI: " + sUri);
+			}
 			HttpResponse response = null;
 			if (seBody == null) {
 				HttpDelete httpDelete = new HttpDelete(sUri);
@@ -59,9 +60,10 @@ public class ApacheHttpClientDelete {
 				
 				response = httpClient.execute(httpDeleteWithBody);
 			}
-			
-			System.out.println("HTTP response code: "
+			if (!nolog) {
+				System.out.println("HTTP response code: "
 					+ response.getStatusLine().getStatusCode());
+			}
 			
 			if (response.getStatusLine().getStatusCode() != 202 
 					&& (sUri.toLowerCase().contains("storage") && response.getStatusLine().getStatusCode() != 204) ) {
@@ -87,6 +89,10 @@ public class ApacheHttpClientDelete {
 		}
 
 		return sbOutput.toString();
+	}
+	
+	public static String httpClientDELETE(String sUri, BasicNameValuePair[] aHeaders, StringEntity seBody, Credentials credOPCUser) {
+		return httpClientDELETE(sUri, aHeaders, seBody, credOPCUser, false);
 	}
 
 	
