@@ -1,13 +1,16 @@
 # ORACLE Public Cloud Service tutorial #
 -----
-## View Java Cloud Service log using SSH ##
+## Direct access and management of Oracle Java Cloud Service ##
 
 ### About this tutorial ###
 You can access the services and resources that a service instance's VM provides by logging into the VM through SSH.
 This tutorial demonstrates how to:
 	
 + connect to Java Cloud Service's VM using ssh,
-+ view the WebLogic server(s) log(s)
++ stop Managed server using Admin console (user interface)
++ change startup properties
++ start Managed server using WLST
++ search pattern in the WebLogic server log(s)
 
 ### Prerequisites ###
 
@@ -18,13 +21,18 @@ This tutorial demonstrates how to:
 
 ### Steps ###
 Navigate to the Oracle Java Cloud Service Console. [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to the My Services application at [cloud.oracle.com](http://cloud.oracle.com). On the dashboard open the Java Cloud Service Console.
+
 ![](images/create.jcs.00.png)
 
 Click the service instance hosts sample application.
+
 ![](images/java.service.console.png)
 
 Note the public IP address of the compute node hosting Java Cloud Service instance.
+
 ![](images/java.service.ip.address.png)
+
+#### Connect to Java CLoud Service's VM using ssh ####
 
 Open a terminal and change to folder `/u01/content/weblogic-innovation-seminars/cloud.demos`. 
 
@@ -35,22 +43,154 @@ Use `ssh` to connect remote VM. First parameter is the private key file location
     $ [oracle@localhost cloud.demos]$ ssh -i privateKey opc@140.86.6.145
     [opc@techco-wls-1 ~]$
 
-Once the ssh connection established you need to switch user to oracle. It is necessary because opc has no right e.g. to read log files.
+Once the ssh connection established you need to switch user to oracle. It is necessary because opc has no access to instance related files.
 
 	[opc@techco-wls-1 ~]$ sudo su - oracle
 	-bash-4.1$
 
-The current location of the WebLogic runtime environment is `/u01/data/domains/<servicename>_domain`. Thus to print the log server of the Managed server should look like this. The name of the folders depend on the service instance name:
+Now the connection is established and the propmt is ready to manage your instance. Leave this terminal open for further usage.
 
-	tail -f /u01/data/domains/techco_domain/servers/techco_d_server_1/logs/techco_d_server_1.log
-	####<Aug 21, 2016 9:55:32 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '22' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1ABEC967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-0000356d> <1471773332175> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".> 
-	####<Aug 21, 2016 9:55:38 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '33' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1ABFC967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-0000356e> <1471773338364> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".> 
-	####<Aug 21, 2016 9:56:02 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '37' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1AC0C967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-00003571> <1471773362182> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".> 
-	####<Aug 21, 2016 9:56:08 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '37' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1AC1C967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-00003572> <1471773368371> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".> 
-	####<Aug 21, 2016 9:56:32 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '34' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1AC2C967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-00003574> <1471773392190> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".> 
-	####<Aug 21, 2016 9:56:38 AM UTC> <Info> <EJB> <techco-wls-1.compute-hujohni.oraclecloud.internal> <techco_d_server_1> <[ACTIVE] ExecuteThread: '22' for queue: 'weblogic.kernel.Default (self-tuning)'> <OracleSystemUser> <BEA1-1AC3C967515F8E9DF2CC> <9ecf3fd3-cde9-418e-b87b-a2557e76d81d-00003575> <1471773398379> <[severity-value: 64] [rid: 0] [partition-id: 0] [partition-name: DOMAIN] > <BEA-010227> <EJB exception occurred during invocation from home or business: oracle.wsm.policymanager.bean.ejb.impl.UsageTracker_oi3aq7_Intf generated exception: java.lang.SecurityException: WSM-02084 : Access denied. Permission "oracle.wsm.security.PolicyManagerPermission" is required to access the wsm policy manager "UsageTracker" method "recordUsage".>
+#### Stop Managed Server using Admin Console ####
 
-Obviously the log's content can differ. Once you checked the log file you can interrupt the `tail` process using Ctrl+C. Use exit command to log out from the ssh connection.
+Change back to browser where Java Cloud Service console is opened. Click on hamburger icon next to the instance name and select Open WebLogic Server Console.
+
+![](images/ssh/jcs.ssh.01.png)
+
+In the navigation tree under the domain name click the Environment node to expand it and then click Servers. The workspace area presents the list of servers that are part of the domain. Click the Control tab. Select a managed server by clicking on its selection checkbox. Click Shutdown -> Force Shutdown Now, to send an immediate shutdown order.
+
+![](images/ssh/jcs.ssh.02.png)
+
+Confirm your order by selecting Yes and wait until it completes.
+
+![](images/ssh/jcs.ssh.03.png)
+
+![](images/ssh/jcs.ssh.04.png)
+
+#### Modify startup script for Managed Server ####
+
+Change to the terminal window where ssh connection is already established. To check what is the startup script for managed server check nodemanager.properties:
+
+	-bash-4.1$ less $DOMAIN_HOME/nodemanager/nodemanager.properties/startJCSServer.sh
+	#Node manager properties
+	#Fri Aug 26 19:25:37 UTC 2016
+	DomainsFile=/u01/data/domains/techco_domain/nodemanager/nodemanager.domains
+	LogLimit=0
+	PropertiesVersion=12.2.1
+	AuthenticationEnabled=true
+	NodeManagerHome=/u01/data/domains/techco_domain/nodemanager
+	JavaHome=/u01/jdk
+	LogLevel=FINE
+	DomainsFileEnabled=true
+	StartScriptName=startJCSServer.sh
+	ListenAddress=techco-wls-1
+	NativeVersionEnabled=true
+	ListenPort=5556
+	LogToStderr=true
+	SecureListener=true
+	LogCount=1
+	StopScriptEnabled=false
+	QuitEnabled=true
+	LogAppend=true
+	StateCheckInterval=500
+	CrashRecoveryEnabled=true
+	StartScriptEnabled=true
+	LogFile=/u01/data/domains/techco_domain/nodemanager/nodemanager.log
+	LogFormatter=weblogic.nodemanager.server.LogFormatter
+	ListenBacklog=50
+	UseKSSForDemo=false
+	../nodemanager/nodemanager.properties (END) 
+
+The `StartScriptName` property shows the startup script for managed server which is `startJCSServer.sh`. Press q to quit. Open to edit this script. Use vi:
+
+	-bash-4.1$ vi /u01/data/domains/techco_domain/bin/startJCSServer.sh
+
+Press 'i' to edit file. Insert `echo=CUSTOM PROPERTY SETTING` before `/u01/data/domains/techco_domain/bin/startWebLogic.sh "$@"`. The goal is to demonstrate how you can set e.g. custom property which is necessary for your application. The `startJCSServer.sh` should look similar:
+
+	#!/bin/bash
+	# Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
+	
+	# script to set the USER_MEM_ARGS before starting Server
+	
+	managedServerName=techco__server_1
+	patternToBeMatched=`echo $managedServerName | cut -d _ -f 1,2`
+	if [ "${SERVER_NAME}" = "techco__adminserver" ]
+	then
+	   USER_MEM_ARGS="-Djava.security.egd=file:/dev/./urandom"
+	   JAVA_OPTIONS="$JAVA_OPTIONS -Dweblogic.rjvm.enableprotocolswitch=true -Djava.net.preferIPv4Stack=true"
+	   export JAVA_OPTIONS
+	   export USER_MEM_ARGS
+	elif [[ $SERVER_NAME =~ $patternToBeMatched ]]
+	then
+	   # in case of ManagedServer java args are coming from the startup.properties file so no need to set it explicitly. Setting USER_MEM_ARGS to " " so that default values of MEM_ARGS does not come into picture at all
+	    USER_MEM_ARGS=" "
+	    export USER_MEM_ARGS
+	fi
+	
+	echo "CUSTOM PROPERTY SETTING"
+	
+	/u01/data/domains/techco_domain/bin/startWebLogic.sh "$@"
+	~                                                                                                                                             
+	~                                                                                                                                             
+	~                                                                                                                                             
+	~                                                                                                                                             
+	~                                                                                                                                             
+	-- INSERT -- 
+
+Before starting the managed server check that there is no such entry in log files belong to the managed server:
+
+	-bash-4.1$ grep -C 4 'CUSTOM PROPERTY' /u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.*
+	-bash-4.1$ 
+
+As you can see there is no such line in the log files. Now start the Managed Server.
+
+#### Using WLST Commands to Start Managed Server ####
+
+Change directory `/u01/app/oracle/middleware/oracle_common/common/bin/` and run wlst.sh to enter the WLST Command Line Interface.
+
+	-bash-4.1$ cd /u01/app/oracle/middleware/oracle_common/common/bin/
+	-bash-4.1$ ./wlst.sh 
+
+	Initializing WebLogic Scripting Tool (WLST) ...
+	
+	Welcome to WebLogic Server Administration Scripting Shell
+	
+	Type help() for help on available commands
+	
+	wls:/offline>
+
+As a first step you need to connect to the NodeManager that manages the target server. Execute nmConnect(<username>,<password>,<nodemanager-host>,<nodemanager-port>,<domain-name>,<domain-folder>,<nodemanager-type>) to connect node manager.
+
+	wls:/offline> nmConnect('weblogic', '<password>', 'techco-wls-1', '5556', 'techco_domain', '/u01/data/domains/techco_domain', 'SSL')
+	Connecting to Node Manager ...
+	Successfully Connected to Node Manager.
+	wls:/nm/techco_domain> 
+
+Node manager accepted the connections use nmStart(<servername>) to start managed server.
+
+	wls:/nm/techco_domain> nmStart('techco__server_1')
+	Starting server techco__server_1 ...
+	Successfully started server techco__server_1 ...
+	wls:/nm/techco_domain> exit()
+
+#### Search pattern in the WebLogic server log(s) ####
+
+When the managed server has been started check the log files again for the result. The `-C 5` argument ensures that `grep` displays 5 lines more before and after the pattern have been found:
+
+	-bash-4.1$ grep -C 5 'CUSTOM PROPERTY' $DOMAIN_HOME/servers/techco__server_1/logs/techco__server_1.*
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-<Aug 28, 2016 5:11:12 PM UTC> <FINEST> <NodeManager> <Environment: QTLIB=/usr/lib64/qt-3.3/lib>
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-<Aug 28, 2016 5:11:12 PM UTC> <FINEST> <NodeManager> <Environment: HOME=/u01/app/oracle/tools/paas/state/homes/oracle>
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-<Aug 28, 2016 5:11:12 PM UTC> <FINEST> <NodeManager> <Environment: UTILS_MEM_ARGS=-Xms32m -Xmx1024m>
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-<Aug 28, 2016 5:11:12 PM UTC> <INFO> <NodeManager> <Working directory is '/u01/data/domains/techco_domain'>
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-<Aug 28, 2016 5:11:12 PM UTC> <INFO> <NodeManager> <Server output log file is '/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out'>
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out:CUSTOM PROPERTY SETTING
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-.
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-.
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-JAVA Memory arguments:  
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-.
+	/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out-CLASSPATH=/u01/app/oracle/middleware/oracle_common/modules/features/com.oracle.db.jdbc7-dms.jar:/u01/jdk/lib/tools.jar:/u01/app/oracle/middleware/wlserver/server/lib/weblogic.jar:/u01/app/oracle/middleware/wlserver/../oracle_common/modules/net.sf.antcontrib_1.1.0.0_1-0b3/lib/ant-contrib.jar:/u01/app/oracle/middleware/wlserver/modules/features/oracle.wls.common.nodemanager.jar:/u01/app/oracle/middleware/oracle_common/modules/oracle.jps/jps-manifest.jar:/u01/app/oracle/middleware/oracle_common/modules/internal/features/jrf_wlsFmw_oracle.jrf.wls.classpath.jar::/u01/app/oracle/middleware/wlserver/common/derby/lib/derbynet.jar:/u01/app/oracle/middleware/wlserver/common/derby/lib/derbyclient.jar:/u01/app/oracle/middleware/wlserver/common/derby/lib/derby.jar:/u01/jdk/lib/tools.jar:/u01/app/oracle/middleware/oracle_common/modules/oracle.jps/jps-manifest.jar
+	-bash-4.1$ 
+
+The "property" can be found in `/u01/data/domains/techco_domain/servers/techco__server_1/logs/techco__server_1.out`. Use exit command to log out from the ssh connection.
 
 Note this is one way to check log file(s) related to Java Cloud Service. There are many other way to have the log content. You can use:
 

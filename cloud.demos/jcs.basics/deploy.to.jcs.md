@@ -73,10 +73,10 @@ After a successful login the WebLogic Server Administration Console is displayed
 
 Configure the data source with the following parameters:
 
-+ Name: jdbc-OE
-+ Scope: Global (default)
-+ JNDI Name: jdbc/OE
-+ Database type: Oracle (default)
++ **Name**: jdbc-OE
++ **Scope**: Global (default)
++ **JNDI Name**: jdbc/OE
++ **Database type**: Oracle (default)
 
 Click Next.
 
@@ -92,12 +92,12 @@ Leave the default Transactions Options and click Next.
 
 Configure the database service connection descriptor.
 
-+ Database Name: `PDB1.<identitydomain>.oraclecloud.internal`
-+ Host Name: the Database Cloud Service [prepared](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/prepare.dbcs.md) to run sample.  application. If you followed the instructions its name likely is `techcoDB`
-+ Port: leave the default 1521
-+ Database User Name: oe
-+ Password: password you entered for DBA (Database Cloud Service adminsitrator - sys) account
-+ oracle.jdbc.DRCPConnectionClass: leave empty
++ **Database Name**: `PDB1.<identitydomain>.oraclecloud.internal`
++ **Host Name**: the Database Cloud Service [prepared](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/prepare.dbcs.md) to run sample.  application. If you followed the instructions its name likely is `techcoDB`
++ **Port**: leave the default 1521
++ **Database User Name**: oe
++ **Password**: password you entered for DBA (Database Cloud Service adminsitrator - sys) account
++ **oracle.jdbc.DRCPConnectionClass**: leave empty
 
 Click Next.
 
@@ -136,7 +136,7 @@ Select the file, and then click Next.
 
 ![](images/deploy.jcs.17.png)
 
-Make sure the installation type is Install this deployment as an application.Click Next.
+Make sure the installation type is Install this deployment as an application. Click Next.
 
 ![](images/deploy.jcs.18.png)
 
@@ -184,7 +184,7 @@ On the service instance details pages, find the list of nodes, and take note of 
 
 ![](images/deploy.jcs.27.png)
 
-Open a browser and write the following URL: `http://<public-ip-address>/TechCo-ECommerce`
+Open a browser and write the following URL: `https://<public-ip-address>/TechCo-ECommerce`
 You should now see the home page of the sample application.
 
 ![](images/deploy.jcs.28.png)
