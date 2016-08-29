@@ -5,7 +5,10 @@
 ### About this tutorial ###
 Oracle Application Container Cloud Service includes Oracle Java SE Cloud Service and Oracle Node Cloud Service. It provides a lightweight infrastructure so that you can run Java SE 7, Java SE 8, and Node.js applications in the Oracle Cloud.
 
-This tutorial demonstrates how to package and deploy your existing Java SE based solution to Application Container Cloud Services. This example shows how the Tomcat based 
+This tutorial demonstrates how to 
+
++ package your existing Tomcat (Java SE) based solution to Application Container Cloud Service
++ deploy application to Application Container Cloud Service
 	
 ### Prerequisites ###
 
@@ -18,13 +21,13 @@ This tutorial demonstrates how to package and deploy your existing Java SE based
 Download Apache Tomcat 8.5.4 into folder `/u01` from [http://apache.belnet.be/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz](http://apache.belnet.be/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz). If the direct link doesn't work please find the right download location of the latest or desired version of Tomcat on [https://tomcat.apache.org/](https://tomcat.apache.org/).
 
 	[oracle@localhost Desktop]$ cd /u01
-	[oracle@localhost u01]$ wget http://apache.belnet.be/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz
+	[oracle@localhost u01]$ wget http://apache.belnet.be/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz  -P /u01/
 	--2016-08-22 02:33:13--  http://apache.belnet.be/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz
 	Resolving www-proxy.us.oracle.com (www-proxy.us.oracle.com)... 148.87.19.20
 	Connecting to www-proxy.us.oracle.com (www-proxy.us.oracle.com)|148.87.19.20|:80... connected.
 	Proxy request sent, awaiting response... 200 OK
 	Length: 9271609 (9.4M) [application/x-zip]
-	Saving to: ‘apache-tomcat-8.5.4.tar.gz’
+	Saving to: ‘/u01/apache-tomcat-8.5.4.tar.gz’
 	
 	100%[==============================================================================================================>] 9,271,609    283KB/s   in 41s    
 	
@@ -125,7 +128,7 @@ To create `manifest.json` use your favorite text editor (e.g. vi, gedit). The tu
 
 	[oracle@localhost u01]$ vi /u01/apache-tomcat-8.5.4/manifest.json
 
-Write or copy the the following content:
+Press 'i' to edit file. Write or copy the the following content:
 	
 	{
 		"runtime": {
@@ -147,7 +150,7 @@ Use **Esc** then **Shift+Q** then write `wq` and hit Enter to save the file. Thi
 
 Why we use `catalina.sh`? Tomcat needs to be started as a foreground process which means you cannot use `startup.sh` because that will background Tomcat and the container will exit. Instead you must use directly sh `catalina.sh run` to launch Tomcat in the foreground.
 
-Now package the Tomcat server which is already contains the sample application war file.
+Now package the Tomcat server which is already contains the sample application war file. The package name will be **tomcat.sample.tgz**:
 
 	[oracle@localhost u01]$ cd /u01/apache-tomcat-8.5.4/ && tar -zcvf ../tomcat.sample.tgz * && cd ..
 	bin/
@@ -159,6 +162,9 @@ Now package the Tomcat server which is already contains the sample application w
 	work/Catalina/localhost/host-manager/
 	work/Catalina/localhost/examples/
 	work/Catalina/localhost/docs/
+	
+Check the result using `ls`. You have the **tomcat.sample.tgz** in folder `/u01`:
+
 	[oracle@localhost u01]$ ls
 	apache-tomcat-8.5.4  content  oepe-12.2.1.4.201608161938  python            tomcat.sample.tgz
 	app                  dpct     psmcli.zip                  Python-3.5.2.tgz  wins

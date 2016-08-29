@@ -38,6 +38,7 @@ During the execution you will create several public cloud service instances what
 ####Move Java application to Oracle Application Container Cloud Service####
 
 + [Deploy Tomcat sample application to Oracle Application Container Cloud](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.tomcat.on.accs.md)
++ [Scale up/down Application Container Service using user interface and psm CLI tool](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/scale.up.down.accs.md)
 
 ####Support SpringBoot application development lifecycle using Oracle Developer Cloud Service, Application Container Cloud Service and Oracle Enterprise Pack For Eclipse####
 
