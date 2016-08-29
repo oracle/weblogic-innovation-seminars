@@ -171,7 +171,7 @@ Check the result using `ls`. You have the **tomcat.sample.tgz** in folder `/u01`
 	[oracle@localhost u01]$ 
 
 #### Deploy to Application Cloud Container Service ####
-The application now ready to deploy. [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Java Cloud Service Console.
+The application now ready to deploy. [Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Application Container Cloud Service Console.
 ![](images/deploy.tomcat.03.png)
 
 If this is the first time when you access Application Container Cloud Service console most likely the Welcome page will be displayed. In this case click Applications to skip usefull informations and links.
@@ -195,10 +195,6 @@ The URL goes to the default Tomcat page which already shows the server is up and
 To hit the sample application append `/sample` at the and of the URL.
 ![](images/deploy.tomcat.10.png)
 
-Finally delete the Application Container Cloud service to clean up the resources. Go back to the browser page showing service instance details and click the hamburger icon on the header next to the instance name.
-![](images/deploy.tomcat.11.png)
+#### Next steps ####
 
-Click Delete to confirm.
-![](images/deploy.tomcat.12.png)
-
-Soon the delete will be completed and the instance will be removed from the service list.
+[Scale up/down Application Container Service using user interface and PaaS Service Manager (PSM) Command Line Interface (CLI) tool](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/scale.up.down.accs.md)
