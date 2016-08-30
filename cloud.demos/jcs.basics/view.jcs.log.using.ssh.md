@@ -70,7 +70,7 @@ Confirm your order by selecting Yes and wait until it completes.
 
 Change to the terminal window where ssh connection is already established. To check what is the startup script for managed server check nodemanager.properties:
 
-	-bash-4.1$ less $DOMAIN_HOME/nodemanager/nodemanager.properties/startJCSServer.sh
+	-bash-4.1$ less $DOMAIN_HOME/nodemanager/nodemanager.properties
 	#Node manager properties
 	#Fri Aug 26 19:25:37 UTC 2016
 	DomainsFile=/u01/data/domains/techco_domain/nodemanager/nodemanager.domains
