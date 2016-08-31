@@ -43,7 +43,7 @@ Change to Build Steps tab and add a **Maven 3** build step. Enter **clean instal
 
 ![](images/dcs/dcs.10.png)
 
-Finally change to Post Build tab and check in the **Archive the artifacts** option. Enter acc/springboot-sample/target/*.zip into **Files To Archive** field.
+Finally change to Post Build tab and check in the **Archive the artifacts** option. Enter _acc/springboot-sample/target/*.zip_ into **Files To Archive** field.
 
 ![](images/dcs/dcs.11.png)
 
