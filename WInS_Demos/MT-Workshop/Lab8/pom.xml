@@ -73,7 +73,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.8</version>
                 <executions>
-	          <execution>
+                <execution>
                     <id>replaceJCS</id>
                     <phase>install</phase>
                     <goals>
@@ -85,7 +85,7 @@
                           <fileset dir="${main.dir}/JCS">
                             <include name="**/*.sample"/>
                           </fileset>
-			  <mapper type="regexp" from="^(.*?)(\$$[^/\\\.]*)?\.sample$$" to="\1"/>
+                          <mapper type="regexp" from="^(.*?)(\$$[^/\\\.]*)?\.sample$$" to="\1"/>
                           <filterset>
                             <filter token="jcs.instance" value="${jcs.instance.1}"/>
                             <filter token="identity.domain" value="${opc.identity.domain}"/>
@@ -102,7 +102,7 @@
                       </target>
                     </configuration>
                   </execution>
-		  <execution>
+                  <execution>
                     <id>replaceDBCS</id>
                     <phase>install</phase>
                     <goals>
@@ -141,23 +141,23 @@
                       <target>
                         <echo message="Copy artifacts to DBCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="oracle@${dbcs.ip}:/tmp"> 
                           <fileset dir="${main.dir}/DBCS">
                             <include name="**/*.sh"/>
-			    <include name="**/*.sql"/>
-		          </fileset>
+                            <include name="**/*.sql"/>
+                          </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/petstore.sql /tmp/prepareDBCS.sh"
                           timeout="1200000"  />
                         <sshexec trust="true" failonerror="true" verbose="off" host="${dbcs.ip}"
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"  
                           username="oracle" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="/tmp/prepareDBCS.sh"
@@ -179,25 +179,25 @@
                       <target>
                         <echo message="Copy artifacts to JCS." />
                         <scp trust="true" failonerror="true" verbose="off" sftp="false" 
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"
                           passphrase="${ssh.passphrase}"
                           filemode="755"
                           todir="opc@${jcs.ip}:/tmp"> 
                           <fileset dir="${main.dir}/JCS">
                                 <include name="**/*.json"/>
-		                <include name="**/*.zip"/>
-				<include name="**/*.sh"/>
+                                <include name="**/*.zip"/>
+                                <include name="**/*.sh"/>
                                 <include name="**/*.py"/>
                           </fileset>
                         </scp>
                         <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="chmod 755 /tmp/Microcontainer1-attributes.json /tmp/Microcontainer1.zip /tmp/createVT.sh /tmp/createVT.py"
                           timeout="1200000"  />
-			<sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
-                          keyfile="${main.dir}/../../../cloud.demos/pk.openssh"  
+                        <sshexec trust="true" failonerror="true" verbose="off" host="${jcs.ip}"
+                          keyfile="${main.dir}/../../../cloud.demos/${ssh.privatekey}"  
                           username="opc" passphrase="${ssh.passphrase}"
                           usepty="true"
                           command="sudo su - oracle -c /tmp/createVT.sh oracle"

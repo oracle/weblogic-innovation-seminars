@@ -18,10 +18,13 @@ ssh.public.key=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcAguIEk3eN67GF08F+qKcTD9Pl
 
 ssh.passphrase=
 
+#the name of the private key file located in 'cloud.demos' folder
+ssh.privatekey=pk.openssh
+
 # JCS details
 jcs.base.url=jaas.oraclecloud.com
 jcs.rest.url=/paas/service/jcs/api/v1.1/instances/
-jcs.instance.version.1=12.2.1.0.160419
+jcs.instance.version.1=12.2.1
 jcs.instance.otd.1=false
 jcs.instance.1=winsdemoWLS
 jcs.instance.desc.1=winsdemo instance through REST
