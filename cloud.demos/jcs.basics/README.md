@@ -50,6 +50,6 @@ During the execution you will create several public cloud service instances what
 
 ####Clean up the environment####
 
-+ [Delete Java Cloud, Database Cloud and Application Cloud Container Services using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/cleanup.md)
++ [Delete Java Cloud, Database Cloud and Database Container Services using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/cleanup.md)
 + [Delete Application Cloud Container Service using PaaS Service Manager (PSM) Command Line Interface (CLI)](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/cleanup.psm.md)
 + Delete storage container using REST API management interface

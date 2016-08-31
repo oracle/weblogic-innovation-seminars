@@ -104,7 +104,7 @@ The `StartScriptName` property shows the startup script for managed server which
 
 	-bash-4.1$ vi /u01/data/domains/techco_domain/bin/startJCSServer.sh
 
-Press 'i' to edit file. Insert `echo=CUSTOM PROPERTY SETTING` before `/u01/data/domains/techco_domain/bin/startWebLogic.sh "$@"`. The goal is to demonstrate how you can set e.g. custom property which is necessary for your application. The `startJCSServer.sh` should look similar:
+Press 'i' to edit file. Insert `echo="CUSTOM PROPERTY SETTING"` before `/u01/data/domains/techco_domain/bin/startWebLogic.sh "$@"`. The goal is to demonstrate how you can set e.g. custom property which is necessary for your application. The `startJCSServer.sh` should look similar:
 
 	#!/bin/bash
 	# Copyright (c) 2014 Oracle and/or its affiliates. All rights reserved.
