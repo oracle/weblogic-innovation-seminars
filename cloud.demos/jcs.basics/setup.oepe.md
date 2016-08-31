@@ -115,7 +115,7 @@ Save the changes. To commit and push changes to Git right click on project and s
 
 ![](images/dcs/change.16.png) 
 
-Git Staging view is displayed. First move the `welcome.jsp` to the Staged Changes area. You don't need to add Eclipse specific files created in the local Git repository. Type a commit message. Enter your name and Cloud username (email address). Click Commit and Push...
+Git Staging view is displayed. First move the `welcome.jsp` by drag-and-drop from 'Unstaged Changes' to the 'Staged Changes' area. You don't need to add Eclipse specific files created in the local Git repository. Type a commit message. Enter your name and Cloud username (email address). Click Commit and Push...
 
 ![](images/dcs/oepe.16.png)
 
