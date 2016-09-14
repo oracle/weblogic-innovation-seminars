@@ -4,3 +4,4 @@ target/
 *.ipr
 *.iws
 cloud.demos/environment.properties
+cloud.demos/pk.openssh
