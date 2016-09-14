@@ -35,7 +35,7 @@ Now the identity has been added so no need to provide the passphrase in the futu
 
 #### Deploy TechCo Demo application ####
 
-The Database Cloud Service, Java Cloud Service preparation and application deployment can be completed executing a single script. Change the directory to `/u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605` folder:
+The Database Cloud Service, Java Cloud Service preparation and application deployment can be completed executing a single script. Change the directory to `/u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605` folder <TO CHANGE> AND WHAT? there is no script to invoke?? </TO CHANGE>:
 
     $ [oracle@localhost cloud.demos]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605
 	../environment.properties found.
@@ -113,9 +113,9 @@ Now the successful deployment message.
 
 To test an application that you have deployed and started on an Oracle Java Cloud Service instance that does not include a load balancer requires public IP address of the compute node.
 
-The public IP address of the allocated Oracle Java Cloud Service is provided by the instructor.
+The public IP address of the allocated Oracle Java Cloud Service was provided by the instructor.
 
-Or you can query using the maven based tool available on your desktop (VirtualBox image). Open a terminal and change to the `/u01/content/weblogic-innovation-seminars/cloud.demos/` folder. Then execute the following command:
+Optionally you may  query using the maven based tool available on your desktop (VirtualBox image). Open a terminal and change to the `/u01/content/weblogic-innovation-seminars/cloud.demos/` folder. Then execute the following command:
 
 	$ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos
     $ [oracle@localhost cloud.demos]$ mvn -Dgoal=jcs-get-ip
@@ -185,9 +185,8 @@ Or you can query using the maven based tool available on your desktop (VirtualBo
 	[INFO] ------------------------------------------------------------------------
 	[oracle@localhost cloud.demos]$ 
 
-Note the Public IP address of your Oracle Java Cloud Service (JCS) instance.
 
-Finally open a browser and write the following URL using your Oracle Java Cloud Service (JCS) IP address: `https://<public-ip-address>/TechCo-ECommerce`
+Please open a browser and write the following URL using your Oracle Java Cloud Service (JCS) IP address: `https://<public-ip-address>/TechCo-ECommerce`
 You should now see the home page of the sample application.
 
 ![](../jcs.basics/images/deploy.jcs.28.png)
