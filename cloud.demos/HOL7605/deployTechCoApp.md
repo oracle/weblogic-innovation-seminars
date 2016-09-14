@@ -190,4 +190,4 @@ Note the Public IP address of your Oracle Java Cloud Service (JCS) instance.
 Finally open a browser and write the following URL using your Oracle Java Cloud Service (JCS) IP address: `https://<public-ip-address>/TechCo-ECommerce`
 You should now see the home page of the sample application.
 
-![](images/deploy.jcs.28.png)
+![](../jcs.basics/images/deploy.jcs.28.png)
