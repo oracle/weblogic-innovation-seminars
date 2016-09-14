@@ -35,9 +35,10 @@ Now the identity has been added so no need to provide the passphrase in the futu
 
 #### Deploy TechCo Demo application ####
 
-The Database Cloud Service, Java Cloud Service preparation and application deployment can be completed executing a single script. Change the directory to `/u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605` folder <TO CHANGE> AND WHAT? there is no script to invoke?? </TO CHANGE>:
+The Database Cloud Service, Java Cloud Service preparation and application deployment can be completed executing a single script. Change the directory to `/u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605` folder and invoke 'deployTechCo.sh' script:
 
     $ [oracle@localhost cloud.demos]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos/HOL7605
+    $ [oracle@localhost HOL7605]$ ./deployTechCo.sh    
 	../environment.properties found.
 	Identity domain: paasdemo16
 	Java Cloud Service Public IP address: 129.144.18.102
