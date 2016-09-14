@@ -8,3 +8,5 @@ dbuser=${1}
 dbpassword=${2}
 pdb=${3}
 cat create_user.sql | sqlplus ${dbuser}/${dbpassword}@${pdb}
+
+cat oe-min-drop-create.sql | sqlplus oe/${dbpassword}@${pdb}
