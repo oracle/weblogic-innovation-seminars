@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.Header;
 import org.apache.http.auth.Credentials;
@@ -28,7 +30,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.oracle.wins.keygen.JSCHKeyGenerator;
-import com.oracle.wins.util.restclient.util.OPCProperties;
+import com.oracle.wins.util.OPCProperties;
 
 public class ExecuteGoal {
 
@@ -68,6 +70,27 @@ public class ExecuteGoal {
 	    		System.out.println(response);
 
 	        	break;
+	        case OPCProperties.GOAL_JCS_GET_IP_ADDRESS:
+	        	System.out.println("JCS get public IP address----------------------------------------");
+
+	        	response = OPCJava.getJCSInstanceDetail();
+	        	
+	        	
+	        	if (response.indexOf(OPCProperties.WLS_ADMIN_URL) > -1) {
+		        	Pattern pattern = Pattern.compile(OPCProperties.IPADDRESS_PATTERN);
+		        	Matcher matcher = pattern.matcher(response.substring(response.indexOf(OPCProperties.WLS_ADMIN_URL)));
+		        	if (matcher.find()) {
+		        	    response = "Public IP address of the JCS instance: " + matcher.group();
+		        	} else{
+		        	    response = "Can not extract IP address. See the full details:\n" + response;
+		        	}
+	        	} else {
+	        		response = "Can not extract IP address. See the instance details:\n" + response;
+	        	}
+	        	
+	    		System.out.println(response);
+
+	        	break;	        	
 	        case OPCProperties.GOAL_DBCS_GET_INSTANCE_DETAILS:
 	        	System.out.println("DBCS get specific instance details----------------------------------------");
 
@@ -77,6 +100,27 @@ public class ExecuteGoal {
 	    		System.out.println(response);
 
 	            break;
+	        case OPCProperties.GOAL_DBCS_GET_IP_ADDRESS:
+	        	System.out.println("DBCS get public IP address----------------------------------------");
+
+	        	response = OPCDatabase.getDBCSInstanceDetail();
+	        	
+	        	if (response.indexOf(OPCProperties.DB_CONNECT_DESCRIPTOR) > -1) {
+		        	Pattern pattern2 = Pattern.compile(OPCProperties.IPADDRESS_PATTERN);
+		        	Matcher matcher2 = pattern2.matcher(response.substring(response.indexOf(OPCProperties.DB_CONNECT_DESCRIPTOR)));
+		        	if (matcher2.find()) {
+		        	    response = "Public IP address of the DBCS instance: " + matcher2.group();
+		        	} else{
+		        		response = "Can not extract IP address. See the instance details:\n" + response;
+		        	}
+	        	} else {
+	        		response = "Can not extract IP address. See the instance details:\n" + response;
+	        	}
+	        		
+	        	
+	    		System.out.println(response);
+
+	        	break;	            
 	        case OPCProperties.GOAL_JCS_INSTANCE_DELETE:
 	        	System.out.println("JCS delete instance----------------------------------------");
 

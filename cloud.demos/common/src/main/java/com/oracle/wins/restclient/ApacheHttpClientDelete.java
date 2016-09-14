@@ -16,7 +16,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.oracle.wins.util.restclient.util.OPCProperties;
+import com.oracle.wins.util.OPCProperties;
 
 public class ApacheHttpClientDelete {
 

@@ -1,5 +1,6 @@
-package com.oracle.wins.util.restclient.util;
+package com.oracle.wins.util;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -8,9 +9,16 @@ import java.util.Properties;
 import java.util.Set;
 
 public class OPCProperties {
+	
+	public static final String IPADDRESS_PATTERN = "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+	
+	public static final String WLS_ADMIN_URL = "wls_admin_url";
+	public static final String DB_CONNECT_DESCRIPTOR = "connect_descriptor_with_public_ip";
 
 	public static final String GOAL_JCS_GET_INSTANCE_DETAILS = "jcs-get-instance-details";
+	public static final String GOAL_JCS_GET_IP_ADDRESS = "jcs-get-ip";
 	public static final String GOAL_DBCS_GET_INSTANCE_DETAILS = "dbcs-get-instance-details";
+	public static final String GOAL_DBCS_GET_IP_ADDRESS = "dbcs-get-ip";
 	public static final String GOAL_JCS_INSTANCE_DELETE = "jcs-delete";
 	public static final String GOAL_DBCS_INSTANCE_DELETE = "dbcs-delete";
 	public static final String GOAL_DBCS_INSTANCE_CREATE = "dbcs-create";
@@ -86,6 +94,9 @@ public class OPCProperties {
 
 		try {
 			URL url = getClass().getClassLoader().getResource(sPropertyFile);
+			if (url == null) {
+				throw new FileNotFoundException("Can not find the specified property file: " + sPropertyFile);
+			}
 			System.out.println("Read all properties from: " + url.toURI());
 			configProp.load(in);
 		} catch (IOException | URISyntaxException e) {

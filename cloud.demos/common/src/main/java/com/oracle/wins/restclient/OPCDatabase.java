@@ -7,7 +7,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.oracle.wins.util.restclient.util.OPCProperties;
+import com.oracle.wins.util.OPCProperties;
 
 public class OPCDatabase {
 

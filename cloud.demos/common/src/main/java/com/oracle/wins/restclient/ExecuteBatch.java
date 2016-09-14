@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-import com.oracle.wins.util.restclient.util.OPCProperties;
+import com.oracle.wins.util.OPCProperties;
 
 @ThreadSafe
 public class ExecuteBatch {

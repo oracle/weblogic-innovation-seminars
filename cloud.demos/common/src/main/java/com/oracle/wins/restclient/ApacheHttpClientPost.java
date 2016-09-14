@@ -14,7 +14,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import com.oracle.wins.util.restclient.util.OPCProperties;
+import com.oracle.wins.util.OPCProperties;
 
 public class ApacheHttpClientPost {
 
