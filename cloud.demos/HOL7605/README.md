@@ -16,7 +16,10 @@ Get the following details ready to complete the tutorial:
 + Oracle Cloud account **username** and **password** - Instructor provides the details.
 
 #### Prepare your desktop to access the assigned cloud enviroment ###
-Copy the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties.DOMAINID` (where DOMAINID phrase needs to be replaced with Oracle Cloud **identity domain** distributed by the Instructor) into the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties` 
+Open a terminal and copy the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties.DOMAINID` (where DOMAINID phrase needs to be replaced with Oracle Cloud **identity domain** distributed by the Instructor) into the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties` 
+
+    $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos
+    $ [oracle@localhost cloud.demos]$ cp environment.properties.DOMAINID environment.properties
 
 ----
 
@@ -28,6 +31,3 @@ Copy the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment
 4. [Deploy TechCo Demo application to Oracle Java Cloud Service. This application will provide REST interface for SpringBoot sample application.](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7605/deployTechCoApp.md)
 5. [Implement new function (REST client) in SpringBoot sample application using Service Bindings to access Oracle Java Cloud Services.](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/change.mgmt.devcs.md)
 
-####Clean up the environment####
-
-+ Reset the environment
