@@ -95,35 +95,35 @@ Enter **weblogic/welcome1** as **Username/Password** and then click on "Login"
 
 Click on "Domain Partitions" and then click on "Lock & Edit"
 
-![](images/![](images/jcs.console.domain.partitions.png)
+![](images/jcs.console.domain.partitions.png)
 
 Click on "Import", specify the file **/tmp/Microcontainer1.zip** in the **Path** field and click on "OK".
 
-![](images/![](images/jcs.console.domain.partition.import.png)
+![](images/jcs.console.domain.partition.import.png)
 
 Click on "Lock & Edit", and then select Services -> Data Sources -> PetstoreDB
 
-![](images/![](images/jcs.console.lock.and.edit.png)
+![](images/jcs.console.lock.and.edit.png)
 
 Click on the "Connection Pool" tab for PetstoreDB datasource, and modify the "URL" (jdbc:oracle:thin:@localhost:1521/pdborcl) with new value:
 **jdbc:oracle:thin:winsdemo:1521/ PDB1.{DOMAIN_ID}.oraclecloud.internal** 
 and then click on "Save". Where DOMAIN_ID is Identity Domain to which you logged in in oracle Cloud (look on page distributed to you by the Instructor)
 
-![](images/![](images/jcs.jdbc.pool.url.change.png)
+![](images/jcs.jdbc.pool.url.change.png)
 
 Click on "Activate Changes".
 
-![](images/![](images/jcs.console.activate.changes.png)
+![](images/jcs.console.activate.changes.png)
 
 Click on "Domain Partitions", go to "Control" tab, check the box near "Microcontainer1" partition and then click on "Start". On the confirmation screen click on "Yes"
 
-![](images/![](images/jcs.console.domain.partition.select.png)
+![](images/jcs.console.domain.partition.select.png)
 
-![](images/![](images/jcs.console.domain.partition.start.png)
+![](images/jcs.console.domain.partition.start.png)
 
 Click on the refresh icon, once the partition is in RUNNING state, go to the browser and access the application [http://{PUBLIC_IP_OF_JCS_INSTANCE}/petstore/faces/catalog.jsp](http://{PUBLIC_IP_OF_JCS_INSTANCE}/petstore/faces/catalog.jsp)
 
-![](images/![](images/petstore.on.jcs.png)
+![](images/petstore.on.jcs.png)
 
 
 ### Summary ###
