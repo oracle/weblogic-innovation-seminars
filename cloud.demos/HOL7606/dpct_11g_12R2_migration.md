@@ -22,12 +22,12 @@ We have also created Domain1221 in /u01/wins/wls1221/user_projects/domains/Domai
 
 #### Starting the Admin Server in both domains ####
 
-1. Open a terminal window and move to /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
+Open a terminal window and move to /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
 
     $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
   
 
-2. Copy prepared script that prepares the environment
+Copy prepared script that prepares the environment
 
     $ [oracle@localhost Lab8]$ ./prepare_env.sh 
 
@@ -38,7 +38,7 @@ We have also created Domain1221 in /u01/wins/wls1221/user_projects/domains/Domai
 
 **TBD output of the script**
 
-3. Go to browser and access the application URL on [http://localhost:6001/petstore/faces/catalog.jsp](http://localhost:6001/petstore/faces/catalog.jsp) . You can use the Bookmark.
+Go to browser and access the application URL on [http://localhost:6001/petstore/faces/catalog.jsp](http://localhost:6001/petstore/faces/catalog.jsp) . You can use the Bookmark.
 ![](images/call.petstore.on.11g.png)
 We are using **Pet Store** application which was created by Sun engineers in 2009(!) to demonstrate JEE5 and other features. You can click on different Animal name like Cats, Dogs and Birds. You can also click on Seller and Search for verification of application Execution. Due to external API changes some of the functions do not work of the demo application. 
 
