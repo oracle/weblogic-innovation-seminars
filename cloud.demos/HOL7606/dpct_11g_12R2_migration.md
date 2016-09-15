@@ -24,11 +24,12 @@ We have also created Domain1221 in /u01/wins/wls1221/user_projects/domains/Domai
 
 1. Open a terminal window and move to /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
 
-  cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
+    $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
+  
 
 2. Copy prepared script that prepares the environment
 
-  ./prepare_env.sh 
+    $ [oracle@localhost Lab8]$ ./prepare_env.sh 
 
 -	It starts the pluggable database **pdborcl**.
 -	It creates the **petstore** user in pdborcl database, and populates the database with sample data.
@@ -46,9 +47,14 @@ We are using **Pet Store** application which was created by Sun engineers in 200
 We have put the Domain to Partition conversion tool in `/u01/dpct` folder.
 
 Go back to terminal window and verify if **JAVA_HOME** variable is properly set.
-	$ echo $JAVA_HOME 
+
+    $ [oracle@localhost Lab8]$ echo $JAVA_HOME
+    
 The displayed value should be `/usr/java/latest`, which is JDK 8 required for DPCT tool to run.
+
 Move to DPCT folder location
-	$ cd /u01/dpct
+
+    $ [oracle@localhost Lab8]$ cd /u01/dpct
+
 
 
