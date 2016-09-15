@@ -257,7 +257,7 @@ Click on the hamburger icon next to the instance navigation path. Select Open We
 
 ![](images/jcs.console.open.png)
 
-This will open a new tab and warn about missing certificate. Add this site as an exception to access the console. If you face any issue in opening the admin console in Virtual box, you can use the host machine’s browser, to open the Admin Console URL.
+This will open a new tab and warn about missing certificate. This is because we didnt install any commercial SSL certificate and we use default the demo one. Add this site as an exception to access the console. If you face any issue in opening the admin console in Virtual box, you can use the host machine’s browser, to open the Admin Console URL.
 
 ![](images/jcs.console.untrusted.png)
 
