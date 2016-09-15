@@ -247,7 +247,7 @@ Enter your Oracle Public Cloud credentials and click on "Sign in".
 
 Now click on the hamburger icon next to the Java Services to open service console. 
 
-**TBD MISSING SCREENSHOT **
+![](images/myservices.dashboard.png)
 
 Click on the winsdemoWLS instance for more details
 
