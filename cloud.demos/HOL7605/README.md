@@ -13,18 +13,10 @@ Oracle Cloud is the industry’s broadest and most integrated public cloud. It o
 Get the following details ready to complete the tutorial:
 
 + Oracle Cloud **identity domain** - Instructor provides the details
-+ Oracle Cloud account **username** and **password** - you can find the credential's value in the property file (see below).
++ Oracle Cloud account **username** and **password** - Instructor provides the details.
 
 #### Prepare your desktop to access the assigned cloud enviroment ###
-In order to access and use the proper cloud account/environment you need to modify the following property file: `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties`. Open the file browser and find the file to edit using `gedit`.
-
-![](images/01.edit.properties.png)
-
-Replace the identity domain property's value which is allocated by the instructor.
-
-![](images/02.change.identity.domain.prop.png)
-
-Click Save and note the `opc.username` and `opc.password` properties. This user name and password belong to the Oracle Public Cloud Services assigned to you. You can leave the editor open for later usage of login details.
+Copy the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties.DOMAINID` (where DOMAINID phrase needs to be replaced with Oracle Cloud **identity domain** distributed by the Instructor) into the file `/u01/content/weblogic-innovation-seminars/cloud.demos/environment.properties` 
 
 ----
 
