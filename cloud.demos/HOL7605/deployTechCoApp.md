@@ -116,7 +116,7 @@ To test an application that you have deployed and started on an Oracle Java Clou
 
 The public IP address of the allocated Oracle Java Cloud Service was provided by the instructor.
 
-Optionally you may  query using the maven based tool available on your desktop (VirtualBox image). Open a terminal and change to the `/u01/content/weblogic-innovation-seminars/cloud.demos/` folder. Then execute the following command:
+Optionally you may  query Oracle Cloud through REST API about the JCS public IP using the maven based tool available on your desktop (VirtualBox image). Open a terminal and change to the `/u01/content/weblogic-innovation-seminars/cloud.demos/` folder. Then execute the following command:
 
 	$ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos
     $ [oracle@localhost cloud.demos]$ mvn -Dgoal=jcs-get-ip
