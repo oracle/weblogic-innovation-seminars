@@ -44,36 +44,90 @@ Go back to terminal, and verify the creation of `Microcontainer1.zip` and `Micro
 
 **TBD OUTPUT IS MISSING HERE**
 
-Eecute the following maven project:
+Eecute the following command:
   
     $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
     $ [oracle@localhost Lab8]$ mvn install -DLiftAndShift -Djcs.ip={PUBLIC IP OF JCS INSTANCE} -Ddbcs.ip={PUBLIC IP OF DBCS INSTANCE}
   
-  
+(The above maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that. In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simplify the demo, we used the SQL scripts here. Then it copies the ZIP and JSON file of exported partition to /tmp folder of JCS instance, and provides sufficient permissions. It also creates the Virtual Target Microcontainer1-AdminServer-virtualTarget using a short WLST script, which we will be used by the imported partition.)
 
- 
-(The above maven command copies the required files to DBCS instance first, and populate the database with sample data. Here we used the SQL scripts for that, In general, you can unplug the local database, copies related files to DBCS instance and then plug the pluggable database to database in DBCS or you can export and import database. But to simply the demo, we used the SQL scripts here. Then it copies the ZIP and JSON file of exported partition to /tmp folder of JCS instance, and provides sufficient permissions. It also creates the Virtual Target Microcontainer1-AdminServer-virtualTarget using a short WLST script, which we will be used by the imported partition.)
+**TBD OUTPUT IS MISSING HERE**
+
+#### Import  Domain Partition in Java Cloud Service ####
+
+Now open or switch to the browser and access to [http://cloud.oracle.com](http://cloud.oracle.com) site. Click on Sign In
+
+![](images/cloud.oracle.com.png)
+
+Select the appropriate datacenter. ( US Commercial 2 (us2) )
+
+**TBD MISSING SCREENSHOT **
+
+Enter your identity domain and click on "Go".
+
+![](images/cloud.identity.domain.png)
+
+Enter your Oracle Public Cloud credentials and click on "Sign in".
+
+![](images/cloud.username.password.png)
+
+Now click on the hamburger icon next to the Java Services to open service console. 
+
+**TBD MISSING SCREENSHOT **
+
+Click on the winsdemoWLS instance for more details
+
+![](images/jcs.service.details.png)
+
+Click on the hamburger icon next to the instance navigation path. Select Open WebLogic Server Console to make the necessary correction after the import. Please note this change can be also automated by WLST scripts. The goal is here to demonstrate the Java Cloud Service capabilities.
+
+![](images/jcs.console.open.png)
+
+This will open a new tab and warn about missing certificate. Add this site as an exception to access the console. If you face any issue in opening the admin console in Virtual box, you can use the host machine’s browser, to open the Admin Console URL.
+
+![](images/jcs.console.untrusted.png)
+
+![](images/jcs.console.untrusted.exception.png)
+
+Enter **weblogic/welcome1** as **Username/Password** and then click on "Login"
+
+![](images/jcs.console.login.png)
+
+Click on "Domain Partitions" and then click on "Lock & Edit"
+
+![](images/![](images/jcs.console.domain.partitions.png)
+
+Click on "Import", specify the file **/tmp/Microcontainer1.zip** in the **Path** field and click on "OK".
+
+![](images/![](images/jcs.console.domain.partition.import.png)
+
+Click on "Lock & Edit", and then select Services -> Data Sources -> PetstoreDB
+
+![](images/![](images/jcs.console.lock.and.edit.png)
+
+Click on the "Connection Pool" tab for PetstoreDB datasource, and modify the "URL" (jdbc:oracle:thin:@localhost:1521/pdborcl) with new value:
+**jdbc:oracle:thin:winsdemo:1521/ PDB1.{DOMAIN_ID}.oraclecloud.internal** 
+and then click on "Save". Where DOMAIN_ID is Identity Domain to which you logged in in oracle Cloud (look on page distributed to you by the Instructor)
+
+![](images/![](images/jcs.jdbc.pool.url.change.png)
+
+Click on "Activate Changes".
+
+![](images/![](images/jcs.console.activate.changes.png)
+
+Click on "Domain Partitions", go to "Control" tab, check the box near "Microcontainer1" partition and then click on "Start". On the confirmation screen click on "Yes"
+
+![](images/![](images/jcs.console.domain.partition.select.png)
+
+![](images/![](images/jcs.console.domain.partition.start.png)
+
+Click on the refresh icon, once the partition is in RUNNING state, go to the browser and access the application [http://{PUBLIC_IP_OF_JCS_INSTANCE}/petstore/faces/catalog.jsp](http://{PUBLIC_IP_OF_JCS_INSTANCE}/petstore/faces/catalog.jsp)
+
+![](images/![](images/petstore.on.jcs.png)
 
 
-    $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
-  
+### Summary ###
 
-Copy prepared script that prepares the environment
-
-    $ [oracle@localhost Lab8]$ ./prepare_env.sh 
-
-**TBD output of the script**
-
-Go to browser and access the application URL on [http://localhost:6001/petstore/faces/catalog.jsp](http://localhost:6001/petstore/faces/catalog.jsp) . You can use the Bookmark.
-
-![](images/call.petstore.on.11g.png)
-
-We are using **Pet Store** application which was created by Sun engineers in 2009(!) to demonstrate JEE5 and other features. You can click on different Animal name like Cats, Dogs and Birds. You can also click on Seller and Search for verification of application Execution. Due to external API changes some of the functions do not work of the demo application. 
-
-![](images/petstore.on.11g.png)
-
-
-#### Running Domain to Partition Conversion Tool ####
-
-We have put the Domain to Partition conversion tool in `/u01/dpct` folder.
+1.	We took a domain Domain1036 created on WebLogic 10.3.6 Server, We used the Domain to Partition Conversion tool, to create archive and JSON file, which we later used for importing as partition in Domain1221 created on WebLogic 12.2.1 server. So in that way, Customer who has domain running in previous version of WebLogic Server, can be easily migrated to WebLogic Server 12.2.1 as partition.
+2.	Exporting and Importing Partitions let WLS system administrators easily move partition from one domain to another, including the applications that are deployed to the partition. This features in useful for replicating partition across the domains and for moving domains from a development to a testing and then in production environment. Here we showed how you can replicate the partition running in development mode in on-premise to domain running in production mode in Java Cloud Service instance.  
 
