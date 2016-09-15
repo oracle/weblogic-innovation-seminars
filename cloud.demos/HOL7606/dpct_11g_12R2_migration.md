@@ -106,6 +106,8 @@ Wait for 5-6 seconds, and then click on Configuration tab of Domain Partitions. 
 
 Access the Application on [http://localhost:9101/petstore/faces/catalog.jsp](http://localhost:9101/petstore/faces/catalog.jsp) or using the bookmark.
 
+![](images/call.petstore.on.12cR2.png)
+
 ![](images/petstore.on.12cR2.png)
 
 
