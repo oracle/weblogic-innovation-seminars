@@ -32,5 +32,5 @@ Open a terminal and copy the file `/u01/content/weblogic-innovation-seminars/clo
 
 ###Moving Oracle WebLogic Server 11g to the Cloud with Oracle WebLogic Server Multitenancy###
 
-1. [Convert WebLogic 11g domain into the 12cR2 partition through DPCT tool](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7605/dpct_11g_12R2_migration.md)
-2. [Move partition from WebLogic Server 12cR2 to Java Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7605/lift_and_shift.md)
+1. [Convert WebLogic 11g domain into the 12cR2 partition through DPCT tool](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/dpct_11g_12R2_migration.md)
+2. [Move partition from WebLogic Server 12cR2 to Java Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/lift_and_shift.md)
