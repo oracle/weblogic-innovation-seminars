@@ -4,7 +4,7 @@
 
 ### About this tutorial ###
 
-This part of the tutorial showe how to convert existing Weblogic Server 11g domain into the importable format of WebLogic Server 12cR2 Domain Partition and import that pertition into WebLogic Server 12cR2 domain
+This part of the tutorial shows how to convert existing Weblogic Server 11g domain into the importable format of WebLogic Server 12cR2 Domain Partition and import that pertition into WebLogic Server 12cR2 domain
 
 ![](images/part1.generic.overview.png)
 
