@@ -43,12 +43,12 @@ We are using **Pet Store** application which was created by Sun engineers in 200
 
 #### Running Domain to Partition Conversion Tool ####
 
-We have put the Domain to Partition conversion tool in '/u01/dpct' folder.
+We have put the Domain to Partition conversion tool in `/u01/dpct` folder.
 
 Go back to terminal window and verify if **JAVA_HOME** variable is properly set.
-	echo $JAVA_HOME 
-The displayed value should be /usr/java/latest, which is JDK 8 required for DPCT tool to run.
+	$ echo $JAVA_HOME 
+The displayed value should be `/usr/java/latest`, which is JDK 8 required for DPCT tool to run.
 Move to DPCT folder location
-	cd /u01/dpct
+	$ cd /u01/dpct
 
 
