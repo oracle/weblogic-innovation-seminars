@@ -108,7 +108,7 @@ The Database Cloud Service, Java Cloud Service preparation and application deplo
 	TechCo application has been deployed.
     [oracle@localhost techco.sample.app]$
 
-Now the successful deployment message.
+You should see at the end the successful deployment message.
 
 #### Launch sample application ####
 
@@ -187,7 +187,7 @@ Optionally you may  query using the maven based tool available on your desktop (
 	[oracle@localhost cloud.demos]$ 
 
 
-Please open a browser and write the following URL using your Oracle Java Cloud Service (JCS) IP address: `https://<public-ip-address>/TechCo-ECommerce`
+Please open a browser and write the following URL using your Oracle Java Cloud Service (JCS) IP address: `https://<jcs-public-ip-address>/TechCo-ECommerce`
 You should now see the home page of the sample application.
 
 ![](../jcs.basics/images/deploy.jcs.28.png)
