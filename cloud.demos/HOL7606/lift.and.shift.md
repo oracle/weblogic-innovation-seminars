@@ -281,7 +281,7 @@ Click on "Lock & Edit", and then select Services -> Data Sources -> PetstoreDB
 
 Click on the "Connection Pool" tab for PetstoreDB datasource, and modify the "URL" (jdbc:oracle:thin:@localhost:1521/pdborcl) with new value:
 **jdbc:oracle:thin:@winsdemo:1521/ PDB1.{DOMAIN_ID}.oraclecloud.internal** 
-and then click on "Save". Where DOMAIN\_ID is Identity Domain to which you logged in in oracle Cloud (look on page distributed to you by the Instructor)
+and then click on "Save". Where DOMAIN\_ID is Identity Domain to which you logged in in oracle Cloud (look on the page distributed to you by the Instructor)
 
 ![](images/jcs.jdbc.pool.url.change.png)
 
