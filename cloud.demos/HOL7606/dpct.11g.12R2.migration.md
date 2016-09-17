@@ -27,7 +27,7 @@ Open a terminal window and move to `/u01/content/weblogic-innovation-seminars/WI
     $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8
   
 
-Copy prepared script that prepares the environment.
+Run prepared script that prepares the environment.
 
     $ [oracle@localhost Lab8]$ ./prepare_env.sh 
 
