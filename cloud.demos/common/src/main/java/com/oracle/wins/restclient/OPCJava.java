@@ -71,8 +71,8 @@ public class OPCJava {
 		sbTemp.append("        \"dbaName\" : \"" + opcProperties.getProperty(OPCProperties.DBCS_DBA_NAME) + "\",");
 		sbTemp.append("        \"dbaPassword\" : \"" + opcProperties.getProperty(OPCProperties.DBCS_DBA_PASSWORD) + "\",");
 		sbTemp.append("        \"shape\" : \"oc3\",");
-		sbTemp.append("        \"domainVolumeSize\" : \"10G\",");
-		sbTemp.append("        \"backupVolumeSize\" : \"50G\",");
+	//	sbTemp.append("        \"domainVolumeSize\" : \"10G\",");
+	//	sbTemp.append("        \"backupVolumeSize\" : \"50G\",");
 		sbTemp.append("        \"VMsPublicKey\" : \"" + opcProperties.getProperty(OPCProperties.SSH_PUBLIC_KEY) + "\"");
 		sbTemp.append("    }");
 		
