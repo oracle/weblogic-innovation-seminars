@@ -4,7 +4,7 @@
 
 ### About this tutorial ###
 
-This part of the tutorial showe how to move Domain Partition from one domain to another. We will demonstrate it on the example that origin domain will be running on premise and target domain will run in Oracle Cloud
+This part of the tutorial shows how to move a Domain Partition from one domain to another. We will demonstrate it using an example where the source domain is running on premises and the target domain is running in Oracle Cloud.
 
 ![](images/part2.generic.overview.png)
 
