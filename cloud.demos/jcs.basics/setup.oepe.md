@@ -87,7 +87,7 @@ OEPE now starts to validate and build the project which can take few seconds. Fi
 
 #### Change code and test using continuous integration ####
 
-The project hosted on Oracle Developer Cloud Service has build job which ensures that new application build and deployment to Application Container Cloud Service happens when any developer oush code changes to Git repository.
+The project hosted on Oracle Developer Cloud Service has build job which ensures that new application build and deployment to Application Container Cloud Service happens when any developer push code changes to Git repository.
 
 Check the process modifying small piece on the application. First check the default page of the application. Open the tree view myOracleCloud -> Applications -> springboot-demo. Right click on springboot-demo and select Open In Browser menu item.
 
