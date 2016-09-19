@@ -80,5 +80,9 @@ fi
 
 echo "========================================"
 
+chmod 600 /u01/content/weblogic-innovation-seminars/cloud.demos/pk.openssh
+
+echo "========================================"
+
 echo "Oracle Proxy settings has been changed. Please run again Oracle Proxy ON/OFF on the desktop depending on your network connection."
 echo "Everything is up to date!"
