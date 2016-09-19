@@ -30,7 +30,7 @@ This tutorial demonstrates how to:
 
 #### Configure Cloud Tools Plugin ####
 
-Open OEPE and set (leave the default, `home/oracle/workspace`) workspace location. Close the Welcome page. To open the *Oracle Cloud* view from the Window menu, click *Show View* and then *Other*.
+Open OEPE (using desktop icon ![](images/dcs/oepe.00.png)) and set (leave the default, `home/oracle/workspace`) workspace location. Close the Welcome page. To open the *Oracle Cloud* view from the Window menu, click *Show View* and then *Other*.
 
 ![](images/dcs/oepe.01.png)
 
@@ -75,7 +75,7 @@ Select Existing Maven Projects and click Next.
 
 ![](images/dcs/oepe.10.png)
 
-Give the location of the cloned repository. If the workspace location is the default it should look like the following: `/home/oracle/workspace/springboot.git-9534/acc/springboot-sample`
+Browse the location of the cloned repository in `/home/oracle/workspace/` folder and select `acc/springboot-sample` subfolder. If the workspace location is the default it should look like the following: `/home/oracle/workspace/springboot.git-9534/acc/springboot-sample`
 Please note, that you need to give one of the subfolder of the local repository.
 Click Finish.
 
@@ -115,7 +115,7 @@ Save the changes. To commit and push changes to Git right click on project and s
 
 ![](images/dcs/change.16.png) 
 
-Git Staging view is displayed. First move the `welcome.jsp` by drag-and-drop from 'Unstaged Changes' to the 'Staged Changes' area. You don't need to add Eclipse specific files created in the local Git repository. Type a commit message. Enter your name and Cloud username (email address). Click Commit and Push...
+Git Staging view is displayed. First move the `welcome.jsp` by drag-and-drop from 'Unstaged Changes' to the 'Staged Changes' area. You don't need to add Eclipse specific files created in the local Git repository. Type a commit message. Enter your name or cloud username and give a (valid or fake) email address in the following format as the screenshot shows. Click Commit and Push...
 
 ![](images/dcs/oepe.16.png)
 

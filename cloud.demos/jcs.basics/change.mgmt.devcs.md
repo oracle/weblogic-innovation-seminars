@@ -40,7 +40,7 @@ Open the SpringBoot project and click Issues tab. Click New Issue.
 
 ![](images/dcs/change.01.png)
 
-Enter properties of the new task. The new task will be to create new page in SpringBoot demo application to show TechCo products using that [application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.to.jcs.md)'s REST interface. You can use values on the picture but the point is only to create new Issue assigned to your account which can be used to simulate task assignement to specific user.
+Enter properties of the new task. The new task will be to create new page in SpringBoot demo application to show TechCo products using that [application](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.to.jcs.md)'s REST interface. You can use values on the picture but the point is only to create new Issue assigned to your account which can be used to simulate task assignement to specific user. So make sure the Owner of the Issue is assigned to your account name.
 
 ![](images/dcs/change.02.png)
 
@@ -357,7 +357,8 @@ On the service instance details pages, find the list of nodes, and take note of 
 ![](images/deploy.jcs.27.png)
 
 Open a browser and write the following URL: `http://<public-ip-address>/TechCo-ECommerce/rest/products/all`. What you can see is the JSON formatted response of the REST interface to query all products. This is what SpringBoot application will invoke and print the result on its ne page.
-![](images/dcs/change.24.png)
+
+![](images/dcs/change.24.firefox.png)
 
 Go back to browser where Application Container Cloud Service console is open. If there is no such browser go to Java Cloud Service console page and use Dashboard button to navigate Application Cloud Container Service console. If there is no any Oracle Cloud Service related console opened then [sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com) and click on Application Container Cloud Service console. Click on the service name to manage the instance.
 

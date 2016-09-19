@@ -18,7 +18,7 @@ This tutorial demonstrates how to:
 
 #### Create build job ####
 
-[Sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
+If the Developer Cloud Service Console is not yet opened then [sign in](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/sign.in.to.oracle.cloud.md) to [https://cloud.oracle.com](https://cloud.oracle.com). On the dashboard open the Developer Cloud Service Console.
 
 ![](images/dcs/dcs.00.png)
 
@@ -26,7 +26,11 @@ Open the SpringBoot project and click Build tab. The Build page, also called as 
 
 ![](images/dcs/dcs.07.png)
 
-Enter a name for the new job. Select the *Create a free-style job* option and save. On the Main configuration page of the newly created job make sure JDK 8 is the selected JDK.
+Enter a name for the new job. Select the *Create a free-style job* option and save. 
+
+![](images/dcs/dcs.07.new.job.png)
+
+On the Main configuration page of the newly created job make sure JDK 8 is the selected JDK.
 
 ![](images/dcs/dcs.08.png)
 
@@ -47,7 +51,11 @@ Finally change to Post Build tab and check in the **Archive the artifacts** opti
 
 ![](images/dcs/dcs.11.png)
 
-Click on Save to update the new job configurations. To run the build job click Build Now on the job's detail page. Once the job is done check the archived artifacts. It should be the following: springbootdemo-0.0.1.zip
+Click on **Save** to update the new job configurations. To run the build job click **Build Now** on the job's detail page. 
+
+![](images/dcs/dcs.12.build.now.png)
+
+Once the job is done check the archived artifacts. It should be the following: springbootdemo-0.0.1.zip
 
 ![](images/dcs/dcs.12.png)
 
