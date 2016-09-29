@@ -38,7 +38,7 @@ declare
 begin
   select count(1) into pdb_counter from v\$pdbs where name = upper('${pdb}') and open_mode != 'READ WRITE';
   if pdb_counter > 0 then
-    dbms_output.put_line('${pdb} is not yet opened');	
+    dbms_output.put_line('${pdb} is not yet opened'); 
     EXECUTE IMMEDIATE 'alter pluggable database ${pdb} open';
   else
     dbms_output.put_line('${pdb} is already opened');
@@ -75,6 +75,8 @@ echo "********** CREATING PETSTORE_DOMAIN (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **
 rm -rf /u01/wins/wls1036/user_projects/domains/petstore_domain
 
 /u01/wins/wls1036/wlserver_10.3/common/bin/unpack.sh -template=/u01/content/weblogic-innovation-seminars/cloud.demos/app.2.cloud/template/petstore_domain_template.jar -domain=/u01/wins/wls1036/user_projects/domains/petstore_domain -user_name=weblogic -password=welcome1 -log=petstore_domain_creation.log
+
+sed "s|StartScriptEnabled=false|StartScriptEnabled=true|g" -i /u01/wins/wls1036/wlserver_10.3/common/nodemanager/nodemanager.properties
 
 echo "********** STARTING NM (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************************"
 cd /u01/wins/wls1036/wlserver_10.3/server/bin

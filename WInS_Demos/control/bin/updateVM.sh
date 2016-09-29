@@ -80,9 +80,5 @@ fi
 
 echo "========================================"
 
-sed "s|StartScriptEnabled=false|StartScriptEnabled=true|g" -i /u01/wins/wls1036/wlserver_10.3/common/nodemanager/nodemanager.properties
-
-echo "========================================"
-
 echo "Oracle Proxy settings has been changed. Please run again Oracle Proxy ON/OFF on the desktop depending on your network connection."
 echo "Everything is up to date!"
