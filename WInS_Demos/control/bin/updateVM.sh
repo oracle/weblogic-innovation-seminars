@@ -80,7 +80,7 @@ fi
 
 echo "========================================"
 
-chmod 600 /u01/content/weblogic-innovation-seminars/cloud.demos/pk.openssh
+sed "s|StartScriptEnabled=false|StartScriptEnabled=true|g" -i /u01/wins/wls1036/wlserver_10.3/common/nodemanager/nodemanager.properties
 
 echo "========================================"
 
