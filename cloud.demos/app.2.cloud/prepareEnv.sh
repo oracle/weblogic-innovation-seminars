@@ -50,7 +50,7 @@ EOF
 
 sleep 3
 
-echo "********** CREATING PetStore DB USER ***************************"
+echo "********** CREATING PetStore DB USER **********************************************"
 
 sqlplus -s system/${dbpassword}@${pdb} <<EOF
  drop user petstore cascade;
@@ -71,34 +71,60 @@ export JAVA_HOME=/usr/java/jdk1.7.0_79
 export PATH=$JAVA_HOME/bin:$PATH
 export MW_HOME=/u01/wins/wls1036
 
-echo "********** CREATING PETSTORE_DOMAIN (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************************"
-rm -rf /u01/wins/wls1036/user_projects/domains/petstore_domain
+echo "********** CREATING PETSTORE_DOMAIN (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********"
+rm -rf $MW_HOME/user_projects/domains/petstore_domain
 
-/u01/wins/wls1036/wlserver_10.3/common/bin/unpack.sh -template=/u01/content/weblogic-innovation-seminars/cloud.demos/app.2.cloud/template/petstore_domain_template.jar -domain=/u01/wins/wls1036/user_projects/domains/petstore_domain -user_name=weblogic -password=welcome1 -log=petstore_domain_creation.log
+$MW_HOME/wlserver_10.3/common/bin/unpack.sh -template=/u01/content/weblogic-innovation-seminars/cloud.demos/app.2.cloud/template/petstore_domain_template.jar -domain=/u01/wins/wls1036/user_projects/domains/petstore_domain -user_name=weblogic -password=welcome1 -log=petstore_domain_creation.log
 
-sed 's|umask 037|umask 037\n\nJAVA_OPTIONS="-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.allowCryptoJDefaultJCEVerification=true"\n\nUSER_MEM_ARGS="-Xms1024m -Xmx1024m -XX:MaxPermSize=256m"|g' -i /u01/wins/wls1036/user_projects/domains/petstore_domain/bin/startWebLogic.sh
+export DOMAIN_HOME=/u01/wins/wls1036/user_projects/domains/petstore_domain
 
-echo "********** STARTING NM (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************************"
-cd /u01/wins/wls1036/wlserver_10.3/server/bin
-nohup ./startNodeManager.sh &>nm.log </dev/null  &
+sed 's|umask 037|umask 037\n\nJAVA_OPTIONS="-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.allowCryptoJDefaultJCEVerification=true"\n\nUSER_MEM_ARGS="-Xms768m -Xmx768m -XX:MaxPermSize=256m"|g' -i $DOMAIN_HOME/bin/startWebLogic.sh
 
-sleep 5
+mkdir -p $DOMAIN_HOME/servers/mserver1/security
+mkdir -p $DOMAIN_HOME/servers/mserver2/security
 
-nohup ./stopNodeManager.sh &>nmshut.log </dev/null  &
+echo -e "username=weblogic\npassword=welcome1" > $DOMAIN_HOME/servers/mserver1/security/boot.properties
+echo -e "username=weblogic\npassword=welcome1" > $DOMAIN_HOME/servers/mserver2/security/boot.properties
 
-sleep 5
+#echo "********** STARTING NM (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ************************"
+#cd $MW_HOME/wlserver_10.3/server/bin
+#nohup ./startNodeManager.sh &>nm.log </dev/null  &
 
-sed "s|StartScriptEnabled=false|StartScriptEnabled=true|g" -i /u01/wins/wls1036/wlserver_10.3/common/nodemanager/nodemanager.properties
+#sleep 5
 
-nohup ./startNodeManager.sh &>nm.log </dev/null  &
+#pkill -f weblogic.NodeManager
 
-echo "********** STARTING ADMIN (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************************"
-cd /u01/wins/wls1036/user_projects/domains/petstore_domain/bin
+#sed "s|StartScriptEnabled=false|StartScriptEnabled=true|g" -i $MW_HOME/wlserver_10.3/common/nodemanager/nodemanager.properties
+
+#nohup ./startNodeManager.sh &>nm.log </dev/null  &
+
+echo "********** STARTING ADMIN SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) **************"
+cd $DOMAIN_HOME/bin
 nohup ./startWebLogic.sh &>adminserver.log </dev/null  &
 
 sleep 2
 
-tail -f /u01/wins/wls1036/user_projects/domains/petstore_domain/bin/adminserver.log | while read LOGLINE
+tail -f $DOMAIN_HOME/bin/adminserver.log | while read LOGLINE
+do
+   [[ "${LOGLINE}" == *"Server state changed to RUNNING"* ]] && pkill -P $$ tail
+done
+
+echo "********** STARTING MSERVER1 SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********"
+nohup ./startManagedWebLogic.sh mserver1 localhost:7001 &>mserver1.log </dev/null  &
+
+sleep 2
+
+tail -f $DOMAIN_HOME/bin/mserver1.log | while read LOGLINE
+do
+   [[ "${LOGLINE}" == *"Server state changed to RUNNING"* ]] && pkill -P $$ tail
+done
+
+echo "********** STARTING MSERVER2 SERVER (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********"
+nohup ./startManagedWebLogic.sh mserver2 localhost:7001 &>mserver2.log </dev/null  &
+
+sleep 2
+
+tail -f $DOMAIN_HOME/bin/mserver2.log | while read LOGLINE
 do
    [[ "${LOGLINE}" == *"Server state changed to RUNNING"* ]] && pkill -P $$ tail
 done
@@ -109,14 +135,12 @@ cd /u01/content/weblogic-innovation-seminars/cloud.demos/app.2.cloud
 cp wlst/deployPetstore_template.py wlst/deployPetstore.py
 sed "s|@database.dba.pass@|${dbpassword}|g; s|@database.pdb@|${pdb}|g" -i wlst/deployPetstore.py
 
-echo "********** DEPLOY PETSTORE (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ***********"
-export DOMAIN_HOME=/u01/wins/wls1036/user_projects/domains/petstore_domain
-
+echo "********** DEPLOY PETSTORE (WEBLOGIC 10.3.6 - PETSTORE_DOMAIN) ********************"
 
 cd $DOMAIN_HOME/bin 
 . ./setDomainEnv.sh
 
 $JAVA_HOME/bin/java -Dweblogic.deploy.UploadLargeFile=true weblogic.WLST /u01/content/weblogic-innovation-seminars/cloud.demos/app.2.cloud/wlst/deployPetstore.py
 
-
+echo "********** OPEN PETSTORE APPLICATION AT http://localhost:7003/petstore/faces/catalog.jsp"
 

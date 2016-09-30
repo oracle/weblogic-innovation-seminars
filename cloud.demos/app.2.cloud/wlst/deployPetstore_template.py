@@ -1,14 +1,14 @@
-print "**** Connectiong to NodeManager: petstore_domain to Start mserver1,mserver2 ***"
-nmConnect('weblogic','welcome1',domainName='petstore_domain',port='5556',host='localhost')
+#print "**** Connectiong to NodeManager: petstore_domain to Start mserver1,mserver2 ***"
+#nmConnect('weblogic','welcome1',domainName='petstore_domain',port='5556',host='localhost')
 
 #prps = makePropertiesObject("Username=weblogic;Password=welcome1;Arguments=-Dweblogic.security.SSL.ignoreHostnameVerification=true -Djava.security.egd=file:/dev/./urandom -Dweblogic.security.allowCryptoJDefaultJCEVerification=true")
-prps = makePropertiesObject("Username=weblogic;Password=welcome1")
+#prps = makePropertiesObject("Username=weblogic;Password=welcome1")
 #nmStart('AdminServer', props=prps)
 
-prps.setProperty('AdminURL', 'http://localhost:7001')
-nmStart('mserver1',props=prps)
-nmStart('mserver2',props=prps)
-nmDisconnect()
+#prps.setProperty('AdminURL', 'http://localhost:7001')
+#nmStart('mserver1',props=prps)
+#nmStart('mserver2',props=prps)
+#nmDisconnect()
 
 print "************************ Create resources for PETSTORE application *****************************************"
 datasource_user='petstore'
