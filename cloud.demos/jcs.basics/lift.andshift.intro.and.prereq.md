@@ -41,6 +41,7 @@ If your OPC account is just fresh created account - no storage, no DBCS instance
 + opc.identity.domain
 + opc.username
 + opc.password
+
 and execute the following scripts:
 
     $ [oracle@localhost Desktop]$ cd /u01/content/weblogic-innovation-seminars/cloud.demos
