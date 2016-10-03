@@ -50,10 +50,11 @@ During the execution you will create several public cloud service instances what
 
 ####Upgrade WebLogic Server 11g (10.3.6) on premise environment and migrate to Java Cloud Service with Weblogic Server 12cR2 by using multitenancy####
 
-+ Introduction and prerequisites
-+ Convert WebLogic 11g domain into the 12cR2 partition using DPCT (Domain to Partition Conversion Tool)
-+ Move partition from WebLogic Server 12cR2 to Oracle Java Cloud Service
++ [Introduction and prerequisites](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/lift.andshift.intro.and.prereq.md) 
++ [Convert WebLogic 11g domain into the 12cR2 partition using DPCT (Domain to Partition Conversion Tool)](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/dpct.11g.12R2.migration.md)
++ [Move partition from WebLogic Server 12cR2 to Oracle Java Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/lift.and.shift.md)
 
+ 
 ####Clean up the environment####
 
 + [Delete Java Cloud, Database Cloud and Database Container Services using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/cleanup.md)
