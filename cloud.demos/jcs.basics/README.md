@@ -48,6 +48,12 @@ During the execution you will create several public cloud service instances what
 + [Development lifecycle management using Eclipse IDE (Oracle Enterprise Pack for Eclipse) and Oracle Developer Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/change.mgmt.devcs.md)
 + [Monitor and tune SpringBoot application deployed on Oracle Application Container Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/monitor.application.deployed.accs.md)
 
+####Upgrade WebLogic Server 11g (10.3.6) on premise environment and migrate to Java Cloud Service with Weblogic Server 12cR2 by using multitenancy####
+
++ Introduction and prerequisites
++ Convert WebLogic 11g domain into the 12cR2 partition using DPCT (Domain to Partition Conversion Tool)
++ Move partition from WebLogic Server 12cR2 to Oracle Java Cloud Service
+
 ####Clean up the environment####
 
 + [Delete Java Cloud, Database Cloud and Database Container Services using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/cleanup.md)
