@@ -10,7 +10,10 @@ timeout 5 git ls-remote "$GIT_URL" &>-
 if [ "$?" -ne 0 ]; then
     echo "[ERROR] Unable to read from '$GIT_URL'"
     echo "Check your proxy settings and/or restart Virtualbox VM."
-    exit 1;
+    if [ "$1" == "wait" ]; then
+       read -p "Press [Enter] to close the window"
+       exit 1;
+    fi
 fi
 
 echo "Using GIT_URL=[${GIT_URL}]"
