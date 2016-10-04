@@ -4,7 +4,7 @@ export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
 export GIT_URL="https://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 export GIT_BRANCH="caf-12.2.1"
 
-sudo /etc/init.d/network restart
+sudo $CONTENT_DIR/WInS_Demos/control/bin/sudoNetwork.sh
 
 timeout 5 git ls-remote "$GIT_URL" &>-
 if [ "$?" -ne 0 ]; then
