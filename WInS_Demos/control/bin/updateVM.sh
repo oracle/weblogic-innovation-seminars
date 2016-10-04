@@ -32,9 +32,18 @@ fi
 
 echo "========================================"
 
+YUM_REPO_URL="http://public-yum.oracle.com/repo/OracleLinux/OL7/UEKR3/x86_64/"
+
+timeout 5 wget -q --spider "$YUM_REPO_URL"
+if [ "$?" -ne 0 ]; then
+    echo "[ERROR] Unable to read from $YUM_REPO_URL"
+    echo "Check your proxy settings and/or restart Virtualbox VM."
+    exit 1;
+fi
+
 if [ -d /u01/python/ ] 
 then
-  echo "Python 3.5.2 is already installed."
+  echo "Python 3.5.2 is already installed. Remove directory (/u01/python) to reinstall."
 else
   echo "Install Python prerequisites..."
   

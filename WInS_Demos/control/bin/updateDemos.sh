@@ -4,6 +4,15 @@ export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
 export GIT_URL="https://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 export GIT_BRANCH="caf-12.2.1"
 
+sudo /etc/init.d/network restart
+
+timeout 5 git ls-remote "$GIT_URL" &>-
+if [ "$?" -ne 0 ]; then
+    echo "[ERROR] Unable to read from '$GIT_URL'"
+    echo "Check your proxy settings and/or restart Virtualbox VM."
+    exit 1;
+fi
+
 echo "Using GIT_URL=[${GIT_URL}]"
 echo "Getting BRANCH=[${GIT_BRANCH}]"
 echo "Cloning remote repository to ${CONTENT_DIR}..."
