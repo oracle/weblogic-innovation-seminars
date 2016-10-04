@@ -6,7 +6,8 @@ export GIT_BRANCH="caf-12.2.1"
 
 sudo $CONTENT_DIR/WInS_Demos/control/bin/sudoNetwork.sh
 
-timeout 5 git ls-remote "$GIT_URL" &>-
+cd $CONTENT_DIR
+timeout 5 git ls-remote --exit-code -h "$GIT_URL"
 if [ "$?" -ne 0 ]; then
     echo "[ERROR] Unable to read from '$GIT_URL'"
     echo "Check your proxy settings and/or restart Virtualbox VM."
