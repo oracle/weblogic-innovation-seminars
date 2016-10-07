@@ -12,9 +12,7 @@ This part of the tutorial is a shortcut to quickly deploy TechCo sample applicat
 
 ### Prerequisites ###
 
-- Running Database Cloud Service instance
-- Running Java Cloud Service instance
-- Properly configured `environment.properties` file in `/u01/content/weblogic-innovation-seminars/cloud.demos/` folder.
+This lab require to build the model of on-premise enviornment. See [Preparation of the on-premise environment](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/vbox.vm.md)
 
 ### Steps ###
 
