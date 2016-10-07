@@ -13,7 +13,7 @@ Software | Expected path | Remarks
 JDK7 | /usr/java/jdk1.7.0_XX/ | We used JDK7u79 so the path in the VBox was /usr/java/jdk1.7.0_79/
 JDK8 | /usr/java/jdk1.8.0_XX/ | We used JDK8u60 so the path in the VBox was /usr/java/jdk1.8.0_60/
 Maven |  | 
-Lab content | /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8 | Extracted based on the content at https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/Lab8
+Lab content for Lift and Shift | /u01/content/weblogic-innovation-seminars/WInS_Demos/MT-Workshop/Lab8 | Extracted based on the content at https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/WInS_Demos/MT-Workshop/Lab8
 cloud.demos utility content | /u01/content/weblogic-innovation-seminars/cloud.demos | Extracted based on the content at https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/cloud.demos
 Weblogic Server 10.3.6 | /u01/wins/wls1036/ | We used WLS 10.3.6.0.0
 WebLogic Server 12.2.1 | /u01/wins/wls1221/ | We used WLS 12.2.1.0.0
