@@ -19,6 +19,18 @@ then
     echo "proxy has been removed from yum configuration"
 fi
 #=========================================================
+BASHRC_FILE=/home/oracle/.bashrc
+
+grepresult=$(grep -c "export http_proxy=$ORACLE_HTTP_PROXY" $BASHRC_FILE -s)
+
+if [ $grepresult == 1 ]
+then
+    # ~/.bashrc configured for proxy, need to delete
+    sudo sed -i "/export http_proxy=$ORACLE_HTTP_PROXY/ d" $BASHRC_FILE
+    sudo sed -i "/export https_proxy=$ORACLE_HTTP_PROXY/ d" $BASHRC_FILE
+    echo "proxy has been removed from ~/.bashrc configuration"
+fi
+#=========================================================
 
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
 PROXY_MESSAGE="Proxy NOT SET for Oracle Network!!!"
@@ -33,8 +45,6 @@ sudo git config --system --unset http.proxy
 sudo git config --global --unset http.proxy
 sudo git config -f $DEMOS_HOME/../.git/config --unset http.proxy
 
-export http_proxy=
-
 echo "Removing Proxy Settings from GIT!"
 
 chmod +x ${PROXY_SCRIPT}
@@ -47,13 +57,11 @@ echo "GIT _system_ Proxy set to: [${GIT_SYSTEM_PROXY}]"
 echo "GIT _global_ Proxy set to: [${GIT_GLOBAL_PROXY}]"
 echo "GIT _project_ Proxy set to: [${GIT_PROJECT_PROXY}]"
 
-sudo rm /etc/profile.d/setproxy.sh
-
 unset http_proxy
 unset https_proxy
 
 echo "http_proxy set to: [${http_proxy}]"
 echo "https_proxy set to: [${https_proxy}]"
 
-echo "This window will close automatically in 5s..."
-sleep 5
+echo "This window will close automatically/or continue running in 3s..."
+sleep 3

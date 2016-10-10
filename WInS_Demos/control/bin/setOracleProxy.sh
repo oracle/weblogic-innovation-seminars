@@ -20,6 +20,21 @@ else
     echo "yum now has been configured for proxy."
 fi
 #=========================================================
+BASHRC_FILE=/home/oracle/.bashrc
+
+grepresult=$(grep -c "export http_proxy=$ORACLE_HTTP_PROXY" $BASHRC_FILE -s)
+
+if [ $grepresult == 1 ]
+then
+    # bashrc configured for proxy, need to delete
+    echo "~/.bashrc is already configured for proxy."
+else
+    # bashrc not configured for proxy, need to add
+    sed -i '$ a\'"export http_proxy=$ORACLE_HTTP_PROXY"'' $BASHRC_FILE
+    sed -i '$ a\'"export https_proxy=$ORACLE_HTTP_PROXY"'' $BASHRC_FILE
+    echo "~/.bashrc now has been configured for proxy."
+fi
+#=========================================================
 
 ORACLE_HTTP_PROXY="http://www-proxy.us.oracle.com:80"
 PROXY_SCRIPT="/home/oracle/setProxy.sh"
@@ -34,8 +49,6 @@ sudo git config --system http.proxy ${ORACLE_HTTP_PROXY}
 
 echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTTP_PROXY}" > /home/oracle/setproxy.sh
 
-sudo cp /home/oracle/setproxy.sh /etc/profile.d
-
 export http_proxy=$ORACLE_HTTP_PROXY
 export https_proxy=$ORACLE_HTTP_PROXY
 
@@ -48,5 +61,5 @@ sudo git config --system --get http.proxy
 
 chmod +x ${PROXY_SCRIPT}
 
-echo "This window will close automatically in 5s..."
-sleep 5
+echo "This window will close automatically/or continue running in 3s..."
+sleep 3

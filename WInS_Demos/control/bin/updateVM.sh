@@ -2,6 +2,8 @@
 
 echo "Check proxy settings"
 
+sudo rm -f /etc/profile.d/setproxy.sh
+
 GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
 if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
   echo "Reset proxy settings for Oracle network"
