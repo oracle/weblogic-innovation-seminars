@@ -49,7 +49,11 @@ echo "GIT _project_ Proxy set to: [${GIT_PROJECT_PROXY}]"
 
 sudo rm /etc/profile.d/setproxy.sh
 
-if [ "$1" == "wait" ]; then
-  echo "This window will close automatically in 5s..."
-  sleep 5
- fi
+unset http_proxy
+unset https_proxy
+
+echo "http_proxy set to: [${http_proxy}]"
+echo "https_proxy set to: [${https_proxy}]"
+
+echo "This window will close automatically in 5s..."
+sleep 5

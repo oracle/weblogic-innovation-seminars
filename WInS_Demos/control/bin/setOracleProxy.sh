@@ -36,13 +36,16 @@ echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTT
 
 sudo cp /home/oracle/setproxy.sh /etc/profile.d
 
+/etc/profile.d/setproxy.sh
+
+echo "http_proxy set to: [${http_proxy}]"
+echo "https_proxy set to: [${https_proxy}]"
+
 echo ${PROXY_MESSAGE} 
 
 sudo git config --system --get http.proxy
 
 chmod +x ${PROXY_SCRIPT}
 
-if [ "$1" == "wait" ]; then
-  echo "This window will close automatically in 5s..."
-  sleep 5
- fi
+echo "This window will close automatically in 5s..."
+sleep 5

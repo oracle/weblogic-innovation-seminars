@@ -3,6 +3,7 @@
 export CONTENT_DIR="/u01/content/weblogic-innovation-seminars"
 export GIT_URL="https://github.com/oracle-weblogic/weblogic-innovation-seminars.git"
 export GIT_BRANCH="caf-12.2.1"
+export WPAD_URL="http://wpad/wpad.dat"
 
 sudo $CONTENT_DIR/WInS_Demos/control/bin/sudoNetwork.sh
 
@@ -52,8 +53,24 @@ cp ${CONTENT_DIR}/WInS_Demos/control/bin/updateDemos.sh /home/oracle/
 
 echo "Updating virtualbox environment..."
 
+echo "Check proxy settings"
+
+timeout 5 wget -q --spider $WPAD_URL
+
+if [ "$?" -ne 0 ]; then
+    echo "Reset proxy settings for Non-Oracle network"
+    . ${CONTENT_DIR}/WInS_Demos/control/bin/removeOracleProxy.sh
+else
+    echo "Reset proxy settings for Oracle network"
+    . ${CONTENT_DIR}/WInS_Demos/control/bin/setOracleProxy.sh
+fi
+
+echo "http_proxy=$http_proxy"
+echo "https_proxy=$https_proxy"
+
+echo "========================================"
+echo "Running VM update script================"
+
 ${CONTENT_DIR}/WInS_Demos/control/bin/updateVM.sh
 
-if [ "$1" == "wait" ]; then
-  read -p "Checkout complete. Press [Enter] to close the window"
- fi
+read -p "Checkout complete. Press [Enter] to close the window"

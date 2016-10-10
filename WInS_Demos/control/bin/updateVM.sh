@@ -32,37 +32,18 @@ fi
 
 echo "========================================"
 
-YUM_REPO_URL="http://public-yum.oracle.com/repo/OracleLinux/OL7/UEKR3/x86_64/"
-
-timeout 5 wget -q --spider "$YUM_REPO_URL"
-if [ "$?" -ne 0 ]; then
-    echo "[ERROR] Unable to read from $YUM_REPO_URL"
-    echo "Check your proxy settings and/or restart Virtualbox VM."
-    exit 1;
-fi
-
 if [ -d /u01/python/ ] 
 then
   echo "Python 3.5.2 is already installed. Remove directory (/u01/python) to reinstall."
 else
   echo "Install Python prerequisites..."
   
+  echo "http_proxy=$http_proxy"
+  echo "https_proxy=$https_proxy"  
+  
   sudo /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/sudo1.sh
   
   echo "Install Python 3.5.2"
-  
-  GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
-  if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
-    export http_proxy=$GIT_SYSTEM_PROXY_CHECK
-    export https_proxy=$GIT_SYSTEM_PROXY_CHECK
-    echo "http_proxy=$http_proxy"
-    echo "https_proxy=$https_proxy"
-  else
-    unset http_proxy
-    unset https_proxy
-    echo "http_proxy=$http_proxy"
-    echo "https_proxy=$https_proxy"
-  fi
   
   wget --no-check-certificate  -P /u01/ https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
     
