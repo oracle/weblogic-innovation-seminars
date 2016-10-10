@@ -19,9 +19,7 @@ rm -f /var/run/yum.pid
 
 sleep 3
 
-yum makecache fast
-
-sleep 5
+yum clean all
 
 yum -y install zlib-devel-1.2.7-15.el7.x86_64
 
