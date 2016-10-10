@@ -8,8 +8,6 @@ GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
 if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
   echo "Reset proxy settings for Oracle network"
   . ${CONTENT_DIR}/WInS_Demos/control/bin/setOracleProxy.sh
-  echo "http_proxy=$http_proxy"
-  echo "https_proxy=$https_proxy"
 else
   echo "Reset proxy settings for Non-Oracle network"
   . ${CONTENT_DIR}/WInS_Demos/control/bin/removeOracleProxy.sh
