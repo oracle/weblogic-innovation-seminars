@@ -36,7 +36,8 @@ echo -e "export http_proxy=${ORACLE_HTTP_PROXY}\nexport https_proxy=${ORACLE_HTT
 
 sudo cp /home/oracle/setproxy.sh /etc/profile.d
 
-sudo /etc/profile.d/setproxy.sh
+export http_proxy=$ORACLE_HTTP_PROXY
+export https_proxy=$ORACLE_HTTP_PROXY
 
 echo "http_proxy set to: [${http_proxy}]"
 echo "https_proxy set to: [${https_proxy}]"

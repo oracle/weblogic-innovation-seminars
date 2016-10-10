@@ -1,21 +1,24 @@
 #!/bin/bash
 
-export WPAD_URL="http://wpad/wpad.dat"
-
 echo "Check proxy settings"
 
-timeout 5 wget -q --spider $WPAD_URL
-
-if [ "$?" -ne 0 ]; then
-    echo "Reset proxy settings for Non-Oracle network"
-    . ${CONTENT_DIR}/WInS_Demos/control/bin/removeOracleProxy.sh
+GIT_SYSTEM_PROXY_CHECK=`git config --get --system http.proxy`
+if [ -n "$GIT_SYSTEM_PROXY_CHECK" ]; then
+  echo "Reset proxy settings for Oracle network"
+  . ${CONTENT_DIR}/WInS_Demos/control/bin/setOracleProxy.sh
+  echo "http_proxy=$http_proxy"
+  echo "https_proxy=$https_proxy"
 else
-    echo "Reset proxy settings for Oracle network"
-    . ${CONTENT_DIR}/WInS_Demos/control/bin/setOracleProxy.sh
+  echo "Reset proxy settings for Non-Oracle network"
+  . ${CONTENT_DIR}/WInS_Demos/control/bin/removeOracleProxy.sh
+  unset http_proxy
+  unset https_proxy
 fi
 
 echo "http_proxy=$http_proxy"
 echo "https_proxy=$https_proxy"
+
+echo "========================================"
 
 JAVA_VERSION=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
 
