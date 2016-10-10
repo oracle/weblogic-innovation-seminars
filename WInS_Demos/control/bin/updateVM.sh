@@ -1,5 +1,22 @@
 #!/bin/bash
 
+export WPAD_URL="http://wpad/wpad.dat"
+
+echo "Check proxy settings"
+
+timeout 5 wget -q --spider $WPAD_URL
+
+if [ "$?" -ne 0 ]; then
+    echo "Reset proxy settings for Non-Oracle network"
+    . ${CONTENT_DIR}/WInS_Demos/control/bin/removeOracleProxy.sh
+else
+    echo "Reset proxy settings for Oracle network"
+    . ${CONTENT_DIR}/WInS_Demos/control/bin/setOracleProxy.sh
+fi
+
+echo "http_proxy=$http_proxy"
+echo "https_proxy=$https_proxy"
+
 JAVA_VERSION=`java -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
 
 if [ $JAVA_VERSION == "1.8.0_60" ]
@@ -38,9 +55,6 @@ then
 else
   echo "Install Python prerequisites..."
   
-  echo "http_proxy=$http_proxy"
-  echo "https_proxy=$https_proxy"  
-  
   sudo /u01/content/weblogic-innovation-seminars/WInS_Demos/control/bin/sudo1.sh
   
   echo "Install Python 3.5.2"
@@ -70,5 +84,4 @@ fi
 
 echo "========================================"
 
-echo "Oracle Proxy settings has been changed. Please run again Oracle Proxy ON/OFF on the desktop depending on your network connection."
 echo "Everything is up to date!"
