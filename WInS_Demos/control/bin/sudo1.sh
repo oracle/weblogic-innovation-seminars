@@ -21,8 +21,8 @@ sleep 3
 
 yum clean all
 
-yum -y install zlib-devel-1.2.7-15.el7.x86_64
+yum -y install zlib
 
-yum -y install openssl-devel-1.0.1e-51.el7_2.5.x86_64
+yum -y install openssl-devel
 
 echo "SUDO1================================END"
