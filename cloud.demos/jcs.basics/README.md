@@ -54,6 +54,9 @@ During the execution you will create several public cloud service instances what
 + [Convert WebLogic 11g domain into the 12cR2 partition using DPCT (Domain to Partition Conversion Tool)](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/dpct.11g.12R2.migration.md)
 + [Move partition from WebLogic Server 12cR2 to Oracle Java Cloud Service](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/HOL7606/lift.and.shift.md)
 
+####Migrate Weblogic 10.3.6 (on premise) Application to Java Cloud Service with App2Cloud tool ####
+
++ [Migrate Weblogic 10.3.6 (on premise) Application to Java Cloud Service with App2Cloud tool](https://github.com/oracle-weblogic/weblogic-innovation-seminars/tree/caf-12.2.1/cloud.demos/app.2.cloud)
  
 ####Clean up the environment####
 
