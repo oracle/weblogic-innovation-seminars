@@ -22,12 +22,12 @@ During the execution you will create several public cloud service instances what
 
 ----
 
-#### Deploy JEE application to Oracle Java Cloud Service####
+#### Deploy Java EE application to Oracle Java Cloud Service####
 
 + [Create Database Cloud Service Instance using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.dbcs.ui.md)
 + [Create Java Cloud Service Instance using user interface](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/create.jcs.ui.md)
 + [Prepare Database Cloud Service Instance to store sample application's data](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/prepare.dbcs.md)
-+ [Deploy JEE sample application to Oracle Java Cloud Service using Admin console](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.to.jcs.md)
++ [Deploy Java EE sample application to Oracle Java Cloud Service using Admin console](https://github.com/oracle-weblogic/weblogic-innovation-seminars/blob/caf-12.2.1/cloud.demos/jcs.basics/deploy.to.jcs.md)
 
 ####Manage Oracle Java Cloud Service####
 
